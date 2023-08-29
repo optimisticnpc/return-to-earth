@@ -39,7 +39,7 @@ public class TimeSelectController {
   }
 
   public void changeToRoom() {
-    Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM);
+    Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     App.getScene().setRoot(roomRoot);
     GameTimer gameTimer = GameTimer.getInstance();
     // Start timer

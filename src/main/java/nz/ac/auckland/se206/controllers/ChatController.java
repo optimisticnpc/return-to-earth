@@ -235,7 +235,7 @@ public class ChatController {
       chatIndex++;
     }
 
-    Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM);
+    Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     App.getScene().setRoot(roomRoot);
   }
 

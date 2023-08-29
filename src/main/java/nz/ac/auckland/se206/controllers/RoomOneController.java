@@ -16,7 +16,7 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 /** Controller class for the room view. */
-public class RoomController {
+public class RoomOneController {
 
   @FXML private Rectangle door;
   @FXML private Rectangle window;
@@ -33,7 +33,7 @@ public class RoomController {
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    System.out.println("RoomController.initialize()");
+    System.out.println("RoomOneController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
   }
@@ -99,8 +99,9 @@ public class RoomController {
           "Find the key!",
           "Did you forget where the key is? Well check what I told you in the chat!");
     } else {
-      App.setRoot("winscreen");
-      GameState.isGameWon = true;
+
+      Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
+      App.getScene().setRoot(roomTwoRoot);
     }
   }
 
