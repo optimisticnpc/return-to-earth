@@ -11,11 +11,15 @@ import javafx.util.Duration;
 public class GameTimer {
 
   private static GameTimer instance = null;
-  private static final int INITIAL_TIME = 120;
+  private static int initialTime;
+
+  public static void setInitialTime(int initialTime) {
+    GameTimer.initialTime = initialTime;
+  }
 
   public static GameTimer getInstance() {
     if (instance == null) {
-      instance = new GameTimer(INITIAL_TIME);
+      instance = new GameTimer(initialTime);
     }
     return instance;
   }
@@ -50,7 +54,9 @@ public class GameTimer {
   }
 
   public void startTimer() {
-    timeline.play();
+    timeSeconds = initialTime;
+    updateTimeDisplay();
+    timeline.playFromStart();
   }
 
   public void stopTimer() {

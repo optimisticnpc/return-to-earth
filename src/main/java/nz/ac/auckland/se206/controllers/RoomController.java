@@ -34,7 +34,6 @@ public class RoomController {
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     System.out.println("RoomController.initialize()");
-    // Initialization code goes here
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
   }

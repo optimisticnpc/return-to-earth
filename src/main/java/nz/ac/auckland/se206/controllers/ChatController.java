@@ -251,7 +251,8 @@ public class ChatController {
               try {
                 textToSpeech.speak(messageString);
               } catch (Exception e) {
-                e.printStackTrace();
+                // TODO: Uncomment this (maybe)
+                // e.printStackTrace();
               }
 
               // Re-enable the soundIcon button when the message has been read
