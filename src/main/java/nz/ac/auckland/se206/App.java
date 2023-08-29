@@ -48,6 +48,7 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
     SceneManager.addUi(AppUi.ROOM, loadFxml("room"));
     SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
+    SceneManager.addUi(AppUi.TIME_SELECT, loadFxml("timeselect"));
     SceneManager.addUi(AppUi.START, loadFxml("start"));
     Parent root = SceneManager.getUiRoot(AppUi.START);
     scene = new Scene(root, 600, 470);

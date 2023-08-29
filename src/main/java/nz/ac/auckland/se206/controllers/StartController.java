@@ -1,11 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.io.IOException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
@@ -15,7 +14,9 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 public class StartController {
   @FXML private Label timerLabel;
   @FXML private Label displayLabel;
-  @FXML private Button nextAndStartButton;
+  @FXML private ImageView easyButton;
+  @FXML private ImageView mediumButton;
+  @FXML private ImageView hardButton;
 
   @FXML
   public void initialize() throws ApiProxyException {
@@ -26,11 +27,22 @@ public class StartController {
   }
 
   @FXML
-  private void onNextAndStartButtonClicked(ActionEvent event)
-      throws ApiProxyException, IOException {
+  public void clickEasyButton(MouseEvent event) {
+    changeToTimeSelect();
+  }
 
-    // Change the scene to the room view
-    Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM);
-    App.getScene().setRoot(roomRoot);
+  @FXML
+  public void clickMediumButton(MouseEvent event) {
+    changeToTimeSelect();
+  }
+
+  @FXML
+  public void clickHardButton(MouseEvent event) {
+    changeToTimeSelect();
+  }
+
+  private void changeToTimeSelect() {
+    Parent timeSelectRoot = SceneManager.getUiRoot(AppUi.TIME_SELECT);
+    App.getScene().setRoot(timeSelectRoot);
   }
 }
