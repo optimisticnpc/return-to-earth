@@ -8,4 +8,8 @@ public class GameState {
 
   /** Indicates whether the key has been found. */
   public static boolean isKeyFound = false;
+
+  public static boolean isGameWon = false;
+
+  public static boolean isJokeResolved = false;
 }

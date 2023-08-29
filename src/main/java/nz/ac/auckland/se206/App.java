@@ -2,10 +2,13 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.controllers.GlobalController;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -43,11 +46,34 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    Parent root = loadFxml("room");
+    SceneManager.addUi(AppUi.ROOM, loadFxml("room"));
+    SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
+    SceneManager.addUi(AppUi.START, loadFxml("start"));
+    Parent root = SceneManager.getUiRoot(AppUi.START);
     scene = new Scene(root, 600, 470);
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
+    new GlobalController();
+
+    // Ensure app exits cleanly when window is closed
+    // This stops any threads or services that the app is using
+    stage.setOnCloseRequest(
+        e -> {
+          Platform.exit();
+          System.exit(0);
+        });
   }
 
+  public static Scene getScene() {
+    return scene;
+  }
+
+  public static void resetChat() {
+    try {
+      SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 }

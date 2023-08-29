@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="room" focusTraversable="true" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WinScreenController">
+   <children>
+      <ImageView fitHeight="326.0" fitWidth="588.0" layoutX="53.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/AI%20with%20Speech%20bubble.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="89.0" layoutY="126.0" prefHeight="68.0" prefWidth="155.0" text="Congratulations! You win!" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="exitButton" layoutX="58.0" layoutY="352.0" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="38.0" prefWidth="101.0" text="Exit Game" />
+      <Label layoutX="62.0" layoutY="325.0" text="(To be continued)" />
+   </children>
+</Pane>
