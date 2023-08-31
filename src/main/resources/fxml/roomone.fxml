@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
+   <children>
+      <ImageView fitHeight="470.0" fitWidth="600.0" layoutY="3.0">
+         <image>
+            <Image url="@../images/anime_room.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="36.0" layoutY="23.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining:">
+
+
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="timerLabel" layoutX="234.0" layoutY="23.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="2:00">
+
+               <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="laptop" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="48.0" layoutX="140.0" layoutY="231.0" onMouseClicked="#clickLaptop" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+      <Rectangle fx:id="window" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="200.0" layoutX="36.0" layoutY="58.0" onMouseClicked="#clickWindow" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="104.0" />
+      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="321.0" layoutX="440.0" layoutY="85.0" onMouseClicked="#clickDoor" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="139.0" />
+      <Rectangle fx:id="clock" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="48.0" layoutX="308.0" layoutY="116.0" onMouseClicked="#clickClock" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+      <Rectangle fx:id="floormat" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutX="64.0" layoutY="422.0" onMouseClicked="#clickFloormat" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="244.0" />
+      <Rectangle fx:id="chair1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="83.0" layoutX="188.0" layoutY="255.0" onMouseClicked="#clickChair" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+      <Rectangle fx:id="chair2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="157.0" layoutY="317.0" onMouseClicked="#clickChair" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+      <Polygon fx:id="ceiling" fill="DODGERBLUE" layoutX="314.0" layoutY="51.0" onMouseClicked="#clickCeiling" opacity="0.0" points="-121.0, 31.0, 241.0, -47.0, -296.0, -47.0" stroke="BLACK" strokeType="INSIDE" />
+      <Rectangle fx:id="bookshelf" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="255.0" layoutX="277.0" layoutY="167.0" onMouseClicked="#clickBookshelf" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="106.0" />
+      <Rectangle fx:id="monitor" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="48.0" layoutX="229.0" layoutY="224.0" onMouseClicked="#clickMonitor" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+   </children>
+</Pane>

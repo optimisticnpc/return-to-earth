@@ -1,17 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-  xmlns="http://javafx.com/javafx/18"
-  xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
   <children>
-    <TextArea fx:id="chatTextArea" layoutX="35.0" layoutY="26.0" prefHeight="299.0" prefWidth="538.0" wrapText="true" />
-    <TextField fx:id="inputText" layoutX="35.0" layoutY="341.0" prefHeight="26.0" prefWidth="435.0" />
-    <Button fx:id="sendButton" layoutX="505.0" layoutY="342.0" mnemonicParsing="false" onAction="#onSendMessage" text="Send" />
-    <Button layoutX="505.0" layoutY="367.0" mnemonicParsing="false" onAction="#onGoBack" text="Go Back" />
+    <TextArea fx:id="chatTextArea" editable="false" layoutX="31.0" layoutY="46.0" prefHeight="300.0" prefWidth="536.0" wrapText="true" />
+    <TextField fx:id="inputText" layoutX="31.0" layoutY="354.0" prefHeight="26.0" prefWidth="406.0" />
+    <Button fx:id="sendButton" layoutX="452.0" layoutY="355.0" mnemonicParsing="false" onAction="#onSendMessage" text="Send" />
+    <Button layoutX="452.0" layoutY="380.0" mnemonicParsing="false" onAction="#onGoBack" text="Go Back" />
+      <ImageView fx:id="loadingIcon" fitHeight="62.0" fitWidth="60.0" layoutX="481.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/loading_icon.gif" />
+         </image>
+      </ImageView>
+      <Label fx:id="timerLabel" layoutX="194.0" layoutY="14.0" text="2:00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="14.0" text="Time Remaining:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="soundIcon" fitHeight="60.0" fitWidth="49.0" layoutX="517.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/soundicon.png" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>

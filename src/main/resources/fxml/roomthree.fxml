@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomThreeController">
+   <children>
+      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="45.0" layoutX="399.0" layoutY="398.0" onMouseClicked="#clickDoor" stroke="BLACK" strokeType="INSIDE" width="171.0" />
+      <Text layoutX="465.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click to win" />
+      <Label layoutX="46.0" layoutY="33.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="timerLabel" layoutX="244.0" layoutY="33.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="2:00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Text layoutX="61.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room 3">
+         <font>
+            <Font size="53.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>
