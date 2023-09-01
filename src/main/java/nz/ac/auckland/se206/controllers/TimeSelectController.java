@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -39,10 +40,12 @@ public class TimeSelectController {
   }
 
   public void changeToRoom() {
+    // Reset the game so the player can lose
+    GameState.isGameWon = false;
     Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     App.getScene().setRoot(roomRoot);
     GameTimer gameTimer = GameTimer.getInstance();
-    // Start timer
+
     gameTimer.startTimer();
   }
 }
