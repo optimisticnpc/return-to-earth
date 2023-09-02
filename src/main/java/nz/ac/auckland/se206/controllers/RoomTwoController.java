@@ -15,6 +15,7 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 public class RoomTwoController {
   @FXML private Label timerLabel;
   @FXML private Rectangle door;
+  @FXML private Rectangle goBackRectangle;
 
   public void initialize() {
     System.out.println("RoomTwoController.initialize()");
@@ -28,6 +29,14 @@ public class RoomTwoController {
 
     Parent roomThreeRoot = SceneManager.getUiRoot(AppUi.ROOM_THREE);
     App.getScene().setRoot(roomThreeRoot);
+  }
+
+  @FXML
+  public void clickGoBackRectangle(MouseEvent event) throws IOException {
+    System.out.println("go back clicked");
+
+    Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
+    App.getScene().setRoot(roomOneRoot);
   }
 
   /**

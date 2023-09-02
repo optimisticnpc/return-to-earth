@@ -56,6 +56,7 @@ public class GameTimer {
   public void startTimer() {
     timeSeconds = initialTime;
     updateTimeDisplay();
+    timeUp.set(false); // Reset timeUp property
     timeline.playFromStart();
   }
 

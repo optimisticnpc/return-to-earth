@@ -8,8 +8,8 @@
 
 <Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomTwoController">
    <children>
-      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="23.0" layoutY="228.0" onMouseClicked="#clickDoor" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <Text layoutX="51.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click to go to room 3" />
+      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="366.0" layoutY="235.0" onMouseClicked="#clickDoor" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Text layoutX="401.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click to go to room 3" />
       <Label layoutX="46.0" layoutY="33.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining:">
          <font>
             <Font size="20.0" />
@@ -20,10 +20,12 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Text layoutX="300.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room 2">
+      <Text layoutX="200.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room 2">
          <font>
             <Font size="53.0" />
          </font>
       </Text>
+      <Text layoutX="63.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click to go back to room 1" />
+      <Rectangle fx:id="goBackRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="53.0" layoutY="235.0" onMouseClicked="#clickGoBackRectangle" stroke="BLACK" strokeType="INSIDE" width="200.0" />
    </children>
 </Pane>

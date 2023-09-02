@@ -57,7 +57,7 @@ public class App extends Application {
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
-    new GlobalController();
+    new GlobalController(); // Create a new global controller which checks for time being up
 
     // Ensure app exits cleanly when window is closed
     // This stops any threads or services that the app is using
