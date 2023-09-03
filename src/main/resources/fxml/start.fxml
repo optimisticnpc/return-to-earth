@@ -13,21 +13,21 @@
             <Font size="46.0" />
          </font>
       </Text>
-      <Button fx:id="prevDifficultyButton" layoutX="179.0" layoutY="133.0" mnemonicParsing="false" text="&lt;" />
-      <Button fx:id="nextDifficultyButton" layoutX="389.0" layoutY="133.0" mnemonicParsing="false" text="&gt;" />
-      <Button fx:id="prevTimeButton" layoutX="179.0" layoutY="265.0" mnemonicParsing="false" text="&lt;" />
-      <Button fx:id="nextTimeButton" layoutX="389.0" layoutY="265.0" mnemonicParsing="false" text="&gt;" />
-      <Button fx:id="startButton" layoutX="233.0" layoutY="355.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="134.0" text="Start">
+      <Button fx:id="prevDifficultyButton" layoutX="166.0" layoutY="133.0" mnemonicParsing="false" onMouseClicked="#clickPrevDifficultyButton" text="&lt;" />
+      <Button fx:id="nextDifficultyButton" layoutX="409.0" layoutY="133.0" mnemonicParsing="false" onMouseClicked="#clickNextDifficultyButton" text="&gt;" />
+      <Button fx:id="prevTimeButton" layoutX="166.0" layoutY="265.0" mnemonicParsing="false" onMouseClicked="#clickPrevTimeButton" text="&lt;" />
+      <Button fx:id="nextTimeButton" layoutX="409.0" layoutY="265.0" mnemonicParsing="false" onMouseClicked="#clickNextTimeButton" text="&gt;" />
+      <Button fx:id="startButton" layoutX="233.0" layoutY="355.0" mnemonicParsing="false" onMouseClicked="#clickStartButton" prefHeight="79.0" prefWidth="134.0" text="Start">
          <font>
             <Font size="38.0" />
          </font>
       </Button>
-      <Label fx:id="difficultyLabel" layoutX="265.0" layoutY="119.0" text="Easy" textAlignment="CENTER">
+      <Label fx:id="difficultyLabel" alignment="CENTER" layoutX="213.0" layoutY="119.0" prefHeight="46.0" prefWidth="165.0" text="Easy">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Label fx:id="timeLabel" layoutX="255.0" layoutY="251.0" text="2 min" textAlignment="CENTER">
+      <Label fx:id="timeLabel" alignment="CENTER" layoutX="203.0" layoutY="251.0" text="120 seconds" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font>

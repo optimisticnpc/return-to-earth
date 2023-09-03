@@ -7,7 +7,6 @@ public class SceneManager {
 
   public enum AppUi {
     START,
-    TIME_SELECT,
     CHAT,
     ROOM_ONE,
     ROOM_TWO,

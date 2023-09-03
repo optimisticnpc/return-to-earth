@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -31,7 +30,7 @@ public class StartController {
   }
 
   @FXML
-  public void clickNextDifficultyButton(MouseEvent event) {
+  public void clickNextDifficultyButton() {
     if (this.currDifficulty < 2) {
       this.currDifficulty += 1;
       difficultyLabel.setText(difficulty[currDifficulty]);
@@ -39,7 +38,7 @@ public class StartController {
   }
 
   @FXML
-  public void clickPrevDifficultyButton(MouseEvent event) {
+  public void clickPrevDifficultyButton() {
     if (this.currDifficulty > 0) {
       this.currDifficulty -= 1;
       difficultyLabel.setText(difficulty[currDifficulty]);
@@ -47,29 +46,30 @@ public class StartController {
   }
 
   @FXML
-  public void clickNextTimeButton(MouseEvent event) {
+  public void clickNextTimeButton() {
     if (this.time < 360) {
       this.time += 120;
-      timeLabel.setText(Integer.toString(this.time));
+      timeLabel.setText(Integer.toString(this.time) + " seconds");
     }
   }
 
   @FXML
-  public void clickPrevTimeButton(MouseEvent event) {
+  public void clickPrevTimeButton() {
     if (this.time > 120) {
       this.time -= 120;
-      timeLabel.setText(Integer.toString(this.time));
+      timeLabel.setText(Integer.toString(this.time) + " seconds");
     }
   }
 
   @FXML
-  public void clickStartButton(MouseEvent event) {
+  public void clickStartButton() {
     changeToRoom();
   }
 
   public void changeToRoom() {
-    // Reset the game so the player can lose
+    // Need to change the difficulty here as well later
     GameTimer.setInitialTime(this.time);
+    // Reset the game so the player can lose
     GameState.isGameWon = false;
     Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     App.getScene().setRoot(roomRoot);
