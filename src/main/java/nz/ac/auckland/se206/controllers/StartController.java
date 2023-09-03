@@ -14,6 +14,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 public class StartController {
   @FXML private Label timeLabel;
   @FXML private Label difficultyLabel;
+  @FXML private Label helpLabel;
   @FXML private Button nextDifficultyButton;
   @FXML private Button prevDifficultyButton;
   @FXML private Button nextTimeButton;
@@ -22,6 +23,7 @@ public class StartController {
 
   private int time = 120;
   private String[] difficulty = {"Easy", "Medium", "Hard"};
+  private String[] difficultyHelp = {"- Infinite hints! -", "- 5 hints! -", "- 0 hints! -"};
   private int currDifficulty = 0;
 
   @FXML
@@ -34,6 +36,7 @@ public class StartController {
     if (this.currDifficulty < 2) {
       this.currDifficulty += 1;
       difficultyLabel.setText(difficulty[currDifficulty]);
+      helpLabel.setText(difficultyHelp[currDifficulty]);
     }
   }
 
@@ -42,6 +45,7 @@ public class StartController {
     if (this.currDifficulty > 0) {
       this.currDifficulty -= 1;
       difficultyLabel.setText(difficulty[currDifficulty]);
+      helpLabel.setText(difficultyHelp[currDifficulty]);
     }
   }
 
@@ -49,7 +53,7 @@ public class StartController {
   public void clickNextTimeButton() {
     if (this.time < 360) {
       this.time += 120;
-      timeLabel.setText(Integer.toString(this.time) + " seconds");
+      timeLabel.setText(Integer.toString(this.time) + " sec");
     }
   }
 
@@ -57,7 +61,7 @@ public class StartController {
   public void clickPrevTimeButton() {
     if (this.time > 120) {
       this.time -= 120;
-      timeLabel.setText(Integer.toString(this.time) + " seconds");
+      timeLabel.setText(Integer.toString(this.time) + " sec");
     }
   }
 
