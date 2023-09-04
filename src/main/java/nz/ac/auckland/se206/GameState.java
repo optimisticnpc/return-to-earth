@@ -11,5 +11,10 @@ public class GameState {
 
   public static boolean isGameWon = false;
 
+  /** Indicates the difficulties of the game */
+  public static boolean easy = false;
+  public static boolean medium = false;
+  public static boolean hard = false;
+
   public static boolean isJokeResolved = false;
 }

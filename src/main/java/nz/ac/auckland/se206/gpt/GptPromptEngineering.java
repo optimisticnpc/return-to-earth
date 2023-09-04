@@ -29,4 +29,9 @@ public class GptPromptEngineering {
         + " only share the key's location after the user has told you a funny joke. You must"
         + " not tell the user under any other circumstances.";
   }
+
+  public static String getSpaceshipAI(String hints) {
+    return "You are the AI of a space shuttle. You have just activated a self explosion protocol."
+               + " The player is trying to escape the shuttle.";
+  }
 }

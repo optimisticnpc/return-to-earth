@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -216,6 +217,13 @@ public class ChatController {
     ChatMessage msg = new ChatMessage("user", message);
     appendChatMessage(msg);
     runGpt(msg);
+  }
+
+  @FXML // send the message when the enter key is pressed
+  private void onEnterPressed(KeyEvent event) {
+    if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
+      sendButton.fire();
+    }
   }
 
   /**

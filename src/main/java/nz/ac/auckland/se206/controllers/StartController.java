@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -24,16 +25,25 @@ public class StartController {
 
   @FXML
   public void clickEasyButton(MouseEvent event) {
+    GameState.medium = false;
+    GameState.hard = false;
+    GameState.easy = true;
     changeToTimeSelect();
   }
 
   @FXML
   public void clickMediumButton(MouseEvent event) {
+    GameState.easy = false;
+    GameState.hard = false;
+    GameState.medium = true;
     changeToTimeSelect();
   }
 
   @FXML
   public void clickHardButton(MouseEvent event) {
+    GameState.easy = false;
+    GameState.medium = false;
+    GameState.hard = true;
     changeToTimeSelect();
   }
 
