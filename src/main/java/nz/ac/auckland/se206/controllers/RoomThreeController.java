@@ -3,9 +3,12 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -17,6 +20,9 @@ public class RoomThreeController {
   @FXML private Label timerLabel;
   @FXML private Rectangle goBackRectangle;
   @FXML private Rectangle door;
+  @FXML private Polygon hatch;
+  @FXML private VBox puzzleScreen;
+  @FXML private Button resumeButton;
 
   public void initialize() {
     System.out.println("RoomThreeController.initialize()");
@@ -31,6 +37,20 @@ public class RoomThreeController {
     // TODO: Change or move this
     GameState.isGameWon = true;
     App.setRoot("winscreen");
+  }
+
+  @FXML
+  public void clickHatch(MouseEvent event) {
+    System.out.println("hatch clicked");
+    // NEED TO ADD --> ONLY IF PLAYER HAS THE TOOL/SELECTED CORRECT TOOL
+    puzzleScreen.setVisible(!puzzleScreen.isVisible());
+  }
+
+  @FXML
+  public void clickResumeButton(MouseEvent event) {
+    System.out.println("resume clicked");
+
+    puzzleScreen.setVisible(!puzzleScreen.isVisible());
   }
 
   @FXML
