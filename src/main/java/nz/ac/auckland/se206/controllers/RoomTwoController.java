@@ -10,6 +10,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.MathQuestionSelector;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -17,11 +18,17 @@ public class RoomTwoController {
   @FXML private Label timerLabel;
   @FXML private Rectangle door;
   @FXML private Rectangle goBackRectangle;
+  @FXML private Label questionOneLabel;
+  @FXML private Label questionTwoLabel;
 
   public void initialize() {
     System.out.println("RoomTwoController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
+
+    MathQuestionSelector selector = MathQuestionSelector.getInstance();
+    questionOneLabel.setText(selector.getFirstQuestion());
+    questionTwoLabel.setText(selector.getSecondQuestion());
   }
 
   @FXML

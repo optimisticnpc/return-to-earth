@@ -36,5 +36,7 @@
       <Rectangle fx:id="goBackRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="70.0" layoutX="23.0" layoutY="354.0" onMouseClicked="#clickGoBackRectangle" stroke="BLACK" strokeType="INSIDE" width="113.0" />
       <Text layoutX="35.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click to go back to room 1 (control room)" wrappingWidth="89.400390625" />
       <Polygon fx:id="toolCompartment" fill="#1f93ff" layoutX="218.0" layoutY="401.0" onMouseClicked="#clickToolCompartment" opacity="0.35" points="-52.0, 44.5, 26.0, 44.5, 46.5, -11.0, -22.0, -11.0" stroke="BLACK" strokeType="OUTSIDE" />
+      <Label fx:id="questionOneLabel" layoutX="376.0" layoutY="51.0" prefHeight="100.0" prefWidth="210.0" text="Q1" wrapText="true" />
+      <Label fx:id="questionTwoLabel" layoutX="412.0" layoutY="179.0" prefHeight="89.0" prefWidth="182.0" text="Q2" wrapText="true" />
    </children>
 </Pane>

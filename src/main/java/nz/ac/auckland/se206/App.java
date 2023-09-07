@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.controllers.GlobalController;
+import nz.ac.auckland.se206.controllers.PasscodeController;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -58,6 +59,10 @@ public class App extends Application {
     stage.show();
     root.requestFocus();
     new GlobalController(); // Create a new global controller which checks for time being up
+
+    // Get math questions
+    MathQuestionSelector selector = MathQuestionSelector.getInstance();
+    PasscodeController.setCorrectPassCodeString(selector.generatePasscode());
 
     // Ensure app exits cleanly when window is closed
     // This stops any threads or services that the app is using
