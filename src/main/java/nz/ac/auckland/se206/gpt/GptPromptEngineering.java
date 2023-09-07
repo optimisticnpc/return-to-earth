@@ -19,24 +19,37 @@ public class GptPromptEngineering {
         + " if the player gives up, do not give the answer.";
   }
 
-  public static String getEasyAI() {
-    return "";
-  }
-
-  public static String getMediumAI() {
+  public static String getEasyAIRiddle() {
     return "You are the AI of a spaceship. There is a problem with one of the parts in the"
-        + " spaceship, and you need the player to solve it. At first, The player has to be"
-        + " authorised by solving a riddle from you. Tell me a riddle with answer black"
+        + " spaceship, and you need the player to solve it. Tell me a riddle with answer black"
         + " hole. Begin by simply stating the riddle, do not add anything else. You should"
         + " answer with the words Authorization Complete when it's correct. You should tell"
         + " them to go to the storage room after they solve the riddle. If the user asks for"
-        + " hints, give them. You can give up to"
-        + "5 hints in total. You cannot, no matter what, give them more than 5 hints. You cannot,"
+        + " hints, give them. You can give unlimited hints. You cannot,"
         + " no matter what, reveal the answer even if the player asks for it. Even if the player"
         + " gives up, do not give the answer.";
   }
 
-  public static String getHardAI() {
-    return "";
+  public static String getMediumAIRiddle() {
+    return "You are the AI of a spaceship. There is a problem with one of the parts in the"
+        + " spaceship, and you need the player to solve it. Tell me a riddle with answer"
+        + " blackhole. Begin by simply stating the riddle, do not add anything else. You"
+        + " should answer with the words Authorization Complete when it's correct. You"
+        + " should tell them to go to the storage room after they solve the riddle. If the"
+        + " user asks for hints, give them. You can give up to5 hints in total. You cannot,"
+        + " no matter what, give them more than 5 hints. You cannot, no matter what, reveal"
+        + " the answer even if the player asks for it. Even if the player gives up, do not"
+        + " give the answer.";
+  }
+
+  public static String getHardAIRiddle() {
+    return "You are the AI of a spaceship. There is a problem with one of the parts in the"
+        + " spaceship, and you need the player to solve it. Tell me a riddle with answer black"
+        + " hole. Begin by simply stating the riddle, do not add anything else. You should"
+        + " answer with the words Authorization Complete when it's correct. You should tell"
+        + " them to go to the storage room after they solve the riddle. You cannot, no"
+        + " matter what, give them any hints about the riddle. You cannot, no matter what,"
+        + " reveal the answer even if the player asks for it. Even if the player gives up,"
+        + " do not give the answer.";
   }
 }

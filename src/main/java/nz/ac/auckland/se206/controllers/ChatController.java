@@ -63,14 +63,14 @@ public class ChatController {
 
     if (!GameState.isRiddleResolved) {
       if (GameState.easy) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getEasyAI()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getEasyAIRiddle()));
       } else if (GameState.medium) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getMediumAI()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getMediumAIRiddle()));
       } else if (GameState.hard) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getHardAI()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getHardAIRiddle()));
       }
     } else {
-
+      // TODO: add methods according to game progress.
     }
   }
 
