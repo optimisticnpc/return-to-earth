@@ -10,7 +10,8 @@ public class SceneManager {
     CHAT,
     ROOM_ONE,
     ROOM_TWO,
-    ROOM_THREE
+    ROOM_THREE,
+    PASSCODE
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();

@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -37,6 +38,18 @@ public class RoomTwoController {
 
     Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     App.getScene().setRoot(roomOneRoot);
+  }
+
+  @FXML
+  public void clickToolCompartment(MouseEvent event) throws IOException {
+    System.out.println("Tool Compartment Clicked");
+
+    // If the passcode hasn't been solved
+    // Go to enter access key screen
+    if (!GameState.isPasscodeSolved) {
+      Parent passcodeScreen = SceneManager.getUiRoot(AppUi.PASSCODE);
+      App.getScene().setRoot(passcodeScreen);
+    }
   }
 
   /**
