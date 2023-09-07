@@ -1,15 +1,27 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -23,11 +35,57 @@ public class RoomThreeController {
   @FXML private Polygon hatch;
   @FXML private VBox puzzleScreen;
   @FXML private Button resumeButton;
+  @FXML private Circle screwOne;
+  @FXML private Circle screwTwo;
+  @FXML private Circle screwThree;
+  @FXML private Circle screwFour;
+  @FXML private Button timingButton;
+  @FXML private ImageView meter;
+  @FXML private Text success;
+  @FXML private ImageView background;
 
   public void initialize() {
     System.out.println("RoomThreeController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
+  }
+
+  public void initializeRotate() {
+    RotateTransition rotate = new RotateTransition();
+    rotate.setNode(meter);
+    rotate.setDuration(Duration.millis(1000));
+    rotate.setCycleCount(TranslateTransition.INDEFINITE);
+    rotate.setInterpolator(Interpolator.LINEAR);
+    rotate.setByAngle(360);
+    rotate.play();
+  }
+
+  @FXML
+  public void clickTimingButton(MouseEvent event) throws FileNotFoundException {
+    System.out.println(meter.getRotate());
+    if (meter.getRotate() <= 184 && meter.getRotate() >= 180) {
+      showSuccessMessage();
+    }
+  }
+
+  @FXML
+  public void showSuccessMessage() throws FileNotFoundException {
+    success.setVisible(!success.isVisible());
+    FadeTransition fade = new FadeTransition();
+    fade.setNode(success);
+    fade.setDuration(Duration.millis(2000));
+    fade.setInterpolator(Interpolator.LINEAR);
+    fade.setFromValue(1);
+    fade.setToValue(0);
+    fade.play();
+    InputStream stream =
+        new FileInputStream("src/main/resources/images/spaceship_exterior_open_hatch.png");
+    Image img = new Image(stream);
+    background.setImage(img);
+    screwOne.setVisible(false);
+    screwTwo.setVisible(false);
+    screwThree.setVisible(false);
+    screwFour.setVisible(false);
   }
 
   @FXML
@@ -40,10 +98,18 @@ public class RoomThreeController {
   }
 
   @FXML
+  public void clickScrew(MouseEvent event) {
+    System.out.println("hatch clicked");
+    puzzleScreen.setVisible(!puzzleScreen.isVisible());
+    meter.setVisible(!meter.isVisible());
+    initializeRotate();
+  }
+
+  @FXML
   public void clickHatch(MouseEvent event) {
     System.out.println("hatch clicked");
     // NEED TO ADD --> ONLY IF PLAYER HAS THE TOOL/SELECTED CORRECT TOOL
-    puzzleScreen.setVisible(!puzzleScreen.isVisible());
+    // puzzleScreen.setVisible(!puzzleScreen.isVisible());
   }
 
   @FXML
@@ -51,6 +117,7 @@ public class RoomThreeController {
     System.out.println("resume clicked");
 
     puzzleScreen.setVisible(!puzzleScreen.isVisible());
+    meter.setVisible(!meter.isVisible());
   }
 
   @FXML
