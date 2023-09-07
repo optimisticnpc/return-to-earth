@@ -9,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -80,7 +81,11 @@ public class RoomOneController {
   public void clickChatRectangle(MouseEvent event) throws IOException {
     showDialog(
         "AI", "Riddle/Joke", "We wont be using dialog boxes anymore so need to remove this later");
+    if (GameState.isRoomOneFirst) {
+      SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
+    }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
     App.getScene().setRoot(chatRoot);
+    GameState.isRoomOneFirst = false;
   }
 }

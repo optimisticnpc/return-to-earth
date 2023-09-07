@@ -62,9 +62,15 @@ public class ChatController {
     soundIcon.setOnMouseClicked(e -> readMessage());
 
     if (!GameState.isRiddleResolved) {
-      runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("laptop")));
+      if (GameState.easy) {
+        runGpt(new ChatMessage("user", GptPromptEngineering.getEasyAI()));
+      } else if (GameState.medium) {
+        runGpt(new ChatMessage("user", GptPromptEngineering.getMediumAI()));
+      } else if (GameState.hard) {
+        runGpt(new ChatMessage("user", GptPromptEngineering.getHardAI()));
+      }
     } else {
-      runGpt(new ChatMessage("user", GptPromptEngineering.getGptToAskForJoke()));
+
     }
   }
 
@@ -144,7 +150,8 @@ public class ChatController {
           }
 
           appendChatMessage(result);
-          if (result.getRole().equals("assistant") && result.getContent().startsWith("Correct")) {
+          if (result.getRole().equals("assistant")
+              && result.getContent().startsWith("Authorization Complete")) {
             GameState.isRiddleResolved = true;
             System.out.println("Riddle resolved");
             showDialog(
@@ -160,16 +167,6 @@ public class ChatController {
 
           loadingIcon.setVisible(false); // hide the loading icon
 
-          // Keep the input field and send button disabled if the riddle is resolved
-          // And it is the first run
-          if (GameState.isRiddleResolved && chatIndex == 0) {
-            return;
-          }
-
-          // Keep the input field and send button disabled if the joke is resolved
-          if (GameState.isJokeResolved && chatIndex == 1) {
-            return;
-          }
           sendButton.setDisable(false); // Re-enable send button
           inputText.setDisable(false); // Re-enable the input text area
         });
