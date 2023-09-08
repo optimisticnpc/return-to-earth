@@ -20,8 +20,8 @@ public class MathQuestionSelector {
             "05"));
     MathQuestions.add(
         new MathQuestion(
-            "In a spaceship are space sheep and cosmic chickens. There are 22 animals altogether."
-                + " If there are 74 legs, how many space sheep are there?",
+            "In a spaceship there are space sheeps and cosmic chickens. There are 22 animals"
+                + " altogether. If there are 74 legs, how many space sheep are there?",
             "15"));
     MathQuestions.add(
         new MathQuestion(

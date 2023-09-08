@@ -11,9 +11,14 @@
 
 <Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomTwoController">
    <children>
-      <ImageView fitHeight="480.0" fitWidth="719.0" layoutX="-85.0" layoutY="-10.0">
+      <ImageView fitHeight="480.0" fitWidth="720.0" layoutX="-85.0" layoutY="-10.0">
          <image>
             <Image url="@../images/storage_blank.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="toolBoxOpenImage" fitHeight="480.0" fitWidth="720.0" layoutX="-85.0" layoutY="-10.0" opacity="0.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/storage_closed_door_open_trap_toolbox.png" />
          </image>
       </ImageView>
       <Text layoutX="412.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click to go to room 3 (maybe remove later)" wrappingWidth="165.5625" />

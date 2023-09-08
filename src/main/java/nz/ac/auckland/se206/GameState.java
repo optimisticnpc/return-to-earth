@@ -14,4 +14,6 @@ public class GameState {
   public static boolean isJokeResolved = false;
 
   public static boolean isPasscodeSolved = false;
+
+  public static boolean isToolboxRevealed = false;
 }

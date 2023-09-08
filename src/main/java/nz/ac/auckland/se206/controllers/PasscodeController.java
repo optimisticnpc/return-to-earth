@@ -44,8 +44,11 @@ public class PasscodeController {
     String enteredPasscode = passcodeField.getText();
 
     if (correctPassCodeString.equals(enteredPasscode)) {
-      resultLabel.setText("Correct!");
+      resultLabel.setText("Correct! Compartment unlocked.");
       GameState.isPasscodeSolved = true;
+
+      // Disable passcode field after correct passcode entered.
+      passcodeField.setDisable(true);
     } else {
       resultLabel.setText("Incorrect. Try again.");
       // Hide the message after 0.5 seconds

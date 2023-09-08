@@ -1,12 +1,15 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -16,6 +19,7 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class RoomTwoController {
   @FXML private Label timerLabel;
+  @FXML private ImageView toolBoxOpenImage;
   @FXML private Rectangle door;
   @FXML private Rectangle goBackRectangle;
   @FXML private Label questionOneLabel;
@@ -29,6 +33,9 @@ public class RoomTwoController {
     MathQuestionSelector selector = MathQuestionSelector.getInstance();
     questionOneLabel.setText(selector.getFirstQuestion());
     questionTwoLabel.setText(selector.getSecondQuestion());
+
+    // Make tool box not visible
+    toolBoxOpenImage.setOpacity(0);
   }
 
   @FXML
@@ -56,6 +63,9 @@ public class RoomTwoController {
     if (!GameState.isPasscodeSolved) {
       Parent passcodeScreen = SceneManager.getUiRoot(AppUi.PASSCODE);
       App.getScene().setRoot(passcodeScreen);
+    } else if (!GameState.isToolboxRevealed) {
+      revealToolbox();
+      GameState.isToolboxRevealed = true;
     }
   }
 
@@ -77,5 +87,16 @@ public class RoomTwoController {
   @FXML
   public void onKeyReleased(KeyEvent event) {
     System.out.println("key " + event.getCode() + " released");
+  }
+
+  public void revealToolbox() {
+    // Fade in the tool box to seem like it was 'unlocked'
+    FadeTransition fadeTransition = new FadeTransition();
+    fadeTransition.setNode(toolBoxOpenImage);
+    fadeTransition.setFromValue(0); // starting opacity value
+    fadeTransition.setToValue(1); // ending opacity value (1 is fully opaque)
+    fadeTransition.setDuration(Duration.seconds(1)); // transition duration
+
+    fadeTransition.play();
   }
 }
