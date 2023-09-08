@@ -69,7 +69,7 @@
             <Image url="@../images/meterstick.png" />
          </image>
       </ImageView>
-      <Text fx:id="success" fill="WHITE" layoutX="239.0" layoutY="193.0" stroke="BLACK" strokeType="OUTSIDE" text="SUCCESS!" visible="false">
+      <Text fx:id="success" fill="WHITE" layoutX="215.0" layoutY="164.0" stroke="BLACK" strokeType="OUTSIDE" text="SUCCESS! YOU OPENED THE HATCH!" textAlignment="CENTER" visible="false" wrappingWidth="198.10546875">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
