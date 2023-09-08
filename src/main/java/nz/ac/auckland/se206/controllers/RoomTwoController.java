@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -16,11 +17,13 @@ public class RoomTwoController {
   @FXML private Label timerLabel;
   @FXML private Rectangle door;
   @FXML private Rectangle goBackRectangle;
+  CurrentScene currentScene = CurrentScene.getInstance();
 
   public void initialize() {
     System.out.println("RoomTwoController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
+    currentScene.setCurrent(2);
   }
 
   @FXML
@@ -29,6 +32,7 @@ public class RoomTwoController {
 
     Parent roomThreeRoot = SceneManager.getUiRoot(AppUi.ROOM_THREE);
     App.getScene().setRoot(roomThreeRoot);
+    currentScene.setCurrent(3);
   }
 
   @FXML
@@ -37,6 +41,8 @@ public class RoomTwoController {
 
     Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     App.getScene().setRoot(roomOneRoot);
+    currentScene.setCurrent(1);
+    
   }
 
   /**

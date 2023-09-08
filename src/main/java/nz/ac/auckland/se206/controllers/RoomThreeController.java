@@ -6,12 +6,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -23,6 +26,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
@@ -43,17 +47,44 @@ public class RoomThreeController {
   @FXML private ImageView meter;
   @FXML private Text success;
   @FXML private ImageView background;
+  @FXML private ProgressBar oxygenBar;
+  private Timeline timeline;
+  CurrentScene currentScene = CurrentScene.getInstance();
 
   public void initialize() {
     System.out.println("RoomThreeController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
+    currentScene.setCurrent(3);
+    initializeOxygen();
+    timeline.play();
+  }
+
+  public void initializeOxygen() {
+    timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(1),
+                event -> {
+                  if (currentScene.getCurrent() == 3) {
+                    if (oxygenBar.getProgress() < 1) {
+                      oxygenBar.setProgress(oxygenBar.getProgress() + 0.02);
+                    } else {
+                      try {
+                        App.setRoot("losescreen");
+                      } catch (IOException e) {
+                        e.printStackTrace();
+                      }
+                    }
+                  }
+                }));
+    timeline.setCycleCount(Timeline.INDEFINITE);
   }
 
   public void initializeRotate() {
     RotateTransition rotate = new RotateTransition();
     rotate.setNode(meter);
-    rotate.setDuration(Duration.millis(1000));
+    rotate.setDuration(Duration.millis(1500));
     rotate.setCycleCount(TranslateTransition.INDEFINITE);
     rotate.setInterpolator(Interpolator.LINEAR);
     rotate.setByAngle(360);
@@ -126,6 +157,7 @@ public class RoomThreeController {
 
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
     App.getScene().setRoot(roomTwoRoot);
+    currentScene.setCurrent(2);
   }
 
   /**

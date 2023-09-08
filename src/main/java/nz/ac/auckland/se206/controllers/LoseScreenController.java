@@ -25,7 +25,7 @@ public class LoseScreenController {
     new Thread(
             () -> {
               try {
-                textToSpeech.speak("You ran out of time!");
+                textToSpeech.speak("You lost!");
               } catch (Exception e) {
                 e.printStackTrace();
               }

@@ -9,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -20,12 +21,14 @@ public class RoomOneController {
   @FXML private Rectangle chatRectangle;
 
   @FXML private Label timerLabel;
+  CurrentScene currentScene = CurrentScene.getInstance();
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     System.out.println("RoomOneController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
+    currentScene.setCurrent(1);
   }
 
   /**
@@ -74,6 +77,7 @@ public class RoomOneController {
     System.out.println("door clicked");
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
     App.getScene().setRoot(roomTwoRoot);
+    currentScene.setCurrent(2);
   }
 
   @FXML

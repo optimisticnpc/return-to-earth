@@ -9,7 +9,7 @@
 
 <Pane fx:id="room" focusTraversable="true" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoseScreenController">
    <children>
-      <Label layoutX="211.0" layoutY="183.0" text="You ran out of time!">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="261.0" layoutY="184.0" text="You lost!">
          <font>
             <Font size="20.0" />
          </font>
