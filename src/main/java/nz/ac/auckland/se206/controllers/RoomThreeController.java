@@ -10,6 +10,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -49,7 +50,9 @@ public class RoomThreeController {
   @FXML private ImageView background;
   @FXML private ProgressBar oxygenBar;
   private Timeline timeline;
-  CurrentScene currentScene = CurrentScene.getInstance();
+  private CurrentScene currentScene = CurrentScene.getInstance();
+  private RotateTransition rotate = new RotateTransition();
+  private boolean unscrewed = false;
 
   public void initialize() {
     System.out.println("RoomThreeController.initialize()");
@@ -72,6 +75,8 @@ public class RoomThreeController {
                     } else {
                       try {
                         App.setRoot("losescreen");
+                        currentScene.setCurrent(4);
+                        oxygenBar.setProgress(0);
                       } catch (IOException e) {
                         e.printStackTrace();
                       }
@@ -82,7 +87,6 @@ public class RoomThreeController {
   }
 
   public void initializeRotate() {
-    RotateTransition rotate = new RotateTransition();
     rotate.setNode(meter);
     rotate.setDuration(Duration.millis(1500));
     rotate.setCycleCount(TranslateTransition.INDEFINITE);
@@ -101,22 +105,33 @@ public class RoomThreeController {
 
   @FXML
   public void showSuccessMessage() throws FileNotFoundException {
-    success.setVisible(!success.isVisible());
-    FadeTransition fade = new FadeTransition();
-    fade.setNode(success);
-    fade.setDuration(Duration.millis(2000));
-    fade.setInterpolator(Interpolator.LINEAR);
-    fade.setFromValue(1);
-    fade.setToValue(0);
-    fade.play();
-    InputStream stream =
-        new FileInputStream("src/main/resources/images/spaceship_exterior_open_hatch.png");
-    Image img = new Image(stream);
-    background.setImage(img);
-    screwOne.setVisible(false);
-    screwTwo.setVisible(false);
-    screwThree.setVisible(false);
-    screwFour.setVisible(false);
+    Task<Void> successTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            rotate.stop();
+            success.setVisible(!success.isVisible());
+            FadeTransition fade = new FadeTransition();
+            fade.setNode(success);
+            fade.setDuration(Duration.millis(2000));
+            fade.setInterpolator(Interpolator.LINEAR);
+            fade.setFromValue(1);
+            fade.setToValue(0);
+            fade.play();
+            InputStream stream =
+                new FileInputStream("src/main/resources/images/spaceship_exterior_open_hatch.png");
+            Image img = new Image(stream);
+            background.setImage(img);
+            screwOne.setVisible(false);
+            screwTwo.setVisible(false);
+            screwThree.setVisible(false);
+            screwFour.setVisible(false);
+            unscrewed = true;
+            return null;
+          }
+        };
+    Thread successThread = new Thread(successTask);
+    successThread.start();
   }
 
   @FXML
@@ -137,10 +152,16 @@ public class RoomThreeController {
   }
 
   @FXML
-  public void clickHatch(MouseEvent event) {
+  public void clickHatch(MouseEvent event) throws FileNotFoundException {
     System.out.println("hatch clicked");
     // NEED TO ADD --> ONLY IF PLAYER HAS THE TOOL/SELECTED CORRECT TOOL
-    // puzzleScreen.setVisible(!puzzleScreen.isVisible());
+    if (unscrewed && true) {
+      InputStream stream =
+          new FileInputStream(
+              "src/main/resources/images/spaceship_exterior_open_hatch_wire_connected.png");
+      Image img = new Image(stream);
+      background.setImage(img);
+    }
   }
 
   @FXML
