@@ -23,7 +23,6 @@ public class RoomTwoController {
     System.out.println("RoomTwoController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
-    currentScene.setCurrent(2);
   }
 
   @FXML

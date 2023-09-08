@@ -28,7 +28,6 @@ public class RoomOneController {
     System.out.println("RoomOneController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
-    currentScene.setCurrent(1);
   }
 
   /**

@@ -20,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
@@ -49,6 +50,7 @@ public class RoomThreeController {
   @FXML private Text success;
   @FXML private ImageView background;
   @FXML private ProgressBar oxygenBar;
+  @FXML private Pane room;
   private Timeline timeline;
   private CurrentScene currentScene = CurrentScene.getInstance();
   private RotateTransition rotate = new RotateTransition();
@@ -58,7 +60,6 @@ public class RoomThreeController {
     System.out.println("RoomThreeController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
-    currentScene.setCurrent(3);
     initializeOxygen();
     timeline.play();
   }
@@ -96,9 +97,9 @@ public class RoomThreeController {
   }
 
   @FXML
-  public void clickTimingButton(MouseEvent event) throws FileNotFoundException {
+  public void pressTimingButton(MouseEvent event) throws FileNotFoundException {
     System.out.println(meter.getRotate());
-    if (meter.getRotate() <= 184 && meter.getRotate() >= 180) {
+    if (meter.getRotate() <= 174 && meter.getRotate() >= 168) {
       showSuccessMessage();
     }
   }
@@ -122,10 +123,6 @@ public class RoomThreeController {
                 new FileInputStream("src/main/resources/images/spaceship_exterior_open_hatch.png");
             Image img = new Image(stream);
             background.setImage(img);
-            screwOne.setVisible(false);
-            screwTwo.setVisible(false);
-            screwThree.setVisible(false);
-            screwFour.setVisible(false);
             unscrewed = true;
             return null;
           }
@@ -144,8 +141,8 @@ public class RoomThreeController {
   }
 
   @FXML
-  public void clickScrew(MouseEvent event) {
-    System.out.println("hatch clicked");
+  public void pressScrew(MouseEvent event) {
+    System.out.println("screw pressed");
     puzzleScreen.setVisible(!puzzleScreen.isVisible());
     meter.setVisible(!meter.isVisible());
     initializeRotate();
@@ -167,9 +164,19 @@ public class RoomThreeController {
   @FXML
   public void clickResumeButton(MouseEvent event) {
     System.out.println("resume clicked");
-
-    puzzleScreen.setVisible(!puzzleScreen.isVisible());
-    meter.setVisible(!meter.isVisible());
+    if (unscrewed) {
+      puzzleScreen.getChildren().clear();
+      room.getChildren().remove(puzzleScreen);
+      room.getChildren().remove(meter);
+      room.getChildren().remove(success);
+      room.getChildren().remove(screwOne);
+      room.getChildren().remove(screwTwo);
+      room.getChildren().remove(screwThree);
+      room.getChildren().remove(screwFour);
+    } else {
+      puzzleScreen.setVisible(!puzzleScreen.isVisible());
+      meter.setVisible(!meter.isVisible());
+    }
   }
 
   @FXML
