@@ -28,8 +28,6 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the chat view. */
 public class ChatController {
-  private static int chatIndex = 0;
-
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
@@ -70,7 +68,7 @@ public class ChatController {
         runGpt(new ChatMessage("user", GptPromptEngineering.getHardAIRiddle()));
       }
     } else {
-      // TODO: add methods according to game progress.
+      // TODO: add methods acfcording to game progress.
     }
   }
 
@@ -233,12 +231,6 @@ public class ChatController {
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     textToSpeech.stop(); // Stop the text to speech
-
-    // If the riddle is resolved, reset the chat so for the joke sequence
-    if (GameState.isRiddleResolved && chatIndex == 0) {
-      App.resetChat();
-      chatIndex++;
-    }
 
     Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     App.getScene().setRoot(roomRoot);

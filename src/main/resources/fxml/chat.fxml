@@ -13,7 +13,7 @@
   <children>
     <TextArea fx:id="chatTextArea" editable="false" layoutX="31.0" layoutY="46.0" prefHeight="300.0" prefWidth="536.0" wrapText="true">
          <font>
-            <Font name="Comic Sans MS" size="12.0" />
+            <Font name="Comic Sans MS" size="15.0" />
          </font></TextArea>
     <TextField fx:id="inputText" layoutX="31.0" layoutY="354.0" prefHeight="26.0" prefWidth="406.0" />
     <Button fx:id="sendButton" layoutX="452.0" layoutY="355.0" mnemonicParsing="false" onAction="#onSendMessage" text="Send" />

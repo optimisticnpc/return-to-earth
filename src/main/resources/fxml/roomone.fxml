@@ -1,29 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
+<Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="550" prefWidth="900" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
    <children>
-      <Label layoutX="36.0" layoutY="23.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining:">
+      <Label layoutX="36.0" layoutY="14.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining:">
 
 
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="timerLabel" layoutX="234.0" layoutY="23.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="2:00">
+      <Label fx:id="timerLabel" layoutX="234.0" layoutY="14.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="2:00">
 
                <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="278.0" layoutX="440.0" layoutY="128.0" onMouseClicked="#clickDoor" stroke="BLACK" strokeType="INSIDE" width="139.0" />
       <Text layoutX="449.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Door - click to go to next room" wrappingWidth="71.525390625" />
-      <Rectangle fx:id="chatRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="100.0" layoutY="191.0" onMouseClicked="#clickChatRectangle" stroke="BLACK" strokeType="INSIDE" width="200.0" />
       <Text layoutX="153.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="click to go to chat" />
+      <ImageView fitHeight="425.0" fitWidth="778.0" layoutX="8.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/MainRoom.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="authRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="48.0" layoutX="325.0" layoutY="258.0" onMouseClicked="#clickAuthorisation" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="106.0" />
+      <Rectangle fx:id="mainWarning" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="25.0" layoutX="252.0" layoutY="109.0" onMouseClicked="#clickMainWarning" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="272.0" />
+      <Polygon fx:id="movetoRoomTwo" fill="#ff0400" layoutX="36.0" layoutY="242.0" onMouseClicked="#clickRoomTwo" points="-50.00000762939453, 40.0, 50.0, 40.0, -0.19998931884765625, 5.0000152587890625" rotate="-90.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="1.5" />
+      <Polygon fx:id="movetoRoomThree" fill="#ff0400" layoutX="739.0" layoutY="242.0" onMouseClicked="#clickRoomThree" points="-50.00000762939453, 40.0, 50.0, 40.0, -0.19998931884765625, 5.0000152587890625" rotate="90.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="1.5" />
+      <Rectangle fx:id="engineWarning" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="41.0" layoutX="449.0" layoutY="265.0" onMouseClicked="#clickEngineWarning" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="72.0" />
+      <Button fx:id="systemButton" layoutX="644.0" layoutY="19.0" mnemonicParsing="false" onAction="#accessSystem" text="Access the System" />
    </children>
 </Pane>
