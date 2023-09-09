@@ -35,6 +35,12 @@ public class RoomTwoController {
     questionOneLabel.setText(selector.getFirstQuestion());
     questionTwoLabel.setText(selector.getSecondQuestion());
 
+    // Print out questions in terminal for easy debugging
+    System.out.println("Q1:");
+    System.out.println(selector.getFirstQuestion());
+    System.out.println("Q2:");
+    System.out.println(selector.getSecondQuestion());
+
     // Make the overlay images not visible
     toolBoxOpenImage.setOpacity(0);
     toolBoxCollectedImage.setOpacity(0);
