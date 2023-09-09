@@ -53,14 +53,12 @@ public class RoomTwoController {
 
   @FXML
   public void clickQuestionOne(MouseEvent event) throws IOException {
-    System.out.println("click q1");
     Parent questionOneRoot = SceneManager.getUiRoot(AppUi.QUESTION_ONE);
     App.getScene().setRoot(questionOneRoot);
   }
 
   @FXML
   public void clickQuestionTwo(MouseEvent event) throws IOException {
-    System.out.println("click q2");
     Parent questionTwoRoot = SceneManager.getUiRoot(AppUi.QUESTION_TWO);
     App.getScene().setRoot(questionTwoRoot);
   }
@@ -89,7 +87,7 @@ public class RoomTwoController {
     fadeTransition.setNode(toolBoxOpenImage);
     fadeTransition.setFromValue(0); // starting opacity value
     fadeTransition.setToValue(1); // ending opacity value (1 is fully opaque)
-    fadeTransition.setDuration(Duration.seconds(1)); // transition duration
+    fadeTransition.setDuration(Duration.seconds(0.7)); // transition duration
 
     fadeTransition.play();
   }

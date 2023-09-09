@@ -1,5 +1,9 @@
 package nz.ac.auckland.se206;
 
+import java.io.IOException;
+import javafx.scene.Parent;
+import nz.ac.auckland.se206.SceneManager.AppUi;
+
 /** Represents the state of the game. */
 public class GameState {
 
@@ -18,4 +22,20 @@ public class GameState {
   public static boolean isToolboxRevealed = false;
 
   public static boolean isToolboxCollected = false;
+
+  public static void resetGame() throws IOException {
+    // TODO: Update and double check this
+    // Reset all game state variables
+    isRiddleResolved = false;
+    isPasscodeSolved = false;
+    isToolboxRevealed = false;
+    isToolboxCollected = false;
+
+    // Get new math puzzles and update room visuals
+    App.resetMathQuestions();
+    App.resetRoomTwo();
+
+    Parent startRoot = SceneManager.getUiRoot(AppUi.START);
+    App.getScene().setRoot(startRoot);
+  }
 }

@@ -39,6 +39,7 @@ public class MathQuestionSelector {
                 + " 1/6th as strong as on Earth. How much would the boots weigh on the Moon?",
             "25"));
 
+    // Select two math puzzles for each game
     selectedPuzzles = selectTwoRandomMathQuestions();
   }
 
@@ -50,7 +51,7 @@ public class MathQuestionSelector {
     return instance;
   }
 
-  public MathQuestion[] selectTwoRandomMathQuestions() {
+  private MathQuestion[] selectTwoRandomMathQuestions() {
     int firstIndex = random.nextInt(MathQuestions.size());
     int secondIndex;
     do {
@@ -60,10 +61,16 @@ public class MathQuestionSelector {
     return new MathQuestion[] {MathQuestions.get(firstIndex), MathQuestions.get(secondIndex)};
   }
 
+  public void setNewMathQuestions() {
+    selectedPuzzles = selectTwoRandomMathQuestions();
+  }
+
   public String generatePasscode() {
     String firstAnswer = selectedPuzzles[0].getAnswer();
     String secondAnswer = selectedPuzzles[1].getAnswer();
 
+    // TODO: delete later
+    System.out.println("Passcode:" + firstAnswer + secondAnswer);
     return firstAnswer + secondAnswer;
   }
 

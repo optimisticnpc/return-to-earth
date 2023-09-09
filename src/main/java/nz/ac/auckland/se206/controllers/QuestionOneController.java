@@ -27,8 +27,6 @@ public class QuestionOneController {
 
   @FXML
   public void goBack() {
-    System.out.println("go back clicked");
-
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
     App.getScene().setRoot(roomTwoRoot);
   }

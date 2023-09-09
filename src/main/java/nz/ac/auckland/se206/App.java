@@ -62,7 +62,7 @@ public class App extends Application {
     root.requestFocus();
     new GlobalController(); // Create a new global controller which checks for time being up
 
-    // Get math questions
+    // Get math questions and set passcode
     MathQuestionSelector selector = MathQuestionSelector.getInstance();
     PasscodeController.setCorrectPassCodeString(selector.generatePasscode());
 
@@ -82,6 +82,31 @@ public class App extends Application {
   public static void resetChat() {
     try {
       SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void resetRoomTwo() throws IOException {
+    try {
+      SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void resetMathQuestions() throws IOException {
+
+    try {
+
+      SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
+      MathQuestionSelector selector = MathQuestionSelector.getInstance();
+      selector.setNewMathQuestions();
+      PasscodeController.setCorrectPassCodeString(selector.generatePasscode());
+
+      // Reset the question scenes after we have chosen the new questions
+      SceneManager.addUi(AppUi.QUESTION_ONE, loadFxml("questionone"));
+      SceneManager.addUi(AppUi.QUESTION_TWO, loadFxml("questiontwo"));
     } catch (IOException e) {
       e.printStackTrace();
     }

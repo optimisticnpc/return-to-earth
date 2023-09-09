@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -20,6 +21,7 @@ public class PasscodeController {
   @FXML private Label timerLabel;
   @FXML private TextField passcodeField;
   @FXML private Label resultLabel;
+  @FXML private Button checkButton;
 
   @FXML
   public void initialize() {
@@ -53,7 +55,8 @@ public class PasscodeController {
       resultLabel.setText("Correct! Compartment unlocked.");
       GameState.isPasscodeSolved = true;
 
-      // Disable passcode field after correct passcode entered.
+      // Disable passcode field and button after correct passcode entered.
+      checkButton.setDisable(true);
       passcodeField.setDisable(true);
     } else {
       resultLabel.setText("Incorrect. Try again.");
