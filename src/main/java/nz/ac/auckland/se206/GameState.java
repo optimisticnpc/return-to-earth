@@ -17,10 +17,13 @@ public class GameState {
 
   public static boolean isJokeResolved = false;
 
+  //** Indicates whether the player has solved the math questions and entered the correct passcode. */
   public static boolean isPasscodeSolved = false;
 
+  //** Indicates whether that the player has clicked on the compartment and the toolbox is revealed. */
   public static boolean isToolboxRevealed = false;
 
+  //** Indicates that the player has clicked on the tool box to collect it, the visual in the room will show the tool box as taken */
   public static boolean isToolboxCollected = false;
 
   public static void resetGame() throws IOException {

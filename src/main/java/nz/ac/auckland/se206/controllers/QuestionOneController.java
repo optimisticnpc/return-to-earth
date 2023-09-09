@@ -16,7 +16,6 @@ public class QuestionOneController {
 
   public void initialize() {
     System.out.println("QuestionOneController.initialize()");
-    // TODO: Maybe scene manager this
 
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
