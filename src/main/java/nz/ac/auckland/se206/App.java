@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.controllers.GlobalController;
+import nz.ac.auckland.se206.controllers.PasscodeController;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -49,14 +50,21 @@ public class App extends Application {
     SceneManager.addUi(AppUi.ROOM_ONE, loadFxml("roomone"));
     SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
     SceneManager.addUi(AppUi.ROOM_THREE, loadFxml("roomthree"));
-    SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
+    SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
     SceneManager.addUi(AppUi.START, loadFxml("start"));
+    SceneManager.addUi(AppUi.QUESTION_ONE, loadFxml("questionone"));
+    SceneManager.addUi(AppUi.QUESTION_TWO, loadFxml("questiontwo"));
+    SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
     Parent root = SceneManager.getUiRoot(AppUi.START);
     scene = new Scene(root, 600, 470);
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
     new GlobalController(); // Create a new global controller which checks for time being up
+
+    // Get math questions and set passcode
+    MathQuestionSelector selector = MathQuestionSelector.getInstance();
+    PasscodeController.setCorrectPassCodeString(selector.generatePasscode());
 
     // Ensure app exits cleanly when window is closed
     // This stops any threads or services that the app is using
@@ -74,6 +82,31 @@ public class App extends Application {
   public static void resetChat() {
     try {
       SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void resetRoomTwo() throws IOException {
+    try {
+      SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void resetMathQuestions() throws IOException {
+
+    try {
+
+      SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
+      MathQuestionSelector selector = MathQuestionSelector.getInstance();
+      selector.setNewMathQuestions();
+      PasscodeController.setCorrectPassCodeString(selector.generatePasscode());
+
+      // Reset the question scenes after we have chosen the new questions
+      SceneManager.addUi(AppUi.QUESTION_ONE, loadFxml("questionone"));
+      SceneManager.addUi(AppUi.QUESTION_TWO, loadFxml("questiontwo"));
     } catch (IOException e) {
       e.printStackTrace();
     }
