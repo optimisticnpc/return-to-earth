@@ -20,6 +20,7 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 public class RoomTwoController {
   @FXML private Label timerLabel;
   @FXML private ImageView toolBoxOpenImage;
+  @FXML private ImageView toolBoxCollectedImage;
   @FXML private Rectangle door;
   @FXML private Rectangle goBackRectangle;
   @FXML private Label questionOneLabel;
@@ -34,8 +35,9 @@ public class RoomTwoController {
     questionOneLabel.setText(selector.getFirstQuestion());
     questionTwoLabel.setText(selector.getSecondQuestion());
 
-    // Make tool box not visible
+    // Make the overlay images not visible
     toolBoxOpenImage.setOpacity(0);
+    toolBoxCollectedImage.setOpacity(0);
   }
 
   @FXML
@@ -66,7 +68,32 @@ public class RoomTwoController {
     } else if (!GameState.isToolboxRevealed) {
       revealToolbox();
       GameState.isToolboxRevealed = true;
+    } else if (!GameState.isToolboxCollected) {
+      collectToolbox();
+      GameState.isToolboxCollected = true;
     }
+  }
+
+  public void revealToolbox() {
+    // Fade in the tool box to seem like it was 'unlocked'
+    FadeTransition fadeTransition = new FadeTransition();
+    fadeTransition.setNode(toolBoxOpenImage);
+    fadeTransition.setFromValue(0); // starting opacity value
+    fadeTransition.setToValue(1); // ending opacity value (1 is fully opaque)
+    fadeTransition.setDuration(Duration.seconds(1)); // transition duration
+
+    fadeTransition.play();
+  }
+
+  private void collectToolbox() {
+    // Fade in the tool box to seem like it was 'unlocked'
+    FadeTransition fadeTransition = new FadeTransition();
+    fadeTransition.setNode(toolBoxCollectedImage);
+    fadeTransition.setFromValue(0); // starting opacity value
+    fadeTransition.setToValue(1); // ending opacity value (1 is fully opaque)
+    fadeTransition.setDuration(Duration.seconds(0.5)); // transition duration
+
+    fadeTransition.play();
   }
 
   /**
@@ -87,16 +114,5 @@ public class RoomTwoController {
   @FXML
   public void onKeyReleased(KeyEvent event) {
     System.out.println("key " + event.getCode() + " released");
-  }
-
-  public void revealToolbox() {
-    // Fade in the tool box to seem like it was 'unlocked'
-    FadeTransition fadeTransition = new FadeTransition();
-    fadeTransition.setNode(toolBoxOpenImage);
-    fadeTransition.setFromValue(0); // starting opacity value
-    fadeTransition.setToValue(1); // ending opacity value (1 is fully opaque)
-    fadeTransition.setDuration(Duration.seconds(1)); // transition duration
-
-    fadeTransition.play();
   }
 }

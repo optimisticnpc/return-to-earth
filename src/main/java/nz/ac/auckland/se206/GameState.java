@@ -16,4 +16,6 @@ public class GameState {
   public static boolean isPasscodeSolved = false;
 
   public static boolean isToolboxRevealed = false;
+
+  public static boolean isToolboxCollected = false;
 }

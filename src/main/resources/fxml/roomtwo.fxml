@@ -21,7 +21,12 @@
             <Image url="@../images/storage_closed_door_open_trap_toolbox.png" />
          </image>
       </ImageView>
-      <Text layoutX="412.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click to go to room 3 (maybe remove later)" wrappingWidth="165.5625" />
+      <ImageView fx:id="toolBoxCollectedImage" fitHeight="480.0" fitWidth="720.0" layoutX="-85.0" layoutY="-10.0" opacity="0.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/storage_closed_door_open_trap.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="420.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go room 3 (maybe remove later)" wrappingWidth="165.5625" />
       <Label layoutX="46.0" layoutY="33.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining:">
          <font>
             <Font size="20.0" />
@@ -32,14 +37,9 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="395.0" layoutY="371.0" onMouseClicked="#clickDoor" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <Text layoutX="136.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room 2 (Storage room/commons?)">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Rectangle fx:id="goBackRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="70.0" layoutX="23.0" layoutY="354.0" onMouseClicked="#clickGoBackRectangle" stroke="BLACK" strokeType="INSIDE" width="113.0" />
-      <Text layoutX="35.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click to go back to room 1 (control room)" wrappingWidth="89.400390625" />
+      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="420.0" layoutY="406.0" onMouseClicked="#clickDoor" stroke="BLACK" strokeType="INSIDE" width="89.0" />
+      <Rectangle fx:id="goBackRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="23.0" layoutY="406.0" onMouseClicked="#clickGoBackRectangle" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+      <Text layoutX="23.0" layoutY="451.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go room 1" wrappingWidth="89.400390625" />
       <Polygon fx:id="toolCompartment" fill="#1f93ff" layoutX="218.0" layoutY="401.0" onMouseClicked="#clickToolCompartment" opacity="0.35" points="-52.0, 44.5, 26.0, 44.5, 46.5, -11.0, -22.0, -11.0" stroke="BLACK" strokeType="OUTSIDE" />
       <Label fx:id="questionOneLabel" layoutX="376.0" layoutY="51.0" prefHeight="100.0" prefWidth="210.0" text="Q1" wrapText="true" />
       <Label fx:id="questionTwoLabel" layoutX="412.0" layoutY="179.0" prefHeight="89.0" prefWidth="182.0" text="Q2" wrapText="true" />
