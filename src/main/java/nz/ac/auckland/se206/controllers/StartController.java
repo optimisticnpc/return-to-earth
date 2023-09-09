@@ -4,10 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -21,7 +20,7 @@ public class StartController {
   @FXML private Button nextTimeButton;
   @FXML private Button prevTimeButton;
   @FXML private Button startButton;
-  
+
   private int time = 120;
   private String[] difficulty = {"Easy", "Medium", "Hard"};
   private String[] difficultyHelp = {"- Infinite hints! -", "- 5 hints! -", "- 0 hints! -"};
@@ -31,8 +30,9 @@ public class StartController {
   public void initialize() throws ApiProxyException {
     System.out.println("StartController.initialize()");
   }
-  
-    public void clickNextDifficultyButton() {
+
+  @FXML
+  public void clickNextDifficultyButton() {
     if (this.currDifficulty < 2) {
       this.currDifficulty += 1;
       difficultyLabel.setText(difficulty[currDifficulty]);
@@ -63,31 +63,32 @@ public class StartController {
       this.time -= 120;
       timeLabel.setText(Integer.toString(this.time) + " sec");
     }
+  }
 
-    // MIGHT NEED
-//   @FXML
-//   public void clickEasyButton(MouseEvent event) {
-//     GameState.medium = false;
-//     GameState.hard = false;
-//     GameState.easy = true;
-//     changeToTimeSelect();
-//   }
+  // MIGHT NEED
+  //   @FXML
+  //   public void clickEasyButton(MouseEvent event) {
+  //     GameState.medium = false;
+  //     GameState.hard = false;
+  //     GameState.easy = true;
+  //     changeToTimeSelect();
+  //   }
 
-//   @FXML
-//   public void clickMediumButton(MouseEvent event) {
-//     GameState.easy = false;
-//     GameState.hard = false;
-//     GameState.medium = true;
-//     changeToTimeSelect();
-//   }
+  //   @FXML
+  //   public void clickMediumButton(MouseEvent event) {
+  //     GameState.easy = false;
+  //     GameState.hard = false;
+  //     GameState.medium = true;
+  //     changeToTimeSelect();
+  //   }
 
-//   @FXML
-//   public void clickHardButton(MouseEvent event) {
-//     GameState.easy = false;
-//     GameState.medium = false;
-//     GameState.hard = true;
-//     changeToTimeSelect();
-//   }
+  //   @FXML
+  //   public void clickHardButton(MouseEvent event) {
+  //     GameState.easy = false;
+  //     GameState.medium = false;
+  //     GameState.hard = true;
+  //     changeToTimeSelect();
+  //   }
 
   @FXML
   public void clickStartButton() {
