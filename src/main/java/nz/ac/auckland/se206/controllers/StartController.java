@@ -65,6 +65,31 @@ public class StartController {
     }
   }
 
+  // MIGHT NEED
+  //   @FXML
+  //   public void clickEasyButton(MouseEvent event) {
+  //     GameState.medium = false;
+  //     GameState.hard = false;
+  //     GameState.easy = true;
+  //     changeToTimeSelect();
+  //   }
+
+  //   @FXML
+  //   public void clickMediumButton(MouseEvent event) {
+  //     GameState.easy = false;
+  //     GameState.hard = false;
+  //     GameState.medium = true;
+  //     changeToTimeSelect();
+  //   }
+
+  //   @FXML
+  //   public void clickHardButton(MouseEvent event) {
+  //     GameState.easy = false;
+  //     GameState.medium = false;
+  //     GameState.hard = true;
+  //     changeToTimeSelect();
+  //   }
+
   @FXML
   public void clickStartButton() {
     changeToRoom();
