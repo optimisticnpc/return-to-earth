@@ -41,7 +41,7 @@
       <Rectangle fx:id="goBackRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="23.0" layoutY="406.0" onMouseClicked="#clickGoBackRectangle" stroke="BLACK" strokeType="INSIDE" width="65.0" />
       <Text layoutX="23.0" layoutY="451.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go room 1" wrappingWidth="89.400390625" />
       <Polygon fx:id="toolCompartment" fill="#1f93ff" layoutX="218.0" layoutY="401.0" onMouseClicked="#clickToolCompartment" opacity="0.35" points="-52.0, 44.5, 26.0, 44.5, 46.5, -11.0, -22.0, -11.0" stroke="BLACK" strokeType="OUTSIDE" />
-      <Label fx:id="questionOneLabel" layoutX="376.0" layoutY="51.0" prefHeight="100.0" prefWidth="210.0" text="Q1" wrapText="true" />
-      <Label fx:id="questionTwoLabel" layoutX="412.0" layoutY="179.0" prefHeight="89.0" prefWidth="182.0" text="Q2" wrapText="true" />
+      <Rectangle fx:id="questionOne" arcHeight="5.0" arcWidth="5.0" height="11.0" layoutX="88.0" layoutY="188.0" onMouseClicked="#clickQuestionOne" stroke="BLACK" strokeType="INSIDE" width="17.0" />
+      <Rectangle fx:id="questionTwo" arcHeight="5.0" arcWidth="5.0" height="11.0" layoutX="88.0" layoutY="206.0" onMouseClicked="#clickQuestionTwo" stroke="BLACK" strokeType="INSIDE" width="17.0" />
    </children>
 </Pane>

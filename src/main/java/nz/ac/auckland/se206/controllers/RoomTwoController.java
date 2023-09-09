@@ -13,7 +13,6 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
-import nz.ac.auckland.se206.MathQuestionSelector;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -23,23 +22,13 @@ public class RoomTwoController {
   @FXML private ImageView toolBoxCollectedImage;
   @FXML private Rectangle door;
   @FXML private Rectangle goBackRectangle;
-  @FXML private Label questionOneLabel;
-  @FXML private Label questionTwoLabel;
+  @FXML private Rectangle questionOne;
+  @FXML private Rectangle questionTwo;
 
   public void initialize() {
     System.out.println("RoomTwoController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
-
-    MathQuestionSelector selector = MathQuestionSelector.getInstance();
-    questionOneLabel.setText(selector.getFirstQuestion());
-    questionTwoLabel.setText(selector.getSecondQuestion());
-
-    // Print out questions in terminal for easy debugging
-    System.out.println("Q1:");
-    System.out.println(selector.getFirstQuestion());
-    System.out.println("Q2:");
-    System.out.println(selector.getSecondQuestion());
 
     // Make the overlay images not visible
     toolBoxOpenImage.setOpacity(0);
@@ -60,6 +49,20 @@ public class RoomTwoController {
 
     Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     App.getScene().setRoot(roomOneRoot);
+  }
+
+  @FXML
+  public void clickQuestionOne(MouseEvent event) throws IOException {
+    System.out.println("click q1");
+    Parent questionOneRoot = SceneManager.getUiRoot(AppUi.QUESTION_ONE);
+    App.getScene().setRoot(questionOneRoot);
+  }
+
+  @FXML
+  public void clickQuestionTwo(MouseEvent event) throws IOException {
+    System.out.println("click q2");
+    Parent questionTwoRoot = SceneManager.getUiRoot(AppUi.QUESTION_TWO);
+    App.getScene().setRoot(questionTwoRoot);
   }
 
   @FXML
