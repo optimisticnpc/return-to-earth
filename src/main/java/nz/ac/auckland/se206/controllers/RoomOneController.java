@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
@@ -26,8 +27,9 @@ public class RoomOneController {
   @FXML private Polygon movetoRoomTwo;
   @FXML private Polygon movetoRoomThree;
   @FXML private Label timerLabel;
+  CurrentScene currentScene = CurrentScene.getInstance();
   @FXML private Button systemButton;
-  ;
+
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -82,6 +84,7 @@ public class RoomOneController {
     System.out.println("Room Two clicked");
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
     App.getScene().setRoot(roomTwoRoot);
+    currentScene.setCurrent(2);
   }
 
   /**

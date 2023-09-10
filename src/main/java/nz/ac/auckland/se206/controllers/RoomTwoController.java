@@ -12,6 +12,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -22,6 +23,7 @@ public class RoomTwoController {
   @FXML private ImageView toolBoxCollectedImage;
   @FXML private Rectangle door;
   @FXML private Rectangle goBackRectangle;
+  CurrentScene currentScene = CurrentScene.getInstance();
   @FXML private Rectangle questionOne;
   @FXML private Rectangle questionTwo;
 
@@ -41,6 +43,7 @@ public class RoomTwoController {
 
     Parent roomThreeRoot = SceneManager.getUiRoot(AppUi.ROOM_THREE);
     App.getScene().setRoot(roomThreeRoot);
+    currentScene.setCurrent(3);
   }
 
   @FXML
@@ -49,6 +52,8 @@ public class RoomTwoController {
 
     Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     App.getScene().setRoot(roomOneRoot);
+    currentScene.setCurrent(1);
+    
   }
 
   @FXML
