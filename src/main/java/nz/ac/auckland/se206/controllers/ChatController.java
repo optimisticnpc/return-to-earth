@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -27,8 +28,6 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the chat view. */
 public class ChatController {
-  private static int chatIndex = 0;
-
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
@@ -61,9 +60,15 @@ public class ChatController {
     soundIcon.setOnMouseClicked(e -> readMessage());
 
     if (!GameState.isRiddleResolved) {
-      runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("laptop")));
+      if (GameState.easy) {
+        runGpt(new ChatMessage("user", GptPromptEngineering.getEasyAIRiddle()));
+      } else if (GameState.medium) {
+        runGpt(new ChatMessage("user", GptPromptEngineering.getMediumAIRiddle()));
+      } else if (GameState.hard) {
+        runGpt(new ChatMessage("user", GptPromptEngineering.getHardAIRiddle()));
+      }
     } else {
-      runGpt(new ChatMessage("user", GptPromptEngineering.getGptToAskForJoke()));
+      // TODO: add methods acfcording to game progress.
     }
   }
 
@@ -143,7 +148,8 @@ public class ChatController {
           }
 
           appendChatMessage(result);
-          if (result.getRole().equals("assistant") && result.getContent().startsWith("Correct")) {
+          if (result.getRole().equals("assistant")
+              && result.getContent().startsWith("Authorization Complete")) {
             GameState.isRiddleResolved = true;
             System.out.println("Riddle resolved");
             showDialog(
@@ -159,16 +165,6 @@ public class ChatController {
 
           loadingIcon.setVisible(false); // hide the loading icon
 
-          // Keep the input field and send button disabled if the riddle is resolved
-          // And it is the first run
-          if (GameState.isRiddleResolved && chatIndex == 0) {
-            return;
-          }
-
-          // Keep the input field and send button disabled if the joke is resolved
-          if (GameState.isJokeResolved && chatIndex == 1) {
-            return;
-          }
           sendButton.setDisable(false); // Re-enable send button
           inputText.setDisable(false); // Re-enable the input text area
         });
@@ -218,6 +214,13 @@ public class ChatController {
     runGpt(msg);
   }
 
+  @FXML // send the message when the enter key is pressed
+  private void onEnterPressed(KeyEvent event) {
+    if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
+      sendButton.fire();
+    }
+  }
+
   /**
    * Navigates back to the previous view.
    *
@@ -228,12 +231,6 @@ public class ChatController {
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     textToSpeech.stop(); // Stop the text to speech
-
-    // If the riddle is resolved, reset the chat so for the joke sequence
-    if (GameState.isRiddleResolved && chatIndex == 0) {
-      App.resetChat();
-      chatIndex++;
-    }
 
     Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     App.getScene().setRoot(roomRoot);
