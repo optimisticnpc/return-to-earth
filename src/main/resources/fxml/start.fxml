@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.StartController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="470.0" prefWidth="600.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.StartController">
    <children>
       <ImageView fitHeight="512.0" fitWidth="889.0" layoutX="-137.0" layoutY="-1.0" preserveRatio="true">
          <image>
@@ -28,24 +28,32 @@
             <VBox alignment="CENTER" prefHeight="130.0" prefWidth="476.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="26.0" prefWidth="476.0" spacing="10.0">
-                     <children>
-                        <ImageView fx:id="prevDifficultyButton" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#clickPrevDifficultyButton" preserveRatio="true" rotate="180.0">
-                           <image>
-                              <Image url="@../images/white_arrow.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="difficultyLabel" alignment="CENTER" prefHeight="46.0" prefWidth="150.0" text="Easy" textFill="WHITE">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                        </Label>
-                        <ImageView fx:id="nextDifficultyButton" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#clickNextDifficultyButton" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/white_arrow.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
+    <children>
+        <Button fx:id="prevDifficultyButton" onAction="#clickPrevDifficultyButton" styleClass="arrow-button">
+            <graphic>
+                <ImageView fitHeight="53.0" fitWidth="56.0" preserveRatio="true" rotate="180.0">
+                    <image>
+                        <Image url="@../images/white_arrow.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Label fx:id="difficultyLabel" alignment="CENTER" prefHeight="46.0" prefWidth="150.0" text="Easy" textFill="WHITE">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <Button fx:id="nextDifficultyButton" onAction="#clickNextDifficultyButton" styleClass="arrow-button">
+            <graphic>
+                <ImageView fitHeight="53.0" fitWidth="56.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/white_arrow.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+    </children>
+</HBox>
                   <Label fx:id="helpLabel" alignment="CENTER" prefHeight="0.0" prefWidth="141.0" text="- Infinite hints! -" textAlignment="CENTER">
                      <font>
                         <Font name="Arial" size="18.0" />
@@ -53,25 +61,34 @@
                   </Label>
                </children>
             </VBox>
-            <HBox alignment="CENTER" prefHeight="53.0" prefWidth="350.0" spacing="10.0">
-               <children>
-                  <ImageView fx:id="prevTimeButton" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#clickPrevTimeButton" preserveRatio="true" rotate="180.0">
-                     <image>
+<HBox alignment="CENTER" prefHeight="53.0" prefWidth="350.0" spacing="10.0">
+    <children>
+        <Button fx:id="prevTimeButton" onAction="#clickPrevTimeButton" styleClass="arrow-button">
+            <graphic>
+                <ImageView fitHeight="53.0" fitWidth="56.0" preserveRatio="true" rotate="180.0">
+                    <image>
                         <Image url="@../images/white_arrow.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="timeLabel" alignment="CENTER" prefHeight="53.0" prefWidth="150.0" text="120 sec" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="nextTimeButton" fitHeight="53.0" fitWidth="56.0" onMouseClicked="#clickNextTimeButton" preserveRatio="true">
-                     <image>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Label fx:id="timeLabel" alignment="CENTER" prefHeight="53.0" prefWidth="150.0" text="120 sec" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <Button fx:id="nextTimeButton" onAction="#clickNextTimeButton" styleClass="arrow-button">
+            <graphic>
+                <ImageView fitHeight="53.0" fitWidth="56.0" preserveRatio="true">
+                    <image>
                         <Image url="@../images/white_arrow.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+    </children>
+</HBox>
+
          </children>
          <opaqueInsets>
             <Insets />

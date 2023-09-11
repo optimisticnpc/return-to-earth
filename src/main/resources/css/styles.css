@@ -1,0 +1,28 @@
+#prevDifficultyButton, #nextDifficultyButton, #prevTimeButton, #nextTimeButton {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+
+.arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.arrow-button:hover {
+    -fx-opacity: 0.8;
+}
+
+.arrow-button:pressed {
+    -fx-opacity: 0.6;
+}

@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -16,10 +15,10 @@ public class StartController {
   @FXML private Label timeLabel;
   @FXML private Label difficultyLabel;
   @FXML private Label helpLabel;
-  @FXML private ImageView nextDifficultyButton;
-  @FXML private ImageView prevDifficultyButton;
-  @FXML private ImageView nextTimeButton;
-  @FXML private ImageView prevTimeButton;
+  @FXML private Button nextDifficultyButton;
+  @FXML private Button prevDifficultyButton;
+  @FXML private Button nextTimeButton;
+  @FXML private Button prevTimeButton;
   @FXML private Button startButton;
 
   private int time = 120;
