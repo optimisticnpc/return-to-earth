@@ -16,8 +16,7 @@ public class QuestionTwoController {
 
   public void initialize() {
     System.out.println("QuestionTwoController.initialize()");
-    // TODO: Maybe scene manager this
-    // Since its like a duplicate maybe refactor to reduce code
+    // TODO: Since this is duplicate maybe refactor to reduce code
 
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());

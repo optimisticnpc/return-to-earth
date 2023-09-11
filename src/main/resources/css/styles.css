@@ -1,0 +1,47 @@
+#prevDifficultyButton, #nextDifficultyButton, #prevTimeButton, #nextTimeButton {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+
+.arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.arrow-button:hover {
+    -fx-opacity: 0.8;
+}
+
+.arrow-button:pressed {
+    -fx-opacity: 0.6;
+}
+
+#startButton {
+    -fx-background-color: #1a1a1a;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-text-fill: #FFF;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+}
+
+#startButton:hover {
+    -fx-font-size: 38px;
+    -fx-effect: dropshadow(three-pass-box, lime, 10, 0.5, 0, 0);
+}
+
+#startButton:pressed {
+    -fx-effect: dropshadow(three-pass-box, green, 10, 0.5, 0, 0);
+}
+
