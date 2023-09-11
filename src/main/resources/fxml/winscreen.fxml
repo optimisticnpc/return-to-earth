@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WinScreenController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WinScreenController">
    <children>
       <Label layoutX="223.0" layoutY="148.0" prefHeight="68.0" prefWidth="155.0" text="Congratulations! You win!" textAlignment="CENTER" wrapText="true">
          <font>
