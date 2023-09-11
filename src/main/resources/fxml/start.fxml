@@ -72,7 +72,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Label fx:id="timeLabel" alignment="CENTER" prefHeight="53.0" prefWidth="150.0" text="120 sec" textAlignment="CENTER" textFill="WHITE">
+        <Label fx:id="timeLabel" alignment="CENTER" prefHeight="53.0" prefWidth="150.0" text="4 min" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font size="36.0" />
             </font>

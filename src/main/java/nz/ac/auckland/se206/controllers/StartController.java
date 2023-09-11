@@ -21,10 +21,13 @@ public class StartController {
   @FXML private Button prevTimeButton;
   @FXML private Button startButton;
 
-  private int time = 120;
+  private int currDifficulty = 0;
   private String[] difficulty = {"Easy", "Medium", "Hard"};
   private String[] difficultyHelp = {"- Infinite hints! -", "- 5 hints! -", "- 0 hints! -"};
-  private int currDifficulty = 0;
+
+  // Default time setting currently set at 4 mins
+  private int timeSetting = 1;
+  private String[] timeStrings = {"2 min", "4 min", "6 min"};
 
   @FXML
   public void initialize() throws ApiProxyException {
@@ -51,17 +54,17 @@ public class StartController {
 
   @FXML
   public void clickNextTimeButton() {
-    if (this.time < 360) {
-      this.time += 120;
-      timeLabel.setText(Integer.toString(this.time) + " sec");
+    if (this.timeSetting < 2) {
+      this.timeSetting += 1;
+      timeLabel.setText(timeStrings[timeSetting]);
     }
   }
 
   @FXML
   public void clickPrevTimeButton() {
-    if (this.time > 120) {
-      this.time -= 120;
-      timeLabel.setText(Integer.toString(this.time) + " sec");
+    if (this.timeSetting > 0) {
+      this.timeSetting -= 1;
+      timeLabel.setText(timeStrings[timeSetting]);
     }
   }
 
@@ -92,12 +95,8 @@ public class StartController {
 
   @FXML
   public void clickStartButton() {
-    changeToRoom();
-  }
-
-  public void changeToRoom() {
     // Need to change the difficulty here as well later
-    GameTimer.setInitialTime(this.time);
+    GameTimer.setInitialTime((timeSetting + 1) * 120);
     // Reset the game so the player can lose
     GameState.isGameWon = false;
     Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
