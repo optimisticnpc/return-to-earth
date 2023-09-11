@@ -9,13 +9,13 @@
 
 <Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WinScreenController">
    <children>
-      <Label layoutX="223.0" layoutY="148.0" prefHeight="68.0" prefWidth="155.0" text="Congratulations! You win!" textAlignment="CENTER" wrapText="true">
+      <Label layoutX="422.0" layoutY="208.0" prefHeight="68.0" prefWidth="155.0" text="Congratulations! You win!" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="exitButton" layoutX="250.0" layoutY="235.0" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="38.0" prefWidth="101.0" text="Exit Game" />
-      <ImageView fx:id="restartButton" fitHeight="82.0" fitWidth="200.0" layoutX="201.0" layoutY="300.0" onMouseClicked="#clickRestartButton">
+      <Button fx:id="exitButton" layoutX="449.0" layoutY="295.0" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="38.0" prefWidth="101.0" text="Exit Game" />
+      <ImageView fx:id="restartButton" fitHeight="82.0" fitWidth="200.0" layoutX="400.0" layoutY="360.0" onMouseClicked="#clickRestartButton">
          <image>
             <Image url="@../images/restartbutton.png" />
          </image>

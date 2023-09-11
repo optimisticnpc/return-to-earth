@@ -65,7 +65,7 @@
             <Insets />
          </opaqueInsets>
       </VBox>
-      <ImageView fx:id="meter" fitHeight="14.0" fitWidth="190.0" layoutX="412.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="meter" fitHeight="14.0" fitWidth="190.0" layoutX="412.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/meterstick.png" />
          </image>

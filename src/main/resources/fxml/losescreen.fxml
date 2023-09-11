@@ -9,13 +9,13 @@
 
 <Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoseScreenController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="261.0" layoutY="184.0" text="You lost!">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="461.0" layoutY="231.0" text="You lost!">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="exitButton" layoutX="266.0" layoutY="265.0" mnemonicParsing="false" onAction="#onExitButtonClicked" text="Exit Game" />
-      <ImageView fx:id="restartButton" fitHeight="82.0" fitWidth="200.0" layoutX="200.0" layoutY="312.0" onMouseClicked="#clickRestartButton">
+      <Button fx:id="exitButton" layoutX="430.0" layoutY="290.0" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="52.0" prefWidth="140.0" text="Exit Game" />
+      <ImageView fx:id="restartButton" fitHeight="82.0" fitWidth="200.0" layoutX="400.0" layoutY="359.0" onMouseClicked="#clickRestartButton">
          <image>
             <Image url="@../images/restartbutton.png" />
          </image>
