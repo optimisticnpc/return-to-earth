@@ -39,6 +39,7 @@ public class RoomOneController {
   @FXML private Button systemButton;
   @FXML private Button reactivateButton;
 
+
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
 
@@ -259,7 +260,6 @@ public class RoomOneController {
           "AI",
           "Authorisation needed",
           "You need to be authorised to access the system. Please solve the provided riddle.");
-      SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
     }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
     App.getScene().setRoot(chatRoot);

@@ -16,12 +16,12 @@ public class GameState {
   public static boolean isGameWon = false;
 
   /** Indicates the difficulties of the game */
-  public static boolean easy = false;
+  public static boolean easy = true;
 
   public static boolean medium = false;
   public static boolean hard = false;
+
   public static boolean isRoomOneFirst = true;
-  public static boolean isJokeResolved = false;
 
   // ** Indicates whether the player has solved the math questions and entered the correct passcode.
   // */

@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -68,37 +69,27 @@ public class StartController {
     }
   }
 
-  // MIGHT NEED
-  //   @FXML
-  //   public void clickEasyButton(MouseEvent event) {
-  //     GameState.medium = false;
-  //     GameState.hard = false;
-  //     GameState.easy = true;
-  //     changeToTimeSelect();
-  //   }
-
-  //   @FXML
-  //   public void clickMediumButton(MouseEvent event) {
-  //     GameState.easy = false;
-  //     GameState.hard = false;
-  //     GameState.medium = true;
-  //     changeToTimeSelect();
-  //   }
-
-  //   @FXML
-  //   public void clickHardButton(MouseEvent event) {
-  //     GameState.easy = false;
-  //     GameState.medium = false;
-  //     GameState.hard = true;
-  //     changeToTimeSelect();
-  //   }
-
   @FXML
-  public void clickStartButton() {
+  public void clickStartButton() throws IOException {
     // Need to change the difficulty here as well later
     GameTimer.setInitialTime((timeSetting + 1) * 120);
     // Reset the game so the player can lose
     GameState.isGameWon = false;
+    // Initialise the chat depending on the difficulty
+    if (this.currDifficulty == 0) {
+      GameState.easy = true;
+      GameState.medium = false;
+      GameState.hard = false;
+    } else if (this.currDifficulty == 1) {
+      GameState.easy = false;
+      GameState.medium = true;
+      GameState.hard = false;
+    } else if (this.currDifficulty == 2) {
+      GameState.easy = false;
+      GameState.medium = false;
+      GameState.hard = true;
+    }
+    SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
     Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     App.getScene().setRoot(roomRoot);
     GameTimer gameTimer = GameTimer.getInstance();
