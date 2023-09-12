@@ -58,19 +58,6 @@ public class StartController {
     if (this.timeSetting < 2) {
       this.timeSetting += 1;
       timeLabel.setText(timeStrings[timeSetting]);
-      if (this.timeSetting == 0) {
-        GameState.easy = true;
-        GameState.medium = false;
-        GameState.hard = false;
-      } else if (this.timeSetting == 1) {
-        GameState.easy = false;
-        GameState.medium = true;
-        GameState.hard = false;
-      } else {
-        GameState.easy = false;
-        GameState.medium = false;
-        GameState.hard = true;
-      }
     }
   }
 
@@ -79,46 +66,8 @@ public class StartController {
     if (this.timeSetting > 0) {
       this.timeSetting -= 1;
       timeLabel.setText(timeStrings[timeSetting]);
-      if (this.timeSetting == 0) {
-        GameState.easy = true;
-        GameState.medium = false;
-        GameState.hard = false;
-      } else if (this.timeSetting == 1) {
-        GameState.easy = false;
-        GameState.medium = true;
-        GameState.hard = false;
-      } else {
-        GameState.easy = false;
-        GameState.medium = false;
-        GameState.hard = true;
-      }
     }
   }
-
-  // MIGHT NEED
-  //   @FXML
-  //   public void clickEasyButton(MouseEvent event) {
-  //     GameState.medium = false;
-  //     GameState.hard = false;
-  //     GameState.easy = true;
-  //     changeToTimeSelect();
-  //   }
-
-  //   @FXML
-  //   public void clickMediumButton(MouseEvent event) {
-  //     GameState.easy = false;
-  //     GameState.hard = false;
-  //     GameState.medium = true;
-  //     changeToTimeSelect();
-  //   }
-
-  //   @FXML
-  //   public void clickHardButton(MouseEvent event) {
-  //     GameState.easy = false;
-  //     GameState.medium = false;
-  //     GameState.hard = true;
-  //     changeToTimeSelect();
-  //   }
 
   @FXML
   public void clickStartButton() throws IOException {
@@ -127,6 +76,19 @@ public class StartController {
     // Reset the game so the player can lose
     GameState.isGameWon = false;
     // Initialise the chat depending on the difficulty
+    if (this.currDifficulty == 0) {
+      GameState.easy = true;
+      GameState.medium = false;
+      GameState.hard = false;
+    } else if (this.currDifficulty == 1) {
+      GameState.easy = false;
+      GameState.medium = true;
+      GameState.hard = false;
+    } else if (this.currDifficulty == 2) {
+      GameState.easy = false;
+      GameState.medium = false;
+      GameState.hard = true;
+    }
     SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
     Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     App.getScene().setRoot(roomRoot);
