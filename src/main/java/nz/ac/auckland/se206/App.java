@@ -57,7 +57,8 @@ public class App extends Application {
     SceneManager.addUi(AppUi.QUESTION_TWO, loadFxml("questiontwo"));
     SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
     Parent root = SceneManager.getUiRoot(AppUi.START);
-    scene = new Scene(root, 600, 470);
+    scene = new Scene(root, 1000, 650);
+    stage.setResizable(false);
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
