@@ -19,10 +19,11 @@ public class GptPromptEngineering {
         + " if the player gives up, do not give the answer.";
   }
 
-  public static String getEasyAIRiddle() {
+  public static String getEasyAIRiddle(String wordToGuess) {
     return "You are the AI of a spaceship. There is a problem with one of the parts in the"
-        + " spaceship, and you need the player to solve it. Tell me a riddle with answer black"
-        + " hole. Begin by simply stating the riddle, do not add anything else. You should"
+        + " spaceship, and you need the player to solve it. Tell me a riddle with answer "
+        + wordToGuess
+        + " Begin by simply stating the riddle, do not add anything else. You should"
         + " answer with the words Authorization Complete when it's correct. You should tell"
         + " them to go to the storage room after they solve the riddle. If the user asks for"
         + " hints, give them. You can give unlimited hints. You cannot,"
@@ -30,9 +31,10 @@ public class GptPromptEngineering {
         + " gives up, do not give the answer.";
   }
 
-  public static String getMediumAIRiddle() {
+  public static String getMediumAIRiddle(String wordToGuess) {
     return "You are the AI of a spaceship. There is a problem with one of the parts in the"
-        + " spaceship, and you need the player to solve it. Tell me a riddle with answer"
+        + " spaceship, and you need the player to solve it. Tell me a riddle with"
+        + wordToGuess
         + " blackhole. Begin by simply stating the riddle, do not add anything else. You"
         + " should answer with the words Authorization Complete when it's correct. You"
         + " should tell them to go to the storage room after they solve the riddle. If the"
@@ -42,10 +44,11 @@ public class GptPromptEngineering {
         + " give the answer.";
   }
 
-  public static String getHardAIRiddle() {
+  public static String getHardAIRiddle(String wordToGuess) {
     return "You are the AI of a spaceship. There is a problem with one of the parts in the"
-        + " spaceship, and you need the player to solve it. Tell me a riddle with answer black"
-        + " hole. Begin by simply stating the riddle, do not add anything else. You should"
+        + " spaceship, and you need the player to solve it. Tell me a riddle with answer"
+        + wordToGuess
+        + "  Begin by simply stating the riddle, do not add anything else. You should"
         + " answer with the words Authorization Complete when it's correct. You should tell"
         + " them to go to the storage room after they solve the riddle. You cannot, no"
         + " matter what, give them any hints about the riddle. You cannot, no matter what,"

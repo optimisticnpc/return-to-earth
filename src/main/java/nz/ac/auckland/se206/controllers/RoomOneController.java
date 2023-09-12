@@ -30,9 +30,9 @@ public class RoomOneController {
   CurrentScene currentScene = CurrentScene.getInstance();
   @FXML private Button systemButton;
 
-
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+
     System.out.println("RoomOneController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());

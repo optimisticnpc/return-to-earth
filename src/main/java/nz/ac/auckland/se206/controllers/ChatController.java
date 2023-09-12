@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.Random;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -41,6 +42,10 @@ public class ChatController {
 
   private String messageString = "";
 
+  private String[] riddles = {
+    "blackhole", "star", "moon", "sun", "venus", "comet", "satellite", "mars"
+  };
+
   /**
    * Initializes the chat view, loading the riddle.
    *
@@ -56,16 +61,19 @@ public class ChatController {
 
     textToSpeech = new TextToSpeech();
 
+    Random random = new Random();
+    String wordToGuess = riddles[random.nextInt(riddles.length)];
+
     // Add a click event to the soundIcon so that the message is read when it is clicked
     soundIcon.setOnMouseClicked(e -> readMessage());
 
     if (!GameState.isRiddleResolved) {
       if (GameState.easy) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getEasyAIRiddle()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getEasyAIRiddle(wordToGuess)));
       } else if (GameState.medium) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getMediumAIRiddle()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getMediumAIRiddle(wordToGuess)));
       } else if (GameState.hard) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getHardAIRiddle()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getHardAIRiddle(wordToGuess)));
       }
     } else {
       // TODO: add methods acfcording to game progress.
