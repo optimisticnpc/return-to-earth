@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.Random;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -27,8 +28,16 @@ public class RoomOneController {
   @FXML private Polygon movetoRoomTwo;
   @FXML private Polygon movetoRoomThree;
   @FXML private Label timerLabel;
+  @FXML private Rectangle redSwitch;
+  @FXML private Rectangle greenSwitch;
+  @FXML private Rectangle blueSwitch;
+  private String[] switchOrder = {"red", "green", "blue"};
+  private int switchIndex = 0;
+  private int correctSwitch = 0;
+
   CurrentScene currentScene = CurrentScene.getInstance();
   @FXML private Button systemButton;
+  @FXML private Button reactivateButton;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -36,6 +45,16 @@ public class RoomOneController {
     System.out.println("RoomOneController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
+
+    Random random = new Random();
+
+    for (int i = 0; i < 3; i++) {
+      int randomIndexToSwap = random.nextInt(switchOrder.length);
+      String temp = switchOrder[randomIndexToSwap];
+      switchOrder[randomIndexToSwap] = switchOrder[i];
+      switchOrder[i] = temp;
+    }
+    System.out.println(switchOrder[0] + switchOrder[1] + switchOrder[2]);
   }
 
   /**
@@ -154,6 +173,75 @@ public class RoomOneController {
     } else {
       Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
       App.getScene().setRoot(chatRoot);
+    }
+  }
+
+  /**
+   * Handles the click event on the red switch.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the chat view
+   */
+  @FXML
+  public void clickRedSwitch(MouseEvent event) throws IOException {
+    System.out.println("Red Switch clicked");
+    redSwitch.setVisible(false);
+    if (switchOrder[switchIndex].equals("red")) {
+      switchIndex++;
+      correctSwitch++;
+    } else {
+      switchIndex++;
+    }
+  }
+
+  /**
+   * Handles the click event on the green switch.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the chat view
+   */
+  @FXML
+  public void clickGreenSwitch(MouseEvent event) throws IOException {
+    System.out.println("Green Switch clicked");
+    greenSwitch.setVisible(false);
+    if (switchOrder[switchIndex].equals("green")) {
+      switchIndex++;
+      correctSwitch++;
+    } else {
+      switchIndex++;
+    }
+  }
+
+  /**
+   * Handles the click event on the blue switch.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the chat view
+   */
+  @FXML
+  public void clickBlueSwitch(MouseEvent event) throws IOException {
+    System.out.println("Blue Switch clicked");
+    blueSwitch.setVisible(false);
+    if (switchOrder[switchIndex].equals("blue")) {
+      switchIndex++;
+      correctSwitch++;
+    } else {
+      switchIndex++;
+    }
+  }
+
+  @FXML
+  public void reactivate(ActionEvent event) throws IOException {
+    if (correctSwitch == 3) {
+      engineWarning.setVisible(false);
+      reactivateButton.setVisible(false);
+      App.setRoot("winscreen");
+    } else {
+      redSwitch.setVisible(true);
+      greenSwitch.setVisible(true);
+      blueSwitch.setVisible(true);
+      switchIndex = 0;
+      correctSwitch = 0;
     }
   }
 

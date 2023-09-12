@@ -76,7 +76,7 @@ public class ChatController {
         runGpt(new ChatMessage("user", GptPromptEngineering.getHardAIRiddle(wordToGuess)));
       }
     } else {
-      // TODO: add methods acfcording to game progress.
+      // TODO: add methods according to game progress.
     }
   }
 

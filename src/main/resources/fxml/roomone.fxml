@@ -32,5 +32,13 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <Rectangle fx:id="blueSwitch" arcHeight="5.0" arcWidth="5.0" fill="#0084ff" height="56.0" layoutX="87.0" layoutY="387.0" onMouseClicked="#clickBlueSwitch" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+      <Rectangle fx:id="redSwitch" arcHeight="5.0" arcWidth="5.0" fill="RED" height="56.0" layoutX="467.0" layoutY="421.0" onMouseClicked="#clickRedSwitch" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+      <Rectangle fx:id="greenSwitch" arcHeight="5.0" arcWidth="5.0" fill="#00ff22" height="56.0" layoutX="827.0" layoutY="380.0" onMouseClicked="#clickGreenSwitch" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+      <Button fx:id="reactivateButton" layoutX="437.0" layoutY="498.0" mnemonicParsing="false" onAction="#reactivate" prefHeight="41.0" prefWidth="107.0" text="REACTIVATE">
+         <font>
+            <Font name="Comic Sans MS" size="13.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
