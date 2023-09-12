@@ -51,11 +51,9 @@ public class App extends Application {
     SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
     SceneManager.addUi(AppUi.ROOM_THREE, loadFxml("roomthree"));
     SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
-    SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
     SceneManager.addUi(AppUi.START, loadFxml("start"));
     SceneManager.addUi(AppUi.QUESTION_ONE, loadFxml("questionone"));
     SceneManager.addUi(AppUi.QUESTION_TWO, loadFxml("questiontwo"));
-    SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
     Parent root = SceneManager.getUiRoot(AppUi.START);
     scene = new Scene(root, 1000, 650);
     stage.setResizable(false);

@@ -16,20 +16,23 @@ public class GameState {
   public static boolean isGameWon = false;
 
   /** Indicates the difficulties of the game */
-  public static boolean easy = false;
+  public static boolean easy = true;
 
   public static boolean medium = false;
   public static boolean hard = false;
-  public static boolean isRoomOneFirst = true;
-  public static boolean isJokeResolved = false;
 
-  //** Indicates whether the player has solved the math questions and entered the correct passcode. */
+  public static boolean isRoomOneFirst = true;
+
+  // ** Indicates whether the player has solved the math questions and entered the correct passcode.
+  // */
   public static boolean isPasscodeSolved = false;
 
-  //** Indicates whether that the player has clicked on the compartment and the toolbox is revealed. */
+  // ** Indicates whether that the player has clicked on the compartment and the toolbox is
+  // revealed. */
   public static boolean isToolboxRevealed = false;
 
-  //** Indicates that the player has clicked on the tool box to collect it, the visual in the room will show the tool box as taken */
+  // ** Indicates that the player has clicked on the tool box to collect it, the visual in the room
+  // will show the tool box as taken */
   public static boolean isToolboxCollected = false;
 
   public static void resetGame() throws IOException {

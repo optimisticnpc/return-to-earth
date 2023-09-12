@@ -158,11 +158,6 @@ public class ChatController {
                 "Now you know where the next clue is.");
           }
 
-          if (result.getRole().equals("assistant") && result.getContent().contains("Hahaha")) {
-            GameState.isJokeResolved = true;
-            System.out.println("Joke resolved");
-          }
-
           loadingIcon.setVisible(false); // hide the loading icon
 
           sendButton.setDisable(false); // Re-enable send button
