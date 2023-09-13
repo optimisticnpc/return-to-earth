@@ -158,6 +158,7 @@ public class App extends Application {
   public static void resetRooms() throws IOException {
     try {
       SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
+      SceneManager.addUi(AppUi.ROOM_THREE, loadFxml("roomthree"));
       SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
     } catch (IOException e) {
       e.printStackTrace();
