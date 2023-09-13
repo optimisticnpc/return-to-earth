@@ -10,11 +10,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomThreeController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomThreeController">
    <children>
       <ImageView fx:id="background" fitHeight="650.0" fitWidth="1182.0" layoutX="-71.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -31,8 +30,6 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Text layoutX="98.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click to go back to room 2" />
-      <Rectangle fx:id="goBackRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="35.0" layoutX="98.0" layoutY="323.0" onMouseClicked="#clickGoBackRectangle" stroke="BLACK" strokeType="INSIDE" width="48.0" />
       <Polygon fx:id="hatch" fill="DODGERBLUE" layoutX="446.0" layoutY="403.0" onMouseClicked="#clickHatch" opacity="0.0" points="-69.0555419921875, -24.1923828125, 112.9444580078125, -122.1923828125, 191.9444580078125, -9.1923828125, 11.9444580078125, 89.8076171875" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="screwOne" fill="DODGERBLUE" layoutX="400.0" layoutY="385.0" onMousePressed="#pressScrew" opacity="0.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="screwTwo" fill="DODGERBLUE" layoutX="552.0" layoutY="306.0" onMousePressed="#pressScrew" opacity="0.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
@@ -79,5 +76,6 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Text>
+      <Polygon fx:id="movetoRoomOne" fill="#ff0400" layoutX="22.0" layoutY="325.0" onMouseClicked="#clickRoomOne" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
    </children>
 </Pane>

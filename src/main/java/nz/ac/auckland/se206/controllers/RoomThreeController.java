@@ -166,11 +166,11 @@ public class RoomThreeController {
   }
 
   @FXML
-  public void clickGoBackRectangle(MouseEvent event) throws IOException {
-    System.out.println("go back clicked");
+  public void clickRoomOne(MouseEvent event) throws IOException {
+    System.out.println("Room One Clicked");
 
-    Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
-    App.getScene().setRoot(roomTwoRoot);
-    currentScene.setCurrent(2);
+    Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
+    App.getScene().setRoot(roomOneRoot);
+    currentScene.setCurrent(1);
   }
 }

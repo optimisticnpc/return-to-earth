@@ -38,3 +38,11 @@
 #startButton:pressed, #restartButton:pressed, #exitButton:pressed {
     -fx-effect: dropshadow(three-pass-box, green, 10, 0.5, 0, 0);
 }
+
+.roomArrow {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 10, 0.5, 0.0, 0.0);
+}
+
+.roomArrow:hover {
+    -fx-opacity: 0.75;
+}
