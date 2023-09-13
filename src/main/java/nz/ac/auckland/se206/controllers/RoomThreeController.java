@@ -13,6 +13,7 @@ import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -47,10 +48,13 @@ public class RoomThreeController {
   @FXML private ImageView background;
   @FXML private ProgressBar oxygenBar;
   @FXML private Pane room;
+  @FXML private Text meterPercent;
+
   private Timeline timeline;
   private CurrentScene currentScene = CurrentScene.getInstance();
   private RotateTransition rotate = new RotateTransition();
   private boolean unscrewed = false;
+  private boolean warning = false;
 
   public void initialize() {
     System.out.println("RoomThreeController.initialize()");
@@ -72,6 +76,18 @@ public class RoomThreeController {
                         oxygenBar.setProgress(oxygenBar.getProgress() - 0.02);
                       } else {
                         oxygenBar.setProgress(oxygenBar.getProgress() - 0.05);
+                      }
+                      Integer percentage = (int) Math.round(oxygenBar.getProgress() * 100);
+                      meterPercent.setText(Integer.toString(percentage) + "%");
+                      if (oxygenBar.getProgress() <= 0.3 && oxygenBar.getProgress() >= 0.2) {
+                        if (!warning) {
+                          Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                          alert.setTitle("PLACEHOLDER");
+                          alert.setHeaderText("OXYGEN RUNNING LOW");
+                          alert.setContentText("DELETE LATER");
+                          alert.show();
+                          warning = true;
+                        }
                       }
                     } else {
                       try {
