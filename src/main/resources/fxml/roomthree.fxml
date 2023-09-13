@@ -31,10 +31,10 @@
          </font>
       </Label>
       <Polygon fx:id="hatch" fill="DODGERBLUE" layoutX="446.0" layoutY="403.0" onMouseClicked="#clickHatch" opacity="0.0" points="-69.0555419921875, -24.1923828125, 112.9444580078125, -122.1923828125, 191.9444580078125, -9.1923828125, 11.9444580078125, 89.8076171875" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="screwOne" fill="DODGERBLUE" layoutX="400.0" layoutY="385.0" onMousePressed="#pressScrew" opacity="0.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="screwTwo" fill="DODGERBLUE" layoutX="552.0" layoutY="306.0" onMousePressed="#pressScrew" opacity="0.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="screwThree" fill="DODGERBLUE" layoutX="612.0" layoutY="387.0" onMousePressed="#pressScrew" opacity="0.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="screwFour" fill="DODGERBLUE" layoutX="464.0" layoutY="470.0" onMousePressed="#pressScrew" opacity="0.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="screwOne" fill="WHITE" layoutX="400.0" layoutY="385.0" onMousePressed="#pressScrew" opacity="0.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
+      <Circle fx:id="screwTwo" fill="WHITE" layoutX="552.0" layoutY="306.0" onMousePressed="#pressScrew" opacity="0.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
+      <Circle fx:id="screwThree" fill="WHITE" layoutX="612.0" layoutY="387.0" onMousePressed="#pressScrew" opacity="0.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
+      <Circle fx:id="screwFour" fill="WHITE" layoutX="464.0" layoutY="470.0" onMousePressed="#pressScrew" opacity="0.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
       <VBox fx:id="puzzleScreen" alignment="CENTER" layoutX="161.0" layoutY="69.0" prefHeight="533.0" prefWidth="691.0" visible="false">
          <children>
             <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" text="Select Wrench Power!">

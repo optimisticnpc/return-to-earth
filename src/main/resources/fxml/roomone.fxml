@@ -16,9 +16,9 @@
             <Image url="@../images/MainRoom.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="mainWarning" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="35.0" layoutX="313.0" layoutY="88.0" onMouseClicked="#clickMainWarning" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="383.0" />
-      <Rectangle fx:id="authRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="62.0" layoutX="412.0" layoutY="325.0" onMouseClicked="#clickAuthorisation" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="157.0" />
-      <Rectangle fx:id="engineWarning" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="56.0" layoutX="589.0" layoutY="329.0" onMouseClicked="#clickEngineWarning" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="107.0" />
+      <Rectangle fx:id="mainWarning" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="35.0" layoutX="313.0" layoutY="88.0" onMouseClicked="#clickMainWarning" opacity="0.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" width="383.0" />
+      <Rectangle fx:id="authRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="63.0" layoutX="413.0" layoutY="323.0" onMouseClicked="#clickAuthorisation" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="154.0" />
+      <Rectangle fx:id="engineWarning" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="56.0" layoutX="589.0" layoutY="329.0" onMouseClicked="#clickEngineWarning" opacity="0.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" width="107.0" />
       <Polygon fx:id="movetoRoomTwo" fill="#ff0400" layoutX="12.0" layoutY="325.0" onMouseClicked="#clickRoomTwo" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
       <Polygon fx:id="movetoRoomThree" fill="#ff0400" layoutX="927.0" layoutY="325.0" onMouseClicked="#clickRoomThree" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" rotate="180.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
       <Button fx:id="systemButton" layoutX="827.0" layoutY="37.0" mnemonicParsing="false" onAction="#accessSystem" prefHeight="41.0" prefWidth="149.0" text="Access the System" />
@@ -32,9 +32,9 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Rectangle fx:id="blueSwitch" arcHeight="5.0" arcWidth="5.0" fill="#0084ff" height="56.0" layoutX="87.0" layoutY="387.0" onMouseClicked="#clickBlueSwitch" stroke="BLACK" strokeType="INSIDE" width="48.0" />
-      <Rectangle fx:id="redSwitch" arcHeight="5.0" arcWidth="5.0" fill="RED" height="56.0" layoutX="467.0" layoutY="421.0" onMouseClicked="#clickRedSwitch" stroke="BLACK" strokeType="INSIDE" width="48.0" />
-      <Rectangle fx:id="greenSwitch" arcHeight="5.0" arcWidth="5.0" fill="#00ff22" height="56.0" layoutX="827.0" layoutY="380.0" onMouseClicked="#clickGreenSwitch" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+      <Rectangle fx:id="blueSwitch" arcHeight="5.0" arcWidth="5.0" fill="#0084ff" height="56.0" layoutX="87.0" layoutY="387.0" onMouseClicked="#clickBlueSwitch" stroke="BLACK" strokeType="INSIDE" styleClass="button-hoverable" width="48.0" />
+      <Rectangle fx:id="redSwitch" arcHeight="5.0" arcWidth="5.0" fill="RED" height="56.0" layoutX="467.0" layoutY="421.0" onMouseClicked="#clickRedSwitch" stroke="BLACK" strokeType="INSIDE" styleClass="button-hoverable" width="48.0" />
+      <Rectangle fx:id="greenSwitch" arcHeight="5.0" arcWidth="5.0" fill="#00ff22" height="56.0" layoutX="827.0" layoutY="380.0" onMouseClicked="#clickGreenSwitch" opacity="0.45" stroke="BLACK" strokeType="INSIDE" styleClass="button-hoverable" width="48.0" />
       <Button fx:id="reactivateButton" layoutX="437.0" layoutY="498.0" mnemonicParsing="false" onAction="#reactivate" prefHeight="41.0" prefWidth="107.0" text="REACTIVATE">
          <font>
             <Font name="Comic Sans MS" size="13.0" />

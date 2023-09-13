@@ -20,7 +20,7 @@
             <Image url="@../images/storage_closed_door_open_trap_toolbox.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="toolBoxCollectedImage" fitHeight="668.0" fitWidth="1096.0" layoutX="-48.0" opacity="0.0" pickOnBounds="true">
+      <ImageView fx:id="toolBoxCollectedImage" fitHeight="668.0" fitWidth="1096.0" layoutX="-39.0" opacity="0.0" pickOnBounds="true">
          <image>
             <Image url="@../images/storage_closed_door_open_trap.png" />
          </image>
