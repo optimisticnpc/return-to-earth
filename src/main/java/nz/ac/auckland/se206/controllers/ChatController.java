@@ -270,7 +270,7 @@ public class ChatController {
    * @param headerText the header text of the dialog box
    * @param message the message content of the dialog box
    */
-  private void showDialog(String title, String headerText, String message) {
+  public static void showDialog(String title, String headerText, String message) {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setTitle(title);
     alert.setHeaderText(headerText);

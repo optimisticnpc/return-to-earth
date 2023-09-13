@@ -13,16 +13,16 @@
 
 <Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.StartController">
    <children>
-      <ImageView fitHeight="677.0" fitWidth="1167.0" layoutX="-144.0" layoutY="-3.0" preserveRatio="true">
+      <ImageView fitHeight="677.0" fitWidth="1167.0" layoutX="-144.0" layoutY="-5.0" preserveRatio="true">
          <image>
             <Image url="@../images/menu.png" />
          </image>
       </ImageView>
-      <VBox alignment="TOP_CENTER" layoutX="262.0" layoutY="32.0" prefHeight="409.0" prefWidth="476.0" spacing="10.0">
+      <VBox alignment="TOP_CENTER" layoutX="239.0" layoutY="38.0" prefHeight="409.0" prefWidth="476.0" spacing="10.0">
          <children>
             <VBox alignment="CENTER" prefHeight="119.0" prefWidth="476.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="The Game" textAlignment="CENTER" wrappingWidth="333.4326171875">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Return To Earth" textAlignment="CENTER" wrappingWidth="522.4326171875">
                      <font>
                         <Font size="60.0" />
                      </font>

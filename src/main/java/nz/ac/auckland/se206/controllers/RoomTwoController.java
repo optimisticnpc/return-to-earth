@@ -20,7 +20,6 @@ public class RoomTwoController {
   @FXML private Label timerLabel;
   @FXML private ImageView toolBoxOpenImage;
   @FXML private ImageView toolBoxCollectedImage;
-  @FXML private Rectangle goBackRectangle;
   CurrentScene currentScene = CurrentScene.getInstance();
   @FXML private Rectangle questionOne;
   @FXML private Rectangle questionTwo;
@@ -36,8 +35,8 @@ public class RoomTwoController {
   }
 
   @FXML
-  public void clickGoBackRectangle(MouseEvent event) throws IOException {
-    System.out.println("go back clicked");
+  public void clickRoomOne(MouseEvent event) throws IOException {
+    System.out.println("Room One Clicked");
 
     Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     App.getScene().setRoot(roomOneRoot);
@@ -59,6 +58,14 @@ public class RoomTwoController {
   @FXML
   public void clickToolCompartment(MouseEvent event) throws IOException {
     System.out.println("Tool Compartment Clicked");
+
+    // If riddle is not solved, do no allow entry
+    if (!GameState.isRiddleResolved) {
+      // TODO: replace with speech bubble?
+      // Placeholder
+      ChatController.showDialog("Placeholder", "AUTHORIZATION NEEDED", "delete this later");
+      return;
+    }
 
     // If the passcode hasn't been solved
     // Go to enter access key screen
