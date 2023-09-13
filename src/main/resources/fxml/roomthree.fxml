@@ -70,7 +70,7 @@
             <Font name="System Bold" size="28.0" />
          </font>
       </Text>
-      <ProgressBar fx:id="oxygenBar" layoutX="736.0" layoutY="595.0" prefHeight="35.0" prefWidth="250.0" progress="0.0" style="-fx-accent: red;" />
+      <ProgressBar fx:id="oxygenBar" layoutX="736.0" layoutY="595.0" prefHeight="35.0" prefWidth="250.0" progress="1.0" style="-fx-accent: red;" />
       <Text fill="RED" layoutX="832.0" layoutY="587.0" stroke="BLACK" strokeType="OUTSIDE" text="OXYGEN METER">
          <font>
             <Font name="System Bold" size="20.0" />

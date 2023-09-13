@@ -100,6 +100,7 @@ public class RoomOneController {
   public void clickRoomThree(MouseEvent event) throws IOException {
     System.out.println("Room Three clicked");
     Parent roomThreeRoot = SceneManager.getUiRoot(AppUi.ROOM_THREE);
+    currentScene.setCurrent(3);
     App.getScene().setRoot(roomThreeRoot);
   }
 

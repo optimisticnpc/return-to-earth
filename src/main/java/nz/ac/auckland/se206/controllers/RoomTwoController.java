@@ -22,7 +22,7 @@ public class RoomTwoController {
   @FXML private ImageView toolBoxCollectedImage;
   @FXML private ImageView spacesuitRevealedImage;
   @FXML private ImageView spacesuitCollectedImage;
-  CurrentScene currentScene = CurrentScene.getInstance();
+  private CurrentScene currentScene = CurrentScene.getInstance();
   @FXML private Rectangle questionOne;
   @FXML private Rectangle questionTwo;
 

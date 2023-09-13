@@ -67,13 +67,13 @@ public class RoomThreeController {
                 Duration.seconds(1),
                 event -> {
                   if (currentScene.getCurrent() == 3) {
-                    if (oxygenBar.getProgress() < 1) {
-                      oxygenBar.setProgress(oxygenBar.getProgress() + 0.02);
+                    if (oxygenBar.getProgress() > 0.01) {
+                      oxygenBar.setProgress(oxygenBar.getProgress() - 0.03);
                     } else {
                       try {
                         App.setRoot("losescreen");
                         currentScene.setCurrent(4);
-                        oxygenBar.setProgress(0);
+                        oxygenBar.setProgress(1);
                       } catch (IOException e) {
                         e.printStackTrace();
                       }
