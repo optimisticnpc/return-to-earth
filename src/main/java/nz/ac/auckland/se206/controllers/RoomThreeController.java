@@ -67,8 +67,12 @@ public class RoomThreeController {
                 Duration.seconds(1),
                 event -> {
                   if (currentScene.getCurrent() == 3) {
-                    if (oxygenBar.getProgress() > 0.01) {
-                      oxygenBar.setProgress(oxygenBar.getProgress() - 0.03);
+                    if (oxygenBar.getProgress() > 0) {
+                      if (GameState.isSpacesuitCollected) {
+                        oxygenBar.setProgress(oxygenBar.getProgress() - 0.02);
+                      } else {
+                        oxygenBar.setProgress(oxygenBar.getProgress() - 0.05);
+                      }
                     } else {
                       try {
                         App.setRoot("losescreen");
