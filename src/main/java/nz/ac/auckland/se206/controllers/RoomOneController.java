@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
@@ -34,11 +33,11 @@ public class RoomOneController {
   private String[] switchOrder = {"red", "green", "blue"};
   private int switchIndex = 0;
   private int correctSwitch = 0;
+  private static String correctOrderString;
 
   CurrentScene currentScene = CurrentScene.getInstance();
   @FXML private Button systemButton;
   @FXML private Button reactivateButton;
-
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -55,27 +54,11 @@ public class RoomOneController {
       switchOrder[randomIndexToSwap] = switchOrder[i];
       switchOrder[i] = temp;
     }
-    System.out.println(switchOrder[0] + switchOrder[1] + switchOrder[2]);
-  }
 
-  /**
-   * Handles the key pressed event.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onKeyPressed(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " pressed");
-  }
+    correctOrderString = switchOrder[0] + " " + switchOrder[1] + " " + switchOrder[2];
 
-  /**
-   * Handles the key released event.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onKeyReleased(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " released");
+    // TODO: Maybe remove later since we have cheat codes:
+    System.out.println(correctOrderString);
   }
 
   /**
@@ -264,5 +247,9 @@ public class RoomOneController {
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
     App.getScene().setRoot(chatRoot);
     GameState.isRoomOneFirst = false;
+  }
+
+  public static String getCorrectOrderString() {
+    return correctOrderString;
   }
 }

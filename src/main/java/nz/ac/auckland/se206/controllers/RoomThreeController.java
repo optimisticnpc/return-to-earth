@@ -18,26 +18,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
-import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class RoomThreeController {
   @FXML private Label timerLabel;
-  @FXML private Rectangle goBackRectangle;
-  @FXML private Rectangle door;
   @FXML private Polygon hatch;
   @FXML private VBox puzzleScreen;
   @FXML private Button resumeButton;
@@ -132,15 +127,6 @@ public class RoomThreeController {
   }
 
   @FXML
-  public void clickDoor(MouseEvent event) throws IOException {
-    System.out.println("door clicked");
-
-    // TODO: Change or move this
-    GameState.isGameWon = true;
-    App.setRoot("winscreen");
-  }
-
-  @FXML
   public void pressScrew(MouseEvent event) {
     System.out.println("screw pressed");
     puzzleScreen.setVisible(!puzzleScreen.isVisible());
@@ -186,25 +172,5 @@ public class RoomThreeController {
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
     App.getScene().setRoot(roomTwoRoot);
     currentScene.setCurrent(2);
-  }
-
-  /**
-   * Handles the key pressed event.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onKeyPressed(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " pressed");
-  }
-
-  /**
-   * Handles the key released event.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onKeyReleased(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " released");
   }
 }

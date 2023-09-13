@@ -14,17 +14,17 @@
             <Image url="@../images/menu.png" />
          </image>
       </ImageView>
-      <Button fx:id="exitButton" layoutX="417.0" layoutY="414.0" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="90.0" prefWidth="188.0" text="Exit ">
+      <Button fx:id="exitButton" layoutX="406.0" layoutY="406.0" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="90.0" prefWidth="188.0" text="Exit ">
          <font>
             <Font size="38.0" />
          </font>
       </Button>
-      <Button fx:id="restartButton" layoutX="417.0" layoutY="307.0" mnemonicParsing="false" onAction="#clickRestartButton" prefHeight="90.0" prefWidth="188.0" text="Restart">
+      <Button fx:id="restartButton" layoutX="406.0" layoutY="299.0" mnemonicParsing="false" onAction="#clickRestartButton" prefHeight="90.0" prefWidth="188.0" text="Restart">
          <font>
             <Font size="38.0" />
          </font>
       </Button>
-      <Text fill="WHITE" layoutX="350.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You Lost" textAlignment="CENTER" wrappingWidth="322.900390625">
+      <Text fill="WHITE" layoutX="339.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You Lost" textAlignment="CENTER" wrappingWidth="322.900390625">
          <font>
             <Font size="60.0" />
          </font>

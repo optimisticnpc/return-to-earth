@@ -78,4 +78,8 @@ public class PasscodeController {
   public static void setCorrectPassCodeString(String correctPassCodeString) {
     PasscodeController.correctPassCodeString = correctPassCodeString;
   }
+
+  public static String getCorrectPassCodeString() {
+    return correctPassCodeString;
+  }
 }

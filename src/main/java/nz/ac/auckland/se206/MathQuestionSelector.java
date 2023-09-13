@@ -68,9 +68,6 @@ public class MathQuestionSelector {
   public String generatePasscode() {
     String firstAnswer = selectedPuzzles[0].getAnswer();
     String secondAnswer = selectedPuzzles[1].getAnswer();
-
-    // TODO: delete later
-    System.out.println("Passcode:" + firstAnswer + secondAnswer);
     return firstAnswer + secondAnswer;
   }
 

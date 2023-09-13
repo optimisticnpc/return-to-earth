@@ -36,6 +36,8 @@ public class ChatController {
   @FXML private ImageView soundIcon;
   @FXML private Label timerLabel;
 
+  private static String wordToGuess;
+
   private TextToSpeech textToSpeech; // Text to speech object
 
   private ChatCompletionRequest chatCompletionRequest;
@@ -62,7 +64,7 @@ public class ChatController {
     textToSpeech = new TextToSpeech();
 
     Random random = new Random();
-    String wordToGuess = riddles[random.nextInt(riddles.length)];
+    wordToGuess = riddles[random.nextInt(riddles.length)];
 
     // Add a click event to the soundIcon so that the message is read when it is clicked
     soundIcon.setOnMouseClicked(e -> readMessage());
@@ -274,5 +276,9 @@ public class ChatController {
     alert.setHeaderText(headerText);
     alert.setContentText(message);
     alert.showAndWait();
+  }
+
+  public static String getWordToGuess() {
+    return wordToGuess;
   }
 }
