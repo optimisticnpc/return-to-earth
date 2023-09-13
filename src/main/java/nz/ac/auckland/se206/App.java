@@ -6,10 +6,16 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.GlobalController;
 import nz.ac.auckland.se206.controllers.PasscodeController;
+import nz.ac.auckland.se206.controllers.RoomOneController;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -66,12 +72,69 @@ public class App extends Application {
     MathQuestionSelector selector = MathQuestionSelector.getInstance();
     PasscodeController.setCorrectPassCodeString(selector.generatePasscode());
 
+    // CHEATCODES
+    cheatCodes();
+
     // Ensure app exits cleanly when window is closed
     // This stops any threads or services that the app is using
     stage.setOnCloseRequest(
         e -> {
           Platform.exit();
           System.exit(0);
+        });
+  }
+
+  private void cheatCodes() {
+
+    KeyCombination keyCombL =
+        new KeyCodeCombination(KeyCode.L, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
+    KeyCombination keyCombW =
+        new KeyCodeCombination(KeyCode.W, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
+    KeyCombination keyCombA =
+        new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
+    KeyCombination keyCombR =
+        new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
+
+    scene.addEventHandler(
+        KeyEvent.KEY_PRESSED,
+        event -> {
+          if (keyCombL.match(event)) {
+            System.out.println("Ctrl + Alt + L was pressed!");
+            // Instantly lose
+            try {
+              setRoot("losescreen");
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          } else if (keyCombW.match(event)) {
+            System.out.println("Ctrl + Alt + W was pressed!");
+            // Instantly win
+            GameState.isGameWon = true;
+            try {
+              setRoot("winscreen");
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          } else if (keyCombA.match(event)) {
+            System.out.println("Ctrl + Alt + A was pressed!");
+            // Get answers for all puzzles
+            // TODO: Implement
+
+            // Riddle:
+            System.out.println("Riddle Answer: " + ChatController.getWordToGuess());
+
+            // Passcode:
+            System.out.println("Passcode: " + PasscodeController.getCorrectPassCodeString());
+
+            // Reactivation:
+            System.out.println("Reactivation Order: " + RoomOneController.getCorrectOrderString());
+
+          } else if (keyCombR.match(event)) {
+            System.out.println("Ctrl + Alt + R was pressed!");
+            // Automatically skip riddles
+            // TODO: Implement this properly + check implementation
+            GameState.isRiddleResolved = true;
+          }
         });
   }
 

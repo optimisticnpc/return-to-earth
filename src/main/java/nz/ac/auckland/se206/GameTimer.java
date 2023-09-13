@@ -29,23 +29,23 @@ public class GameTimer {
   // A Timeline object that is responsible for decreasing timeSeconds every second
   // and updating the time display.
   private Timeline timeline;
-  private int timeSeconds;
+  private int timeHundredths;
 
   // A StringProperty object that is used to display the time in the MM:SS format.
   private StringProperty timeDisplay = new SimpleStringProperty();
 
   public GameTimer(int initialSeconds) {
-    timeSeconds = initialSeconds;
+    timeHundredths = initialSeconds * 100; // Convert seconds to hundredths of a second.
     updateTimeDisplay();
 
     timeline =
         new Timeline(
             new KeyFrame(
-                Duration.seconds(1),
+                Duration.millis(10),
                 event -> {
-                  timeSeconds--;
+                  timeHundredths--;
                   updateTimeDisplay();
-                  if (timeSeconds <= 0) {
+                  if (timeHundredths <= 0) {
                     timeline.stop();
                     timeUp.set(true);
                   }
@@ -54,7 +54,7 @@ public class GameTimer {
   }
 
   public void startTimer() {
-    timeSeconds = initialTime;
+    timeHundredths = initialTime * 100; // Convert seconds to hundredths of a second.
     updateTimeDisplay();
     timeUp.set(false); // Reset timeUp property
     timeline.playFromStart();
@@ -69,12 +69,18 @@ public class GameTimer {
   }
 
   private void updateTimeDisplay() {
-    int minutes = timeSeconds / 60;
-    int seconds = timeSeconds % 60;
+    int minutes = timeHundredths / 6000;
+    int seconds = (timeHundredths % 6000) / 100;
+    // int hundredths = timeHundredths % 100;
+    // TODO: Decide whether to use hundredths
     timeDisplay.set(String.format("%02d:%02d", minutes, seconds));
   }
 
   public BooleanProperty timeUpProperty() {
     return timeUp;
+  }
+
+  public int getTimeHundredths() {
+    return timeHundredths;
   }
 }
