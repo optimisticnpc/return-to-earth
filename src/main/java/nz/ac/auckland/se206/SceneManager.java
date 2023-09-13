@@ -13,7 +13,8 @@ public class SceneManager {
     ROOM_THREE,
     PASSCODE,
     QUESTION_ONE,
-    QUESTION_TWO
+    QUESTION_TWO,
+    SPACESUIT_PUZZLE
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();

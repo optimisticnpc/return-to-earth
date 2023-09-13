@@ -1,5 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -15,49 +18,60 @@ import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
-public class PasscodeController {
-  private static String correctPassCodeString;
+public class SpacesuitPuzzleController {
 
   @FXML private Label timerLabel;
-  @FXML private TextField passcodeField;
+  @FXML private TextField inputField;
   @FXML private Label resultLabel;
-  @FXML private Button checkButton;
+  @FXML private Label scrambledWordLabel;
+  @FXML private Button submitCodeButton;
 
-  @FXML
+  // TODO: Get more words and make sure they are different from the riddle
+  private String[] words = {"blackhole", "venus", "comet", "satellite", "mars"};
+  private String correctWordString;
+
   public void initialize() {
-    System.out.println("PasscodeController.initialize()");
+    System.out.println("SpacesuitPuzzleController.initialize()");
+
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
-    passcodeField
-        .textProperty()
-        .addListener(
-            (observable, oldValue, newValue) -> {
-              if (newValue.length() > 4) {
-                passcodeField.setText(oldValue);
-              }
-            });
-
-    passcodeField.addEventFilter(
+    inputField.addEventFilter(
         KeyEvent.KEY_PRESSED,
         event -> {
           if (event.getCode() == KeyCode.ENTER) {
-            checkPasscode();
+            submitCode();
           }
         });
+
+    pickAndScrambleWord();
+  }
+
+  private void pickAndScrambleWord() {
+    // Randomly select a word from the array
+    correctWordString = words[(int) (Math.random() * words.length)];
+
+    // Convert the word to a list of characters, shuffle it to get the scrambled version, and then
+    // convert it back to a string.
+    List<String> letters = Arrays.asList(correctWordString.split(""));
+    Collections.shuffle(letters);
+    String scrambledWord = String.join("", letters);
+
+    // Set the scrambled word to the label
+    scrambledWordLabel.setText(scrambledWord.toUpperCase());
   }
 
   @FXML
-  public void checkPasscode() {
-    String enteredPasscode = passcodeField.getText();
+  public void submitCode() {
+    String enteredPasscode = inputField.getText();
 
-    if (correctPassCodeString.equals(enteredPasscode)) {
+    if (correctWordString.equals(enteredPasscode)) {
       resultLabel.setText("Correct! Compartment unlocked.");
-      GameState.isPasscodeSolved = true;
+      GameState.isSpacesuitUnlocked = true;
 
       // Disable passcode field and button after correct passcode entered.
-      checkButton.setDisable(true);
-      passcodeField.setDisable(true);
+      submitCodeButton.setDisable(true);
+      inputField.setDisable(true);
     } else {
       resultLabel.setText("Incorrect. Try again.");
       // Hide the message after 0.7 seconds
@@ -69,17 +83,7 @@ public class PasscodeController {
 
   @FXML
   public void goBack() {
-    System.out.println("go back clicked");
-
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
     App.getScene().setRoot(roomTwoRoot);
-  }
-
-  public static void setCorrectPassCodeString(String correctPassCodeString) {
-    PasscodeController.correctPassCodeString = correctPassCodeString;
-  }
-
-  public static String getCorrectPassCodeString() {
-    return correctPassCodeString;
   }
 }

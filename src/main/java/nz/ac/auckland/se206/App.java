@@ -60,6 +60,7 @@ public class App extends Application {
     SceneManager.addUi(AppUi.START, loadFxml("start"));
     SceneManager.addUi(AppUi.QUESTION_ONE, loadFxml("questionone"));
     SceneManager.addUi(AppUi.QUESTION_TWO, loadFxml("questiontwo"));
+    SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
     Parent root = SceneManager.getUiRoot(AppUi.START);
     scene = new Scene(root, 1000, 650);
     stage.setResizable(false);
@@ -150,9 +151,10 @@ public class App extends Application {
     }
   }
 
-  public static void resetRoomTwo() throws IOException {
+  public static void resetRooms() throws IOException {
     try {
       SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
+      SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
     } catch (IOException e) {
       e.printStackTrace();
     }
