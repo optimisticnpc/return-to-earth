@@ -35,6 +35,12 @@ public class GameState {
   // will show the tool box as taken */
   public static boolean isToolboxCollected = false;
 
+  public static boolean isSpacesuitUnlocked = false;
+
+  public static boolean isSpacesuitRevealed = false;
+
+  public static boolean isSpacesuitCollected = false;
+
   public static void resetGame() throws IOException {
     // TODO: Update and double check this
     // Reset all game state variables
@@ -42,10 +48,13 @@ public class GameState {
     isPasscodeSolved = false;
     isToolboxRevealed = false;
     isToolboxCollected = false;
+    isSpacesuitUnlocked = false;
+    isSpacesuitRevealed = false;
+    isSpacesuitCollected = false;
 
     // Get new math puzzles and update room visuals
     App.resetMathQuestions();
-    App.resetRoomTwo();
+    App.resetRooms();
 
     Parent startRoot = SceneManager.getUiRoot(AppUi.START);
     App.getScene().setRoot(startRoot);

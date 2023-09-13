@@ -20,6 +20,8 @@ public class RoomTwoController {
   @FXML private Label timerLabel;
   @FXML private ImageView toolBoxOpenImage;
   @FXML private ImageView toolBoxCollectedImage;
+  @FXML private ImageView spacesuitRevealedImage;
+  @FXML private ImageView spacesuitCollectedImage;
   CurrentScene currentScene = CurrentScene.getInstance();
   @FXML private Rectangle questionOne;
   @FXML private Rectangle questionTwo;
@@ -32,6 +34,8 @@ public class RoomTwoController {
     // Make the overlay images not visible
     toolBoxOpenImage.setOpacity(0);
     toolBoxCollectedImage.setOpacity(0);
+    spacesuitRevealedImage.setOpacity(0);
+    spacesuitCollectedImage.setOpacity(0);
   }
 
   @FXML
@@ -56,9 +60,38 @@ public class RoomTwoController {
   }
 
   @FXML
+  public void clickSpacesuit(MouseEvent event) throws IOException {
+    System.out.println("Spacesuit Clicked");
+
+    // If riddle is not solved, do no allow entry
+    if (!GameState.isRiddleResolved) {
+      // TODO: replace with speech bubble?
+      // Placeholder
+      ChatController.showDialog("Placeholder", "AUTHORIZATION NEEDED", "delete this later");
+      return;
+    }
+
+    // If the scramble word puzzle hasn't been solved
+    // Go to enter access key screen
+    if (!GameState.isSpacesuitUnlocked) {
+      Parent spacesuitPuzzlesRoom = SceneManager.getUiRoot(AppUi.SPACESUIT_PUZZLE);
+      App.getScene().setRoot(spacesuitPuzzlesRoom);
+
+      // If spacesuit hasn't been revealed
+    } else if (!GameState.isSpacesuitRevealed) {
+      revealSpacesuit();
+      GameState.isSpacesuitRevealed = true;
+    } else if (!GameState.isSpacesuitCollected) {
+      collectSpacesuit();
+      GameState.isSpacesuitCollected = true;
+    }
+  }
+
+  @FXML
   public void clickToolCompartment(MouseEvent event) throws IOException {
     System.out.println("Tool Compartment Clicked");
 
+    // TODO: Get rid of duplicate code here
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
       // TODO: replace with speech bubble?
@@ -81,25 +114,28 @@ public class RoomTwoController {
     }
   }
 
-  public void revealToolbox() {
-    // Fade in the tool box to seem like it was 'unlocked'
+  private void fadeInNode(ImageView node, double duration) {
     FadeTransition fadeTransition = new FadeTransition();
-    fadeTransition.setNode(toolBoxOpenImage);
+    fadeTransition.setNode(node);
     fadeTransition.setFromValue(0); // starting opacity value
     fadeTransition.setToValue(1); // ending opacity value (1 is fully opaque)
-    fadeTransition.setDuration(Duration.seconds(0.7)); // transition duration
-
+    fadeTransition.setDuration(Duration.seconds(duration)); // transition duration
     fadeTransition.play();
   }
 
-  private void collectToolbox() {
-    // Fade in the tool box to seem like it was 'unlocked'
-    FadeTransition fadeTransition = new FadeTransition();
-    fadeTransition.setNode(toolBoxCollectedImage);
-    fadeTransition.setFromValue(0); // starting opacity value
-    fadeTransition.setToValue(1); // ending opacity value (1 is fully opaque)
-    fadeTransition.setDuration(Duration.seconds(0.5)); // transition duration
+  public void revealToolbox() {
+    fadeInNode(toolBoxOpenImage, 0.7);
+  }
 
-    fadeTransition.play();
+  private void collectToolbox() {
+    fadeInNode(toolBoxCollectedImage, 0.5);
+  }
+
+  public void revealSpacesuit() {
+    fadeInNode(spacesuitRevealedImage, 0.7);
+  }
+
+  private void collectSpacesuit() {
+    fadeInNode(spacesuitCollectedImage, 0.5);
   }
 }
