@@ -27,6 +27,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -128,6 +129,14 @@ public class RoomThreeController {
 
   @FXML
   public void pressScrew(MouseEvent event) {
+
+    if (!GameState.isToolboxCollected) {
+      // TODO: replace with speech bubble?
+      // Placeholder
+      ChatController.showDialog("Placeholder", "TOOLS NEEDED", "delete this later");
+      return;
+    }
+
     System.out.println("screw pressed");
     puzzleScreen.setVisible(!puzzleScreen.isVisible());
     meter.setVisible(!meter.isVisible());
@@ -137,7 +146,6 @@ public class RoomThreeController {
   @FXML
   public void clickHatch(MouseEvent event) throws FileNotFoundException {
     System.out.println("hatch clicked");
-    // NEED TO ADD --> ONLY IF PLAYER HAS THE TOOL/SELECTED CORRECT TOOL
     if (unscrewed && true) {
       InputStream stream =
           new FileInputStream(

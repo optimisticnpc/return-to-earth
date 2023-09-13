@@ -59,6 +59,14 @@ public class RoomTwoController {
   public void clickToolCompartment(MouseEvent event) throws IOException {
     System.out.println("Tool Compartment Clicked");
 
+    // If riddle is not solved, do no allow entry
+    if (!GameState.isRiddleResolved) {
+      // TODO: replace with speech bubble?
+      // Placeholder
+      ChatController.showDialog("Placeholder", "AUTHORIZATION NEEDED", "delete this later");
+      return;
+    }
+
     // If the passcode hasn't been solved
     // Go to enter access key screen
     if (!GameState.isPasscodeSolved) {
