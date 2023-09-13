@@ -22,7 +22,7 @@
       </ImageView>
       <ImageView fx:id="toolBoxCollectedImage" fitHeight="668.0" fitWidth="1096.0" layoutX="-39.0" opacity="0.0" pickOnBounds="true">
          <image>
-            <Image url="@../images/white_arrow.png" />
+            <Image url="@../images/storage_closed_door_open_trap.png" />
          </image>
       </ImageView>
       <ImageView fx:id="spacesuitRevealedImage" fitHeight="335.0" fitWidth="238.0" layoutX="520.0" layoutY="214.0" opacity="0.0">
@@ -45,7 +45,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Polygon fx:id="toolCompartment" fill="#1f93ff" layoutX="410.0" layoutY="569.0" onMouseClicked="#clickToolCompartment" opacity="0.0" points="-63.0, 62.0, 55.0, 62.0, 83.0, -11.0, -22.0, -11.0" stroke="BLACK" strokeType="OUTSIDE" visible="false" />
+      <Polygon fx:id="toolCompartment" fill="#1f93ff" layoutX="410.0" layoutY="569.0" onMouseClicked="#clickToolCompartment" opacity="0.0" points="-63.0, 62.0, 55.0, 62.0, 83.0, -11.0, -22.0, -11.0" stroke="BLACK" strokeType="OUTSIDE" />
       <Rectangle fx:id="questionOne" arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="227.0" layoutY="271.0" onMouseClicked="#clickQuestionOne" stroke="BLACK" strokeType="INSIDE" width="35.0" />
       <Rectangle fx:id="questionTwo" arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="227.0" layoutY="301.0" onMouseClicked="#clickQuestionTwo" stroke="BLACK" strokeType="INSIDE" width="35.0" />
       <Polygon fx:id="movetoRoomOne" fill="#ff0400" layoutX="927.0" layoutY="325.0" onMouseClicked="#clickRoomOne" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" rotate="180.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
