@@ -136,7 +136,7 @@ public class ChatController {
                             Alert.AlertType.ERROR,
                             "An error occurred while communicating with the OpenAI's servers."
                                 + " Please check your API key and internet connection and then"
-                                + " reload the game")
+                                + " reload the game.")
                         .showAndWait();
                     loadingIcon.setVisible(false); // hide the loading icon
                   });
@@ -181,7 +181,7 @@ public class ChatController {
                         Alert.AlertType.ERROR,
                         "An error occurred while communicating with the OpenAI's servers. Please"
                             + " check your API key and internet connection and then reload the"
-                            + " game")
+                            + " game.")
                     .showAndWait();
               });
           inputText.setDisable(false); // Re-enable the input text area

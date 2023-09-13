@@ -4,15 +4,11 @@ import java.io.IOException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class WinScreenController {
-
-  @FXML private ImageView restartButton;
 
   private TextToSpeech textToSpeech = new TextToSpeech();
 
@@ -36,7 +32,7 @@ public class WinScreenController {
   }
 
   @FXML
-  private void clickRestartButton(MouseEvent event) throws IOException {
+  private void clickRestartButton(ActionEvent event) throws IOException {
     GameState.resetGame();
   }
 }

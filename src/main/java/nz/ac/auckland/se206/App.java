@@ -6,6 +6,10 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.controllers.GlobalController;
@@ -66,12 +70,34 @@ public class App extends Application {
     MathQuestionSelector selector = MathQuestionSelector.getInstance();
     PasscodeController.setCorrectPassCodeString(selector.generatePasscode());
 
+    // CHEATCODES
+    cheatCodes();
+
     // Ensure app exits cleanly when window is closed
     // This stops any threads or services that the app is using
     stage.setOnCloseRequest(
         e -> {
           Platform.exit();
           System.exit(0);
+        });
+  }
+
+  private void cheatCodes() {
+
+    KeyCombination keyComb =
+        new KeyCodeCombination(KeyCode.L, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
+
+    scene.addEventHandler(
+        KeyEvent.KEY_PRESSED,
+        event -> {
+          if (keyComb.match(event)) {
+            System.out.println("Ctrl + Alt + L was pressed!");
+            try {
+              setRoot("losescreen");
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          }
         });
   }
 

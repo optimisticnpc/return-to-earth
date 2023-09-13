@@ -1,15 +1,4 @@
-#prevDifficultyButton, #nextDifficultyButton, #prevTimeButton, #nextTimeButton {
-    -fx-background-color: transparent;
-    -fx-padding: 0;
-    -fx-border-width: 0;
-    -fx-border-color: transparent;
-    -fx-background-radius: 0;
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-}
-
-
-.arrow-button {
+#prevDifficultyButton, #nextDifficultyButton, #prevTimeButton, #nextTimeButton, .arrow-button {
     -fx-background-color: transparent;
     -fx-padding: 0;
     -fx-border-width: 0;
@@ -27,8 +16,12 @@
     -fx-opacity: 0.6;
 }
 
-#startButton {
+#startButton, #restartButton, #exitButton {
+    -fx-background-insets: 1; /* Fixes the black leaking out of the border*/
+    -fx-font-size: 38px;
     -fx-background-color: #1a1a1a;
+    -fx-border-color: white;       /* Add white border */
+    -fx-border-width: 2px;        /* Set border width to thin */
     -fx-border-radius: 15px;
     -fx-background-radius: 15px;
     -fx-text-fill: #FFF;
@@ -36,12 +29,12 @@
     -fx-padding: 10px 20px;
 }
 
-#startButton:hover {
+#startButton:hover, #restartButton:hover, #exitButton:hover {
+    -fx-border-width: 0px; 
     -fx-font-size: 38px;
     -fx-effect: dropshadow(three-pass-box, lime, 10, 0.5, 0, 0);
 }
 
-#startButton:pressed {
+#startButton:pressed, #restartButton:pressed, #exitButton:pressed {
     -fx-effect: dropshadow(three-pass-box, green, 10, 0.5, 0, 0);
 }
-
