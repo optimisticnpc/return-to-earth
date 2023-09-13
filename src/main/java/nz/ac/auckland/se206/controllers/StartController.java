@@ -28,6 +28,8 @@ public class StartController {
 
   // Default time setting currently set at 4 mins
   private int timeSetting = 1;
+  private static int timeSettingSeconds;
+
   private String[] timeStrings = {"2 min", "4 min", "6 min"};
 
   @FXML
@@ -72,7 +74,8 @@ public class StartController {
   @FXML
   public void clickStartButton() throws IOException {
     // Need to change the difficulty here as well later
-    GameTimer.setInitialTime((timeSetting + 1) * 120);
+    timeSettingSeconds = (timeSetting + 1) * 120;
+    GameTimer.setInitialTime(timeSettingSeconds);
     // Reset the game so the player can lose
     GameState.isGameWon = false;
     // Initialise the chat depending on the difficulty
@@ -95,5 +98,9 @@ public class StartController {
     GameTimer gameTimer = GameTimer.getInstance();
 
     gameTimer.startTimer();
+  }
+
+  public static int getTimeSettingSeconds() {
+    return timeSettingSeconds;
   }
 }
