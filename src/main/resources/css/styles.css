@@ -46,3 +46,19 @@
 .roomArrow:hover {
     -fx-opacity: 0.75;
 }
+
+.rectangle-hoverable {
+    -fx-opacity: 0.0;
+}
+
+.rectangle-hoverable:hover {
+    -fx-opacity: 0.6;
+}
+
+.button-hoverable {
+    -fx-opacity: 1;
+}
+
+.button-hoverable:hover {
+    -fx-opacity: 0.5;
+}

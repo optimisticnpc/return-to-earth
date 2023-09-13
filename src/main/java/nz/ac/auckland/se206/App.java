@@ -16,6 +16,7 @@ import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.GlobalController;
 import nz.ac.auckland.se206.controllers.PasscodeController;
 import nz.ac.auckland.se206.controllers.RoomOneController;
+import nz.ac.auckland.se206.controllers.SpacesuitPuzzleController;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -122,13 +123,16 @@ public class App extends Application {
             // TODO: Implement
 
             // Riddle:
-            System.out.println("Riddle Answer: " + ChatController.getWordToGuess());
+            System.out.println("Riddle: " + ChatController.getWordToGuess());
 
             // Passcode:
-            System.out.println("Passcode: " + PasscodeController.getCorrectPassCodeString());
+            System.out.println("Code: " + PasscodeController.getCorrectPassCodeString());
+
+            // Spacesuit:
+            System.out.println("Spacesuit: " + SpacesuitPuzzleController.getCorrectWordString());
 
             // Reactivation:
-            System.out.println("Reactivation Order: " + RoomOneController.getCorrectOrderString());
+            System.out.println("Order: " + RoomOneController.getCorrectOrderString());
 
           } else if (keyCombR.match(event)) {
             System.out.println("Ctrl + Alt + R was pressed!");
