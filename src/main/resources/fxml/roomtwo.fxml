@@ -51,7 +51,7 @@
       <Rectangle fx:id="questionOne1" arcHeight="20.0" arcWidth="20.0" height="63.0" layoutX="375.0" layoutY="403.0" onMouseClicked="#clickQuestionOne" opacity="0.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle-hoverable" width="47.0" />
       <Rectangle fx:id="questionTwo1" arcHeight="20.0" arcWidth="20.0" height="62.0" layoutX="430.0" layoutY="404.0" onMouseClicked="#clickQuestionTwo" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle-hoverable" width="48.0" />
       <Polygon fx:id="movetoRoomOne" fill="#ff0400" layoutX="927.0" layoutY="325.0" onMouseClicked="#clickRoomOne" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" rotate="180.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
-      <Rectangle fx:id="spacesuit" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="241.0" layoutX="722.0" layoutY="274.0" onMouseClicked="#clickSpacesuit" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-hoverable" width="107.0" />
+      <Rectangle fx:id="spacesuit" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="238.0" layoutX="722.0" layoutY="274.0" onMouseClicked="#clickSpacesuit" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-hoverable" width="107.0" />
       <ImageView fx:id="crateImage" fitHeight="306.0" fitWidth="181.0" layoutX="714.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/crate.png" />

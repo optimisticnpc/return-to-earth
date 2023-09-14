@@ -35,7 +35,7 @@ public class RoomOneController {
   private int correctSwitch = 0;
   private static String correctOrderString;
 
-  CurrentScene currentScene = CurrentScene.getInstance();
+  private CurrentScene currentScene = CurrentScene.getInstance();
   @FXML private Button systemButton;
   @FXML private Button reactivateButton;
 

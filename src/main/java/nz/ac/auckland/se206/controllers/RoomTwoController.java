@@ -66,18 +66,21 @@ public class RoomTwoController {
   }
 
   @FXML
-  public void clickCrate(MouseEvent event) {
+  public void clickCrate(MouseEvent event) throws InterruptedException {
     System.out.println("Crate clicked");
 
     if (GameState.isToolboxCollected) {
       FadeTransition fadeTransition = new FadeTransition();
-      fadeTransition.setNode(crate);
+      fadeTransition.setNode(crateImage);
       fadeTransition.setFromValue(1); // starting opacity value
       fadeTransition.setToValue(0); // ending opacity value (1 is fully opaque)
       fadeTransition.setDuration(Duration.seconds(1)); // transition duration
+      fadeTransition.setOnFinished(
+          e -> {
+            room.getChildren().remove(crate);
+            room.getChildren().remove(crateImage);
+          });
       fadeTransition.play();
-      room.getChildren().remove(crate);
-      room.getChildren().remove(crateImage);
     }
   }
 
