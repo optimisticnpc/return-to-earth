@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -17,14 +19,18 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class RoomTwoController {
+  @FXML private Pane room;
   @FXML private Label timerLabel;
   @FXML private ImageView toolBoxOpenImage;
   @FXML private ImageView toolBoxCollectedImage;
   @FXML private ImageView spacesuitRevealedImage;
   @FXML private ImageView spacesuitCollectedImage;
-  private CurrentScene currentScene = CurrentScene.getInstance();
   @FXML private Rectangle questionOne;
   @FXML private Rectangle questionTwo;
+  @FXML private Polygon crate;
+  @FXML private ImageView crateImage;
+
+  private CurrentScene currentScene = CurrentScene.getInstance();
 
   public void initialize() {
     System.out.println("RoomTwoController.initialize()");
@@ -57,6 +63,25 @@ public class RoomTwoController {
   public void clickQuestionTwo(MouseEvent event) throws IOException {
     Parent questionTwoRoot = SceneManager.getUiRoot(AppUi.QUESTION_TWO);
     App.getScene().setRoot(questionTwoRoot);
+  }
+
+  @FXML
+  public void clickCrate(MouseEvent event) throws InterruptedException {
+    System.out.println("Crate clicked");
+
+    if (GameState.isToolboxCollected) {
+      FadeTransition fadeTransition = new FadeTransition();
+      fadeTransition.setNode(crateImage);
+      fadeTransition.setFromValue(1); // starting opacity value
+      fadeTransition.setToValue(0); // ending opacity value (1 is fully opaque)
+      fadeTransition.setDuration(Duration.seconds(1)); // transition duration
+      fadeTransition.setOnFinished(
+          e -> {
+            room.getChildren().remove(crate);
+            room.getChildren().remove(crateImage);
+          });
+      fadeTransition.play();
+    }
   }
 
   @FXML
@@ -111,6 +136,7 @@ public class RoomTwoController {
     } else if (!GameState.isToolboxCollected) {
       collectToolbox();
       GameState.isToolboxCollected = true;
+      System.out.println("Toolbox collected");
     }
   }
 
