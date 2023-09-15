@@ -41,6 +41,8 @@ public class GameState {
 
   public static boolean isSpacesuitCollected = false;
 
+  public static boolean isPartFixed = false;
+
   public static void resetGame() throws IOException {
     // TODO: Update and double check this
     // Reset all game state variables
