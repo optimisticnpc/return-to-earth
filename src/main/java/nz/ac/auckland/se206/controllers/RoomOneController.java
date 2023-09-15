@@ -170,12 +170,14 @@ public class RoomOneController {
   @FXML
   public void clickRedSwitch(MouseEvent event) throws IOException {
     System.out.println("Red Switch clicked");
-    redSwitch.setVisible(false);
-    if (switchOrder[switchIndex].equals("red")) {
-      switchIndex++;
-      correctSwitch++;
-    } else {
-      switchIndex++;
+    if (GameState.isPartFixed) {
+      redSwitch.setVisible(false);
+      if (switchOrder[switchIndex].equals("red")) {
+        switchIndex++;
+        correctSwitch++;
+      } else {
+        switchIndex++;
+      }
     }
   }
 
@@ -188,12 +190,14 @@ public class RoomOneController {
   @FXML
   public void clickGreenSwitch(MouseEvent event) throws IOException {
     System.out.println("Green Switch clicked");
-    greenSwitch.setVisible(false);
-    if (switchOrder[switchIndex].equals("green")) {
-      switchIndex++;
-      correctSwitch++;
-    } else {
-      switchIndex++;
+    if (GameState.isPartFixed) {
+      greenSwitch.setVisible(false);
+      if (switchOrder[switchIndex].equals("green")) {
+        switchIndex++;
+        correctSwitch++;
+      } else {
+        switchIndex++;
+      }
     }
   }
 
@@ -206,27 +210,31 @@ public class RoomOneController {
   @FXML
   public void clickBlueSwitch(MouseEvent event) throws IOException {
     System.out.println("Blue Switch clicked");
-    blueSwitch.setVisible(false);
-    if (switchOrder[switchIndex].equals("blue")) {
-      switchIndex++;
-      correctSwitch++;
-    } else {
-      switchIndex++;
+    if (GameState.isPartFixed) {
+      blueSwitch.setVisible(false);
+      if (switchOrder[switchIndex].equals("blue")) {
+        switchIndex++;
+        correctSwitch++;
+      } else {
+        switchIndex++;
+      }
     }
   }
 
   @FXML
   public void reactivate(ActionEvent event) throws IOException {
-    if (correctSwitch == 3) {
-      engineWarning.setVisible(false);
-      reactivateButton.setVisible(false);
-      App.setRoot("winscreen");
-    } else {
-      redSwitch.setVisible(true);
-      greenSwitch.setVisible(true);
-      blueSwitch.setVisible(true);
-      switchIndex = 0;
-      correctSwitch = 0;
+    if (GameState.isPartFixed) {
+      if (correctSwitch == 3) {
+        engineWarning.setVisible(false);
+        reactivateButton.setVisible(false);
+        App.setRoot("winscreen");
+      } else {
+        redSwitch.setVisible(true);
+        greenSwitch.setVisible(true);
+        blueSwitch.setVisible(true);
+        switchIndex = 0;
+        correctSwitch = 0;
+      }
     }
   }
 

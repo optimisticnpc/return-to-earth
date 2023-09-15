@@ -172,6 +172,7 @@ public class RoomThreeController {
               "src/main/resources/images/spaceship_exterior_open_hatch_wire_connected.png");
       Image img = new Image(stream);
       background.setImage(img);
+      GameState.isPartFixed = true;
     }
   }
 
