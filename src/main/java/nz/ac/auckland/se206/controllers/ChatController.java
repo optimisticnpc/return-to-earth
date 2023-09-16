@@ -2,6 +2,8 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.Random;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -14,6 +16,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
@@ -36,6 +39,10 @@ public class ChatController {
   @FXML private ImageView loadingIcon;
   @FXML private ImageView soundIcon;
   @FXML private Label timerLabel;
+  @FXML private ImageView robot;
+  @FXML private ImageView robotThinking;
+
+  private FadeTransition fade = new FadeTransition();
 
   private static String wordToGuess;
 
@@ -131,6 +138,13 @@ public class ChatController {
               ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
               Choice result = chatCompletionResult.getChoices().iterator().next();
               chatCompletionRequest.addMessage(result.getChatMessage());
+              fade.setNode(robotThinking);
+              fade.setDuration(Duration.millis(300));
+              fade.setInterpolator(Interpolator.LINEAR);
+              fade.setFromValue(1);
+              fade.setToValue(0);
+              fade.play();
+              fade.setOnFinished(e -> robotThinking.setVisible(false));
               recordAndPrintTime(startTime);
               return result.getChatMessage();
             } catch (ApiProxyException e) {
@@ -219,7 +233,20 @@ public class ChatController {
     inputText.clear();
     ChatMessage msg = new ChatMessage("user", message);
     appendChatMessage(msg);
+    showAiThinking();
     runGpt(msg);
+  }
+
+  @FXML
+  public void showAiThinking() {
+    robotThinking.setVisible(true);
+    FadeTransition fade = new FadeTransition();
+    fade.setNode(robotThinking);
+    fade.setDuration(Duration.millis(300));
+    fade.setInterpolator(Interpolator.LINEAR);
+    fade.setFromValue(0);
+    fade.setToValue(1);
+    fade.play();
   }
 
   @FXML // send the message when the enter key is pressed

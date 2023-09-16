@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -99,7 +98,7 @@ public class RoomTwoController {
       fadeTransition.setNode(crateImage);
       fadeTransition.setFromValue(1); // starting opacity value
       fadeTransition.setToValue(0); // ending opacity value (1 is fully opaque)
-      fadeTransition.setDuration(Duration.seconds(1)); // transition duration
+      fadeTransition.setDuration(Duration.millis(600)); // transition duration
       fadeTransition.setOnFinished(
           e -> {
             room.getChildren().remove(crate);
