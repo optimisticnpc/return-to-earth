@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
@@ -47,6 +48,8 @@ public class ChatController {
   private String[] riddles = {
     "blackhole", "star", "moon", "sun", "venus", "comet", "satellite", "mars"
   };
+
+  private CurrentScene currentScene = CurrentScene.getInstance();
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -236,8 +239,18 @@ public class ChatController {
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     textToSpeech.stop(); // Stop the text to speech
-
-    Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
+    int current = currentScene.getCurrent();
+    AppUi room = AppUi.ROOM_ONE;
+    if (current == 11) {
+      currentScene.setCurrent(1);
+    } else if (current == 12) {
+      room = AppUi.ROOM_TWO;
+      currentScene.setCurrent(2);
+    } else {
+      room = AppUi.ROOM_THREE;
+      currentScene.setCurrent(3);
+    }
+    Parent roomRoot = SceneManager.getUiRoot(room);
     App.getScene().setRoot(roomRoot);
   }
 

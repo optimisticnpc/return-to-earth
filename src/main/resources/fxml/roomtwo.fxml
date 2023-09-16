@@ -58,5 +58,10 @@
          </image>
       </ImageView>
       <Polygon fx:id="crate" fill="DODGERBLUE" layoutX="776.0" layoutY="314.0" onMouseClicked="#clickCrate" opacity="0.0" points="-62.0, 196.0, -7.5, 261.0, 115.5, 261.0, 115.5, 17.5, 56.0, -41.5, -62.0, -42.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fx:id="robot" fitHeight="373.0" fitWidth="190.0" layoutX="67.0" layoutY="289.0" onMouseClicked="#clickAuthorisation" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ai.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

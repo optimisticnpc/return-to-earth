@@ -2,8 +2,10 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.animation.FadeTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -29,6 +31,7 @@ public class RoomTwoController {
   @FXML private Rectangle questionTwo;
   @FXML private Polygon crate;
   @FXML private ImageView crateImage;
+  @FXML private ImageView robot;
 
   private CurrentScene currentScene = CurrentScene.getInstance();
 
@@ -42,6 +45,28 @@ public class RoomTwoController {
     toolBoxCollectedImage.setOpacity(0);
     spacesuitRevealedImage.setOpacity(0);
     spacesuitCollectedImage.setOpacity(0);
+  }
+
+  /**
+   * Handles the click event on the authorisation button.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the chat view
+   */
+  @FXML
+  public void clickAuthorisation(MouseEvent event) throws IOException {
+    if (!GameState.isRiddleResolved) {
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Access Denied");
+      alert.setHeaderText("Authorisation needed");
+      alert.setContentText(
+          "You need to be authorised to access the system.\nPlease click the middle screen to"
+              + " authorise yourself.");
+      alert.showAndWait();
+    }
+    Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
+    App.getScene().setRoot(chatRoot);
+    currentScene.setCurrent(12);
   }
 
   @FXML

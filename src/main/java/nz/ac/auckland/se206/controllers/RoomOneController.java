@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
@@ -30,14 +31,15 @@ public class RoomOneController {
   @FXML private Rectangle redSwitch;
   @FXML private Rectangle greenSwitch;
   @FXML private Rectangle blueSwitch;
+  @FXML private ImageView robot;
+  @FXML private Button reactivateButton;
+
+  private static String correctOrderString;
+
   private String[] switchOrder = {"red", "green", "blue"};
   private int switchIndex = 0;
   private int correctSwitch = 0;
-  private static String correctOrderString;
-
   private CurrentScene currentScene = CurrentScene.getInstance();
-  @FXML private Button systemButton;
-  @FXML private Button reactivateButton;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -146,21 +148,6 @@ public class RoomOneController {
     }
   }
 
-  @FXML
-  public void accessSystem(ActionEvent event) throws IOException {
-    if (!GameState.isRiddleResolved) {
-      showDialog(
-          "Access Denied",
-          "Authorisation needed",
-          "You need to be authorised to access the system.\nPlease click the middle screen to"
-              + " authorise yourself.");
-      ;
-    } else {
-      Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
-      App.getScene().setRoot(chatRoot);
-    }
-  }
-
   /**
    * Handles the click event on the red switch.
    *
@@ -246,7 +233,6 @@ public class RoomOneController {
    */
   @FXML
   public void clickAuthorisation(MouseEvent event) throws IOException {
-
     if (!GameState.isRiddleResolved && GameState.isRoomOneFirst) {
       showDialog(
           "AI",
@@ -256,6 +242,7 @@ public class RoomOneController {
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
     App.getScene().setRoot(chatRoot);
     GameState.isRoomOneFirst = false;
+    currentScene.setCurrent(11);
   }
 
   public static String getCorrectOrderString() {
