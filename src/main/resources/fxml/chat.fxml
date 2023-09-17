@@ -38,5 +38,15 @@
             <Image url="@../images/soundicon.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="robot" fitHeight="300.0" fitWidth="337.0" layoutX="592.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ai%20circle.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="robotThinking" fitHeight="299.0" fitWidth="309.0" layoutX="590.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/ai%20thinking%20circle.png" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>

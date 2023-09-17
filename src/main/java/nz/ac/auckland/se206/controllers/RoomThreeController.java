@@ -49,6 +49,7 @@ public class RoomThreeController {
   @FXML private ProgressBar oxygenBar;
   @FXML private Pane room;
   @FXML private Text meterPercent;
+  @FXML private ImageView robot;
 
   private Timeline timeline;
   private CurrentScene currentScene = CurrentScene.getInstance();
@@ -110,6 +111,28 @@ public class RoomThreeController {
     rotate.setInterpolator(Interpolator.LINEAR);
     rotate.setByAngle(360);
     rotate.play();
+  }
+
+  /**
+   * Handles the click event on the authorisation button.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the chat view
+   */
+  @FXML
+  public void clickAuthorisation(MouseEvent event) throws IOException {
+    if (!GameState.isRiddleResolved) {
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Access Denied");
+      alert.setHeaderText("Authorisation needed");
+      alert.setContentText(
+          "You need to be authorised to access the system.\nPlease click the middle screen to"
+              + " authorise yourself.");
+      alert.showAndWait();
+    }
+    Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
+    App.getScene().setRoot(chatRoot);
+    currentScene.setCurrent(13);
   }
 
   @FXML

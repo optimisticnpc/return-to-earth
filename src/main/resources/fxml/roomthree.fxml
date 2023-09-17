@@ -82,5 +82,15 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Text>
+      <ImageView fitHeight="99.0" fitWidth="103.0" layoutX="302.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" rotate="132.5">
+         <image>
+            <Image url="@../images/ai%20circle%20room3.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="robot" fitHeight="99.0" fitWidth="103.0" layoutX="302.0" layoutY="168.0" onMouseClicked="#clickAuthorisation" pickOnBounds="true" preserveRatio="true" rotate="132.5" styleClass="robot-hoverable">
+         <image>
+            <Image url="@../images/ai%20circle%20room3%20hover.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
