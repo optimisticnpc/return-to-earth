@@ -57,6 +57,7 @@ public class GameState {
     // Get new math puzzles and update room visuals
     App.resetMathQuestions();
     App.resetRooms();
+    HintCounter.resetHintCount();
 
     Parent startRoot = SceneManager.getUiRoot(AppUi.START);
     App.getScene().setRoot(startRoot);
