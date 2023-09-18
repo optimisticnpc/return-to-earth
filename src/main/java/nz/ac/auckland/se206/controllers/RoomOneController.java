@@ -53,7 +53,7 @@ public class RoomOneController {
     // update hintlabel according to the difficulty
     HintCounter hintCounter = HintCounter.getInstance();
     hintCounter.setHintCount();
-    hintLabel.setText(hintCounter.getHintCount());
+    hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     Random random = new Random();
 

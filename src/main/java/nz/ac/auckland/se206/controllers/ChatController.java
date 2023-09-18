@@ -73,7 +73,7 @@ public class ChatController {
 
     HintCounter hintCounter = HintCounter.getInstance();
     hintCounter.setHintCount();
-    hintLabel.setText(hintCounter.getHintCount());
+    hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.5).setMaxTokens(120);

@@ -66,7 +66,7 @@ public class RoomThreeController {
 
     HintCounter hintCounter = HintCounter.getInstance();
     hintCounter.setHintCount();
-    hintLabel.setText(hintCounter.getHintCount());
+    hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     initializeOxygen();
     timeline.play();

@@ -5,9 +5,8 @@ import javafx.beans.property.StringProperty;
 
 public class HintCounter {
   private static HintCounter instance = null;
-  private static String hintCount;
   private static String easyHintCount = "Unlimited";
-  private static Integer middleHintCount = 5;
+  private static Integer mediumHintCount = 5;
   private static String hardHintCount = "None";
 
   private StringProperty hintDisplay = new SimpleStringProperty();
@@ -25,26 +24,22 @@ public class HintCounter {
 
   public void setHintCount() {
     if (GameState.easy) {
-      hintCount = easyHintCount;
+      hintDisplay.set(easyHintCount);
     } else if (GameState.medium) {
-      hintCount = middleHintCount.toString();
+      hintDisplay.set(mediumHintCount.toString());
     } else if (GameState.hard) {
-      hintCount = hardHintCount;
+      hintDisplay.set(hardHintCount);
     } else {
-      hintCount = "Null";
+      hintDisplay.set("Null");
     }
   }
 
-  public String getHintCount() {
-    return hintCount;
-  }
-
   public Integer getMiddleHintCount() {
-    return middleHintCount;
+    return mediumHintCount;
   }
 
   public void decrementHintCount() {
-    middleHintCount--;
+    mediumHintCount--;
     setHintCount();
   }
 

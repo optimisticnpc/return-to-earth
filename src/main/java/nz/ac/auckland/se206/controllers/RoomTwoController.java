@@ -43,7 +43,7 @@ public class RoomTwoController {
 
     HintCounter hintCounter = HintCounter.getInstance();
     hintCounter.setHintCount();
-    hintLabel.setText(hintCounter.getHintCount());
+    hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     // Make the overlay images not visible
     toolBoxOpenImage.setOpacity(0);
