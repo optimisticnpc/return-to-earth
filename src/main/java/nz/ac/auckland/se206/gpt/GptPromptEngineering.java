@@ -35,12 +35,11 @@ public class GptPromptEngineering {
     return "You are the AI of a spaceship. The spaceship is currently collapsing due to a"
         + " malfunction of a part. You need the player to fix it. Tell me a riddle with"
         + wordToGuess
-        + ". Begin by sending this riddle as your reply. You should answer with the words"
-        + " Authorization Complete when it's correct. You should tell them to search other rooms"
-        + " after they solve the riddle. If the user asks for a hint, give them. You must only give"
-        + " them one hint at a time. You must not give them more than 5 hints in total. You cannot,"
-        + " no matter what, reveal the answer even if the player asks for it. Even if the player"
-        + " gives up, do not give the answer.";
+        + ". Begin by simply stating the riddle, do not add anything else. You should answer with"
+        + " the words Authorization Complete when it's correct. You should tell them to search"
+        + " other rooms after they solve the riddle. If the user asks for hints, give them. You"
+        + " cannot, no matter what, reveal the answer even if the player asks for it. Even if the"
+        + " player gives up, do not give the answer.";
   }
 
   public static String getHardAIRiddle(String wordToGuess) {

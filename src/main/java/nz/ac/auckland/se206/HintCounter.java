@@ -34,7 +34,7 @@ public class HintCounter {
     }
   }
 
-  public Integer getMiddleHintCount() {
+  public Integer getMediumHintCount() {
     return mediumHintCount;
   }
 

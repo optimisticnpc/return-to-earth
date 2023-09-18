@@ -60,6 +60,8 @@ public class ChatController {
 
   private CurrentScene currentScene = CurrentScene.getInstance();
 
+  HintCounter hintCounter = HintCounter.getInstance();
+
   /**
    * Initializes the chat view, loading the riddle.
    *
@@ -71,7 +73,6 @@ public class ChatController {
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
-    HintCounter hintCounter = HintCounter.getInstance();
     hintCounter.setHintCount();
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
@@ -239,6 +240,25 @@ public class ChatController {
     }
     inputText.clear();
     ChatMessage msg = new ChatMessage("user", message);
+
+    if (GameState.medium) {
+      if (message.toLowerCase().contains("hint")
+          || message.toLowerCase().contains("hints")
+          || message.toLowerCase().contains("help")
+          || message.toLowerCase().contains("helps")
+          || message.toLowerCase().contains("clue")
+          || message.toLowerCase().contains("clues")) {
+        if (hintCounter.getMediumHintCount() > 0) {
+          hintCounter.decrementHintCount();
+          hintCounter.setHintCount();
+        } else {
+          ChatMessage hintMessage = new ChatMessage("AI", "You have used up all your hints.");
+          appendChatMessage(msg);
+          appendChatMessage(hintMessage);
+          return;
+        }
+      }
+    }
     appendChatMessage(msg);
     showAiThinking();
     runGpt(msg);
