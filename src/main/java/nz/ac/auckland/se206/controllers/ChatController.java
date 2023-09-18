@@ -21,6 +21,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -69,6 +70,11 @@ public class ChatController {
     System.out.println("ChatController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
+
+    HintCounter hintCounter = HintCounter.getInstance();
+    hintCounter.setHintCount();
+    hintLabel.setText(hintCounter.getHintCount());
+
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.5).setMaxTokens(120);
 

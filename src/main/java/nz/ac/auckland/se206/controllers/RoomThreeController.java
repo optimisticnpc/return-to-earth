@@ -30,11 +30,13 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class RoomThreeController {
   @FXML private Label timerLabel;
+  @FXML private Label hintLabel;
   @FXML private Polygon hatch;
   @FXML private VBox puzzleScreen;
   @FXML private Button resumeButton;
@@ -61,6 +63,11 @@ public class RoomThreeController {
     System.out.println("RoomThreeController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
+
+    HintCounter hintCounter = HintCounter.getInstance();
+    hintCounter.setHintCount();
+    hintLabel.setText(hintCounter.getHintCount());
+
     initializeOxygen();
     timeline.play();
   }

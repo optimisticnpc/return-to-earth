@@ -68,5 +68,15 @@
             <Image url="@../images/ai%20hover.png" />
          </image>
       </ImageView>
+      <Label layoutX="399.0" layoutY="50.0" prefHeight="35.0" prefWidth="160.0" text="Hints Remaining:" textFill="#e5ff00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="hintLabel" layoutX="559.0" layoutY="50.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

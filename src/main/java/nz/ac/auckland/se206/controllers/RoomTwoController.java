@@ -16,12 +16,14 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class RoomTwoController {
   @FXML private Pane room;
   @FXML private Label timerLabel;
+  @FXML private Label hintLabel;
   @FXML private ImageView toolBoxOpenImage;
   @FXML private ImageView toolBoxCollectedImage;
   @FXML private ImageView spacesuitRevealedImage;
@@ -38,6 +40,10 @@ public class RoomTwoController {
     System.out.println("RoomTwoController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
+
+    HintCounter hintCounter = HintCounter.getInstance();
+    hintCounter.setHintCount();
+    hintLabel.setText(hintCounter.getHintCount());
 
     // Make the overlay images not visible
     toolBoxOpenImage.setOpacity(0);
