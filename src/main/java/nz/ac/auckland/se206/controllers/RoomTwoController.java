@@ -1,10 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.Timer;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -18,10 +18,13 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.SpeechBubble;
 
 public class RoomTwoController {
   @FXML private Pane room;
   @FXML private Label timerLabel;
+  @FXML private Label speechLabel;
+  @FXML private ImageView speechBubble;
   @FXML private ImageView toolBoxOpenImage;
   @FXML private ImageView toolBoxCollectedImage;
   @FXML private ImageView spacesuitRevealedImage;
@@ -32,10 +35,16 @@ public class RoomTwoController {
   @FXML private ImageView crateImage;
   @FXML private ImageView robot;
 
+  private SpeechBubble speech = SpeechBubble.getInstance();
+  private Timer timer = new Timer();
+
   private CurrentScene currentScene = CurrentScene.getInstance();
 
   public void initialize() {
     System.out.println("RoomTwoController.initialize()");
+    speechBubble.setVisible(false);
+    speechLabel.setVisible(false);
+    speechLabel.textProperty().bind(speech.speechDisplayProperty());
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
@@ -55,13 +64,9 @@ public class RoomTwoController {
   @FXML
   public void clickAuthorisation(MouseEvent event) throws IOException {
     if (!GameState.isRiddleResolved) {
-      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setTitle("Access Denied");
-      alert.setHeaderText("Authorisation needed");
-      alert.setContentText(
-          "You need to be authorised to access the system.\nPlease click the middle screen to"
-              + " authorise yourself.");
-      alert.showAndWait();
+      speech.setSpeechText(
+          "Authorisation Needed. \n You need to be authorised to access\n the system.");
+          return;
     }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
     App.getScene().setRoot(chatRoot);
@@ -89,6 +94,30 @@ public class RoomTwoController {
     App.getScene().setRoot(questionTwoRoot);
   }
 
+  /**
+   * Makes the speech bubble and label invisible after 5 seconds. This is called when the speech
+   * bubble is shown.
+   */
+  @FXML
+  public void setSpeechInvisible() {
+    timer.schedule(
+        new java.util.TimerTask() {
+          @Override
+          public void run() {
+            speechBubble.setVisible(false);
+            speechLabel.setVisible(false);
+          }
+        },
+        5000);
+  }
+
+  /** Makes the speech bubble and label visible. This is called when the speech bubble is shown. */
+  @FXML
+  public void showSpeechBubble() {
+    speechBubble.setVisible(true);
+    speechLabel.setVisible(true);
+  }
+
   @FXML
   public void clickCrate(MouseEvent event) throws InterruptedException {
     System.out.println("Crate clicked");
@@ -114,9 +143,9 @@ public class RoomTwoController {
 
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      // TODO: replace with speech bubble?
-      // Placeholder
-      ChatController.showDialog("Placeholder", "AUTHORIZATION NEEDED", "delete this later");
+      showSpeechBubble();
+      speech.setSpeechText(
+          "Authorisation Needed. \n You need to be authorised to access\n the system.");
       return;
     }
 
@@ -140,12 +169,11 @@ public class RoomTwoController {
   public void clickToolCompartment(MouseEvent event) throws IOException {
     System.out.println("Tool Compartment Clicked");
 
-    // TODO: Get rid of duplicate code here
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      // TODO: replace with speech bubble?
-      // Placeholder
-      ChatController.showDialog("Placeholder", "AUTHORIZATION NEEDED", "delete this later");
+      showSpeechBubble();
+      speech.setSpeechText(
+          "Authorisation Needed. \n You need to be authorised to access\n the system.");
       return;
     }
 

@@ -32,9 +32,9 @@
          </font>
       </Label>
       <Rectangle fx:id="blueSwitch" arcHeight="5.0" arcWidth="5.0" fill="#0084ff" height="56.0" layoutX="75.0" layoutY="198.0" onMouseClicked="#clickBlueSwitch" stroke="BLACK" strokeType="INSIDE" styleClass="button-hoverable" width="48.0" />
-      <Rectangle fx:id="redSwitch" arcHeight="5.0" arcWidth="5.0" fill="RED" height="56.0" layoutX="467.0" layoutY="421.0" onMouseClicked="#clickRedSwitch" stroke="BLACK" strokeType="INSIDE" styleClass="button-hoverable" width="48.0" />
+      <Rectangle fx:id="redSwitch" arcHeight="5.0" arcWidth="5.0" fill="RED" height="56.0" layoutX="836.0" layoutY="78.0" onMouseClicked="#clickRedSwitch" stroke="BLACK" strokeType="INSIDE" styleClass="button-hoverable" width="48.0" />
       <Rectangle fx:id="greenSwitch" arcHeight="5.0" arcWidth="5.0" fill="#00ff22" height="56.0" layoutX="827.0" layoutY="380.0" onMouseClicked="#clickGreenSwitch" opacity="0.45" stroke="BLACK" strokeType="INSIDE" styleClass="button-hoverable" width="48.0" />
-      <Button fx:id="reactivateButton" layoutX="437.0" layoutY="498.0" mnemonicParsing="false" onAction="#reactivate" prefHeight="41.0" prefWidth="107.0" text="REACTIVATE">
+      <Button fx:id="reactivateButton" layoutX="437.0" layoutY="425.0" mnemonicParsing="false" onAction="#reactivate" prefHeight="41.0" prefWidth="107.0" text="REACTIVATE">
          <font>
             <Font name="Comic Sans MS" size="13.0" />
          </font>
@@ -49,5 +49,15 @@
             <Image url="@../images/ai%20hover.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="210.0" layoutY="155.0">
+         <image>
+            <Image url="@../images/speech-bubble.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="230.0" layoutY="168.0" prefHeight="96.0" prefWidth="269.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
