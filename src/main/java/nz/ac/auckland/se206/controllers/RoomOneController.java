@@ -16,6 +16,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -28,6 +29,7 @@ public class RoomOneController {
   @FXML private Polygon movetoRoomTwo;
   @FXML private Polygon movetoRoomThree;
   @FXML private Label timerLabel;
+  @FXML private Label hintLabel;
   @FXML private Rectangle redSwitch;
   @FXML private Rectangle greenSwitch;
   @FXML private Rectangle blueSwitch;
@@ -47,6 +49,11 @@ public class RoomOneController {
     System.out.println("RoomOneController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
+
+    // update hintlabel according to the difficulty
+    HintCounter hintCounter = HintCounter.getInstance();
+    hintCounter.setHintCount();
+    hintLabel.setText(hintCounter.getHintCount());
 
     Random random = new Random();
 

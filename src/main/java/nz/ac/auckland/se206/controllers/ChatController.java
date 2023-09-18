@@ -39,6 +39,7 @@ public class ChatController {
   @FXML private ImageView loadingIcon;
   @FXML private ImageView soundIcon;
   @FXML private Label timerLabel;
+  @FXML private Label hintLabel;
   @FXML private ImageView robot;
   @FXML private ImageView robotThinking;
 
