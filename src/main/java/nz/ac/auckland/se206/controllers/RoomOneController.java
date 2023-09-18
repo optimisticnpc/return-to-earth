@@ -16,6 +16,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SpeechBubble;
@@ -30,6 +31,7 @@ public class RoomOneController {
   @FXML private Polygon movetoRoomThree;
   @FXML private Label timerLabel;
   @FXML private Label speechLabel;
+  @FXML private Label hintLabel;
   @FXML private Rectangle redSwitch;
   @FXML private Rectangle greenSwitch;
   @FXML private Rectangle blueSwitch;
@@ -57,6 +59,10 @@ public class RoomOneController {
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
+    // update hintlabel according to the difficulty
+    HintCounter hintCounter = HintCounter.getInstance();
+    hintCounter.setHintCount();
+    hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     Random random = new Random();
 

@@ -30,6 +30,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SpeechBubble;
@@ -38,6 +39,7 @@ public class RoomThreeController {
   @FXML private Label timerLabel;
   @FXML private Label speechLabel;
   @FXML private ImageView speechBubble;
+  @FXML private Label hintLabel;
   @FXML private Polygon hatch;
   @FXML private VBox puzzleScreen;
   @FXML private Button resumeButton;
@@ -69,6 +71,10 @@ public class RoomThreeController {
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
+    HintCounter hintCounter = HintCounter.getInstance();
+    hintCounter.setHintCount();
+    hintLabel.textProperty().bind(hintCounter.hintCountProperty());
+
     initializeOxygen();
     timeline.play();
   }

@@ -57,6 +57,14 @@
       <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="230.0" layoutY="168.0" prefHeight="96.0" prefWidth="269.0">
          <font>
             <Font size="15.0" />
+      <Label layoutX="453.0" layoutY="20.0" prefHeight="35.0" prefWidth="160.0" text="Hints Remaining :" textFill="#e5ff00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="hintLabel" layoutX="613.0" layoutY="20.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
+         <font>
+            <Font size="20.0" />
          </font>
       </Label>
    </children>
