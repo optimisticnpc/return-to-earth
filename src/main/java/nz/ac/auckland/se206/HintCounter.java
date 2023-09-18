@@ -46,4 +46,8 @@ public class HintCounter {
   public StringProperty hintCountProperty() {
     return hintDisplay;
   }
+
+  public static void resetHintCount() {
+    mediumHintCount = 5;
+  }
 }
