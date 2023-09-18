@@ -100,6 +100,8 @@
       <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="418.0" layoutY="39.0" prefHeight="96.0" prefWidth="269.0">
          <font>
             <Font size="15.0" />
+                     </font>
+      </Label>
       <Label layoutX="489.0" layoutY="24.0" prefHeight="35.0" prefWidth="160.0" text="Hints Remaining:" textFill="#1900ff">
          <font>
             <Font size="20.0" />
