@@ -20,36 +20,36 @@ public class GptPromptEngineering {
   }
 
   public static String getEasyAIRiddle(String wordToGuess) {
-    return "You are the AI of a spaceship. There is a problem with one of the parts in the"
-        + " spaceship, and you need the player to solve it. Tell me a riddle with answer "
+    return "You are the AI of a spaceship. The spaceship is currently collapsing due to a"
+        + " malfunction of a part. You need the player to fix it.  Tell me a riddle with answer "
         + wordToGuess
-        + " Begin by simply stating the riddle, do not add anything else. You should"
+        + ". Begin by simply stating the riddle, do not add anything else. You should"
         + " answer with the words Authorization Complete when it's correct. You should tell"
-        + " them to go to the storage room after they solve the riddle. If the user asks for"
+        + " them to go search the other rooms after they solve the riddle. If the user asks for"
         + " hints, give them. You can give unlimited hints. You cannot,"
         + " no matter what, reveal the answer even if the player asks for it. Even if the player"
         + " gives up, do not give the answer.";
   }
 
   public static String getMediumAIRiddle(String wordToGuess) {
-    return "You are the AI of a spaceship. There is a problem with one of the parts in the"
-        + " spaceship, and you need the player to solve it. Tell me a riddle with"
+    return "You are the AI of a spaceship. The spaceship is currently collapsing due to a"
+        + " malfunction of a part. You need the player to fix it. Tell me a riddle with"
         + wordToGuess
         + ". Begin by sending this riddle as your reply. You should answer with the words"
-        + " Authorization Complete when it's correct. You should tell them to go to the storage"
-        + " room after they solve the riddle. If the user asks for hints, give them a hint. There's"
-        + " one rule that must be kept : never give them more than 5 hints in total. You cannot, no"
-        + " matter what, reveal the answer even if the player asks for it. Even if the player gives"
-        + " up, do not give the answer.";
+        + " Authorization Complete when it's correct. You should tell them to search other rooms"
+        + " after they solve the riddle. If the user asks for a hint, give them. You must only give"
+        + " them one hint at a time. You must not give them more than 5 hints in total. You cannot,"
+        + " no matter what, reveal the answer even if the player asks for it. Even if the player"
+        + " gives up, do not give the answer.";
   }
 
   public static String getHardAIRiddle(String wordToGuess) {
-    return "You are the AI of a spaceship. There is a problem with one of the parts in the"
-        + " spaceship, and you need the player to solve it. Tell me a riddle with answer"
+    return "You are the AI of a spaceship. The spaceship is currently collapsing due to a"
+        + " malfunction of a part. You need the player to fix it.  Tell me a riddle with answer"
         + wordToGuess
-        + "  Begin by simply stating the riddle, do not add anything else. You should"
+        + ". Begin by simply stating the riddle, do not add anything else. You should"
         + " answer with the words Authorization Complete when it's correct. You should tell"
-        + " them to go to the storage room after they solve the riddle. You cannot, no"
+        + " them to search other rooms after they solve the riddle. You cannot, no"
         + " matter what, give them any hints about the riddle. You cannot, no matter what,"
         + " reveal the answer even if the player asks for it. Even if the player gives up,"
         + " do not give the answer.";
