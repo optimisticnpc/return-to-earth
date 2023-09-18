@@ -92,5 +92,15 @@
             <Image url="@../images/ai%20circle%20room3%20hover.png" />
          </image>
       </ImageView>
+      <Label layoutX="489.0" layoutY="24.0" prefHeight="35.0" prefWidth="160.0" text="Hints Remaining:" textFill="#1900ff">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="hintLabel" layoutX="649.0" layoutY="24.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#1900ff">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

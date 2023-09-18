@@ -48,5 +48,15 @@
             <Image url="@../images/ai%20thinking%20circle.png" />
          </image>
       </ImageView>
+      <Label layoutX="265.0" layoutY="11.0" prefHeight="35.0" prefWidth="154.0" text="Hints Remaining:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="hintLabel" layoutX="425.0" layoutY="11.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
   </children>
 </AnchorPane>

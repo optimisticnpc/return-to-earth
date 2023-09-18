@@ -21,6 +21,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -39,6 +40,7 @@ public class ChatController {
   @FXML private ImageView loadingIcon;
   @FXML private ImageView soundIcon;
   @FXML private Label timerLabel;
+  @FXML private Label hintLabel;
   @FXML private ImageView robot;
   @FXML private ImageView robotThinking;
 
@@ -58,6 +60,8 @@ public class ChatController {
 
   private CurrentScene currentScene = CurrentScene.getInstance();
 
+  HintCounter hintCounter = HintCounter.getInstance();
+
   /**
    * Initializes the chat view, loading the riddle.
    *
@@ -68,6 +72,10 @@ public class ChatController {
     System.out.println("ChatController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
+
+    hintCounter.setHintCount();
+    hintLabel.textProperty().bind(hintCounter.hintCountProperty());
+
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.5).setMaxTokens(120);
 
@@ -232,6 +240,25 @@ public class ChatController {
     }
     inputText.clear();
     ChatMessage msg = new ChatMessage("user", message);
+
+    if (GameState.medium) {
+      if (message.toLowerCase().contains("hint")
+          || message.toLowerCase().contains("hints")
+          || message.toLowerCase().contains("help")
+          || message.toLowerCase().contains("helps")
+          || message.toLowerCase().contains("clue")
+          || message.toLowerCase().contains("clues")) {
+        if (hintCounter.getMediumHintCount() > 0) {
+          hintCounter.decrementHintCount();
+          hintCounter.setHintCount();
+        } else {
+          ChatMessage hintMessage = new ChatMessage("AI", "You have used up all your hints.");
+          appendChatMessage(msg);
+          appendChatMessage(hintMessage);
+          return;
+        }
+      }
+    }
     appendChatMessage(msg);
     showAiThinking();
     runGpt(msg);
