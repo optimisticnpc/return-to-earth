@@ -68,6 +68,14 @@
             <Image url="@../images/ai%20hover.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="194.0" layoutY="130.0">
+         <image>
+            <Image url="@../images/speech-bubble.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="214.0" layoutY="143.0" prefHeight="96.0" prefWidth="269.0">
+         <font>
+            <Font size="15.0" />
       <Label layoutX="399.0" layoutY="50.0" prefHeight="35.0" prefWidth="160.0" text="Hints Remaining:" textFill="#e5ff00">
          <font>
             <Font size="20.0" />

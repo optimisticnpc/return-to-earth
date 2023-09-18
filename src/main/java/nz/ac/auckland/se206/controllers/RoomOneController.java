@@ -2,10 +2,10 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.Random;
+import java.util.Timer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -19,6 +19,7 @@ import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.SpeechBubble;
 
 /** Controller class for the room view. */
 public class RoomOneController {
@@ -29,11 +30,13 @@ public class RoomOneController {
   @FXML private Polygon movetoRoomTwo;
   @FXML private Polygon movetoRoomThree;
   @FXML private Label timerLabel;
+  @FXML private Label speechLabel;
   @FXML private Label hintLabel;
   @FXML private Rectangle redSwitch;
   @FXML private Rectangle greenSwitch;
   @FXML private Rectangle blueSwitch;
   @FXML private ImageView robot;
+  @FXML private ImageView speechBubble;
   @FXML private Button reactivateButton;
 
   private static String correctOrderString;
@@ -43,6 +46,9 @@ public class RoomOneController {
   private int correctSwitch = 0;
   private CurrentScene currentScene = CurrentScene.getInstance();
 
+  private SpeechBubble speech = SpeechBubble.getInstance();
+  private Timer timer = new Timer();
+
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
 
@@ -50,6 +56,9 @@ public class RoomOneController {
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
+    speechBubble.setVisible(false);
+    speechLabel.setVisible(false);
+    speechLabel.textProperty().bind(speech.speechDisplayProperty());
     // update hintlabel according to the difficulty
     HintCounter hintCounter = HintCounter.getInstance();
     hintCounter.setHintCount();
@@ -68,21 +77,6 @@ public class RoomOneController {
 
     // TODO: Maybe remove later since we have cheat codes:
     System.out.println(correctOrderString);
-  }
-
-  /**
-   * Displays a dialog box with the given title, header text, and message.
-   *
-   * @param title the title of the dialog box
-   * @param headerText the header text of the dialog box
-   * @param message the message content of the dialog box
-   */
-  private void showDialog(String title, String headerText, String message) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle(title);
-    alert.setHeaderText(headerText);
-    alert.setContentText(message);
-    alert.showAndWait();
   }
 
   /**
@@ -122,12 +116,12 @@ public class RoomOneController {
   @FXML
   public void clickMainWarning(MouseEvent event) throws IOException {
     System.out.println("Main Warning clicked");
-    showDialog(
-        "Warning!!!",
-        "Critical failure",
-        "The system detected a critical damage to the ship.\n"
-            + "Please authorise yourself by clicking the middle screen\n"
-            + "to access the system and analyse the damage.");
+    showSpeechBubble();
+    speech.setSpeechText(
+        "The system detected a critical damage.\n"
+            + "Please authorise yourself by clicking \nthe middle screen"
+            + " to access the system\nand analyse the damage.");
+    setSpeechInvisible();
   }
 
   /**
@@ -140,18 +134,16 @@ public class RoomOneController {
   public void clickEngineWarning(MouseEvent event) throws IOException {
     System.out.println("Engine Warning clicked");
     if (!GameState.isRiddleResolved) {
-      showDialog(
-          "Access Denied",
-          "Authorisation needed",
-          "You need to be authorised to access the system. Please click the middle screen to"
-              + " authorise yourself.");
+      showSpeechBubble();
+      speech.setSpeechText(
+          "Authorisation Needed. \n You need to be authorised to access\n the system.");
     } else {
-      showDialog(
-          "Warning!!!",
-          "Critical failure on the main engine",
-          "The main engine is damaged.\n"
-              + " Please proceed to the storage room to find the spare parts.\n"
-              + " And fix the engine!");
+      showSpeechBubble();
+      speech.setSpeechText(
+          "Critical failure on the main engine"
+              + "The main engine is damaged.\n"
+              + " Please find the spare parts\n"
+              + " and fix the engine!");
     }
   }
 
@@ -233,6 +225,30 @@ public class RoomOneController {
   }
 
   /**
+   * Makes the speech bubble and label invisible after 5 seconds. This is called when the speech
+   * bubble is shown.
+   */
+  @FXML
+  public void setSpeechInvisible() {
+    timer.schedule(
+        new java.util.TimerTask() {
+          @Override
+          public void run() {
+            speechBubble.setVisible(false);
+            speechLabel.setVisible(false);
+          }
+        },
+        5000);
+  }
+
+  /** Makes the speech bubble and label visible. This is called when the speech bubble is shown. */
+  @FXML
+  public void showSpeechBubble() {
+    speechBubble.setVisible(true);
+    speechLabel.setVisible(true);
+  }
+
+  /**
    * Handles the click event on the authorisation button.
    *
    * @param event the mouse event
@@ -240,12 +256,7 @@ public class RoomOneController {
    */
   @FXML
   public void clickAuthorisation(MouseEvent event) throws IOException {
-    if (!GameState.isRiddleResolved && GameState.isRoomOneFirst) {
-      showDialog(
-          "AI",
-          "Authorisation needed",
-          "You need to be authorised to access the system. Please solve the provided riddle.");
-    }
+    System.out.println("Authorisation clicked");
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
     App.getScene().setRoot(chatRoot);
     GameState.isRoomOneFirst = false;

@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Timer;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -13,7 +14,6 @@ import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -33,9 +33,12 @@ import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.SpeechBubble;
 
 public class RoomThreeController {
   @FXML private Label timerLabel;
+  @FXML private Label speechLabel;
+  @FXML private ImageView speechBubble;
   @FXML private Label hintLabel;
   @FXML private Polygon hatch;
   @FXML private VBox puzzleScreen;
@@ -58,12 +61,16 @@ public class RoomThreeController {
   private RotateTransition rotate = new RotateTransition();
   private boolean unscrewed = false;
   private boolean warning = false;
+  private SpeechBubble speech = SpeechBubble.getInstance();
+  private Timer timer = new Timer();
 
   public void initialize() {
     System.out.println("RoomThreeController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
-
+    speechBubble.setVisible(false);
+    speechLabel.setVisible(false);
+    speechLabel.textProperty().bind(speech.speechDisplayProperty());
     HintCounter hintCounter = HintCounter.getInstance();
     hintCounter.setHintCount();
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
@@ -89,11 +96,8 @@ public class RoomThreeController {
                       meterPercent.setText(Integer.toString(percentage) + "%");
                       if (oxygenBar.getProgress() <= 0.3 && oxygenBar.getProgress() >= 0.2) {
                         if (!warning) {
-                          Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                          alert.setTitle("PLACEHOLDER");
-                          alert.setHeaderText("OXYGEN RUNNING LOW");
-                          alert.setContentText("DELETE LATER");
-                          alert.show();
+                          speech.setSpeechText(
+                              "OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
                           warning = true;
                         }
                       }
@@ -129,13 +133,9 @@ public class RoomThreeController {
   @FXML
   public void clickAuthorisation(MouseEvent event) throws IOException {
     if (!GameState.isRiddleResolved) {
-      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setTitle("Access Denied");
-      alert.setHeaderText("Authorisation needed");
-      alert.setContentText(
-          "You need to be authorised to access the system.\nPlease click the middle screen to"
-              + " authorise yourself.");
-      alert.showAndWait();
+      speech.setSpeechText(
+          "Authorisation Needed. \n You need to be authorised to access\n the system.");
+      return;
     }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
     App.getScene().setRoot(chatRoot);
@@ -181,9 +181,9 @@ public class RoomThreeController {
   public void pressScrew(MouseEvent event) {
 
     if (!GameState.isToolboxCollected) {
-      // TODO: replace with speech bubble?
-      // Placeholder
-      ChatController.showDialog("Placeholder", "TOOLS NEEDED", "delete this later");
+      showSpeechBubble();
+      speech.setSpeechText(
+          "Tools Needed. \n You need to find the right tools\n to open this hatch.");
       return;
     }
 
@@ -204,6 +204,30 @@ public class RoomThreeController {
       background.setImage(img);
       GameState.isPartFixed = true;
     }
+  }
+
+  /**
+   * Makes the speech bubble and label invisible after 5 seconds. This is called when the speech
+   * bubble is shown.
+   */
+  @FXML
+  public void setSpeechInvisible() {
+    timer.schedule(
+        new java.util.TimerTask() {
+          @Override
+          public void run() {
+            speechBubble.setVisible(false);
+            speechLabel.setVisible(false);
+          }
+        },
+        5000);
+  }
+
+  /** Makes the speech bubble and label visible. This is called when the speech bubble is shown. */
+  @FXML
+  public void showSpeechBubble() {
+    speechBubble.setVisible(true);
+    speechLabel.setVisible(true);
   }
 
   @FXML
