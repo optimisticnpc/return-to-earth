@@ -26,6 +26,8 @@ import nz.ac.auckland.se206.SpeechBubble;
 public class RoomOneController {
 
   @FXML private Pane room;
+  @FXML private Button closeButton;
+  @FXML private Pane backgroundScreen;
   @FXML private Rectangle mainWarning;
   @FXML private Rectangle authRectangle;
   @FXML private Rectangle engineWarning;
@@ -156,6 +158,12 @@ public class RoomOneController {
     GameState.isWireCollected = true;
     room.getChildren().remove(wire);
     room.getChildren().remove(wireImage);
+  }
+
+  @FXML
+  public void clickClose(ActionEvent event) {
+    backgroundScreen.getChildren().clear();
+    room.getChildren().remove(backgroundScreen);
   }
 
   /**
