@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
@@ -24,6 +25,7 @@ import nz.ac.auckland.se206.SpeechBubble;
 /** Controller class for the room view. */
 public class RoomOneController {
 
+  @FXML private Pane room;
   @FXML private Rectangle mainWarning;
   @FXML private Rectangle authRectangle;
   @FXML private Rectangle engineWarning;
@@ -38,6 +40,8 @@ public class RoomOneController {
   @FXML private ImageView robot;
   @FXML private ImageView speechBubble;
   @FXML private Button reactivateButton;
+  @FXML private ImageView wire;
+  @FXML private ImageView wireImage;
 
   private static String correctOrderString;
 
@@ -145,6 +149,13 @@ public class RoomOneController {
               + " Please find the spare parts\n"
               + " and fix the engine!");
     }
+  }
+
+  @FXML
+  public void clickWire(MouseEvent event) {
+    GameState.isWireCollected = true;
+    room.getChildren().remove(wire);
+    room.getChildren().remove(wireImage);
   }
 
   /**

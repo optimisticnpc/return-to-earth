@@ -23,6 +23,8 @@ public class GameState {
 
   public static boolean isRoomOneFirst = true;
 
+  public static boolean isWireCollected = false;
+
   // ** Indicates whether the player has solved the math questions and entered the correct passcode.
   // */
   public static boolean isPasscodeSolved = false;
@@ -47,6 +49,7 @@ public class GameState {
     // TODO: Update and double check this
     // Reset all game state variables
     isRiddleResolved = false;
+    isWireCollected = false;
     isPasscodeSolved = false;
     isToolboxRevealed = false;
     isToolboxCollected = false;
