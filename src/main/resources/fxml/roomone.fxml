@@ -80,7 +80,8 @@
             <Image url="@../images/wire%20hover.png" />
          </image>
       </ImageView>
-      <Pane fx:id="backgroundScreen" layoutX="64.0" layoutY="40.0" prefHeight="561.0" prefWidth="873.0">
+      <Polygon fx:id="reactivationHint" layoutX="678.0" layoutY="604.0" onMouseClicked="#clickReactivationHint" points="41.5, -45.5, 22.0, -34.25, -4.5, -25.5, 11.0, 2.5, 55.25, -11.0, 62.75, -16.75, 53.75, -23.75" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle-hoverable" />
+      <Pane fx:id="backgroundScreen" layoutX="64.0" layoutY="40.0" prefHeight="561.0" prefWidth="873.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="574.0" layoutX="-9.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" width="885.0" />
             <Button fx:id="closeButton" layoutX="713.0" layoutY="37.0" mnemonicParsing="false" onAction="#clickClose" prefHeight="60.0" prefWidth="94.0" text="Close" textAlignment="CENTER">

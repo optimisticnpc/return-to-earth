@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import java.util.Random;
 import java.util.Timer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import nz.ac.auckland.ButtonOrder;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
@@ -44,10 +44,12 @@ public class RoomOneController {
   @FXML private Button reactivateButton;
   @FXML private ImageView wire;
   @FXML private ImageView wireImage;
+  @FXML private Polygon reactivationHint;
 
-  private static String correctOrderString;
+  // private static String correctOrderString;
 
-  private String[] switchOrder = {"red", "green", "blue"};
+  private ButtonOrder buttonOrder = ButtonOrder.getInstance();
+  private String[] switchOrder = buttonOrder.getCorrectOrderArray();
   private int switchIndex = 0;
   private int correctSwitch = 0;
   private CurrentScene currentScene = CurrentScene.getInstance();
@@ -70,16 +72,18 @@ public class RoomOneController {
     hintCounter.setHintCount();
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
-    Random random = new Random();
+    String correctOrderString = buttonOrder.getCorrectOrderString();
 
-    for (int i = 0; i < 3; i++) {
-      int randomIndexToSwap = random.nextInt(switchOrder.length);
-      String temp = switchOrder[randomIndexToSwap];
-      switchOrder[randomIndexToSwap] = switchOrder[i];
-      switchOrder[i] = temp;
-    }
+    // Random random = new Random();
 
-    correctOrderString = switchOrder[0] + " " + switchOrder[1] + " " + switchOrder[2];
+    // for (int i = 0; i < 3; i++) {
+    //   int randomIndexToSwap = random.nextInt(switchOrder.length);
+    //   String temp = switchOrder[randomIndexToSwap];
+    //   switchOrder[randomIndexToSwap] = switchOrder[i];
+    //   switchOrder[i] = temp;
+    // }
+
+    // correctOrderString = switchOrder[0] + " " + switchOrder[1] + " " + switchOrder[2];
 
     // TODO: Maybe remove later since we have cheat codes:
     System.out.println(correctOrderString);
@@ -164,6 +168,12 @@ public class RoomOneController {
   public void clickClose(ActionEvent event) {
     backgroundScreen.getChildren().clear();
     room.getChildren().remove(backgroundScreen);
+  }
+
+  @FXML
+  public void clickReactivationHint(MouseEvent event) {
+    Parent reactivationRoot = SceneManager.getUiRoot(AppUi.REACTIVATION_ORDER);
+    App.getScene().setRoot(reactivationRoot);
   }
 
   /**
@@ -280,9 +290,5 @@ public class RoomOneController {
     App.getScene().setRoot(chatRoot);
     GameState.isRoomOneFirst = false;
     currentScene.setCurrent(11);
-  }
-
-  public static String getCorrectOrderString() {
-    return correctOrderString;
   }
 }
