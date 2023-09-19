@@ -12,8 +12,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-import nz.ac.auckland.ButtonOrder;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ButtonOrder;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -73,17 +73,6 @@ public class RoomOneController {
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     String correctOrderString = buttonOrder.getCorrectOrderString();
-
-    // Random random = new Random();
-
-    // for (int i = 0; i < 3; i++) {
-    //   int randomIndexToSwap = random.nextInt(switchOrder.length);
-    //   String temp = switchOrder[randomIndexToSwap];
-    //   switchOrder[randomIndexToSwap] = switchOrder[i];
-    //   switchOrder[i] = temp;
-    // }
-
-    // correctOrderString = switchOrder[0] + " " + switchOrder[1] + " " + switchOrder[2];
 
     // TODO: Maybe remove later since we have cheat codes:
     System.out.println(correctOrderString);

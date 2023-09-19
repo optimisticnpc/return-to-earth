@@ -1,4 +1,4 @@
-package nz.ac.auckland;
+package nz.ac.auckland.se206;
 
 import java.util.Random;
 
