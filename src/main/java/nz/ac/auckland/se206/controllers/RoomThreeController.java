@@ -96,6 +96,9 @@ public class RoomThreeController {
                       meterPercent.setText(Integer.toString(percentage) + "%");
                       if (oxygenBar.getProgress() <= 0.3 && oxygenBar.getProgress() >= 0.2) {
                         if (!warning) {
+                          if (!speechBubble.isVisible()) {
+                            speechBubble.setVisible(true);
+                          }
                           speech.setSpeechText(
                               "OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
                           warning = true;
