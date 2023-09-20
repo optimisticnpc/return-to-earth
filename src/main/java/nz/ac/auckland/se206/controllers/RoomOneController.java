@@ -115,12 +115,10 @@ public class RoomOneController {
   @FXML
   public void clickMainWarning(MouseEvent event) throws IOException {
     System.out.println("Main Warning clicked");
-    showSpeechBubble();
-    speech.setSpeechText(
+    activateSpeech(
         "The system detected a critical damage.\n"
             + "Please authorise yourself by clicking \nthe middle screen"
             + " to access the system\nand analyse the damage.");
-    setSpeechInvisible();
   }
 
   /**
@@ -133,12 +131,9 @@ public class RoomOneController {
   public void clickEngineWarning(MouseEvent event) throws IOException {
     System.out.println("Engine Warning clicked");
     if (!GameState.isRiddleResolved) {
-      showSpeechBubble();
-      speech.setSpeechText(
-          "Authorisation Needed. \n You need to be authorised to access\n the system.");
+      activateSpeech("Authorisation Needed. \n You need to be authorised to access\n the system.");
     } else {
-      showSpeechBubble();
-      speech.setSpeechText(
+      activateSpeech(
           "Critical failure on the main engine"
               + "The main engine is damaged.\n"
               + " Please find the spare parts\n"
@@ -239,16 +234,21 @@ public class RoomOneController {
         blueSwitch.setVisible(true);
         switchIndex = 0;
         correctSwitch = 0;
+        activateSpeech("Wrong order!\n" + "Please try reactivating again\n" + " with right order");
       }
     }
   }
 
   /**
-   * Makes the speech bubble and label invisible after 5 seconds. This is called when the speech
-   * bubble is shown.
+   * Sets the text of the speech bubble and makes it visible for 5 seconds.
+   *
+   * @param text
    */
   @FXML
-  public void setSpeechInvisible() {
+  public void activateSpeech(String text) {
+    speechBubble.setVisible(true);
+    speechLabel.setVisible(true);
+    speech.setSpeechText(text);
     timer.schedule(
         new java.util.TimerTask() {
           @Override
@@ -258,13 +258,6 @@ public class RoomOneController {
           }
         },
         5000);
-  }
-
-  /** Makes the speech bubble and label visible. This is called when the speech bubble is shown. */
-  @FXML
-  public void showSpeechBubble() {
-    speechBubble.setVisible(true);
-    speechLabel.setVisible(true);
   }
 
   /**

@@ -187,10 +187,6 @@ public class ChatController {
               && result.getContent().startsWith("Authorization Complete")) {
             GameState.isRiddleResolved = true;
             System.out.println("Riddle resolved");
-            showDialog(
-                "Qualy the AI",
-                "Congratulations, you solved the riddle!",
-                "Now you know where the next clue is.");
           }
 
           loadingIcon.setVisible(false); // hide the loading icon
