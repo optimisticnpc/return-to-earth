@@ -13,11 +13,7 @@ public class MathQuestionSelector {
 
   private MathQuestionSelector() {
     MathQuestions.add(
-        new MathQuestion(
-            "There are 5 pieces of reinforced carbon fibre composite. The average length is 8 m,"
-                + " the median is 10 m. What is the maximum length of the shortest piece of carbon"
-                + " fibre composite?",
-            "05"));
+        new MathQuestion("What is the next number in this sequence: 4, 4, 8, 12, 20, __", "32"));
     MathQuestions.add(
         new MathQuestion(
             "In a spaceship there are space sheeps and cosmic chickens. There are 22 animals"
@@ -25,19 +21,22 @@ public class MathQuestionSelector {
             "15"));
     MathQuestions.add(
         new MathQuestion(
-            "Three consecutive odd numbers are added together to give a sum of 57. What is the"
-                + " largest of these numbers?",
-            "21"));
+            "I have fewer than 20 space cabbages. If I plant them in rows of 3, I have 2 left over"
+                + " If I plant them in rows of 5, I have 2 left over, how many space cabbages do I"
+                + " have?",
+            "17"));
     MathQuestions.add(
         new MathQuestion(
-            "What 2 digit numbers revert to itself if you add the digits together and multiply by"
-                + " 3?",
-            "27"));
+            "A teacher has between 5 to 15 alien fossils. On Monday she gave half of them away and"
+                + " then kept one. On Tuesday she gave half of the remaining fossils away and then"
+                + " kept one. If she has one alien fossil left on Wednesday, how many did she start"
+                + " with on Monday?",
+            "10"));
     MathQuestions.add(
         new MathQuestion(
-            "On Earth, a pair of boots weighs 15 kg. On the Moon, the gravitational force is only"
+            "On Earth, a spacesuit is about 126kg. On the Moon, the gravitational force is only"
                 + " 1/6th as strong as on Earth. How much would the boots weigh on the Moon?",
-            "25"));
+            "21"));
 
     // Select two math puzzles for each game
     selectedPuzzles = selectTwoRandomMathQuestions();

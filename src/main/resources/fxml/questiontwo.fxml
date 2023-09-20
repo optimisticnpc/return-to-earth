@@ -15,7 +15,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Text fill="WHITE" layoutX="246.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code #2">
+      <Text fill="WHITE" layoutX="246.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digits 3-4 (Definitely not for the passcode)">
          <font>
             <Font size="24.0" />
          </font>
