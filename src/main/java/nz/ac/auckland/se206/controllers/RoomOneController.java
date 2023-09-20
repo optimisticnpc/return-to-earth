@@ -56,12 +56,12 @@ public class RoomOneController {
 
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
+  private GameTimer gameTimer = GameTimer.getInstance();
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
 
     System.out.println("RoomOneController.initialize()");
-    GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
     speechBubble.setVisible(false);
@@ -231,6 +231,7 @@ public class RoomOneController {
       if (correctSwitch == 3) {
         engineWarning.setVisible(false);
         reactivateButton.setVisible(false);
+        gameTimer.stopTimer();
         App.setRoot("winscreen");
       } else {
         redSwitch.setVisible(true);
