@@ -203,7 +203,8 @@ public class RoomThreeController {
       Image img = new Image(stream);
       background.setImage(img);
       GameState.isPartFixed = true;
-      showSpeechBubble();
+      speechBubble.setVisible(true);
+      speechLabel.setVisible(true);
       speech.setSpeechText(
           "You have fixed the engine!\n Now you have to reactivate it\n from somewhere...");
     }
