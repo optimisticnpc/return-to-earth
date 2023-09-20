@@ -136,13 +136,15 @@ public class RoomOneController {
       showSpeechBubble();
       speech.setSpeechText(
           "Authorisation Needed. \n You need to be authorised to access\n the system.");
+      setSpeechInvisible();
     } else {
       showSpeechBubble();
       speech.setSpeechText(
-          "Critical failure on the main engine"
+          "Critical failure on the main engine\n"
               + "The main engine is damaged.\n"
               + " Please find the spare parts\n"
               + " and fix the engine!");
+      setSpeechInvisible();
     }
   }
 
@@ -239,6 +241,10 @@ public class RoomOneController {
         blueSwitch.setVisible(true);
         switchIndex = 0;
         correctSwitch = 0;
+        showSpeechBubble();
+        speech.setSpeechText(
+            "Wrong order!\n" + "Please try reactivating again\n" + " with right order");
+        setSpeechInvisible();
       }
     }
   }

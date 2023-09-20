@@ -70,9 +70,11 @@ public class RoomTwoController {
   @FXML
   public void clickAuthorisation(MouseEvent event) throws IOException {
     if (!GameState.isRiddleResolved) {
+      showSpeechBubble();
       speech.setSpeechText(
           "Authorisation Needed. \n You need to be authorised to access\n the system.");
-          return;
+      setSpeechInvisible();
+      return;
     }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
     App.getScene().setRoot(chatRoot);
@@ -152,6 +154,7 @@ public class RoomTwoController {
       showSpeechBubble();
       speech.setSpeechText(
           "Authorisation Needed. \n You need to be authorised to access\n the system.");
+      setSpeechInvisible();
       return;
     }
 
@@ -180,6 +183,7 @@ public class RoomTwoController {
       showSpeechBubble();
       speech.setSpeechText(
           "Authorisation Needed. \n You need to be authorised to access\n the system.");
+          setSpeechInvisible();
       return;
     }
 

@@ -102,6 +102,7 @@ public class RoomThreeController {
                           speech.setSpeechText(
                               "OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
                           warning = true;
+                          setSpeechInvisible();
                         }
                       }
                     } else {
@@ -138,6 +139,7 @@ public class RoomThreeController {
     if (!GameState.isRiddleResolved) {
       speech.setSpeechText(
           "Authorisation Needed. \n You need to be authorised to access\n the system.");
+      setSpeechInvisible();
       return;
     }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
@@ -187,6 +189,7 @@ public class RoomThreeController {
       showSpeechBubble();
       speech.setSpeechText(
           "Tools Needed. \n You need to find the right tools\n to open this hatch.");
+      setSpeechInvisible();
       return;
     }
 
