@@ -147,7 +147,7 @@ public class RoomThreeController {
   @FXML
   public void pressTimingButton(MouseEvent event) throws FileNotFoundException {
     System.out.println(meter.getRotate());
-    if (meter.getRotate() <= 174 && meter.getRotate() >= 168) {
+    if (meter.getRotate() <= 177 && meter.getRotate() >= 164) {
       showSuccessMessage();
     }
   }
@@ -203,8 +203,7 @@ public class RoomThreeController {
       Image img = new Image(stream);
       background.setImage(img);
       GameState.isPartFixed = true;
-      showSpeechBubble();
-      speech.setSpeechText(
+      activateSpeech(
           "You have fixed the engine!\n Now you have to reactivate it\n from somewhere...");
     }
   }
