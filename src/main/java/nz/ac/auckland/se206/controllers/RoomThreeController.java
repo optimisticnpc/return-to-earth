@@ -196,7 +196,7 @@ public class RoomThreeController {
   @FXML
   public void clickHatch(MouseEvent event) throws FileNotFoundException {
     System.out.println("hatch clicked");
-    if (unscrewed && true) {
+    if (unscrewed && GameState.isWireCollected) {
       InputStream stream =
           new FileInputStream(
               "src/main/resources/images/spaceship_exterior_open_hatch_wire_connected.png");

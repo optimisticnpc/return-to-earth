@@ -92,12 +92,12 @@
             <Image url="@../images/ai%20circle%20room3%20hover.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="398.0" layoutY="26.0">
+      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="384.0" layoutY="53.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="418.0" layoutY="39.0" prefHeight="96.0" prefWidth="269.0">
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="408.0" layoutY="67.0" prefHeight="96.0" prefWidth="269.0">
          <font>
             <Font size="15.0" />
                      </font>

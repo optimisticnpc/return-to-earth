@@ -77,7 +77,7 @@
 }
 
 .button-hoverable {
-    -fx-opacity: 1;
+    -fx-opacity: 0;
 }
 
 .button-hoverable:hover {

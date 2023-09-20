@@ -15,7 +15,6 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.GlobalController;
 import nz.ac.auckland.se206.controllers.PasscodeController;
-import nz.ac.auckland.se206.controllers.RoomOneController;
 import nz.ac.auckland.se206.controllers.SpacesuitPuzzleController;
 
 /**
@@ -59,6 +58,7 @@ public class App extends Application {
     SceneManager.addUi(AppUi.QUESTION_ONE, loadFxml("questionone"));
     SceneManager.addUi(AppUi.QUESTION_TWO, loadFxml("questiontwo"));
     SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
+    SceneManager.addUi(AppUi.REACTIVATION_ORDER, loadFxml("reactivationorder"));
     Parent root = SceneManager.getUiRoot(AppUi.START);
     scene = new Scene(root, 1000, 650);
     stage.setResizable(false);
@@ -129,7 +129,8 @@ public class App extends Application {
             System.out.println("Spacesuit: " + SpacesuitPuzzleController.getCorrectWordString());
 
             // Reactivation:
-            System.out.println("Order: " + RoomOneController.getCorrectOrderString());
+            ButtonOrder buttonOrder = ButtonOrder.getInstance();
+            System.out.println("Order: " + buttonOrder.getCorrectOrderString());
 
           } else if (keyCombR.match(event)) {
             System.out.println("Ctrl + Alt + R was pressed!");
@@ -154,9 +155,11 @@ public class App extends Application {
 
   public static void resetRooms() throws IOException {
     try {
+      SceneManager.addUi(AppUi.ROOM_ONE, loadFxml("roomone"));
       SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
       SceneManager.addUi(AppUi.ROOM_THREE, loadFxml("roomthree"));
       SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
+      SceneManager.addUi(AppUi.REACTIVATION_ORDER, loadFxml("reactivationorder"));
     } catch (IOException e) {
       e.printStackTrace();
     }
