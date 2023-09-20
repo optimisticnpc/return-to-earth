@@ -99,10 +99,9 @@ public class RoomThreeController {
                           if (!speechBubble.isVisible()) {
                             speechBubble.setVisible(true);
                           }
-                          speech.setSpeechText(
+                          activateSpeech(
                               "OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
                           warning = true;
-                          setSpeechInvisible();
                         }
                       }
                     } else {
@@ -137,9 +136,7 @@ public class RoomThreeController {
   @FXML
   public void clickAuthorisation(MouseEvent event) throws IOException {
     if (!GameState.isRiddleResolved) {
-      speech.setSpeechText(
-          "Authorisation Needed. \n You need to be authorised to access\n the system.");
-      setSpeechInvisible();
+      activateSpeech("Authorisation Needed. \n You need to be authorised to access\n the system.");
       return;
     }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
@@ -186,10 +183,7 @@ public class RoomThreeController {
   public void pressScrew(MouseEvent event) {
 
     if (!GameState.isToolboxCollected) {
-      showSpeechBubble();
-      speech.setSpeechText(
-          "Tools Needed. \n You need to find the right tools\n to open this hatch.");
-      setSpeechInvisible();
+      activateSpeech("Tools Needed. \n You need to find the right tools\n to open this hatch.");
       return;
     }
 
@@ -213,11 +207,15 @@ public class RoomThreeController {
   }
 
   /**
-   * Makes the speech bubble and label invisible after 5 seconds. This is called when the speech
-   * bubble is shown.
+   * Sets the text of the speech bubble and makes it visible for 5 seconds.
+   *
+   * @param text
    */
   @FXML
-  public void setSpeechInvisible() {
+  public void activateSpeech(String text) {
+    speechBubble.setVisible(true);
+    speechLabel.setVisible(true);
+    speech.setSpeechText(text);
     timer.schedule(
         new java.util.TimerTask() {
           @Override
@@ -227,13 +225,6 @@ public class RoomThreeController {
           }
         },
         5000);
-  }
-
-  /** Makes the speech bubble and label visible. This is called when the speech bubble is shown. */
-  @FXML
-  public void showSpeechBubble() {
-    speechBubble.setVisible(true);
-    speechLabel.setVisible(true);
   }
 
   @FXML

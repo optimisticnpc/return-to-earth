@@ -70,10 +70,7 @@ public class RoomTwoController {
   @FXML
   public void clickAuthorisation(MouseEvent event) throws IOException {
     if (!GameState.isRiddleResolved) {
-      showSpeechBubble();
-      speech.setSpeechText(
-          "Authorisation Needed. \n You need to be authorised to access\n the system.");
-      setSpeechInvisible();
+      activateSpeech("Authorisation Needed. \n You need to be authorised to access\n the system.");
       return;
     }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
@@ -103,11 +100,15 @@ public class RoomTwoController {
   }
 
   /**
-   * Makes the speech bubble and label invisible after 5 seconds. This is called when the speech
-   * bubble is shown.
+   * Sets the text of the speech bubble and makes it visible for 5 seconds.
+   *
+   * @param text
    */
   @FXML
-  public void setSpeechInvisible() {
+  public void activateSpeech(String text) {
+    speechBubble.setVisible(true);
+    speechLabel.setVisible(true);
+    speech.setSpeechText(text);
     timer.schedule(
         new java.util.TimerTask() {
           @Override
@@ -151,10 +152,7 @@ public class RoomTwoController {
 
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      showSpeechBubble();
-      speech.setSpeechText(
-          "Authorisation Needed. \n You need to be authorised to access\n the system.");
-      setSpeechInvisible();
+      activateSpeech("Authorisation Needed. \n You need to be authorised to access\n the system.");
       return;
     }
 
@@ -180,10 +178,7 @@ public class RoomTwoController {
 
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      showSpeechBubble();
-      speech.setSpeechText(
-          "Authorisation Needed. \n You need to be authorised to access\n the system.");
-          setSpeechInvisible();
+      activateSpeech("Authorisation Needed. \n You need to be authorised to access\n the system.");
       return;
     }
 
