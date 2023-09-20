@@ -9,9 +9,9 @@
 
 <Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoseScreenController">
    <children>
-      <ImageView fitHeight="677.0" fitWidth="1167.0" layoutX="-144.0" layoutY="-5.0" preserveRatio="true">
+      <ImageView fitHeight="677.0" fitWidth="1167.0" layoutX="-83.0" layoutY="-3.0" preserveRatio="true">
          <image>
-            <Image url="@../images/menu.png" />
+            <Image url="@../images/losescreen.png" />
          </image>
       </ImageView>
       <Button fx:id="exitButton" layoutX="406.0" layoutY="406.0" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="90.0" prefWidth="188.0" text="Exit ">
