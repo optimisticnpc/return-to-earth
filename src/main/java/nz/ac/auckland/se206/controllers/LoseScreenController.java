@@ -14,6 +14,7 @@ public class LoseScreenController {
 
   @FXML
   public void initialize() throws ApiProxyException {
+    // Tell the player they have lost
     new Thread(
             () -> {
               try {

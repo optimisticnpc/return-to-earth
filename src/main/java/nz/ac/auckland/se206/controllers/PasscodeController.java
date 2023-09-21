@@ -26,9 +26,11 @@ public class PasscodeController {
   @FXML
   public void initialize() {
     System.out.println("PasscodeController.initialize()");
+    // Bind timer
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
+    // Make sure player cannot type more than four characters
     passcodeField
         .textProperty()
         .addListener(
@@ -38,6 +40,7 @@ public class PasscodeController {
               }
             });
 
+    // Allow enter to be used to check passcode
     passcodeField.addEventFilter(
         KeyEvent.KEY_PRESSED,
         event -> {

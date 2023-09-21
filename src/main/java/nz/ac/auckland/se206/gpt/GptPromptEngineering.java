@@ -3,23 +3,9 @@ package nz.ac.auckland.se206.gpt;
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
 
-  /**
-   * Generates a GPT prompt engineering string for a riddle with the given word.
-   *
-   * @param wordToGuess the word to be guessed in the riddle
-   * @return the generated prompt engineering string
-   */
-  public static String getRiddleWithGivenWord(String wordToGuess) {
-    return "Tell me a riddle with answer"
-        + wordToGuess
-        + ". Begin by simply stating the riddle, do not add"
-        + " anything else. You should answer with the word Correct when it's correct. If the"
-        + " user asks for hints, give them. If users guess incorrectly, give hints. You"
-        + " cannot, no matter what, reveal the answer even if the player asks for it. Even"
-        + " if the player gives up, do not give the answer.";
-  }
-
-  public static String getEasyAIRiddle(String wordToGuess) {
+  public static String getEasyAiRiddle(String wordToGuess) {
+    // Prompt GPT for the easy difficulty
+    // i.e allow infite hints
     return "You are the AI of a spaceship. The spaceship is currently collapsing due to a"
         + " malfunction of a part. You need the player to fix it.  Tell me a riddle with answer "
         + wordToGuess
@@ -31,7 +17,9 @@ public class GptPromptEngineering {
         + " gives up, do not give the answer.";
   }
 
-  public static String getMediumAIRiddle(String wordToGuess) {
+  public static String getMediumAiRiddle(String wordToGuess) {
+    // Prompt GPT for the medium difficulty
+    // The number of hints is managed in ChatController
     return "You are the AI of a spaceship. The spaceship is currently collapsing due to a"
         + " malfunction of a part. You need the player to fix it. Tell me a riddle with"
         + wordToGuess
@@ -42,7 +30,9 @@ public class GptPromptEngineering {
         + " player gives up, do not give the answer.";
   }
 
-  public static String getHardAIRiddle(String wordToGuess) {
+  public static String getHardAiRiddle(String wordToGuess) {
+    // Prompt GPT for the hard difficulty
+    // No hints allowed
     return "You are the AI of a spaceship. The spaceship is currently collapsing due to a"
         + " malfunction of a part. You need the player to fix it.  Tell me a riddle with answer"
         + wordToGuess

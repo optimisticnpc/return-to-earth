@@ -18,6 +18,7 @@ public class WinScreenController {
 
   @FXML
   public void initialize() throws ApiProxyException {
+    // Text to speech tells the player they have won
     new Thread(
             () -> {
               try {
@@ -28,6 +29,7 @@ public class WinScreenController {
             })
         .start();
 
+    // Capture the time it took for the player to win
     int hundredthsRemaining = GameTimer.getInstance().getTimeHundredths();
     displayWinTime(hundredthsRemaining);
   }

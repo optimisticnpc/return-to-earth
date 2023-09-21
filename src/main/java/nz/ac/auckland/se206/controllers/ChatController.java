@@ -89,11 +89,11 @@ public class ChatController {
 
     if (!GameState.isRiddleResolved) {
       if (GameState.easy) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getEasyAIRiddle(wordToGuess)));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getEasyAiRiddle(wordToGuess)));
       } else if (GameState.medium) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getMediumAIRiddle(wordToGuess)));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getMediumAiRiddle(wordToGuess)));
       } else if (GameState.hard) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getHardAIRiddle(wordToGuess)));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getHardAiRiddle(wordToGuess)));
       }
     } else {
       // TODO: add methods according to game progress.
@@ -262,6 +262,7 @@ public class ChatController {
 
   @FXML
   public void showAiThinking() {
+    // Fade in the thinking image in 0.3s
     robotThinking.setVisible(true);
     FadeTransition fade = new FadeTransition();
     fade.setNode(robotThinking);

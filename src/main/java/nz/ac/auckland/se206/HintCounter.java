@@ -23,6 +23,7 @@ public class HintCounter {
   }
 
   public void setHintCount() {
+    // Set the hint counter display
     if (GameState.easy) {
       hintDisplay.set(easyHintCount);
     } else if (GameState.medium) {

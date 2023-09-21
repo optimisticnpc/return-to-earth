@@ -130,6 +130,7 @@ public class RoomOneController {
   @FXML
   public void clickEngineWarning(MouseEvent event) throws IOException {
     System.out.println("Engine Warning clicked");
+    // If riddle not solved tell the player to get authorization
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation Needed. \n You need to be authorised to access\n the system.");
     } else {
@@ -173,7 +174,7 @@ public class RoomOneController {
       redSwitch.setVisible(false);
       if (switchOrder[switchIndex].equals("red")) {
         switchIndex++;
-        correctSwitch++;
+        correctSwitch++; // If the switch is in correct order, increment correctSwitch variable
       } else {
         switchIndex++;
       }
@@ -193,7 +194,7 @@ public class RoomOneController {
       greenSwitch.setVisible(false);
       if (switchOrder[switchIndex].equals("green")) {
         switchIndex++;
-        correctSwitch++;
+        correctSwitch++; // If the switch is in correct order, increment correctSwitch variable
       } else {
         switchIndex++;
       }
@@ -213,7 +214,7 @@ public class RoomOneController {
       blueSwitch.setVisible(false);
       if (switchOrder[switchIndex].equals("blue")) {
         switchIndex++;
-        correctSwitch++;
+        correctSwitch++; // If the switch is in correct order, increment correctSwitch variable
       } else {
         switchIndex++;
       }
@@ -223,12 +224,16 @@ public class RoomOneController {
   @FXML
   public void reactivate(ActionEvent event) throws IOException {
     if (GameState.isPartFixed) {
+      // If the player has entered the correct reactivation sequence
+      // The player wins
       if (correctSwitch == 3) {
         engineWarning.setVisible(false);
         reactivateButton.setVisible(false);
         gameTimer.stopTimer();
         App.setRoot("winscreen");
       } else {
+        // Else the player is wrong
+        // Bring back the reactivation buttons
         redSwitch.setVisible(true);
         greenSwitch.setVisible(true);
         blueSwitch.setVisible(true);
@@ -246,6 +251,7 @@ public class RoomOneController {
    */
   @FXML
   public void activateSpeech(String text) {
+    // Make the speech bubble visible and set the text
     speechBubble.setVisible(true);
     speechLabel.setVisible(true);
     speech.setSpeechText(text);
@@ -258,6 +264,7 @@ public class RoomOneController {
           }
         },
         5000);
+    // 5 second delay
   }
 
   /**

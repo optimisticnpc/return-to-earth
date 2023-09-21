@@ -69,12 +69,14 @@ public class RoomTwoController {
    */
   @FXML
   public void clickAuthorisation(MouseEvent event) throws IOException {
+    // If riddle not solved tell the player to get authorised
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation Needed. \n You need to be authorised to access\n the system.");
       return;
     }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
     App.getScene().setRoot(chatRoot);
+    // Let the game know that the previous scene was room 2
     currentScene.setCurrent(12);
   }
 
@@ -106,6 +108,7 @@ public class RoomTwoController {
    */
   @FXML
   public void activateSpeech(String text) {
+    // Make the speech bubble visible and set the text
     speechBubble.setVisible(true);
     speechLabel.setVisible(true);
     speech.setSpeechText(text);
@@ -118,6 +121,7 @@ public class RoomTwoController {
           }
         },
         5000);
+    // 5 second delay
   }
 
   /** Makes the speech bubble and label visible. This is called when the speech bubble is shown. */

@@ -33,9 +33,11 @@ public class SpacesuitPuzzleController {
   public void initialize() {
     System.out.println("SpacesuitPuzzleController.initialize()");
 
+    // Bind timer
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
+    // Allow pressing enter to submit the code
     inputField.addEventFilter(
         KeyEvent.KEY_PRESSED,
         event -> {

@@ -154,6 +154,7 @@ public class App extends Application {
   }
 
   public static void resetRooms() throws IOException {
+    // Re initialize all the rooms
     try {
       SceneManager.addUi(AppUi.ROOM_ONE, loadFxml("roomone"));
       SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
