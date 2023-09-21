@@ -183,9 +183,14 @@ public class ChatController {
           }
 
           appendChatMessage(result);
+          if (GameState.phaseTwo) {
+            chatTextArea.setText("");
+            GameState.phaseTwo = false;
+          }
           if (result.getRole().equals("assistant")
               && result.getContent().startsWith("Authorization Complete")) {
             GameState.isRiddleResolved = true;
+            GameState.phaseTwo = true;
             System.out.println("Riddle resolved");
           }
 
@@ -299,6 +304,12 @@ public class ChatController {
     } else {
       room = AppUi.ROOM_THREE;
       currentScene.setCurrent(3);
+    }
+
+    if (GameState.isRiddleResolved && GameState.phaseTwo && !GameState.hard) {
+      runGpt(new ChatMessage("user", GptPromptEngineering.getphaseTwoProgress()));
+    } else if (GameState.isRiddleResolved && GameState.phaseTwo && GameState.hard) {
+      runGpt(new ChatMessage("user", GptPromptEngineering.getHardphaseTwoProgress()));
     }
     Parent roomRoot = SceneManager.getUiRoot(room);
     App.getScene().setRoot(roomRoot);

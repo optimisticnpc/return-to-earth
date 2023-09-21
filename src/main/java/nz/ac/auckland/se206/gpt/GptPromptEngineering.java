@@ -44,13 +44,24 @@ public class GptPromptEngineering {
 
   public static String getHardAIRiddle(String wordToGuess) {
     return "You are the AI of a spaceship. The spaceship is currently collapsing due to a"
-        + " malfunction of a part. You need the player to fix it.  Tell me a riddle with answer"
+        + " malfunction of a part. You need the player to fix it. Tell me a riddle with answer"
         + wordToGuess
         + ". Begin by simply stating the riddle, do not add anything else. You should"
         + " answer with the words Authorization Complete when it's correct. You should tell"
         + " them to search other rooms after they solve the riddle. You cannot, no"
-        + " matter what, give them any hints about the riddle. You cannot, no matter what,"
+        + " matter what, give them any hints. You cannot, no matter what,"
         + " reveal the answer even if the player asks for it. Even if the player gives up,"
         + " do not give the answer.";
+  }
+
+  public static String getphaseTwoProgress() {
+    return "The user has to find a toolbox in the storage room. If the user asks for hints,"
+        + " tell them that they have to find 4 digit passcodes to open the tool compartment"
+        + " and obtain the toolbox inside, do not add anything else.";
+  }
+
+  public static String getHardphaseTwoProgress() {
+    return "Now, The user has to find a toolbox in the storage room, which will be helpful to fix"
+        + " the malfunctioning part of the spaceship.";
   }
 }
