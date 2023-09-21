@@ -149,7 +149,7 @@ public class RoomOneController {
   }
 
   @FXML
-  private void clickClose(ActionEvent event) {
+  private void onClickClose(ActionEvent event) {
     backgroundScreen.getChildren().clear();
     room.getChildren().remove(backgroundScreen);
   }
@@ -221,7 +221,7 @@ public class RoomOneController {
   }
 
   @FXML
-  private void reactivate(ActionEvent event) throws IOException {
+  private void onReactivate(ActionEvent event) throws IOException {
     if (GameState.isPartFixed) {
       // If the player has entered the correct reactivation sequence
       // The player wins

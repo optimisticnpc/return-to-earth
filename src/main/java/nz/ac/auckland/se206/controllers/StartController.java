@@ -15,6 +15,13 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class StartController {
+
+  private static int timeSettingSeconds;
+
+  public static int getTimeSettingSeconds() {
+    return timeSettingSeconds;
+  }
+
   @FXML private Label timeLabel;
   @FXML private Label difficultyLabel;
   @FXML private Label helpLabel;
@@ -23,12 +30,6 @@ public class StartController {
   @FXML private Button nextTimeButton;
   @FXML private Button prevTimeButton;
   @FXML private Button startButton;
-
-  private static int timeSettingSeconds;
-
-  public static int getTimeSettingSeconds() {
-    return timeSettingSeconds;
-  }
 
   private CurrentScene currentScene = CurrentScene.getInstance();
   private int currDifficulty = 0;
@@ -46,7 +47,7 @@ public class StartController {
   }
 
   @FXML
-  private void clickNextDifficultyButton() {
+  private void onClickNextDifficultyButton() {
     if (this.currDifficulty < 2) {
       this.currDifficulty += 1;
       difficultyLabel.setText(difficulty[currDifficulty]);
@@ -55,7 +56,7 @@ public class StartController {
   }
 
   @FXML
-  private void clickPrevDifficultyButton() {
+  private void onClickPrevDifficultyButton() {
     if (this.currDifficulty > 0) {
       this.currDifficulty -= 1;
       difficultyLabel.setText(difficulty[currDifficulty]);
@@ -64,7 +65,7 @@ public class StartController {
   }
 
   @FXML
-  private void clickNextTimeButton() {
+  private void onClickNextTimeButton() {
     if (this.timeSetting < 2) {
       this.timeSetting += 1;
       timeLabel.setText(timeStrings[timeSetting]);
@@ -72,7 +73,7 @@ public class StartController {
   }
 
   @FXML
-  private void clickPrevTimeButton() {
+  private void onClickPrevTimeButton() {
     if (this.timeSetting > 0) {
       this.timeSetting -= 1;
       timeLabel.setText(timeStrings[timeSetting]);
@@ -80,7 +81,7 @@ public class StartController {
   }
 
   @FXML
-  private void clickStartButton() throws IOException {
+  private void onClickStartButton() throws IOException {
     // Need to change the difficulty here as well later
     timeSettingSeconds = (timeSetting + 1) * 120;
     GameTimer.setInitialTime(timeSettingSeconds);

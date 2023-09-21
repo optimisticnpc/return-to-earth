@@ -53,13 +53,13 @@ public class PasscodeController {
         KeyEvent.KEY_PRESSED,
         event -> {
           if (event.getCode() == KeyCode.ENTER) {
-            checkPasscode();
+            onCheckPasscode();
           }
         });
   }
 
   @FXML
-  public void checkPasscode() {
+  private void onCheckPasscode() {
     String enteredPasscode = passcodeField.getText();
 
     if (correctPassCodeString.equals(enteredPasscode)) {
@@ -79,7 +79,7 @@ public class PasscodeController {
   }
 
   @FXML
-  public void goBack() {
+  private void onGoBack() {
     System.out.println("go back clicked");
 
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
