@@ -160,6 +160,7 @@ public class App extends Application {
       SceneManager.addUi(AppUi.ROOM_THREE, loadFxml("roomthree"));
       SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
       SceneManager.addUi(AppUi.REACTIVATION_ORDER, loadFxml("reactivationorder"));
+      SceneManager.addUi(AppUi.ROOM_ONE_FINAL, App.loadFxml("roomonefinal"));
     } catch (IOException e) {
       e.printStackTrace();
     }

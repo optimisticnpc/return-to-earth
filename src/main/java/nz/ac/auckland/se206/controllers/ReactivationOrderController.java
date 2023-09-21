@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ButtonOrder;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -25,7 +26,12 @@ public class ReactivationOrderController {
 
   @FXML
   public void goBack() {
-    Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
-    App.getScene().setRoot(roomOneRoot);
+    if (GameState.isPartFixed) {
+      Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE_FINAL);
+      App.getScene().setRoot(roomOneRoot);
+    } else {
+      Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
+      App.getScene().setRoot(roomOneRoot);
+    }
   }
 }

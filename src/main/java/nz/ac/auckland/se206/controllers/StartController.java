@@ -98,6 +98,7 @@ public class StartController {
     SceneManager.addUi(AppUi.ROOM_ONE, App.loadFxml("roomone"));
     SceneManager.addUi(AppUi.ROOM_TWO, App.loadFxml("roomtwo"));
     SceneManager.addUi(AppUi.ROOM_THREE, App.loadFxml("roomthree"));
+    SceneManager.addUi(AppUi.ROOM_ONE_FINAL, App.loadFxml("roomonefinal"));
 
     Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     currentScene.setCurrent(1);

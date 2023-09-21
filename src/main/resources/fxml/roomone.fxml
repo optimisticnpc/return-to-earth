@@ -34,14 +34,6 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Rectangle fx:id="blueSwitch" height="22.0" layoutX="252.0" layoutY="94.0" onMouseClicked="#clickBlueSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="42.0" />
-      <Rectangle fx:id="redSwitch" height="18.0" layoutX="467.0" layoutY="480.0" onMouseClicked="#clickRedSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="54.0" />
-      <Rectangle fx:id="greenSwitch" height="22.0" layoutX="709.0" layoutY="94.0" onMouseClicked="#clickGreenSwitch" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="39.0" />
-      <Button fx:id="reactivateButton" layoutX="437.0" layoutY="425.0" mnemonicParsing="false" onAction="#reactivate" prefHeight="41.0" prefWidth="107.0" text="REACTIVATE">
-         <font>
-            <Font name="Comic Sans MS" size="13.0" />
-         </font>
-      </Button>
       <ImageView fitHeight="373.0" fitWidth="190.0" layoutX="67.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ai.png" />
@@ -82,8 +74,7 @@
             <Image url="@../images/wire%20hover.png" />
          </image>
       </ImageView>
-      <Polygon fx:id="reactivationHint" layoutX="678.0" layoutY="604.0" onMouseClicked="#clickReactivationHint" points="41.5, -45.5, 22.0, -34.25, -4.5, -25.5, 11.0, 2.5, 49.25, -7.75, 62.75, -16.75, 53.75, -23.75" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle-hoverable" />
-      <Pane fx:id="backgroundScreen" layoutX="64.0" layoutY="40.0" prefHeight="561.0" prefWidth="873.0" visible="false">
+      <Pane fx:id="backgroundScreen" layoutX="64.0" layoutY="40.0" prefHeight="561.0" prefWidth="873.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="574.0" layoutX="-9.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" width="885.0" />
             <Button fx:id="closeButton" layoutX="713.0" layoutY="37.0" mnemonicParsing="false" onAction="#clickClose" prefHeight="60.0" prefWidth="94.0" text="Close" textAlignment="CENTER">
