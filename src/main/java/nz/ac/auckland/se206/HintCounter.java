@@ -43,14 +43,17 @@ public class HintCounter {
     return mediumHintCount;
   }
 
-  public void decrementHintCount() {
-    mediumHintCount--;
-    setHintCount();
+  public Integer decrementHintCount(Integer count) {
+    if (mediumHintCount - count > 0) {
+      mediumHintCount = mediumHintCount - count;
+      setHintCount();
+      return 1;
+    } else {
+      return -1;
+    }
   }
 
   public StringProperty hintCountProperty() {
     return hintDisplay;
   }
-
-  
 }
