@@ -59,6 +59,7 @@ public class GameState {
     isSpacesuitRevealed = false;
     isSpacesuitCollected = false;
     isSpacesuitJustCollected = false;
+    isPartFixed = false;
 
     // Get new math puzzles and update room visuals
     App.resetMathQuestions();
