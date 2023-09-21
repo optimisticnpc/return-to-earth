@@ -56,6 +56,7 @@ public class MathQuestionSelector {
   }
 
   private void initializeQuestions() {
+    // Initialize all the math questions
     mathQuestions.add(
         new MathQuestion(
             "What is the next number in this sequence: 0, 1, 1, 2, 3, 5, 8, __", "13"));

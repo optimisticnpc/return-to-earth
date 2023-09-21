@@ -82,12 +82,13 @@ public class RoomThreeController {
   }
 
   public void initializeRotate() {
+    // Initializes the parameters of the rotating pointer in the timing game
     Task<Void> rotateTask =
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            rotate.setNode(meter);
-            rotate.setDuration(Duration.millis(1500));
+            rotate.setNode(meter); // Connect the RotateTransition to the image
+            rotate.setDuration(Duration.millis(1500)); // Set the period to 1.5s
             rotate.setCycleCount(TranslateTransition.INDEFINITE);
             rotate.setInterpolator(Interpolator.LINEAR);
             rotate.setByAngle(360);

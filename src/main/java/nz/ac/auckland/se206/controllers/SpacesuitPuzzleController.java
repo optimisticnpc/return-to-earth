@@ -47,7 +47,7 @@ public class SpacesuitPuzzleController {
         KeyEvent.KEY_PRESSED,
         event -> {
           if (event.getCode() == KeyCode.ENTER) {
-            submitCode();
+            onSubmitCode();
           }
         });
 
@@ -69,7 +69,7 @@ public class SpacesuitPuzzleController {
   }
 
   @FXML
-  private void submitCode() {
+  private void onSubmitCode() {
     String enteredPasscode = inputField.getText();
 
     if (correctWordString.equals(enteredPasscode)) {
@@ -89,7 +89,7 @@ public class SpacesuitPuzzleController {
   }
 
   @FXML
-  private void goBack() {
+  private void onGoBack() {
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
     App.getScene().setRoot(roomTwoRoot);
   }

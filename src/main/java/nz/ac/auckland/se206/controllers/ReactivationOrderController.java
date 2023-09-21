@@ -24,7 +24,7 @@ public class ReactivationOrderController {
   }
 
   @FXML
-  public void goBack() {
+  private void onGoBack() {
     Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     App.getScene().setRoot(roomOneRoot);
   }
