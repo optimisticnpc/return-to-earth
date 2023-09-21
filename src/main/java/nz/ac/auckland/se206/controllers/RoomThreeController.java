@@ -173,7 +173,7 @@ public class RoomThreeController {
   }
 
   @FXML
-  public void clickHatch(MouseEvent event) throws FileNotFoundException {
+  public void clickHatch(MouseEvent event) throws IOException {
     System.out.println("hatch clicked");
     // If the hatch is open and the player has the wire
     // Fix the broken part
@@ -184,8 +184,11 @@ public class RoomThreeController {
       Image img = new Image(stream);
       background.setImage(img);
       GameState.isPartFixed = true;
+      GameState.phaseFour = true;
+      SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
       activateSpeech(
           "You have fixed the engine!\n Now you have to reactivate it\n from somewhere...");
+      ;
     }
   }
 

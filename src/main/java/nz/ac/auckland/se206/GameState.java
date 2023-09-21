@@ -47,6 +47,11 @@ public class GameState {
 
   public static boolean isPartFixed = false;
 
+  // ** indicates each phase of the game the player is in */
+  public static boolean phaseTwo = false;
+  public static boolean phaseThree = false;
+  public static boolean phaseFour = false;
+
   public static void resetGame() throws IOException {
     // TODO: Update and double check this
     // Reset all game state variables

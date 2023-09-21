@@ -39,7 +39,6 @@ public class RoomTwoController {
 
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
-
   private CurrentScene currentScene = CurrentScene.getInstance();
 
   public void initialize() {
@@ -204,6 +203,8 @@ public class RoomTwoController {
     } else if (!GameState.isToolboxCollected) {
       collectToolbox();
       GameState.isToolboxCollected = true;
+      GameState.phaseThree = true;
+      SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
       System.out.println("Toolbox collected");
     }
   }
