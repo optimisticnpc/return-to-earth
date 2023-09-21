@@ -7,11 +7,55 @@ import java.util.Random;
 public class MathQuestionSelector {
   private static MathQuestionSelector instance;
 
+  // Static methods
+  // Singleton design pattern
+  public static MathQuestionSelector getInstance() {
+    if (instance == null) {
+      instance = new MathQuestionSelector();
+    }
+    return instance;
+  }
+
   private List<MathQuestion> mathQuestions = new ArrayList<>();
   private Random random = new Random();
   private MathQuestion[] selectedPuzzles;
 
   private MathQuestionSelector() {
+    initializeQuestions();
+
+    // Select two math puzzles for each game
+    selectedPuzzles = selectTwoRandomMathQuestions();
+  }
+
+  private MathQuestion[] selectTwoRandomMathQuestions() {
+    int firstIndex = random.nextInt(mathQuestions.size());
+    int secondIndex;
+    do {
+      secondIndex = random.nextInt(mathQuestions.size());
+    } while (firstIndex == secondIndex);
+
+    return new MathQuestion[] {mathQuestions.get(firstIndex), mathQuestions.get(secondIndex)};
+  }
+
+  public void setNewMathQuestions() {
+    selectedPuzzles = selectTwoRandomMathQuestions();
+  }
+
+  public String generatePasscode() {
+    String firstAnswer = selectedPuzzles[0].getAnswer();
+    String secondAnswer = selectedPuzzles[1].getAnswer();
+    return firstAnswer + secondAnswer;
+  }
+
+  public String getFirstQuestion() {
+    return selectedPuzzles[0].getQuestion();
+  }
+
+  public String getSecondQuestion() {
+    return selectedPuzzles[1].getQuestion();
+  }
+
+  private void initializeQuestions() {
     mathQuestions.add(
         new MathQuestion(
             "What is the next number in this sequence: 0, 1, 1, 2, 3, 5, 8, __", "13"));
@@ -84,44 +128,5 @@ public class MathQuestionSelector {
                 + " spaceship is 120kg and the combined weight of all the people is 200kg over the"
                 + " limit, how many people are in the spaceship?",
             "20"));
-
-    // Select two math puzzles for each game
-    selectedPuzzles = selectTwoRandomMathQuestions();
-  }
-
-  // Singleton design pattern
-  public static MathQuestionSelector getInstance() {
-    if (instance == null) {
-      instance = new MathQuestionSelector();
-    }
-    return instance;
-  }
-
-  private MathQuestion[] selectTwoRandomMathQuestions() {
-    int firstIndex = random.nextInt(mathQuestions.size());
-    int secondIndex;
-    do {
-      secondIndex = random.nextInt(mathQuestions.size());
-    } while (firstIndex == secondIndex);
-
-    return new MathQuestion[] {mathQuestions.get(firstIndex), mathQuestions.get(secondIndex)};
-  }
-
-  public void setNewMathQuestions() {
-    selectedPuzzles = selectTwoRandomMathQuestions();
-  }
-
-  public String generatePasscode() {
-    String firstAnswer = selectedPuzzles[0].getAnswer();
-    String secondAnswer = selectedPuzzles[1].getAnswer();
-    return firstAnswer + secondAnswer;
-  }
-
-  public String getFirstQuestion() {
-    return selectedPuzzles[0].getQuestion();
-  }
-
-  public String getSecondQuestion() {
-    return selectedPuzzles[1].getQuestion();
   }
 }

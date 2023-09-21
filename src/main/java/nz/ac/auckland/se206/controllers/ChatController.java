@@ -60,7 +60,7 @@ public class ChatController {
 
   private CurrentScene currentScene = CurrentScene.getInstance();
 
-  HintCounter hintCounter = HintCounter.getInstance();
+  private HintCounter hintCounter = HintCounter.getInstance();
 
   /**
    * Initializes the chat view, loading the riddle.

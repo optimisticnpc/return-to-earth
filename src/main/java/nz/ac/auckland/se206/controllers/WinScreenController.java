@@ -12,7 +12,7 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class WinScreenController {
 
-  @FXML Label winTimeLabel;
+  @FXML private Label winTimeLabel;
 
   private TextToSpeech textToSpeech = new TextToSpeech();
 
