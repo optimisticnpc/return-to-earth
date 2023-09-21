@@ -200,8 +200,20 @@ public class ChatController {
           }
           if (GameState.medium) {
             if (result.getRole().equals("assistant") && result.getContent().startsWith("Hint")) {
+              int count = countOccurrences("hint", messageString.toLowerCase());
               if (hintCounter.getMediumHintCount() > 0) {
-                hintCounter.decrementHintCount();
+                if (hintCounter.getMediumHintCount() - count >= 0) {
+                  hintCounter.decrementHintCount(count);
+                } else {
+                  result =
+                      new ChatMessage(
+                          "AI",
+                          "You can only ask for"
+                              + " "
+                              + hintCounter.getMediumHintCount()
+                              + " "
+                              + "more hints.");
+                }
               } else {
                 result = new ChatMessage("AI", "You cannot get any more hints.");
               }
@@ -292,6 +304,24 @@ public class ChatController {
     if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
       sendButton.fire();
     }
+  }
+
+  /** Count the number of occurrences of a given word in the sentence */
+  private int countOccurrences(String word, String sentence) {
+    // Split the sentence into an array of words
+    String[] words = sentence.split("\\s+");
+
+    // Initialize a counter
+    int count = 0;
+
+    // Iterate through the words and check for matches
+    for (String w : words) {
+      if (w.contains(word)) {
+        count++;
+      }
+    }
+    System.out.println(count);
+    return count;
   }
 
   /**
