@@ -72,7 +72,7 @@ public class MathQuestionSelector {
             "What is the next number in this sequence: 10, 20, 30, 40, 50, 60, 70, 80, __", "90"));
     mathQuestions.add(
         new MathQuestion(
-            "There are four piles of aliens.  The first pile is 10 more than the second pile, the"
+            "There are three piles of aliens.  The first pile is 10 more than the second pile, the"
                 + " second pile is 10 times the third pile. How many aliens are there altogether if"
                 + " the third pile has 1 alien?",
             "31"));
@@ -83,7 +83,7 @@ public class MathQuestionSelector {
             "15"));
     mathQuestions.add(
         new MathQuestion(
-            "Five aliens each want to  play a single round against each other"
+            "There are five aliens. Each of them want to  play a single round against the others"
                 + " at space badminton. How many games will they play?",
             "10"));
     mathQuestions.add(
@@ -94,10 +94,10 @@ public class MathQuestionSelector {
             "17"));
     mathQuestions.add(
         new MathQuestion(
-            "A woman has somewhere between 5 to 15 alien fossils. She gives half of them away to"
-                + " charity and then kept 1 for herself. If she has 4 alien fossils left, how"
+            "A woman has somewhere between 10 to 15 alien fossils. She gives half of them away to"
+                + " charity and then kept 1 for herself. If she has 5 alien fossils left, how"
                 + " many did she start with?",
-            "10"));
+            "12"));
     mathQuestions.add(
         new MathQuestion(
             "On Earth, a spacesuit is about 126kg. On the Moon, the gravitational force is only"
@@ -120,13 +120,13 @@ public class MathQuestionSelector {
             "45"));
     mathQuestions.add(
         new MathQuestion(
-            "A spaceship has a weight limit of 1500kg.  If everyone inside is 75kg, how many people"
-                + " are in the spaceship?",
+            "A spaceship has a weight limit of 1500kg.  If everyo person inside weighs 75kg, how"
+                + " many people are in the spaceship?",
             "20"));
     mathQuestions.add(
         new MathQuestion(
-            "A spaceship has a weight limit of 2200kg.  If everyone inside is 50kg, how many people"
-                + " are in the spaceship?",
+            "A spaceship has a weight limit of 2200kg.  If every person inside weighs 50kg, how"
+                + " many people are in the spaceship?",
             "44"));
   }
 }
