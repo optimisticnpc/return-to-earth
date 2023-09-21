@@ -9,6 +9,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -108,7 +109,9 @@ public class StartController {
     currentScene.setCurrent(1);
     App.getScene().setRoot(roomRoot);
     GameTimer gameTimer = GameTimer.getInstance();
+    OxygenMeter oxygenMeter = OxygenMeter.getInstance();
 
     gameTimer.startTimer();
+    oxygenMeter.startTimer();
   }
 }
