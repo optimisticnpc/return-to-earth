@@ -43,6 +43,8 @@ public class GameState {
 
   public static boolean isSpacesuitCollected = false;
 
+  public static boolean isSpacesuitJustCollected = false;
+
   public static boolean isPartFixed = false;
 
   public static void resetGame() throws IOException {
@@ -56,6 +58,7 @@ public class GameState {
     isSpacesuitUnlocked = false;
     isSpacesuitRevealed = false;
     isSpacesuitCollected = false;
+    isSpacesuitJustCollected = false;
 
     // Get new math puzzles and update room visuals
     App.resetMathQuestions();
