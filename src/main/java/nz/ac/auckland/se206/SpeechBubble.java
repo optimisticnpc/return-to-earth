@@ -7,18 +7,20 @@ public class SpeechBubble {
   private static SpeechBubble instance = null;
   private static String speechText = "";
 
-  private StringProperty speechDisplay = new SimpleStringProperty();
-
-  public SpeechBubble() {
-    speechDisplay.set(speechText);
-  }
-
   public static SpeechBubble getInstance() {
     if (instance == null) {
       instance = new SpeechBubble();
     }
     return instance;
   }
+
+  private StringProperty speechDisplay = new SimpleStringProperty();
+
+  public SpeechBubble() {
+    speechDisplay.set(speechText);
+  }
+
+  
 
   public StringProperty speechDisplayProperty() {
     return speechDisplay;

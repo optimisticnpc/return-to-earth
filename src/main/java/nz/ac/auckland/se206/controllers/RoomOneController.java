@@ -46,8 +46,6 @@ public class RoomOneController {
   @FXML private ImageView wireImage;
   @FXML private Polygon reactivationHint;
 
-  // private static String correctOrderString;
-
   private ButtonOrder buttonOrder = ButtonOrder.getInstance();
   private String[] switchOrder = buttonOrder.getCorrectOrderArray();
   private int switchIndex = 0;

@@ -9,17 +9,21 @@ public class HintCounter {
   private static Integer mediumHintCount = 5;
   private static String hardHintCount = "None";
 
-  private StringProperty hintDisplay = new SimpleStringProperty();
-
-  public HintCounter() {
-    setHintCount();
-  }
-
   public static HintCounter getInstance() {
     if (instance == null) {
       instance = new HintCounter();
     }
     return instance;
+  }
+
+  public static void resetHintCount() {
+    mediumHintCount = 5;
+  }
+
+  private StringProperty hintDisplay = new SimpleStringProperty();
+
+  public HintCounter() {
+    setHintCount();
   }
 
   public void setHintCount() {
@@ -48,7 +52,5 @@ public class HintCounter {
     return hintDisplay;
   }
 
-  public static void resetHintCount() {
-    mediumHintCount = 5;
-  }
+  
 }

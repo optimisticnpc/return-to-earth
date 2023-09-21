@@ -18,6 +18,14 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 public class PasscodeController {
   private static String correctPassCodeString;
 
+  public static void setCorrectPassCodeString(String correctPassCodeString) {
+    PasscodeController.correctPassCodeString = correctPassCodeString;
+  }
+
+  public static String getCorrectPassCodeString() {
+    return correctPassCodeString;
+  }
+
   @FXML private Label timerLabel;
   @FXML private TextField passcodeField;
   @FXML private Label resultLabel;
@@ -76,13 +84,5 @@ public class PasscodeController {
 
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
     App.getScene().setRoot(roomTwoRoot);
-  }
-
-  public static void setCorrectPassCodeString(String correctPassCodeString) {
-    PasscodeController.correctPassCodeString = correctPassCodeString;
-  }
-
-  public static String getCorrectPassCodeString() {
-    return correctPassCodeString;
   }
 }

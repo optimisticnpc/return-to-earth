@@ -23,6 +23,13 @@ public class StartController {
   @FXML private Button prevTimeButton;
   @FXML private Button startButton;
 
+  private static int timeSettingSeconds;
+
+  public static int getTimeSettingSeconds() {
+    return timeSettingSeconds;
+  }
+
+
   private CurrentScene currentScene = CurrentScene.getInstance();
   private int currDifficulty = 0;
   private String[] difficulty = {"Easy", "Medium", "Hard"};
@@ -30,7 +37,6 @@ public class StartController {
 
   // Default time setting currently set at 4 mins
   private int timeSetting = 1;
-  private static int timeSettingSeconds;
 
   private String[] timeStrings = {"2 min", "4 min", "6 min"};
 
@@ -107,7 +113,5 @@ public class StartController {
     gameTimer.startTimer();
   }
 
-  public static int getTimeSettingSeconds() {
-    return timeSettingSeconds;
-  }
+  
 }

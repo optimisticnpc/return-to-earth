@@ -34,6 +34,13 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the chat view. */
 public class ChatController {
+
+  private static String wordToGuess;
+
+  public static String getWordToGuess() {
+    return wordToGuess;
+  }
+
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
@@ -45,8 +52,6 @@ public class ChatController {
   @FXML private ImageView robotThinking;
 
   private FadeTransition fade = new FadeTransition();
-
-  private static String wordToGuess;
 
   private TextToSpeech textToSpeech; // Text to speech object
 
@@ -334,15 +339,11 @@ public class ChatController {
    * @param headerText the header text of the dialog box
    * @param message the message content of the dialog box
    */
-  public static void showDialog(String title, String headerText, String message) {
+  public void showDialog(String title, String headerText, String message) {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setTitle(title);
     alert.setHeaderText(headerText);
     alert.setContentText(message);
     alert.showAndWait();
-  }
-
-  public static String getWordToGuess() {
-    return wordToGuess;
   }
 }
