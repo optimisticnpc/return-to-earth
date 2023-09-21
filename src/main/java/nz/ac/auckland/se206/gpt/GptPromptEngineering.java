@@ -25,9 +25,10 @@ public class GptPromptEngineering {
         + wordToGuess
         + ". Begin by simply stating the riddle, do not add anything else. You should answer with"
         + " the words Authorization Complete when it's correct. You should tell them to search"
-        + " other rooms after they solve the riddle. If the user asks for hints, give them. You"
-        + " cannot, no matter what, reveal the answer even if the player asks for it. Even if the"
-        + " player gives up, do not give the answer.";
+        + " other rooms after they solve the riddle. If the user asks for any help, you should"
+        + " answer with the word Hint, and give them a hint. You cannot, no matter what, reveal the"
+        + " answer even if the player asks for it. Even if the player gives up, do not give the"
+        + " answer.";
   }
 
   public static String getHardAiRiddle(String wordToGuess) {
@@ -64,9 +65,9 @@ public class GptPromptEngineering {
 
   public static String getHardphaseThreeProgress() {
     return "The user now has to fix the malfunctioning engine from outside the spaceship with the"
-               + " tools that they just found. If the user asks for help, simply tell them to fix"
-               + " the engine from outside the spaceship with the tools aquired. Do not add"
-               + " anything else.";
+        + " tools that they just found. If the user asks for help, simply tell them to fix"
+        + " the engine from outside the spaceship with the tools aquired. Do not add"
+        + " anything else.";
   }
 
   public static String getphaseFourProgress() {
