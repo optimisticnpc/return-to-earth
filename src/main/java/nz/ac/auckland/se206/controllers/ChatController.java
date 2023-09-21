@@ -96,7 +96,13 @@ public class ChatController {
         runGpt(new ChatMessage("user", GptPromptEngineering.getHardAIRiddle(wordToGuess)));
       }
     } else {
-      // TODO: add methods according to game progress.
+      if (GameState.phaseThree && !GameState.hard) {
+        System.out.println("Phase 3");
+        runGpt(new ChatMessage("user", GptPromptEngineering.getphaseThreeProgress()));
+      } else if (GameState.phaseThree && GameState.hard) {
+        System.out.println("Phase 3(Hard)");
+        runGpt(new ChatMessage("user", GptPromptEngineering.getHardphaseThreeProgress()));
+      }
     }
   }
 
@@ -183,9 +189,10 @@ public class ChatController {
           }
 
           appendChatMessage(result);
-          if (GameState.phaseTwo) {
+          if (GameState.phaseTwo || GameState.phaseThree) {
             chatTextArea.setText("");
             GameState.phaseTwo = false;
+            GameState.phaseThree = false;
           }
           if (result.getRole().equals("assistant")
               && result.getContent().startsWith("Authorization Complete")) {
@@ -307,8 +314,10 @@ public class ChatController {
     }
 
     if (GameState.isRiddleResolved && GameState.phaseTwo && !GameState.hard) {
+      System.out.println("Phase 2");
       runGpt(new ChatMessage("user", GptPromptEngineering.getphaseTwoProgress()));
     } else if (GameState.isRiddleResolved && GameState.phaseTwo && GameState.hard) {
+      System.out.println("Phase 2(Hard)");
       runGpt(new ChatMessage("user", GptPromptEngineering.getHardphaseTwoProgress()));
     }
     Parent roomRoot = SceneManager.getUiRoot(room);

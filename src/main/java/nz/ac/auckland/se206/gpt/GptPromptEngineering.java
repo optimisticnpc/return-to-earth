@@ -62,6 +62,19 @@ public class GptPromptEngineering {
 
   public static String getHardphaseTwoProgress() {
     return "Now, The user has to find a toolbox in the storage room, which will be helpful to fix"
-        + " the malfunctioning part of the spaceship.";
+               + " the malfunctioning part of the spaceship. If the user asks for help, simply tell"
+               + " them to find the tool box in the storage room.";
+  }
+
+  public static String getphaseThreeProgress() {
+    return "The user has to fix the engine outside the spaceship. If the user asks for hints, tell"
+        + " them that they have to unlock the hatch and reconnect the wire inside the hatch,"
+        + " do not add anything else.";
+  }
+
+  public static String getHardphaseThreeProgress() {
+    return "The user now has to fix the malfunctioning engine from outside the spaceship with the"
+        + " tools that they just found. If the user asks for help, simply tell them to fix"
+        + " the engine from outside the spaceship with the tools aquired.";
   }
 }
