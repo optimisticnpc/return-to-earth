@@ -202,7 +202,9 @@ public class ChatController {
             if (result.getRole().equals("assistant") && result.getContent().startsWith("Hint")) {
               int count = countOccurrences("hint", messageString.toLowerCase());
               if (hintCounter.getMediumHintCount() > 0) {
-                if (hintCounter.decrementHintCount(count) == -1) {
+                if (hintCounter.getMediumHintCount() - count >= 0) {
+                  hintCounter.decrementHintCount(count);
+                } else {
                   result =
                       new ChatMessage(
                           "AI",
@@ -314,7 +316,7 @@ public class ChatController {
 
     // Iterate through the words and check for matches
     for (String w : words) {
-      if (w.equals(word)) {
+      if (w.contains(word)) {
         count++;
       }
     }
