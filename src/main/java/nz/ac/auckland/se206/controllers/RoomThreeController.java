@@ -205,10 +205,9 @@ public class RoomThreeController {
       GameState.isPartFixed = true;
       GameState.phaseFour = true;
       SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
-      speechBubble.setVisible(true);
-      speechLabel.setVisible(true);
-      speech.setSpeechText(
+      activateSpeech(
           "You have fixed the engine!\n Now you have to reactivate it\n from somewhere...");
+      ;
     }
   }
 
