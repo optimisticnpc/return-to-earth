@@ -69,12 +69,14 @@ public class RoomTwoController {
    */
   @FXML
   public void clickAuthorisation(MouseEvent event) throws IOException {
+    // If riddle not solved tell the player to get authorised
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation Needed. \nYou need to be authorised to access\nthe system.");
       return;
     }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
     App.getScene().setRoot(chatRoot);
+    // Let the game know that the previous scene was room 2
     currentScene.setCurrent(12);
   }
 
@@ -110,6 +112,7 @@ public class RoomTwoController {
    */
   @FXML
   public void activateSpeech(String text) {
+    // Make the speech bubble visible and set the text
     speechBubble.setVisible(true);
     speechLabel.setVisible(true);
     speech.setSpeechText(text);
@@ -122,6 +125,7 @@ public class RoomTwoController {
           }
         },
         5000);
+    // 5 second delay
   }
 
   /** Makes the speech bubble and label visible. This is called when the speech bubble is shown. */
@@ -140,7 +144,7 @@ public class RoomTwoController {
       fadeTransition.setNode(crateImage);
       fadeTransition.setFromValue(1); // starting opacity value
       fadeTransition.setToValue(0); // ending opacity value (1 is fully opaque)
-      fadeTransition.setDuration(Duration.millis(600)); // transition duration
+      fadeTransition.setDuration(Duration.millis(300)); // transition duration
       fadeTransition.setOnFinished(
           e -> {
             room.getChildren().remove(crate);
@@ -175,6 +179,7 @@ public class RoomTwoController {
       activateSpeech(
           "You have collected the spacesuit!\nNow you're able to\nStay outside for longer!");
       GameState.isSpacesuitCollected = true;
+      GameState.isSpacesuitJustCollected = true;
     }
   }
 

@@ -14,6 +14,7 @@ public class LoseScreenController {
 
   @FXML
   public void initialize() throws ApiProxyException {
+    // Tell the player they have lost
     new Thread(
             () -> {
               try {
@@ -32,7 +33,7 @@ public class LoseScreenController {
   }
 
   @FXML
-  private void clickRestartButton(ActionEvent event) throws IOException {
+  private void onClickRestartButton(ActionEvent event) throws IOException {
     GameState.resetGame();
   }
 }

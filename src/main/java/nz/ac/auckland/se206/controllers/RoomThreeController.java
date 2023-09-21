@@ -7,9 +7,7 @@ import java.io.InputStream;
 import java.util.Timer;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
-import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -31,6 +29,7 @@ import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
+import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SpeechBubble;
@@ -56,75 +55,49 @@ public class RoomThreeController {
   @FXML private Text meterPercent;
   @FXML private ImageView robot;
 
-  private Timeline timeline;
   private CurrentScene currentScene = CurrentScene.getInstance();
   private RotateTransition rotate = new RotateTransition();
   private boolean unscrewed = false;
-  private boolean warning = false;
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
 
   public void initialize() {
     System.out.println("RoomThreeController.initialize()");
+
+    // Bind timer
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
+    OxygenMeter oxygenMeter = OxygenMeter.getInstance();
+    oxygenBar.progressProperty().bind(oxygenMeter.oxygenProgressProperty());
+    meterPercent.textProperty().bind(oxygenMeter.percentProgressProperty());
+
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
+
+    // Set hint counter
     HintCounter hintCounter = HintCounter.getInstance();
     hintCounter.setHintCount();
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
-
-    initializeOxygen();
-    timeline.play();
-  }
-
-  public void initializeOxygen() {
-    timeline =
-        new Timeline(
-            new KeyFrame(
-                Duration.seconds(1),
-                event -> {
-                  if (currentScene.getCurrent() == 3) {
-                    if (oxygenBar.getProgress() > 0) {
-                      if (GameState.isSpacesuitCollected) {
-                        oxygenBar.setProgress(oxygenBar.getProgress() - 0.02);
-                      } else {
-                        oxygenBar.setProgress(oxygenBar.getProgress() - 0.05);
-                      }
-                      Integer percentage = (int) Math.round(oxygenBar.getProgress() * 100);
-                      meterPercent.setText(Integer.toString(percentage) + "%");
-                      if (oxygenBar.getProgress() <= 0.3 && oxygenBar.getProgress() >= 0.2) {
-                        if (!warning) {
-                          if (!speechBubble.isVisible()) {
-                            speechBubble.setVisible(true);
-                          }
-                          activateSpeech(
-                              "OXYGEN RUNNING LOW!\nOXYGEN RUNNING LOW!\nOXYGEN RUNNING LOW!");
-                          warning = true;
-                        }
-                      }
-                    } else {
-                      try {
-                        App.setRoot("losescreen");
-                        currentScene.setCurrent(4);
-                        oxygenBar.setProgress(1);
-                      } catch (IOException e) {
-                        e.printStackTrace();
-                      }
-                    }
-                  }
-                }));
-    timeline.setCycleCount(Timeline.INDEFINITE);
   }
 
   public void initializeRotate() {
-    rotate.setNode(meter);
-    rotate.setDuration(Duration.millis(1500));
-    rotate.setCycleCount(TranslateTransition.INDEFINITE);
-    rotate.setInterpolator(Interpolator.LINEAR);
-    rotate.setByAngle(360);
-    rotate.play();
+    // Initializes the parameters of the rotating pointer in the timing game
+    Task<Void> rotateTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            rotate.setNode(meter); // Connect the RotateTransition to the image
+            rotate.setDuration(Duration.millis(1500)); // Set the period to 1.5s
+            rotate.setCycleCount(TranslateTransition.INDEFINITE);
+            rotate.setInterpolator(Interpolator.LINEAR);
+            rotate.setByAngle(360);
+            rotate.play();
+            return null;
+          }
+        };
+    Thread rotateThread = new Thread(rotateTask);
+    rotateThread.start();
   }
 
   /**
@@ -135,19 +108,21 @@ public class RoomThreeController {
    */
   @FXML
   public void clickAuthorisation(MouseEvent event) throws IOException {
+    // If the riddle is not solved tell the player to get authorisation
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation Needed. \nYou need to be authorised to access\nthe system.");
       return;
     }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
     App.getScene().setRoot(chatRoot);
+    // Let the game know that the previous scene was room 3
     currentScene.setCurrent(13);
   }
 
   @FXML
   public void pressTimingButton(MouseEvent event) throws FileNotFoundException {
     System.out.println(meter.getRotate());
-    if (meter.getRotate() <= 174 && meter.getRotate() >= 168) {
+    if (meter.getRotate() <= 177 && meter.getRotate() >= 164) {
       showSuccessMessage();
     }
   }
@@ -159,7 +134,8 @@ public class RoomThreeController {
           @Override
           protected Void call() throws Exception {
             rotate.stop();
-            success.setVisible(!success.isVisible());
+            // Set the success message as visible and then slowly fade it out
+            success.setVisible(true);
             FadeTransition fade = new FadeTransition();
             fade.setNode(success);
             fade.setDuration(Duration.millis(2000));
@@ -167,6 +143,7 @@ public class RoomThreeController {
             fade.setFromValue(1);
             fade.setToValue(0);
             fade.play();
+            // Change image to show open hatch
             InputStream stream =
                 new FileInputStream("src/main/resources/images/spaceship_exterior_open_hatch.png");
             Image img = new Image(stream);
@@ -182,12 +159,14 @@ public class RoomThreeController {
   @FXML
   public void pressScrew(MouseEvent event) {
 
+    // If toolbox not collected
     if (!GameState.isToolboxCollected) {
       activateSpeech("Tools Needed. \nYou need to find the right tools\nto open this hatch.");
       return;
     }
 
     System.out.println("screw pressed");
+    // Show timing game
     puzzleScreen.setVisible(!puzzleScreen.isVisible());
     meter.setVisible(!meter.isVisible());
     initializeRotate();
@@ -196,6 +175,8 @@ public class RoomThreeController {
   @FXML
   public void clickHatch(MouseEvent event) throws FileNotFoundException {
     System.out.println("hatch clicked");
+    // If the hatch is open and the player has the wire
+    // Fix the broken part
     if (unscrewed && GameState.isWireCollected) {
       InputStream stream =
           new FileInputStream(
@@ -203,10 +184,8 @@ public class RoomThreeController {
       Image img = new Image(stream);
       background.setImage(img);
       GameState.isPartFixed = true;
-      speechBubble.setVisible(true);
-      speechLabel.setVisible(true);
-      speech.setSpeechText(
-          "You have fixed the engine!\nNow you have to reactivate it\nfrom somewhere...");
+      activateSpeech(
+          "You have fixed the engine!\n Now you have to reactivate it\n from somewhere...");
     }
   }
 
@@ -217,6 +196,7 @@ public class RoomThreeController {
    */
   @FXML
   public void activateSpeech(String text) {
+    // Make the speech bubble visible and set the text
     speechBubble.setVisible(true);
     speechLabel.setVisible(true);
     speech.setSpeechText(text);
@@ -229,11 +209,13 @@ public class RoomThreeController {
           }
         },
         5000);
+    // 5 second delay
   }
 
   @FXML
   public void clickResumeButton(MouseEvent event) {
     System.out.println("resume clicked");
+    // If timing game completed, remove all the unecessary components
     if (unscrewed) {
       puzzleScreen.getChildren().clear();
       room.getChildren().remove(puzzleScreen);
@@ -244,6 +226,7 @@ public class RoomThreeController {
       room.getChildren().remove(screwThree);
       room.getChildren().remove(screwFour);
     } else {
+      // Hide puzzle screen
       puzzleScreen.setVisible(!puzzleScreen.isVisible());
       meter.setVisible(!meter.isVisible());
     }

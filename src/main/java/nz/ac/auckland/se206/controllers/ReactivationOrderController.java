@@ -25,7 +25,7 @@ public class ReactivationOrderController {
   }
 
   @FXML
-  public void goBack() {
+  public void onGoBack() {
     if (GameState.isPartFixed) {
       Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE_FINAL);
       App.getScene().setRoot(roomOneRoot);
@@ -33,5 +33,6 @@ public class ReactivationOrderController {
       Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
       App.getScene().setRoot(roomOneRoot);
     }
+
   }
 }

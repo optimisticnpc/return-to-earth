@@ -12,12 +12,13 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class WinScreenController {
 
-  @FXML Label winTimeLabel;
+  @FXML private Label winTimeLabel;
 
   private TextToSpeech textToSpeech = new TextToSpeech();
 
   @FXML
   public void initialize() throws ApiProxyException {
+    // Text to speech tells the player they have won
     new Thread(
             () -> {
               try {
@@ -28,6 +29,7 @@ public class WinScreenController {
             })
         .start();
 
+    // Capture the time it took for the player to win
     int hundredthsRemaining = GameTimer.getInstance().getTimeHundredths();
     displayWinTime(hundredthsRemaining);
   }
@@ -49,7 +51,7 @@ public class WinScreenController {
   }
 
   @FXML
-  private void clickRestartButton(ActionEvent event) throws IOException {
+  private void onClickRestartButton(ActionEvent event) throws IOException {
     GameState.resetGame();
   }
 }

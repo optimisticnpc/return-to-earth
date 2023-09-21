@@ -45,6 +45,48 @@ public class App extends Application {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
 
+  public static Scene getScene() {
+    return scene;
+  }
+
+  public static void resetChat() {
+    try {
+      SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void resetRooms() throws IOException {
+    // Re initialize all the rooms
+    try {
+      SceneManager.addUi(AppUi.ROOM_ONE, loadFxml("roomone"));
+      SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
+      SceneManager.addUi(AppUi.ROOM_THREE, loadFxml("roomthree"));
+      SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
+      SceneManager.addUi(AppUi.REACTIVATION_ORDER, loadFxml("reactivationorder"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void resetMathQuestions() throws IOException {
+
+    try {
+
+      SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
+      MathQuestionSelector selector = MathQuestionSelector.getInstance();
+      selector.setNewMathQuestions();
+      PasscodeController.setCorrectPassCodeString(selector.generatePasscode());
+
+      // Reset the question scenes after we have chosen the new questions
+      SceneManager.addUi(AppUi.QUESTION_ONE, loadFxml("questionone"));
+      SceneManager.addUi(AppUi.QUESTION_TWO, loadFxml("questiontwo"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
   /**
    * This method is invoked when the application starts. It loads and shows the "Canvas" scene.
    *
@@ -139,47 +181,5 @@ public class App extends Application {
             GameState.isRiddleResolved = true;
           }
         });
-  }
-
-  public static Scene getScene() {
-    return scene;
-  }
-
-  public static void resetChat() {
-    try {
-      SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  public static void resetRooms() throws IOException {
-    try {
-      SceneManager.addUi(AppUi.ROOM_ONE, loadFxml("roomone"));
-      SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
-      SceneManager.addUi(AppUi.ROOM_THREE, loadFxml("roomthree"));
-      SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
-      SceneManager.addUi(AppUi.REACTIVATION_ORDER, loadFxml("reactivationorder"));
-      SceneManager.addUi(AppUi.ROOM_ONE_FINAL, App.loadFxml("roomonefinal"));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  public static void resetMathQuestions() throws IOException {
-
-    try {
-
-      SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
-      MathQuestionSelector selector = MathQuestionSelector.getInstance();
-      selector.setNewMathQuestions();
-      PasscodeController.setCorrectPassCodeString(selector.generatePasscode());
-
-      // Reset the question scenes after we have chosen the new questions
-      SceneManager.addUi(AppUi.QUESTION_ONE, loadFxml("questionone"));
-      SceneManager.addUi(AppUi.QUESTION_TWO, loadFxml("questiontwo"));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
   }
 }
