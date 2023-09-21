@@ -198,7 +198,15 @@ public class ChatController {
           if (result.getRole().equals("assistant")) {
             messageString = result.getContent();
           }
-
+          if (GameState.medium) {
+            if (result.getRole().equals("assistant") && result.getContent().startsWith("Hint")) {
+              if (hintCounter.getMediumHintCount() > 0) {
+                hintCounter.decrementHintCount();
+              } else {
+                result = new ChatMessage("AI", "You cannot get any more hints.");
+              }
+            }
+          }
           appendChatMessage(result);
           if (GameState.phaseTwo || GameState.phaseThree || GameState.phaseFour) {
             chatTextArea.setText("");
@@ -261,24 +269,6 @@ public class ChatController {
     inputText.clear();
     ChatMessage msg = new ChatMessage("user", message);
 
-    if (GameState.medium) {
-      if (message.toLowerCase().contains("hint")
-          || message.toLowerCase().contains("hints")
-          || message.toLowerCase().contains("help")
-          || message.toLowerCase().contains("helps")
-          || message.toLowerCase().contains("clue")
-          || message.toLowerCase().contains("clues")) {
-        if (hintCounter.getMediumHintCount() > 0) {
-          hintCounter.decrementHintCount();
-          hintCounter.setHintCount();
-        } else {
-          ChatMessage hintMessage = new ChatMessage("AI", "You have used up all your hints.");
-          appendChatMessage(msg);
-          appendChatMessage(hintMessage);
-          return;
-        }
-      }
-    }
     appendChatMessage(msg);
     showAiThinking();
     runGpt(msg);
