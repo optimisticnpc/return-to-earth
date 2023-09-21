@@ -69,6 +69,7 @@ public class OxygenMeter {
                       progress = new BigDecimal(String.format("%.2f", 1.0));
                       oxygenProgressProperty.set(progress.doubleValue());
                       percentProgressProperty.set("100%");
+                      GameState.isSpacesuitJustCollected = false;
                     }
                   }
                 }));
