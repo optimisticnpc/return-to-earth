@@ -34,6 +34,13 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the chat view. */
 public class ChatController {
+
+  private static String wordToGuess;
+
+  public static String getWordToGuess() {
+    return wordToGuess;
+  }
+
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
@@ -45,8 +52,6 @@ public class ChatController {
   @FXML private ImageView robotThinking;
 
   private FadeTransition fade = new FadeTransition();
-
-  private static String wordToGuess;
 
   private TextToSpeech textToSpeech; // Text to speech object
 
@@ -60,7 +65,7 @@ public class ChatController {
 
   private CurrentScene currentScene = CurrentScene.getInstance();
 
-  HintCounter hintCounter = HintCounter.getInstance();
+  private HintCounter hintCounter = HintCounter.getInstance();
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -89,11 +94,11 @@ public class ChatController {
 
     if (!GameState.isRiddleResolved) {
       if (GameState.easy) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getEasyAIRiddle(wordToGuess)));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getEasyAiRiddle(wordToGuess)));
       } else if (GameState.medium) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getMediumAIRiddle(wordToGuess)));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getMediumAiRiddle(wordToGuess)));
       } else if (GameState.hard) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getHardAIRiddle(wordToGuess)));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getHardAiRiddle(wordToGuess)));
       }
     } else {
       if (GameState.phaseThree && !GameState.hard) {
@@ -281,6 +286,7 @@ public class ChatController {
 
   @FXML
   public void showAiThinking() {
+    // Fade in the thinking image in 0.3s
     robotThinking.setVisible(true);
     FadeTransition fade = new FadeTransition();
     fade.setNode(robotThinking);
@@ -360,15 +366,11 @@ public class ChatController {
    * @param headerText the header text of the dialog box
    * @param message the message content of the dialog box
    */
-  public static void showDialog(String title, String headerText, String message) {
+  public void showDialog(String title, String headerText, String message) {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setTitle(title);
     alert.setHeaderText(headerText);
     alert.setContentText(message);
     alert.showAndWait();
-  }
-
-  public static String getWordToGuess() {
-    return wordToGuess;
   }
 }

@@ -4,6 +4,14 @@ import java.util.Random;
 
 public class ButtonOrder {
   private static ButtonOrder instance;
+
+  public static ButtonOrder getInstance() {
+    if (instance == null) {
+      instance = new ButtonOrder();
+    }
+    return instance;
+  }
+
   private String correctOrderString;
   private String[] switchOrder = {"red", "green", "blue"};
 
@@ -18,13 +26,6 @@ public class ButtonOrder {
     }
 
     correctOrderString = switchOrder[0] + " " + switchOrder[1] + " " + switchOrder[2];
-  }
-
-  public static ButtonOrder getInstance() {
-    if (instance == null) {
-      instance = new ButtonOrder();
-    }
-    return instance;
   }
 
   public String getCorrectOrderString() {

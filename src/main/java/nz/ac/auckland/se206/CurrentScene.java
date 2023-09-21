@@ -2,7 +2,6 @@ package nz.ac.auckland.se206;
 
 public class CurrentScene {
   private static CurrentScene instance = null;
-  private int current;
 
   public static CurrentScene getInstance() {
     if (instance == null) {
@@ -10,6 +9,8 @@ public class CurrentScene {
     }
     return instance;
   }
+
+  private int current;
 
   public void setCurrent(int current) {
     this.current = current;

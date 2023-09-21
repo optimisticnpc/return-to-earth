@@ -9,11 +9,19 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class StartController {
+
+  private static int timeSettingSeconds;
+
+  public static int getTimeSettingSeconds() {
+    return timeSettingSeconds;
+  }
+
   @FXML private Label timeLabel;
   @FXML private Label difficultyLabel;
   @FXML private Label helpLabel;
@@ -30,7 +38,6 @@ public class StartController {
 
   // Default time setting currently set at 4 mins
   private int timeSetting = 1;
-  private static int timeSettingSeconds;
 
   private String[] timeStrings = {"2 min", "4 min", "6 min"};
 
@@ -40,7 +47,7 @@ public class StartController {
   }
 
   @FXML
-  public void clickNextDifficultyButton() {
+  private void onClickNextDifficultyButton() {
     if (this.currDifficulty < 2) {
       this.currDifficulty += 1;
       difficultyLabel.setText(difficulty[currDifficulty]);
@@ -49,7 +56,7 @@ public class StartController {
   }
 
   @FXML
-  public void clickPrevDifficultyButton() {
+  private void onClickPrevDifficultyButton() {
     if (this.currDifficulty > 0) {
       this.currDifficulty -= 1;
       difficultyLabel.setText(difficulty[currDifficulty]);
@@ -58,7 +65,7 @@ public class StartController {
   }
 
   @FXML
-  public void clickNextTimeButton() {
+  private void onClickNextTimeButton() {
     if (this.timeSetting < 2) {
       this.timeSetting += 1;
       timeLabel.setText(timeStrings[timeSetting]);
@@ -66,7 +73,7 @@ public class StartController {
   }
 
   @FXML
-  public void clickPrevTimeButton() {
+  private void onClickPrevTimeButton() {
     if (this.timeSetting > 0) {
       this.timeSetting -= 1;
       timeLabel.setText(timeStrings[timeSetting]);
@@ -74,7 +81,7 @@ public class StartController {
   }
 
   @FXML
-  public void clickStartButton() throws IOException {
+  private void onClickStartButton() throws IOException {
     // Need to change the difficulty here as well later
     timeSettingSeconds = (timeSetting + 1) * 120;
     GameTimer.setInitialTime(timeSettingSeconds);
@@ -98,16 +105,15 @@ public class StartController {
     SceneManager.addUi(AppUi.ROOM_ONE, App.loadFxml("roomone"));
     SceneManager.addUi(AppUi.ROOM_TWO, App.loadFxml("roomtwo"));
     SceneManager.addUi(AppUi.ROOM_THREE, App.loadFxml("roomthree"));
+    SceneManager.addUi(AppUi.ROOM_ONE_FINAL, App.loadFxml("roomonefinal"));
 
     Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     currentScene.setCurrent(1);
     App.getScene().setRoot(roomRoot);
     GameTimer gameTimer = GameTimer.getInstance();
+    OxygenMeter oxygenMeter = OxygenMeter.getInstance();
 
     gameTimer.startTimer();
-  }
-
-  public static int getTimeSettingSeconds() {
-    return timeSettingSeconds;
+    oxygenMeter.startTimer();
   }
 }

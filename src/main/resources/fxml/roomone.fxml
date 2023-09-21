@@ -9,19 +9,21 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import nz.ac.auckland.se206.ball.BouncingBallPane?>
 
 <Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
    <children>
-      <ImageView fitHeight="650.0" fitWidth="1082.0" layoutX="-41.0" pickOnBounds="true">
+      <ImageView fx:id="background" fitHeight="650.0" fitWidth="1082.0" layoutX="-41.0" pickOnBounds="true">
          <image>
             <Image url="@../images/MainRoom.png" />
          </image>
       </ImageView>
       <Rectangle fx:id="mainWarning" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="35.0" layoutX="313.0" layoutY="88.0" onMouseClicked="#clickMainWarning" opacity="0.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" width="383.0" />
-      <Rectangle fx:id="authRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="104.0" layoutX="403.0" layoutY="295.0" onMouseClicked="#clickAuthorisation" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="192.0" />
+      <Rectangle fx:id="authRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="104.0" layoutX="404.0" layoutY="295.0" onMouseClicked="#clickAuthorisation" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="192.0" />
       <Rectangle fx:id="engineWarning" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="72.0" layoutX="623.0" layoutY="319.0" onMouseClicked="#clickEngineWarning" opacity="0.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" width="128.0" />
       <Polygon fx:id="movetoRoomTwo" fill="#ff0400" layoutX="12.0" layoutY="325.0" onMouseClicked="#clickRoomTwo" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
       <Polygon fx:id="movetoRoomThree" fill="#ff0400" layoutX="927.0" layoutY="325.0" onMouseClicked="#clickRoomThree" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" rotate="180.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
+      <BouncingBallPane layoutX="261.0" layoutY="332.0" prefHeight="48.0" prefWidth="106.0" />
       <Label layoutX="166.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining:">
          <font>
             <Font size="20.0" />
@@ -32,14 +34,6 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Rectangle fx:id="blueSwitch" height="22.0" layoutX="252.0" layoutY="94.0" onMouseClicked="#clickBlueSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="42.0" />
-      <Rectangle fx:id="redSwitch" height="18.0" layoutX="467.0" layoutY="480.0" onMouseClicked="#clickRedSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="54.0" />
-      <Rectangle fx:id="greenSwitch" height="22.0" layoutX="709.0" layoutY="94.0" onMouseClicked="#clickGreenSwitch" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="39.0" />
-      <Button fx:id="reactivateButton" layoutX="437.0" layoutY="425.0" mnemonicParsing="false" onAction="#reactivate" prefHeight="41.0" prefWidth="107.0" text="REACTIVATE">
-         <font>
-            <Font name="Comic Sans MS" size="13.0" />
-         </font>
-      </Button>
       <ImageView fitHeight="373.0" fitWidth="190.0" layoutX="67.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ai.png" />
@@ -80,11 +74,10 @@
             <Image url="@../images/wire%20hover.png" />
          </image>
       </ImageView>
-      <Polygon fx:id="reactivationHint" layoutX="678.0" layoutY="604.0" onMouseClicked="#clickReactivationHint" points="41.5, -45.5, 22.0, -34.25, -4.5, -25.5, 11.0, 2.5, 49.25, -7.75, 62.75, -16.75, 53.75, -23.75" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle-hoverable" />
       <Pane fx:id="backgroundScreen" layoutX="64.0" layoutY="40.0" prefHeight="561.0" prefWidth="873.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="574.0" layoutX="-9.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" width="885.0" />
-            <Button fx:id="closeButton" layoutX="713.0" layoutY="37.0" mnemonicParsing="false" onAction="#clickClose" prefHeight="60.0" prefWidth="94.0" text="Close" textAlignment="CENTER">
+            <Button fx:id="closeButton" layoutX="713.0" layoutY="37.0" mnemonicParsing="false" onAction="#onClickClose" prefHeight="60.0" prefWidth="94.0" text="Close" textAlignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
