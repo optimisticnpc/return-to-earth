@@ -136,7 +136,7 @@ public class RoomTwoController {
       fadeTransition.setNode(crateImage);
       fadeTransition.setFromValue(1); // starting opacity value
       fadeTransition.setToValue(0); // ending opacity value (1 is fully opaque)
-      fadeTransition.setDuration(Duration.millis(600)); // transition duration
+      fadeTransition.setDuration(Duration.millis(300)); // transition duration
       fadeTransition.setOnFinished(
           e -> {
             room.getChildren().remove(crate);
@@ -169,6 +169,7 @@ public class RoomTwoController {
     } else if (!GameState.isSpacesuitCollected) {
       collectSpacesuit();
       GameState.isSpacesuitCollected = true;
+      GameState.isSpacesuitJustCollected = true;
     }
   }
 

@@ -27,15 +27,10 @@ public class OxygenMeter {
   private StringProperty percentProgressProperty = new SimpleStringProperty();
   private BigDecimal progress = new BigDecimal(String.format("%.2f", 1.0));
 
-  // if (progress.doubleValue() <= 0.3 && progress.doubleValue() >= 0.2) {
-  //   if (!warning) {
-  //     if (!speechBubble.isVisible()) {
-  //       speechBubble.setVisible(true);
-  //     }
-  //     activateSpeech(
-  //         "OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
-  //     warning = true;
-  //   }
+  // if (!GameState.isOxygenWarned) {
+  //   roomThreeController.activateSpeech(
+  //       "OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
+  //   GameState.isOxygenWarned = true;
   // }
 
   public OxygenMeter() {
@@ -66,6 +61,12 @@ public class OxygenMeter {
                       } catch (IOException e) {
                         e.printStackTrace();
                       }
+                    }
+                  } else {
+                    if (GameState.isSpacesuitJustCollected) {
+                      progress = new BigDecimal(String.format("%.2f", 1.0));
+                      oxygenProgressProperty.set(progress.doubleValue());
+                      percentProgressProperty.set("100%");
                     }
                   }
                 }));
