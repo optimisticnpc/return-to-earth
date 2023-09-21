@@ -69,7 +69,7 @@ public class SpacesuitPuzzleController {
   }
 
   @FXML
-  public void submitCode() {
+  private void submitCode() {
     String enteredPasscode = inputField.getText();
 
     if (correctWordString.equals(enteredPasscode)) {
@@ -89,7 +89,7 @@ public class SpacesuitPuzzleController {
   }
 
   @FXML
-  public void goBack() {
+  private void goBack() {
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
     App.getScene().setRoot(roomTwoRoot);
   }

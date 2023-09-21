@@ -33,7 +33,7 @@ public class LoseScreenController {
   }
 
   @FXML
-  private void clickRestartButton(ActionEvent event) throws IOException {
+  private void onClickRestartButton(ActionEvent event) throws IOException {
     GameState.resetGame();
   }
 }
