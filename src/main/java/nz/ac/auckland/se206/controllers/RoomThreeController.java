@@ -7,9 +7,7 @@ import java.io.InputStream;
 import java.util.Timer;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
-import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -31,6 +29,7 @@ import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
+import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SpeechBubble;
@@ -56,11 +55,9 @@ public class RoomThreeController {
   @FXML private Text meterPercent;
   @FXML private ImageView robot;
 
-  private Timeline timeline;
   private CurrentScene currentScene = CurrentScene.getInstance();
   private RotateTransition rotate = new RotateTransition();
   private boolean unscrewed = false;
-  private boolean warning = false;
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
 
@@ -68,63 +65,34 @@ public class RoomThreeController {
     System.out.println("RoomThreeController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
+    OxygenMeter oxygenMeter = OxygenMeter.getInstance();
+    oxygenBar.progressProperty().bind(oxygenMeter.oxygenProgressProperty());
+    meterPercent.textProperty().bind(oxygenMeter.percentProgressProperty());
+
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
     HintCounter hintCounter = HintCounter.getInstance();
     hintCounter.setHintCount();
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
-
-    initializeOxygen();
-    timeline.play();
-  }
-
-  public void initializeOxygen() {
-    timeline =
-        new Timeline(
-            new KeyFrame(
-                Duration.seconds(1),
-                event -> {
-                  if (currentScene.getCurrent() == 3) {
-                    if (oxygenBar.getProgress() > 0) {
-                      if (GameState.isSpacesuitCollected) {
-                        oxygenBar.setProgress(oxygenBar.getProgress() - 0.02);
-                      } else {
-                        oxygenBar.setProgress(oxygenBar.getProgress() - 0.05);
-                      }
-                      Integer percentage = (int) Math.round(oxygenBar.getProgress() * 100);
-                      meterPercent.setText(Integer.toString(percentage) + "%");
-                      if (oxygenBar.getProgress() <= 0.3 && oxygenBar.getProgress() >= 0.2) {
-                        if (!warning) {
-                          if (!speechBubble.isVisible()) {
-                            speechBubble.setVisible(true);
-                          }
-                          activateSpeech(
-                              "OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
-                          warning = true;
-                        }
-                      }
-                    } else {
-                      try {
-                        App.setRoot("losescreen");
-                        currentScene.setCurrent(4);
-                        oxygenBar.setProgress(1);
-                      } catch (IOException e) {
-                        e.printStackTrace();
-                      }
-                    }
-                  }
-                }));
-    timeline.setCycleCount(Timeline.INDEFINITE);
   }
 
   public void initializeRotate() {
-    rotate.setNode(meter);
-    rotate.setDuration(Duration.millis(1500));
-    rotate.setCycleCount(TranslateTransition.INDEFINITE);
-    rotate.setInterpolator(Interpolator.LINEAR);
-    rotate.setByAngle(360);
-    rotate.play();
+    Task<Void> rotateTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            rotate.setNode(meter);
+            rotate.setDuration(Duration.millis(1500));
+            rotate.setCycleCount(TranslateTransition.INDEFINITE);
+            rotate.setInterpolator(Interpolator.LINEAR);
+            rotate.setByAngle(360);
+            rotate.play();
+            return null;
+          }
+        };
+    Thread rotateThread = new Thread(rotateTask);
+    rotateThread.start();
   }
 
   /**
