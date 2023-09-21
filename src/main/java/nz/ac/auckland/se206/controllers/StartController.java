@@ -24,6 +24,12 @@ public class StartController {
   @FXML private Button prevTimeButton;
   @FXML private Button startButton;
 
+  private static int timeSettingSeconds;
+
+  public static int getTimeSettingSeconds() {
+    return timeSettingSeconds;
+  }
+
   private CurrentScene currentScene = CurrentScene.getInstance();
   private int currDifficulty = 0;
   private String[] difficulty = {"Easy", "Medium", "Hard"};
@@ -31,7 +37,6 @@ public class StartController {
 
   // Default time setting currently set at 4 mins
   private int timeSetting = 1;
-  private static int timeSettingSeconds;
 
   private String[] timeStrings = {"2 min", "4 min", "6 min"};
 
@@ -41,7 +46,7 @@ public class StartController {
   }
 
   @FXML
-  public void clickNextDifficultyButton() {
+  private void clickNextDifficultyButton() {
     if (this.currDifficulty < 2) {
       this.currDifficulty += 1;
       difficultyLabel.setText(difficulty[currDifficulty]);
@@ -50,7 +55,7 @@ public class StartController {
   }
 
   @FXML
-  public void clickPrevDifficultyButton() {
+  private void clickPrevDifficultyButton() {
     if (this.currDifficulty > 0) {
       this.currDifficulty -= 1;
       difficultyLabel.setText(difficulty[currDifficulty]);
@@ -59,7 +64,7 @@ public class StartController {
   }
 
   @FXML
-  public void clickNextTimeButton() {
+  private void clickNextTimeButton() {
     if (this.timeSetting < 2) {
       this.timeSetting += 1;
       timeLabel.setText(timeStrings[timeSetting]);
@@ -67,7 +72,7 @@ public class StartController {
   }
 
   @FXML
-  public void clickPrevTimeButton() {
+  private void clickPrevTimeButton() {
     if (this.timeSetting > 0) {
       this.timeSetting -= 1;
       timeLabel.setText(timeStrings[timeSetting]);
@@ -75,7 +80,7 @@ public class StartController {
   }
 
   @FXML
-  public void clickStartButton() throws IOException {
+  private void clickStartButton() throws IOException {
     // Need to change the difficulty here as well later
     timeSettingSeconds = (timeSetting + 1) * 120;
     GameTimer.setInitialTime(timeSettingSeconds);
@@ -108,9 +113,5 @@ public class StartController {
 
     gameTimer.startTimer();
     oxygenMeter.startTimer();
-  }
-
-  public static int getTimeSettingSeconds() {
-    return timeSettingSeconds;
   }
 }

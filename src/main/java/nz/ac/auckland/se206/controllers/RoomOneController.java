@@ -46,8 +46,6 @@ public class RoomOneController {
   @FXML private ImageView wireImage;
   @FXML private Polygon reactivationHint;
 
-  // private static String correctOrderString;
-
   private ButtonOrder buttonOrder = ButtonOrder.getInstance();
   private String[] switchOrder = buttonOrder.getCorrectOrderArray();
   private int switchIndex = 0;
@@ -85,7 +83,7 @@ public class RoomOneController {
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  public void clickRoomTwo(MouseEvent event) throws IOException {
+  private void clickRoomTwo(MouseEvent event) throws IOException {
     System.out.println("Room Two clicked");
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
     App.getScene().setRoot(roomTwoRoot);
@@ -99,7 +97,7 @@ public class RoomOneController {
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  public void clickRoomThree(MouseEvent event) throws IOException {
+  private void clickRoomThree(MouseEvent event) throws IOException {
     System.out.println("Room Three clicked");
     Parent roomThreeRoot = SceneManager.getUiRoot(AppUi.ROOM_THREE);
     currentScene.setCurrent(3);
@@ -113,7 +111,7 @@ public class RoomOneController {
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  public void clickMainWarning(MouseEvent event) throws IOException {
+  private void clickMainWarning(MouseEvent event) throws IOException {
     System.out.println("Main Warning clicked");
     activateSpeech(
         "The system detected a critical damage.\n"
@@ -128,8 +126,9 @@ public class RoomOneController {
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  public void clickEngineWarning(MouseEvent event) throws IOException {
+  private void clickEngineWarning(MouseEvent event) throws IOException {
     System.out.println("Engine Warning clicked");
+    // If riddle not solved tell the player to get authorization
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation Needed. \nYou need to be authorised to access\nthe system.");
     } else {
@@ -142,7 +141,7 @@ public class RoomOneController {
   }
 
   @FXML
-  public void clickWire(MouseEvent event) {
+  private void clickWire(MouseEvent event) {
     GameState.isWireCollected = true;
     activateSpeech("You have collected the wire!\nYou might need it to\n fix something...");
     room.getChildren().remove(wire);
@@ -150,13 +149,13 @@ public class RoomOneController {
   }
 
   @FXML
-  public void clickClose(ActionEvent event) {
+  private void clickClose(ActionEvent event) {
     backgroundScreen.getChildren().clear();
     room.getChildren().remove(backgroundScreen);
   }
 
   @FXML
-  public void clickReactivationHint(MouseEvent event) {
+  private void clickReactivationHint(MouseEvent event) {
     Parent reactivationRoot = SceneManager.getUiRoot(AppUi.REACTIVATION_ORDER);
     App.getScene().setRoot(reactivationRoot);
   }
@@ -168,13 +167,13 @@ public class RoomOneController {
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  public void clickRedSwitch(MouseEvent event) throws IOException {
+  private void clickRedSwitch(MouseEvent event) throws IOException {
     System.out.println("Red Switch clicked");
     if (GameState.isPartFixed) {
       redSwitch.setVisible(false);
       if (switchOrder[switchIndex].equals("red")) {
         switchIndex++;
-        correctSwitch++;
+        correctSwitch++; // If the switch is in correct order, increment correctSwitch variable
       } else {
         switchIndex++;
       }
@@ -188,13 +187,13 @@ public class RoomOneController {
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  public void clickGreenSwitch(MouseEvent event) throws IOException {
+  private void clickGreenSwitch(MouseEvent event) throws IOException {
     System.out.println("Green Switch clicked");
     if (GameState.isPartFixed) {
       greenSwitch.setVisible(false);
       if (switchOrder[switchIndex].equals("green")) {
         switchIndex++;
-        correctSwitch++;
+        correctSwitch++; // If the switch is in correct order, increment correctSwitch variable
       } else {
         switchIndex++;
       }
@@ -208,13 +207,13 @@ public class RoomOneController {
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  public void clickBlueSwitch(MouseEvent event) throws IOException {
+  private void clickBlueSwitch(MouseEvent event) throws IOException {
     System.out.println("Blue Switch clicked");
     if (GameState.isPartFixed) {
       blueSwitch.setVisible(false);
       if (switchOrder[switchIndex].equals("blue")) {
         switchIndex++;
-        correctSwitch++;
+        correctSwitch++; // If the switch is in correct order, increment correctSwitch variable
       } else {
         switchIndex++;
       }
@@ -222,14 +221,18 @@ public class RoomOneController {
   }
 
   @FXML
-  public void reactivate(ActionEvent event) throws IOException {
+  private void reactivate(ActionEvent event) throws IOException {
     if (GameState.isPartFixed) {
+      // If the player has entered the correct reactivation sequence
+      // The player wins
       if (correctSwitch == 3) {
         engineWarning.setVisible(false);
         reactivateButton.setVisible(false);
         gameTimer.stopTimer();
         App.setRoot("winscreen");
       } else {
+        // Else the player is wrong
+        // Bring back the reactivation buttons
         redSwitch.setVisible(true);
         greenSwitch.setVisible(true);
         blueSwitch.setVisible(true);
@@ -246,7 +249,8 @@ public class RoomOneController {
    * @param text
    */
   @FXML
-  public void activateSpeech(String text) {
+  private void activateSpeech(String text) {
+    // Make the speech bubble visible and set the text
     speechBubble.setVisible(true);
     speechLabel.setVisible(true);
     speech.setSpeechText(text);
@@ -259,6 +263,7 @@ public class RoomOneController {
           }
         },
         5000);
+    // 5 second delay
   }
 
   /**
@@ -268,7 +273,7 @@ public class RoomOneController {
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  public void clickAuthorisation(MouseEvent event) throws IOException {
+  private void clickAuthorisation(MouseEvent event) throws IOException {
     System.out.println("Authorisation clicked");
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
     App.getScene().setRoot(chatRoot);

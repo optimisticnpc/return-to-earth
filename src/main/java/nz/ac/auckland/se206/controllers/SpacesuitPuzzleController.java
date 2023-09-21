@@ -20,6 +20,12 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class SpacesuitPuzzleController {
 
+  private static String correctWordString;
+
+  public static String getCorrectWordString() {
+    return correctWordString;
+  }
+
   @FXML private Label timerLabel;
   @FXML private TextField inputField;
   @FXML private Label resultLabel;
@@ -28,14 +34,15 @@ public class SpacesuitPuzzleController {
 
   // TODO: Get more words and make sure they are different from the riddle
   private String[] words = {"blackhole", "venus", "comet", "satellite", "mars"};
-  private static String correctWordString;
 
   public void initialize() {
     System.out.println("SpacesuitPuzzleController.initialize()");
 
+    // Bind timer
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
+    // Allow pressing enter to submit the code
     inputField.addEventFilter(
         KeyEvent.KEY_PRESSED,
         event -> {
@@ -62,7 +69,7 @@ public class SpacesuitPuzzleController {
   }
 
   @FXML
-  public void submitCode() {
+  private void submitCode() {
     String enteredPasscode = inputField.getText();
 
     if (correctWordString.equals(enteredPasscode)) {
@@ -82,12 +89,8 @@ public class SpacesuitPuzzleController {
   }
 
   @FXML
-  public void goBack() {
+  private void goBack() {
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
     App.getScene().setRoot(roomTwoRoot);
-  }
-
-  public static String getCorrectWordString() {
-    return correctWordString;
   }
 }

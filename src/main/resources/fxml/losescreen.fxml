@@ -19,7 +19,7 @@
             <Font size="38.0" />
          </font>
       </Button>
-      <Button fx:id="restartButton" layoutX="406.0" layoutY="299.0" mnemonicParsing="false" onAction="#clickRestartButton" prefHeight="90.0" prefWidth="188.0" text="Restart">
+      <Button fx:id="restartButton" layoutX="406.0" layoutY="299.0" mnemonicParsing="false" onAction="#onClickRestartButton" prefHeight="90.0" prefWidth="188.0" text="Restart">
          <font>
             <Font size="38.0" />
          </font>

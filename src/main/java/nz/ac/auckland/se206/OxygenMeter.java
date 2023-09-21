@@ -42,19 +42,21 @@ public class OxygenMeter {
                   if (currentScene.getCurrent() == 3) {
                     if (progress.doubleValue() > 0) {
                       if (GameState.isSpacesuitCollected) {
+                        // Decrement oxygen level slower if spacesuit is collected
                         progress =
                             new BigDecimal(String.format("%.2f", progress.doubleValue() - 0.02));
                       } else {
                         progress =
                             new BigDecimal(String.format("%.2f", progress.doubleValue() - 0.05));
                       }
+                      // Display oxygen level as percentage
                       oxygenProgressProperty.set(progress.doubleValue());
                       Integer percentage = (int) Math.round(progress.doubleValue() * 100);
                       percentProgressProperty.set(Integer.toString(percentage) + "%");
                     } else {
                       try {
                         System.out.println(
-                            "oxygen progres when death occured: " + progress.doubleValue());
+                            "oxygen progress when death occured: " + progress.doubleValue());
                         timeline.stop();
                         currentScene.setCurrent(4);
                         App.setRoot("losescreen");
