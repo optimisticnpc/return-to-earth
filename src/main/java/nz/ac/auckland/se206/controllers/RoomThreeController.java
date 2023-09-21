@@ -235,9 +235,13 @@ public class RoomThreeController {
   @FXML
   public void clickRoomOne(MouseEvent event) throws IOException {
     System.out.println("Room One Clicked");
-
-    Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
-    App.getScene().setRoot(roomOneRoot);
+    if (GameState.isPartFixed) {
+      Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE_FINAL);
+      App.getScene().setRoot(roomOneRoot);
+    } else {
+      Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
+      App.getScene().setRoot(roomOneRoot);
+    }
     currentScene.setCurrent(1);
   }
 }
