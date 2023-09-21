@@ -95,7 +95,7 @@ public class MathQuestionSelector {
     mathQuestions.add(
         new MathQuestion(
             "A woman has somewhere between 10 to 15 alien fossils. She gives half of them away to"
-                + " charity and then kept 1 for herself. If she has 5 alien fossils left, how"
+                + " charity and then kept 1 for herself. If she has 7 alien fossils left, how"
                 + " many did she start with?",
             "12"));
     mathQuestions.add(
@@ -120,7 +120,7 @@ public class MathQuestionSelector {
             "45"));
     mathQuestions.add(
         new MathQuestion(
-            "A spaceship has a weight limit of 1500kg.  If everyo person inside weighs 75kg, how"
+            "A spaceship has a weight limit of 1500kg.  If every person inside weighs 75kg, how"
                 + " many people are in the spaceship?",
             "20"));
     mathQuestions.add(
