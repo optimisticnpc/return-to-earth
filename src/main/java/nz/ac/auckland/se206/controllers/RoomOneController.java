@@ -118,7 +118,7 @@ public class RoomOneController {
     activateSpeech(
         "The system detected a critical damage.\n"
             + "Please authorise yourself by clicking \nthe middle screen"
-            + " to access the system\nand analyse the damage.");
+            + "to access the system\nand analyse the damage.");
   }
 
   /**
@@ -131,19 +131,20 @@ public class RoomOneController {
   public void clickEngineWarning(MouseEvent event) throws IOException {
     System.out.println("Engine Warning clicked");
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation Needed. \n You need to be authorised to access\n the system.");
+      activateSpeech("Authorisation Needed. \nYou need to be authorised to access\nthe system.");
     } else {
       activateSpeech(
-          "Critical failure on the main engine"
+          "Critical failure on the main engine\n"
               + "The main engine is damaged.\n"
-              + " Please find the spare parts\n"
-              + " and fix the engine!");
+              + "Please find the spare parts\n"
+              + "and fix the engine!");
     }
   }
 
   @FXML
   public void clickWire(MouseEvent event) {
     GameState.isWireCollected = true;
+    activateSpeech("You have collected the wire!\nYou might need it to\n fix something...");
     room.getChildren().remove(wire);
     room.getChildren().remove(wireImage);
   }

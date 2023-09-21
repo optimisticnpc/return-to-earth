@@ -100,7 +100,7 @@ public class RoomThreeController {
                             speechBubble.setVisible(true);
                           }
                           activateSpeech(
-                              "OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
+                              "OXYGEN RUNNING LOW!\nOXYGEN RUNNING LOW!\nOXYGEN RUNNING LOW!");
                           warning = true;
                         }
                       }
@@ -136,7 +136,7 @@ public class RoomThreeController {
   @FXML
   public void clickAuthorisation(MouseEvent event) throws IOException {
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation Needed. \n You need to be authorised to access\n the system.");
+      activateSpeech("Authorisation Needed. \nYou need to be authorised to access\nthe system.");
       return;
     }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
@@ -183,7 +183,7 @@ public class RoomThreeController {
   public void pressScrew(MouseEvent event) {
 
     if (!GameState.isToolboxCollected) {
-      activateSpeech("Tools Needed. \n You need to find the right tools\n to open this hatch.");
+      activateSpeech("Tools Needed. \nYou need to find the right tools\nto open this hatch.");
       return;
     }
 
@@ -206,7 +206,7 @@ public class RoomThreeController {
       speechBubble.setVisible(true);
       speechLabel.setVisible(true);
       speech.setSpeechText(
-          "You have fixed the engine!\n Now you have to reactivate it\n from somewhere...");
+          "You have fixed the engine!\nNow you have to reactivate it\nfrom somewhere...");
     }
   }
 
