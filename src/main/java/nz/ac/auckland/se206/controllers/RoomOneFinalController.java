@@ -157,6 +157,12 @@ public class RoomOneFinalController {
     }
   }
 
+  /**
+   * Handles the click event on the reactivate screen
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the winscreen
+   */
   @FXML
   public void clickReactivate(MouseEvent event) throws IOException {
     if (GameState.isPartFixed) {
