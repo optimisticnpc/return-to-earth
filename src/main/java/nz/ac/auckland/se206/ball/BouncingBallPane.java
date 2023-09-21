@@ -10,8 +10,8 @@ import javafx.util.Duration;
 public class BouncingBallPane extends Pane {
 
   private double ballRadius = 10;
-  private double xSpeed = 1;
-  private double ySpeed = 1;
+  private double xSpeed = 0.5;
+  private double ySpeed = 0.5;
 
   public BouncingBallPane() {
     Circle ball = new Circle(ballRadius);

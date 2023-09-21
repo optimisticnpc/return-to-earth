@@ -72,7 +72,7 @@ public class SpacesuitPuzzleController {
   private void onSubmitCode() {
     String enteredPasscode = inputField.getText();
 
-    if (correctWordString.equals(enteredPasscode)) {
+    if (correctWordString.equals(enteredPasscode.toLowerCase())) {
       resultLabel.setText("Correct! Compartment unlocked.");
       GameState.isSpacesuitUnlocked = true;
 
