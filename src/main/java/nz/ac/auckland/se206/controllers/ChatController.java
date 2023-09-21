@@ -102,6 +102,12 @@ public class ChatController {
       } else if (GameState.phaseThree && GameState.hard) {
         System.out.println("Phase 3(Hard)");
         runGpt(new ChatMessage("user", GptPromptEngineering.getHardphaseThreeProgress()));
+      } else if (GameState.phaseFour && !GameState.hard) {
+        System.out.println("Phase 4");
+        runGpt(new ChatMessage("user", GptPromptEngineering.getphaseFourProgress()));
+      } else if (GameState.phaseFour && GameState.hard) {
+        System.out.println("Phase 4(Hard)");
+        runGpt(new ChatMessage("user", GptPromptEngineering.getHardphaseFourProgress()));
       }
     }
   }
@@ -189,10 +195,11 @@ public class ChatController {
           }
 
           appendChatMessage(result);
-          if (GameState.phaseTwo || GameState.phaseThree) {
+          if (GameState.phaseTwo || GameState.phaseThree || GameState.phaseFour) {
             chatTextArea.setText("");
             GameState.phaseTwo = false;
             GameState.phaseThree = false;
+            GameState.phaseFour = false;
           }
           if (result.getRole().equals("assistant")
               && result.getContent().startsWith("Authorization Complete")) {

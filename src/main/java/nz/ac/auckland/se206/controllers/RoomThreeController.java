@@ -194,7 +194,7 @@ public class RoomThreeController {
   }
 
   @FXML
-  public void clickHatch(MouseEvent event) throws FileNotFoundException {
+  public void clickHatch(MouseEvent event) throws IOException {
     System.out.println("hatch clicked");
     if (unscrewed && GameState.isWireCollected) {
       InputStream stream =
@@ -203,6 +203,8 @@ public class RoomThreeController {
       Image img = new Image(stream);
       background.setImage(img);
       GameState.isPartFixed = true;
+      GameState.phaseFour = true;
+      SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
       speechBubble.setVisible(true);
       speechLabel.setVisible(true);
       speech.setSpeechText(
