@@ -7,7 +7,6 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import nz.ac.auckland.se206.ball.BouncingBallPane?>
 
 <Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneFinalController">
    <children>
@@ -19,7 +18,6 @@
       <Rectangle fx:id="reactivate" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="104.0" layoutX="404.0" layoutY="295.0" onMouseClicked="#clickReactivate" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="192.0" />
       <Polygon fx:id="movetoRoomTwo" fill="#ff0400" layoutX="12.0" layoutY="325.0" onMouseClicked="#clickRoomTwo" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
       <Polygon fx:id="movetoRoomThree" fill="#ff0400" layoutX="927.0" layoutY="325.0" onMouseClicked="#clickRoomThree" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" rotate="180.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
-      <BouncingBallPane layoutX="261.0" layoutY="332.0" prefHeight="48.0" prefWidth="106.0" />
       <Label layoutX="166.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining:">
          <font>
             <Font size="20.0" />
@@ -30,9 +28,9 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Rectangle fx:id="blueSwitch" height="22.0" layoutX="252.0" layoutY="94.0" onMouseClicked="#clickBlueSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="42.0" />
-      <Rectangle fx:id="redSwitch" height="18.0" layoutX="467.0" layoutY="480.0" onMouseClicked="#clickRedSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="54.0" />
-      <Rectangle fx:id="greenSwitch" height="22.0" layoutX="709.0" layoutY="94.0" onMouseClicked="#clickGreenSwitch" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="39.0" />
+      <Rectangle fx:id="blueSwitch" height="36.0" layoutX="239.0" layoutY="87.0" onMouseClicked="#clickBlueSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="59.0" />
+      <Rectangle fx:id="redSwitch" height="37.0" layoutX="464.0" layoutY="479.0" onMouseClicked="#clickRedSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="60.0" />
+      <Rectangle fx:id="greenSwitch" height="37.0" layoutX="705.0" layoutY="86.0" onMouseClicked="#clickGreenSwitch" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="60.0" />
       <ImageView fitHeight="373.0" fitWidth="190.0" layoutX="67.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ai.png" />

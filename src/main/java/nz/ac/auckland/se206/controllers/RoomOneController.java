@@ -20,6 +20,7 @@ import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SpeechBubble;
+import nz.ac.auckland.se206.ball.BouncingBallPane;
 
 /** Controller class for the room view. */
 public class RoomOneController {
@@ -41,6 +42,8 @@ public class RoomOneController {
   @FXML private ImageView wire;
   @FXML private ImageView wireImage;
   @FXML private Polygon reactivationHint;
+  @FXML private BouncingBallPane bouncingBall;
+  @FXML private Rectangle ballToggle;
 
   private CurrentScene currentScene = CurrentScene.getInstance();
 
@@ -56,6 +59,7 @@ public class RoomOneController {
 
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
+    bouncingBall.setVisible(false);
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
     // update hintlabel according to the difficulty
     HintCounter hintCounter = HintCounter.getInstance();
@@ -89,6 +93,16 @@ public class RoomOneController {
     Parent roomThreeRoot = SceneManager.getUiRoot(AppUi.ROOM_THREE);
     currentScene.setCurrent(3);
     App.getScene().setRoot(roomThreeRoot);
+  }
+
+  /**
+   * Handles the click event on the bouncing ball pane.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  private void clickBallToggle(MouseEvent event) {
+    bouncingBall.setVisible(!bouncingBall.isVisible());
   }
 
   /**

@@ -69,11 +69,13 @@ public class MathQuestionSelector {
             "31"));
     mathQuestions.add(
         new MathQuestion(
-            "There are four piles of aliens.  The first pile is 4 more than the second pile,"
-                + " the second pile is four times the fourth pile, and the third pile is half the"
-                + " first pile. How many aliens are there altogether if the forth pile has one"
-                + " alien?",
-            "17"));
+            "What is the next number in this sequence: 10, 20, 30, 40, 50, 60, 70, 80, __", "90"));
+    mathQuestions.add(
+        new MathQuestion(
+            "There are four piles of aliens.  The first pile is 10 more than the second pile, the"
+                + " second pile is 10 times the third pile. How many aliens are there altogether if"
+                + " the third pile has 1 alien?",
+            "31"));
     mathQuestions.add(
         new MathQuestion(
             "In a spaceship there are space sheeps and cosmic chickens. There are 22 animals"
@@ -81,21 +83,20 @@ public class MathQuestionSelector {
             "15"));
     mathQuestions.add(
         new MathQuestion(
-            "Abigail, Barbara, Constance, Diana and Erica want to play each other at space"
-                + " badminton. How many games will they play?",
+            "Five aliens each want to  play a single round against each other"
+                + " at space badminton. How many games will they play?",
             "10"));
     mathQuestions.add(
         new MathQuestion(
-            "I have fewer than 20 space cabbages. If I plant them in rows of 3, I have 2 left over"
-                + " If I plant them in rows of 5, I have 2 left over, how many space cabbages do I"
-                + " have?",
+            "I have somewhere between 15 and 20 space cabbages. If I plant them in rows of 3, I"
+                + " have 2 left over If I plant them in rows of 5, I have 2 left over, how many"
+                + " space cabbages do I have?",
             "17"));
     mathQuestions.add(
         new MathQuestion(
-            "A teacher has somewhere between 5 to 15 alien fossils. On Monday she gave half of them"
-                + " away and then kept one for herself. On Tuesday she gave half of the remaining"
-                + " fossils away and then kept another for herself. If she has one alien fossil"
-                + " left on Wednesday, how many did she start with on Monday?",
+            "A woman has somewhere between 5 to 15 alien fossils. She gives half of them away to"
+                + " charity and then kept 1 for herself. If she has 4 alien fossils left, how"
+                + " many did she start with?",
             "10"));
     mathQuestions.add(
         new MathQuestion(
@@ -119,15 +120,13 @@ public class MathQuestionSelector {
             "45"));
     mathQuestions.add(
         new MathQuestion(
-            "A spaceship has a weight limit of 1500kg.  If the average weight of the people in the"
-                + " spaceship is 80kg and the combined weight of all the people is 100kg over the"
-                + " limit, how many people are in the spaceship?",
+            "A spaceship has a weight limit of 1500kg.  If everyone inside is 75kg, how many people"
+                + " are in the spaceship?",
             "20"));
     mathQuestions.add(
         new MathQuestion(
-            "A spaceship has a weight limit of 2200kg.  If the average weight of the people in the"
-                + " spaceship is 120kg and the combined weight of all the people is 200kg over the"
-                + " limit, how many people are in the spaceship?",
-            "20"));
+            "A spaceship has a weight limit of 2200kg.  If everyone inside is 50kg, how many people"
+                + " are in the spaceship?",
+            "44"));
   }
 }

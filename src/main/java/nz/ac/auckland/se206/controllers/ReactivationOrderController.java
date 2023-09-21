@@ -33,6 +33,5 @@ public class ReactivationOrderController {
       Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
       App.getScene().setRoot(roomOneRoot);
     }
-
   }
 }
