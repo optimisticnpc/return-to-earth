@@ -38,10 +38,8 @@ public class RoomOneController {
   @FXML private Label hintLabel;
   @FXML private ImageView robot;
   @FXML private ImageView speechBubble;
-  @FXML private Button reactivateButton;
   @FXML private ImageView wire;
   @FXML private ImageView wireImage;
-  @FXML private Polygon reactivationHint;
   @FXML private BouncingBallPane bouncingBall;
   @FXML private Rectangle ballToggle;
 
@@ -56,7 +54,7 @@ public class RoomOneController {
 
     System.out.println("RoomOneController.initialize()");
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
-
+    // initially sets speech bubble to invisible.
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
     bouncingBall.setVisible(false);
@@ -141,6 +139,11 @@ public class RoomOneController {
     }
   }
 
+  /**
+   * Handles the click event on the wire.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void clickWire(MouseEvent event) {
     GameState.isWireCollected = true;
@@ -149,18 +152,17 @@ public class RoomOneController {
     room.getChildren().remove(wireImage);
   }
 
+  /**
+   * Handles the click event on the close button.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void onClickClose(ActionEvent event) {
     backgroundScreen.getChildren().clear();
     room.getChildren().remove(backgroundScreen);
     activateSpeech(
         "Hey you! Have you passed the\nauthorisation riddle to be\ntouching this stuff?");
-  }
-
-  @FXML
-  private void clickReactivationHint(MouseEvent event) {
-    Parent reactivationRoot = SceneManager.getUiRoot(AppUi.REACTIVATION_ORDER);
-    App.getScene().setRoot(reactivationRoot);
   }
 
   /**

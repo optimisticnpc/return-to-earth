@@ -91,6 +91,11 @@ public class RoomOneFinalController {
     App.getScene().setRoot(roomThreeRoot);
   }
 
+  /**
+   * Handles the click event on the reactivation hint paper.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickReactivationHint(MouseEvent event) {
     Parent reactivationRoot = SceneManager.getUiRoot(AppUi.REACTIVATION_ORDER);
@@ -184,10 +189,11 @@ public class RoomOneFinalController {
    */
   @FXML
   public void activateSpeech(String text) {
-    // Shows speech bubble & label for 5 seconds
+    // Shows speech bubble and text
     speechBubble.setVisible(true);
     speechLabel.setVisible(true);
     speech.setSpeechText(text);
+    // Sets speech to invisible after 5 seconds.
     timer.schedule(
         new java.util.TimerTask() {
           @Override
