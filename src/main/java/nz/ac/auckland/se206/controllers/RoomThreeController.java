@@ -269,6 +269,7 @@ public class RoomThreeController {
   public void clickRoomOne(MouseEvent event) throws IOException {
     System.out.println("Room One Clicked");
     if (GameState.isPartFixed) {
+      // If part is fixed, go to room with reactivate button
       Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE_FINAL);
       App.getScene().setRoot(roomOneRoot);
     } else {
