@@ -71,7 +71,7 @@ public class RoomTwoController {
   public void clickAuthorisation(MouseEvent event) throws IOException {
     // If riddle not solved tell the player to get authorised
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation Needed. \nYou need to be authorised to access\nthe system.");
+      activateSpeech("Authorisation needed to access\nthe system.");
       return;
     }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
@@ -184,7 +184,7 @@ public class RoomTwoController {
 
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation Needed. \nYou need to be authorised to access\nthe system.");
+      activateSpeech("Authorisation needed to access\nthe system.");
       return;
     }
 
@@ -201,7 +201,7 @@ public class RoomTwoController {
     } else if (!GameState.isSpacesuitCollected) {
       collectSpacesuit();
       activateSpeech(
-          "You have collected the spacesuit!\nNow you're able to\nStay outside for longer!");
+          "You have collected the spacesuit!\nNow you're able to stay outside\nfor longer!");
       GameState.isSpacesuitCollected = true;
       GameState.isSpacesuitJustCollected = true;
     }
@@ -219,7 +219,7 @@ public class RoomTwoController {
 
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation Needed. \n You need to be authorised to access\n the system.");
+      activateSpeech("Authorisation needed to access\n the system.");
       return;
     }
 

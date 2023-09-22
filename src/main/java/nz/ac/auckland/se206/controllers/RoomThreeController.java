@@ -113,7 +113,7 @@ public class RoomThreeController {
   public void clickAuthorisation(MouseEvent event) throws IOException {
     // If the riddle is not solved tell the player to get authorisation
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation Needed. \nYou need to be authorised to access\nthe system.");
+      activateSpeech("Authorisation needed to access\nthe system.");
       return;
     }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
@@ -174,7 +174,7 @@ public class RoomThreeController {
 
     // If toolbox not collected
     if (!GameState.isToolboxCollected) {
-      activateSpeech("Tools Needed. \nYou need to find the right tools\nto open this hatch.");
+      activateSpeech("You need to find the right tools\nto open this hatch.");
       return;
     }
 

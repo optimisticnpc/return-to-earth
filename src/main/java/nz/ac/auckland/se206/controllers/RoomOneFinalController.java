@@ -178,7 +178,7 @@ public class RoomOneFinalController {
       blueSwitch.setVisible(true);
       switchIndex = 0;
       correctSwitch = 0;
-      activateSpeech("Wrong order!\n" + "Please try reactivating again\n" + " with right order");
+      activateSpeech("Press the buttons in the right order\n" + "to reactivate! Please try again!");
     }
   }
 

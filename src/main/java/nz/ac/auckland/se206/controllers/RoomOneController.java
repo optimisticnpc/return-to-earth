@@ -113,7 +113,7 @@ public class RoomOneController {
   private void clickMainWarning(MouseEvent event) throws IOException {
     System.out.println("Main Warning clicked");
     activateSpeech(
-        "The system detected a critical damage.\n"
+        "Critical damage detected on the ship.\n"
             + "Please authorise yourself by clicking \nthe middle screen "
             + "to access the system\nand analyse the damage.");
   }
@@ -129,13 +129,10 @@ public class RoomOneController {
     System.out.println("Engine Warning clicked");
     // If riddle not solved tell the player to get authorization
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation Needed. \nYou need to be authorised to access\nthe system.");
+      activateSpeech("Authorisation needed to access\nthe system.");
     } else {
       activateSpeech(
-          "Critical failure on the main engine\n"
-              + "The main engine is damaged.\n"
-              + "Please find the spare parts\n"
-              + "and fix the engine!");
+          "Critical failure on the main engine\n" + "Please find the spare parts and\nfix it!");
     }
   }
 

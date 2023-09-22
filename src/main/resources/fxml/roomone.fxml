@@ -84,7 +84,7 @@
                </font>
             </Button>
             <Text layoutX="296.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fill="WHITE" layoutX="100.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your fellow passengers along with the crew have evacuated the ship while you were napping. Fix the ship and return to Earth or remain trapped in space forever!" textAlignment="CENTER" wrappingWidth="667.181640625">
+            <Text fill="WHITE" layoutX="100.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The crew has evacuated with your fellow passengers while you were napping. Fix the ship and return to Earth or remain trapped in space forever!" textAlignment="CENTER" wrappingWidth="667.181640625">
                <font>
                   <Font size="50.0" />
                </font>
