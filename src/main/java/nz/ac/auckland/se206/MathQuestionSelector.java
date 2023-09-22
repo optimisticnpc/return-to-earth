@@ -57,12 +57,16 @@ public class MathQuestionSelector {
 
   private void initializeQuestions() {
     // Initialize all the math questions
+
+    // Fibonacci questions
     mathQuestions.add(
         new MathQuestion(
             "What is the next number in this sequence: 0, 1, 1, 2, 3, 5, 8, __", "13"));
     mathQuestions.add(
         new MathQuestion(
             "What is the next number in this sequence: 0, 1, 1, 2, 4, 7, 13, 24, 44, __", "81"));
+
+    // Prime numbers
     mathQuestions.add(
         new MathQuestion(
             "What is the next number in this sequence: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, __",
@@ -72,7 +76,7 @@ public class MathQuestionSelector {
             "What is the next number in this sequence: 10, 20, 30, 40, 50, 60, 70, 80, __", "90"));
     mathQuestions.add(
         new MathQuestion(
-            "There are three piles of aliens.  The first pile is 10 more than the second pile, the"
+            "There are three piles of aliens. The first pile is 10 more than the second pile, the"
                 + " second pile is 10 times the third pile. How many aliens are there altogether if"
                 + " the third pile has 1 alien?",
             "31"));
@@ -86,17 +90,18 @@ public class MathQuestionSelector {
             "There are five aliens. Each of the five want to play a single round of space badminton"
                 + " against the other four. How many games will they play in total?",
             "10"));
+
     mathQuestions.add(
         new MathQuestion(
             "I have somewhere between 15 and 20 space cabbages. If I plant them in rows of 3, I"
                 + " have 2 left over. If I plant them in rows of 5, I have 2 left over, how many"
                 + " space cabbages do I have?",
-            "17"));
+            "17")); // 17 is the only number thats fits either of those requirements individually
     mathQuestions.add(
         new MathQuestion(
             "There is a pile of alien fossils. Person A takes half of the pile for himself. Person"
-                + " B takes 1 for himself. If there are 5 fossils remaining in the pile, how many"
-                + " were there at the start?",
+                + " B takes 1 from the remaining pile for himself. If there are 5 fossils remaining"
+                + " in the pile, how many were there at the start?",
             "12"));
     mathQuestions.add(
         new MathQuestion(
@@ -108,6 +113,8 @@ public class MathQuestionSelector {
             "On the Moon, a spaceboot is about 9.5kg. On Earth, the gravitational force is 6 times"
                 + " as strong as on the Moon. How much would the boots weigh on Earth?",
             "57"));
+
+    // Divide by three to get the middle number, then find the next largest odd number
     mathQuestions.add(
         new MathQuestion(
             "Three consecutive odd numbers are added together to give a sum of 57. What is the"

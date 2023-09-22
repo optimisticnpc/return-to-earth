@@ -25,8 +25,9 @@ public class ReactivationOrderController {
   }
 
   @FXML
-  public void onGoBack() {
+  private void onGoBack() {
     if (GameState.isPartFixed) {
+      // If part is fixed, go to room with reactivate button
       Parent roomOneRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE_FINAL);
       App.getScene().setRoot(roomOneRoot);
     } else {

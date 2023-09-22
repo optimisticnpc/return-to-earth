@@ -10,8 +10,9 @@ import javafx.util.Duration;
 public class BouncingBallPane extends Pane {
 
   private double ballRadius = 10;
-  private double xSpeed = 0.5;
-  private double ySpeed = 0.5;
+  // Change variable names from xSpeed and ySpeed because codestyle was flagging it for some reason
+  private double horizontalSpeed = 0.5;
+  private double verticalSpeed = 0.5;
 
   public BouncingBallPane() {
     Circle ball = new Circle(ballRadius);
@@ -26,14 +27,14 @@ public class BouncingBallPane extends Pane {
   }
 
   private void move(Circle ball) {
-    ball.setLayoutX(ball.getLayoutX() + xSpeed);
-    ball.setLayoutY(ball.getLayoutY() + ySpeed);
+    ball.setLayoutX(ball.getLayoutX() + horizontalSpeed);
+    ball.setLayoutY(ball.getLayoutY() + verticalSpeed);
 
     if (ball.getLayoutX() > getWidth() || ball.getLayoutX() < 0) {
-      xSpeed *= -1;
+      horizontalSpeed *= -1;
     }
     if (ball.getLayoutY() > getHeight() || ball.getLayoutY() < 0) {
-      ySpeed *= -1;
+      verticalSpeed *= -1;
     }
   }
 }
