@@ -159,8 +159,7 @@ public class App extends Application {
           } else if (keyCombA.match(event)) {
             System.out.println("Ctrl + Alt + A was pressed!");
             // Get answers for all puzzles
-            // TODO: Implement
-
+           
             // Riddle:
             System.out.println("Riddle: " + ChatController.getWordToGuess());
 
