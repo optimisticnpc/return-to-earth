@@ -34,12 +34,12 @@
     </VBox>
     
     <Button fx:id="goBackButton" layoutX="24.0" layoutY="23.0" onAction="#onGoBack" prefHeight="47.0" prefWidth="103.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-border-radius: 5;" text="Go Back" />
-   <Label layoutX="170.0" layoutY="23.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining:">
+   <Label layoutX="170.0" layoutY="23.0" prefHeight="35.0" prefWidth="213.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining:">
       <font>
          <Font size="20.0" />
       </font>
    </Label>
-   <Label fx:id="timerLabel" layoutX="368.0" layoutY="23.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="2:00">
+   <Label fx:id="timerLabel" layoutX="387.0" layoutY="24.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="2:00">
       <font>
          <Font size="20.0" />
       </font>

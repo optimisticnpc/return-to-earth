@@ -20,16 +20,16 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Label layoutX="177.0" layoutY="33.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="timerLabel" layoutX="375.0" layoutY="33.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="2:00">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <Button fx:id="goBackButton" layoutX="34.0" layoutY="33.0" onAction="#onGoBack" prefHeight="47.0" prefWidth="103.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-border-radius: 5;" text="Go Back" />
+      <Label layoutX="176.0" layoutY="30.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="timerLabel" layoutX="392.0" layoutY="30.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="2:00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
