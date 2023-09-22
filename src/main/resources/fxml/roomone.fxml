@@ -45,16 +45,6 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="453.0" layoutY="20.0" prefHeight="35.0" prefWidth="282.0" text="Hints Remaining :" textFill="#e5ff00">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="hintLabel" layoutX="633.0" layoutY="21.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <ImageView fx:id="wireImage" fitHeight="56.0" fitWidth="167.0" layoutX="807.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true" rotate="17.4">
          <image>
             <Image url="@../images/wire.png" />
@@ -87,6 +77,16 @@
          </children>
       </Pane>
       <Label fx:id="timerLabel" layoutX="171.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="571.0" layoutY="24.0" prefHeight="35.0" prefWidth="202.0" text="Hints Remaining :" textFill="#e5ff00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="hintLabel" layoutX="755.0" layoutY="24.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>
