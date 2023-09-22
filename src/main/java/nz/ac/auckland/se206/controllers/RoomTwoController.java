@@ -41,6 +41,7 @@ public class RoomTwoController {
   private Timer timer = new Timer();
   private CurrentScene currentScene = CurrentScene.getInstance();
 
+  /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     System.out.println("RoomTwoController.initialize()");
     speechBubble.setVisible(false);
@@ -70,7 +71,7 @@ public class RoomTwoController {
   public void clickAuthorisation(MouseEvent event) throws IOException {
     // If riddle not solved tell the player to get authorised
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation Needed. \nYou need to be authorised to access\nthe system.");
+      activateSpeech("Authorisation needed to access\nthe system.");
       return;
     }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
@@ -79,6 +80,12 @@ public class RoomTwoController {
     currentScene.setCurrent(12);
   }
 
+  /**
+   * Handles the click event on the room 1 triangle.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the room1/room1final view
+   */
   @FXML
   public void clickRoomOne(MouseEvent event) throws IOException {
     System.out.println("Room One Clicked");
@@ -92,12 +99,24 @@ public class RoomTwoController {
     currentScene.setCurrent(1);
   }
 
+  /**
+   * Handles the click event on question 1.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the question 1 view
+   */
   @FXML
   public void clickQuestionOne(MouseEvent event) throws IOException {
     Parent questionOneRoot = SceneManager.getUiRoot(AppUi.QUESTION_ONE);
     App.getScene().setRoot(questionOneRoot);
   }
 
+  /**
+   * Handles the click event on question 2.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the question 2 view
+   */
   @FXML
   public void clickQuestionTwo(MouseEvent event) throws IOException {
     Parent questionTwoRoot = SceneManager.getUiRoot(AppUi.QUESTION_TWO);
@@ -153,13 +172,19 @@ public class RoomTwoController {
     }
   }
 
+  /**
+   * Handles the click event on the spacesuit.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the spacesuit puzzle view
+   */
   @FXML
   public void clickSpacesuit(MouseEvent event) throws IOException {
     System.out.println("Spacesuit Clicked");
 
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation Needed. \nYou need to be authorised to access\nthe system.");
+      activateSpeech("Authorisation needed to access\nthe system.");
       return;
     }
 
@@ -176,19 +201,25 @@ public class RoomTwoController {
     } else if (!GameState.isSpacesuitCollected) {
       collectSpacesuit();
       activateSpeech(
-          "You have collected the spacesuit!\nNow you're able to\nStay outside for longer!");
+          "You have collected the spacesuit!\nNow you're able to stay outside\nfor longer!");
       GameState.isSpacesuitCollected = true;
       GameState.isSpacesuitJustCollected = true;
     }
   }
 
+  /**
+   * Handles the click event on the tool compartment.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the passcode view
+   */
   @FXML
   public void clickToolCompartment(MouseEvent event) throws IOException {
     System.out.println("Tool Compartment Clicked");
 
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation Needed. \n You need to be authorised to access\n the system.");
+      activateSpeech("Authorisation needed to access\n the system.");
       return;
     }
 
@@ -209,6 +240,12 @@ public class RoomTwoController {
     }
   }
 
+  /**
+   * Helper function that fades in a specified object.
+   *
+   * @param node the specified image
+   * @param duration the duration it takes for the image to load in
+   */
   private void fadeInNode(ImageView node, double duration) {
     FadeTransition fadeTransition = new FadeTransition();
     fadeTransition.setNode(node);

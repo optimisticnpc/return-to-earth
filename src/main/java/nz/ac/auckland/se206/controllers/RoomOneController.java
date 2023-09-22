@@ -38,10 +38,8 @@ public class RoomOneController {
   @FXML private Label hintLabel;
   @FXML private ImageView robot;
   @FXML private ImageView speechBubble;
-  @FXML private Button reactivateButton;
   @FXML private ImageView wire;
   @FXML private ImageView wireImage;
-  @FXML private Polygon reactivationHint;
   @FXML private BouncingBallPane bouncingBall;
   @FXML private Rectangle ballToggle;
 
@@ -56,7 +54,7 @@ public class RoomOneController {
 
     System.out.println("RoomOneController.initialize()");
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
-
+    // initially sets speech bubble to invisible.
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
     bouncingBall.setVisible(false);
@@ -115,8 +113,8 @@ public class RoomOneController {
   private void clickMainWarning(MouseEvent event) throws IOException {
     System.out.println("Main Warning clicked");
     activateSpeech(
-        "The system detected a critical damage.\n"
-            + "Please authorise yourself by clicking \nthe middle screen"
+        "Critical damage detected on the ship.\n"
+            + "Please authorise yourself by clicking \nthe middle screen "
             + "to access the system\nand analyse the damage.");
   }
 
@@ -131,34 +129,37 @@ public class RoomOneController {
     System.out.println("Engine Warning clicked");
     // If riddle not solved tell the player to get authorization
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation Needed. \nYou need to be authorised to access\nthe system.");
+      activateSpeech("Authorisation needed to access\nthe system.");
     } else {
       activateSpeech(
-          "Critical failure on the main engine\n"
-              + "The main engine is damaged.\n"
-              + "Please find the spare parts\n"
-              + "and fix the engine!");
+          "Critical failure on the main engine\n" + "Please find the spare parts and\nfix it!");
     }
   }
 
+  /**
+   * Handles the click event on the wire.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void clickWire(MouseEvent event) {
     GameState.isWireCollected = true;
-    activateSpeech("You have collected the wire!\nYou might need it to\n fix something...");
+    activateSpeech("You have collected the wire!\nYou might need it to\nfix something...");
     room.getChildren().remove(wire);
     room.getChildren().remove(wireImage);
   }
 
+  /**
+   * Handles the click event on the close button.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void onClickClose(ActionEvent event) {
     backgroundScreen.getChildren().clear();
     room.getChildren().remove(backgroundScreen);
-  }
-
-  @FXML
-  private void clickReactivationHint(MouseEvent event) {
-    Parent reactivationRoot = SceneManager.getUiRoot(AppUi.REACTIVATION_ORDER);
-    App.getScene().setRoot(reactivationRoot);
+    activateSpeech(
+        "Hey you! Have you passed the\nauthorisation riddle to be\ntouching this stuff?");
   }
 
   /**

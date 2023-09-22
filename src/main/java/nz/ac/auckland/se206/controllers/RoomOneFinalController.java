@@ -91,6 +91,11 @@ public class RoomOneFinalController {
     App.getScene().setRoot(roomThreeRoot);
   }
 
+  /**
+   * Handles the click event on the reactivation hint paper.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickReactivationHint(MouseEvent event) {
     Parent reactivationRoot = SceneManager.getUiRoot(AppUi.REACTIVATION_ORDER);
@@ -106,14 +111,13 @@ public class RoomOneFinalController {
   @FXML
   public void clickRedSwitch(MouseEvent event) throws IOException {
     System.out.println("Red Switch clicked");
-    if (GameState.isPartFixed) {
-      redSwitch.setVisible(false);
-      if (switchOrder[switchIndex].equals("red")) {
-        switchIndex++;
-        correctSwitch++;
-      } else {
-        switchIndex++;
-      }
+    redSwitch.setVisible(false);
+    // Increments correct switch if user clicks in the right order
+    if (switchOrder[switchIndex].equals("red")) {
+      switchIndex++;
+      correctSwitch++;
+    } else {
+      switchIndex++;
     }
   }
 
@@ -126,14 +130,13 @@ public class RoomOneFinalController {
   @FXML
   public void clickGreenSwitch(MouseEvent event) throws IOException {
     System.out.println("Green Switch clicked");
-    if (GameState.isPartFixed) {
-      greenSwitch.setVisible(false);
-      if (switchOrder[switchIndex].equals("green")) {
-        switchIndex++;
-        correctSwitch++;
-      } else {
-        switchIndex++;
-      }
+    greenSwitch.setVisible(false);
+    // Increments correct switch if user clicks in the right order
+    if (switchOrder[switchIndex].equals("green")) {
+      switchIndex++;
+      correctSwitch++;
+    } else {
+      switchIndex++;
     }
   }
 
@@ -146,14 +149,13 @@ public class RoomOneFinalController {
   @FXML
   public void clickBlueSwitch(MouseEvent event) throws IOException {
     System.out.println("Blue Switch clicked");
-    if (GameState.isPartFixed) {
-      blueSwitch.setVisible(false);
-      if (switchOrder[switchIndex].equals("blue")) {
-        switchIndex++;
-        correctSwitch++;
-      } else {
-        switchIndex++;
-      }
+    blueSwitch.setVisible(false);
+    // Increments correct switch if user clicks in the right order
+    if (switchOrder[switchIndex].equals("blue")) {
+      switchIndex++;
+      correctSwitch++;
+    } else {
+      switchIndex++;
     }
   }
 
@@ -165,18 +167,18 @@ public class RoomOneFinalController {
    */
   @FXML
   public void clickReactivate(MouseEvent event) throws IOException {
-    if (GameState.isPartFixed) {
-      if (correctSwitch == 3) {
-        gameTimer.stopTimer();
-        App.setRoot("winscreen");
-      } else {
-        redSwitch.setVisible(true);
-        greenSwitch.setVisible(true);
-        blueSwitch.setVisible(true);
-        switchIndex = 0;
-        correctSwitch = 0;
-        activateSpeech("Wrong order!\n" + "Please try reactivating again\n" + " with right order");
-      }
+    // User wins if reactivate is clicked after switches are clicked in correct order. Else resets
+    // switches
+    if (correctSwitch == 3) {
+      gameTimer.stopTimer();
+      App.setRoot("winscreen");
+    } else {
+      redSwitch.setVisible(true);
+      greenSwitch.setVisible(true);
+      blueSwitch.setVisible(true);
+      switchIndex = 0;
+      correctSwitch = 0;
+      activateSpeech("Press the buttons in the right order\n" + "to reactivate! Please try again!");
     }
   }
 
@@ -187,9 +189,11 @@ public class RoomOneFinalController {
    */
   @FXML
   public void activateSpeech(String text) {
+    // Shows speech bubble and text
     speechBubble.setVisible(true);
     speechLabel.setVisible(true);
     speech.setSpeechText(text);
+    // Sets speech to invisible after 5 seconds.
     timer.schedule(
         new java.util.TimerTask() {
           @Override

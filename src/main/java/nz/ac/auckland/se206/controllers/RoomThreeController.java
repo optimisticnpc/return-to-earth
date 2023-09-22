@@ -61,6 +61,7 @@ public class RoomThreeController {
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
 
+  /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     System.out.println("RoomThreeController.initialize()");
 
@@ -71,6 +72,7 @@ public class RoomThreeController {
     oxygenBar.progressProperty().bind(oxygenMeter.oxygenProgressProperty());
     meterPercent.textProperty().bind(oxygenMeter.percentProgressProperty());
 
+    // Hides speech bubble at first
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
@@ -81,6 +83,7 @@ public class RoomThreeController {
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
   }
 
+  /** Initializes the rotating meter, it is called when the screw is clicked. */
   public void initializeRotate() {
     // Initializes the parameters of the rotating pointer in the timing game
     Task<Void> rotateTask =
@@ -110,7 +113,7 @@ public class RoomThreeController {
   public void clickAuthorisation(MouseEvent event) throws IOException {
     // If the riddle is not solved tell the player to get authorisation
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation Needed. \nYou need to be authorised to access\nthe system.");
+      activateSpeech("Authorisation needed to access\nthe system.");
       return;
     }
     Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
@@ -127,6 +130,11 @@ public class RoomThreeController {
     }
   }
 
+  /**
+   * Shows a 'success!' message once the player completes the timing minigame.
+   *
+   * @throws FileNotFoundException if the background image file is not found.
+   */
   @FXML
   public void showSuccessMessage() throws FileNotFoundException {
     Task<Void> successTask =
@@ -156,12 +164,17 @@ public class RoomThreeController {
     successThread.start();
   }
 
+  /**
+   * Handles the click event on the screw.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void pressScrew(MouseEvent event) {
 
     // If toolbox not collected
     if (!GameState.isToolboxCollected) {
-      activateSpeech("Tools Needed. \nYou need to find the right tools\nto open this hatch.");
+      activateSpeech("You need to find the right tools\nto open this hatch.");
       return;
     }
 
@@ -172,6 +185,12 @@ public class RoomThreeController {
     initializeRotate();
   }
 
+  /**
+   * Handles the click event on the hatch.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the chat
+   */
   @FXML
   public void clickHatch(MouseEvent event) throws IOException {
     System.out.println("hatch clicked");
@@ -195,7 +214,7 @@ public class RoomThreeController {
   /**
    * Sets the text of the speech bubble and makes it visible for 5 seconds.
    *
-   * @param text
+   * @param text the words for the ai to say
    */
   @FXML
   public void activateSpeech(String text) {
@@ -215,6 +234,11 @@ public class RoomThreeController {
     // 5 second delay
   }
 
+  /**
+   * Handles the click event on the resume button.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickResumeButton(MouseEvent event) {
     System.out.println("resume clicked");
@@ -235,6 +259,12 @@ public class RoomThreeController {
     }
   }
 
+  /**
+   * Handles the click event on the room 1 triangle.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading room1/room1final
+   */
   @FXML
   public void clickRoomOne(MouseEvent event) throws IOException {
     System.out.println("Room One Clicked");
