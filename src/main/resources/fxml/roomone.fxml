@@ -55,7 +55,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="453.0" layoutY="20.0" prefHeight="35.0" prefWidth="190.0" text="Hints Remaining :" textFill="#e5ff00">
+      <Label layoutX="453.0" layoutY="20.0" prefHeight="35.0" prefWidth="282.0" text="Hints Remaining :" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>

@@ -23,14 +23,14 @@
             <Image url="@../images/loading_icon.gif" />
          </image>
       </ImageView>
-      <Label fx:id="timerLabel" layoutX="203.0" layoutY="14.0" text="2:00">
+      <Label fx:id="timerLabel" layoutX="208.0" layoutY="17.0" text="2:00">
          <font>
-            <Font size="20.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="35.0" layoutY="14.0" prefHeight="30.0" prefWidth="154.0" text="Time Remaining:">
+      <Label layoutX="35.0" layoutY="14.0" prefHeight="30.0" prefWidth="173.0" text="Time Remaining:">
          <font>
-            <Font size="20.0" />
+            <Font size="18.0" />
          </font>
       </Label>
       <ImageView fx:id="soundIcon" fitHeight="60.0" fitWidth="49.0" layoutX="517.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true">
@@ -48,14 +48,14 @@
             <Image url="@../images/ai%20thinking%20circle.png" />
          </image>
       </ImageView>
-      <Label layoutX="265.0" layoutY="11.0" prefHeight="35.0" prefWidth="164.0" text="Hints Remaining:">
+      <Label layoutX="303.0" layoutY="11.0" prefHeight="35.0" prefWidth="208.0" text="Hints Remaining:">
          <font>
-            <Font size="20.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="hintLabel" layoutX="437.0" layoutY="11.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited">
+      <Label fx:id="hintLabel" layoutX="478.0" layoutY="11.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited">
          <font>
-            <Font size="20.0" />
+            <Font size="18.0" />
          </font>
       </Label>
   </children>
