@@ -153,6 +153,8 @@ public class RoomOneController {
   private void onClickClose(ActionEvent event) {
     backgroundScreen.getChildren().clear();
     room.getChildren().remove(backgroundScreen);
+    activateSpeech(
+        "Hey you! Have you passed the\nauthorisation riddle to be\ntouching this stuff?");
   }
 
   @FXML
