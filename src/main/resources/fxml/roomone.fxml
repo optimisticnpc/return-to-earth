@@ -24,17 +24,7 @@
       <Polygon fx:id="movetoRoomTwo" fill="#ff0400" layoutX="12.0" layoutY="325.0" onMouseClicked="#clickRoomTwo" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
       <Polygon fx:id="movetoRoomThree" fill="#ff0400" layoutX="927.0" layoutY="325.0" onMouseClicked="#clickRoomThree" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" rotate="180.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
       <BouncingBallPane fx:id="bouncingBall" layoutX="261.0" layoutY="332.0" prefHeight="48.0" prefWidth="106.0" />
-      <Rectangle fx:id="ballToggle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="64.0" layoutX="252.0" layoutY="323.0" onMouseClicked="#clickBallToggle" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="123.0" />
-      <Label layoutX="166.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="timerLabel" layoutX="364.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="2:00">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
+      <Rectangle fx:id="ballToggle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="77.0" layoutX="247.0" layoutY="317.0" onMouseClicked="#clickBallToggle" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="135.0" />
       <ImageView fitHeight="373.0" fitWidth="190.0" layoutX="67.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ai.png" />
@@ -55,16 +45,6 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="453.0" layoutY="20.0" prefHeight="35.0" prefWidth="160.0" text="Hints Remaining :" textFill="#e5ff00">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="hintLabel" layoutX="613.0" layoutY="20.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <ImageView fx:id="wireImage" fitHeight="56.0" fitWidth="167.0" layoutX="807.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true" rotate="17.4">
          <image>
             <Image url="@../images/wire.png" />
@@ -75,7 +55,7 @@
             <Image url="@../images/wire%20hover.png" />
          </image>
       </ImageView>
-      <Pane fx:id="backgroundScreen" layoutX="64.0" layoutY="40.0" prefHeight="561.0" prefWidth="873.0">
+      <Pane fx:id="backgroundScreen" layoutX="64.0" layoutY="40.0" prefHeight="561.0" prefWidth="873.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="574.0" layoutX="-9.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" width="885.0" />
             <Button fx:id="closeButton" layoutX="713.0" layoutY="37.0" mnemonicParsing="false" onAction="#onClickClose" prefHeight="60.0" prefWidth="94.0" text="Close" textAlignment="CENTER">
@@ -96,5 +76,20 @@
             </Text>
          </children>
       </Pane>
+      <Label fx:id="timerLabel" layoutX="171.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="571.0" layoutY="24.0" prefHeight="35.0" prefWidth="202.0" text="Hints Remaining :" textFill="#e5ff00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="hintLabel" layoutX="755.0" layoutY="24.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

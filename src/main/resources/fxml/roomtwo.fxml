@@ -35,16 +35,6 @@
             <Image url="@../images/spacesuitGone.png" />
          </image>
       </ImageView>
-      <Label layoutX="122.0" layoutY="50.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="timerLabel" layoutX="320.0" layoutY="50.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="2:00">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <Polygon fx:id="toolCompartment" fill="WHITE" layoutX="410.0" layoutY="568.0" onMouseClicked="#clickToolCompartment" opacity="0.0" points="-67.25, 63.5, 54.5, 63.5, 84.75, -11.0, -24.0, -11.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="rectangle-hoverable" />
       <Rectangle fx:id="questionOne" arcHeight="5.0" arcWidth="5.0" height="63.0" layoutX="376.0" layoutY="403.0" onMouseClicked="#clickQuestionOne" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
       <Rectangle fx:id="questionTwo" arcHeight="5.0" arcWidth="5.0" height="63.0" layoutX="432.0" layoutY="403.0" onMouseClicked="#clickQuestionTwo" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
@@ -78,12 +68,17 @@
             <Font size="15.0" />
                      </font>
       </Label>
-      <Label layoutX="399.0" layoutY="50.0" prefHeight="35.0" prefWidth="160.0" text="Hints Remaining:" textFill="#e5ff00">
+      <Label layoutX="477.0" layoutY="40.0" prefHeight="35.0" prefWidth="249.0" text="Hints Remaining:" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="hintLabel" layoutX="559.0" layoutY="50.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
+      <Label fx:id="hintLabel" layoutX="667.0" layoutY="40.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="timerLabel" layoutX="92.0" layoutY="40.0" prefHeight="35.0" prefWidth="328.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
          <font>
             <Font size="20.0" />
          </font>

@@ -18,16 +18,6 @@
       <Rectangle fx:id="reactivate" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="104.0" layoutX="404.0" layoutY="295.0" onMouseClicked="#clickReactivate" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="192.0" />
       <Polygon fx:id="movetoRoomTwo" fill="#ff0400" layoutX="12.0" layoutY="325.0" onMouseClicked="#clickRoomTwo" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
       <Polygon fx:id="movetoRoomThree" fill="#ff0400" layoutX="927.0" layoutY="325.0" onMouseClicked="#clickRoomThree" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" rotate="180.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
-      <Label layoutX="166.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="timerLabel" layoutX="364.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="2:00">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <Rectangle fx:id="blueSwitch" height="36.0" layoutX="239.0" layoutY="87.0" onMouseClicked="#clickBlueSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="59.0" />
       <Rectangle fx:id="redSwitch" height="37.0" layoutX="464.0" layoutY="479.0" onMouseClicked="#clickRedSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="60.0" />
       <Rectangle fx:id="greenSwitch" height="37.0" layoutX="705.0" layoutY="86.0" onMouseClicked="#clickGreenSwitch" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="60.0" />
@@ -51,16 +41,21 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="453.0" layoutY="20.0" prefHeight="35.0" prefWidth="160.0" text="Hints Remaining :" textFill="#e5ff00">
+      <Label layoutX="561.0" layoutY="14.0" prefHeight="35.0" prefWidth="202.0" text="Hints Remaining :" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="hintLabel" layoutX="613.0" layoutY="20.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
+      <Label fx:id="hintLabel" layoutX="745.0" layoutY="14.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
       <Polygon fx:id="reactivationHint" layoutX="678.0" layoutY="604.0" onMouseClicked="#clickReactivationHint" points="41.5, -45.5, 3.25, -26.75, -32.5, -16.75, -12.0, 28.0, 30.5, 12.75, 71.5, -7.75, 54.25, -26.75" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle-hoverable" />
+      <Label fx:id="timerLabel" layoutX="188.0" layoutY="16.0" prefHeight="35.0" prefWidth="328.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
