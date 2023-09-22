@@ -14,12 +14,12 @@
             <Image url="@../images/losescreen.png" />
          </image>
       </ImageView>
-      <Button fx:id="exitButton" layoutX="406.0" layoutY="406.0" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="90.0" prefWidth="188.0" text="Exit ">
+      <Button fx:id="exitButton" layoutX="400.0" layoutY="400.0" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="90.0" prefWidth="200.0" text="Exit ">
          <font>
             <Font size="38.0" />
          </font>
       </Button>
-      <Button fx:id="restartButton" layoutX="406.0" layoutY="299.0" mnemonicParsing="false" onAction="#onClickRestartButton" prefHeight="90.0" prefWidth="188.0" text="Restart">
+      <Button fx:id="restartButton" layoutX="400.0" layoutY="301.0" mnemonicParsing="false" onAction="#onClickRestartButton" prefHeight="90.0" prefWidth="200.0" text="Restart">
          <font>
             <Font size="38.0" />
          </font>
