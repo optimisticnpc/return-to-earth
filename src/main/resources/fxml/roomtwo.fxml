@@ -68,22 +68,17 @@
             <Font size="15.0" />
                      </font>
       </Label>
-      <Label layoutX="399.0" layoutY="50.0" prefHeight="35.0" prefWidth="249.0" text="Hints Remaining:" textFill="#e5ff00">
+      <Label layoutX="477.0" layoutY="40.0" prefHeight="35.0" prefWidth="249.0" text="Hints Remaining:" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="hintLabel" layoutX="573.0" layoutY="50.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
+      <Label fx:id="hintLabel" layoutX="667.0" layoutY="40.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="112.0" layoutY="50.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="timerLabel" layoutX="328.0" layoutY="50.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="2:00">
+      <Label fx:id="timerLabel" layoutX="92.0" layoutY="40.0" prefHeight="35.0" prefWidth="328.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
          <font>
             <Font size="20.0" />
          </font>

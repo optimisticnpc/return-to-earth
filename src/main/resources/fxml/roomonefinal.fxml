@@ -41,23 +41,18 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="483.0" layoutY="30.0" prefHeight="35.0" prefWidth="202.0" text="Hints Remaining :" textFill="#e5ff00">
+      <Label layoutX="528.0" layoutY="17.0" prefHeight="35.0" prefWidth="202.0" text="Hints Remaining :" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="hintLabel" layoutX="667.0" layoutY="30.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
+      <Label fx:id="hintLabel" layoutX="712.0" layoutY="17.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
       <Polygon fx:id="reactivationHint" layoutX="678.0" layoutY="604.0" onMouseClicked="#clickReactivationHint" points="41.5, -45.5, 3.25, -26.75, -32.5, -16.75, -12.0, 28.0, 30.5, 12.75, 71.5, -7.75, 54.25, -26.75" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle-hoverable" />
-      <Label layoutX="176.0" layoutY="30.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="timerLabel" layoutX="392.0" layoutY="30.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="2:00">
+      <Label fx:id="timerLabel" layoutX="188.0" layoutY="16.0" prefHeight="35.0" prefWidth="328.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
          <font>
             <Font size="20.0" />
          </font>

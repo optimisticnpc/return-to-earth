@@ -20,12 +20,7 @@
             <Image url="@../images/spaceship%20exterior.png" />
          </image>
       </ImageView>
-      <Label layoutX="39.0" layoutY="26.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="timerLabel" layoutX="253.0" layoutY="26.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="2:00">
+      <Label fx:id="timerLabel" layoutX="25.0" layoutY="20.0" prefHeight="35.0" prefWidth="319.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining: 02:00">
          <font>
             <Font size="20.0" />
          </font>
@@ -70,14 +65,14 @@
             <Font name="System Bold" size="28.0" />
          </font>
       </Text>
-      <ProgressBar fx:id="oxygenBar" layoutX="729.0" layoutY="595.0" prefHeight="35.0" prefWidth="257.0" progress="1.0" style="-fx-accent: red;" />
-      <Text fill="RED" layoutX="728.0" layoutY="589.0" stroke="BLACK" strokeType="OUTSIDE" text="OXYGEN METER:" wrappingWidth="198.10546875">
+      <ProgressBar fx:id="oxygenBar" layoutX="705.0" layoutY="595.0" prefHeight="35.0" prefWidth="281.0" progress="1.0" style="-fx-accent: red;" />
+      <Text fill="RED" layoutX="704.0" layoutY="589.0" stroke="BLACK" strokeType="OUTSIDE" text="OXYGEN METER:" wrappingWidth="295.10546875">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Text>
       <Polygon fx:id="movetoRoomOne" fill="#ff0400" layoutX="22.0" layoutY="325.0" onMouseClicked="#clickRoomOne" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
-      <Text fx:id="meterPercent" fill="RED" layoutX="923.0" layoutY="589.0" stroke="BLACK" strokeType="OUTSIDE" text="100%" wrappingWidth="70.0">
+      <Text fx:id="meterPercent" fill="RED" layoutX="921.0" layoutY="589.0" stroke="BLACK" strokeType="OUTSIDE" text="100%" wrappingWidth="70.0">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>

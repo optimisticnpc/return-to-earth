@@ -72,7 +72,7 @@ public class GameTimer {
     int minutes = timeHundredths / 6000;
     int seconds = (timeHundredths % 6000) / 100;
     // TODO: Decide whether to use hundredths
-    timeDisplay.set(String.format("%02d:%02d", minutes, seconds));
+    timeDisplay.set(String.format("Time remaining: %02d:%02d", minutes, seconds));
   }
 
   public BooleanProperty timeUpProperty() {

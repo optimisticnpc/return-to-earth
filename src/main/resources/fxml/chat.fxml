@@ -23,12 +23,7 @@
             <Image url="@../images/loading_icon.gif" />
          </image>
       </ImageView>
-      <Label fx:id="timerLabel" layoutX="208.0" layoutY="17.0" text="2:00">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="35.0" layoutY="14.0" prefHeight="30.0" prefWidth="173.0" text="Time Remaining:">
+      <Label fx:id="timerLabel" layoutX="31.0" layoutY="15.0" text="Time Remaining: 02:00">
          <font>
             <Font size="18.0" />
          </font>

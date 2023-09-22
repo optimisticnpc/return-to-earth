@@ -21,12 +21,7 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Label layoutX="176.0" layoutY="30.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="timerLabel" layoutX="392.0" layoutY="30.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="2:00">
+      <Label fx:id="timerLabel" layoutX="197.0" layoutY="43.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
          <font>
             <Font size="20.0" />
          </font>
