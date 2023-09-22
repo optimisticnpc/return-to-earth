@@ -83,20 +83,20 @@ public class MathQuestionSelector {
             "15"));
     mathQuestions.add(
         new MathQuestion(
-            "There are five aliens. Each of them want to  play a single round against the others"
-                + " at space badminton. How many games will they play?",
+            "There are five aliens. Each of the five want to play a single round of space badminton"
+                + " against the other four. How many games will they play in total?",
             "10"));
     mathQuestions.add(
         new MathQuestion(
             "I have somewhere between 15 and 20 space cabbages. If I plant them in rows of 3, I"
-                + " have 2 left over If I plant them in rows of 5, I have 2 left over, how many"
+                + " have 2 left over. If I plant them in rows of 5, I have 2 left over, how many"
                 + " space cabbages do I have?",
             "17"));
     mathQuestions.add(
         new MathQuestion(
-            "A woman has somewhere between 10 to 15 alien fossils. She gives half of them away to"
-                + " charity and then kept 1 for herself. If she has 7 alien fossils left, how"
-                + " many did she start with?",
+            "There is a pile of alien fossils. Person A takes half of the pile for himself. Person"
+                + " B takes 1 for himself. If there are 5 fossils remaining in the pile, how many"
+                + " were there at the start?",
             "12"));
     mathQuestions.add(
         new MathQuestion(
