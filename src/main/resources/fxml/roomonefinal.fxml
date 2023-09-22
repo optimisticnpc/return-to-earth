@@ -41,12 +41,12 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="528.0" layoutY="17.0" prefHeight="35.0" prefWidth="202.0" text="Hints Remaining :" textFill="#e5ff00">
+      <Label layoutX="561.0" layoutY="14.0" prefHeight="35.0" prefWidth="202.0" text="Hints Remaining :" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="hintLabel" layoutX="712.0" layoutY="17.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
+      <Label fx:id="hintLabel" layoutX="745.0" layoutY="14.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>
