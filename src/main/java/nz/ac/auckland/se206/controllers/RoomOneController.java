@@ -116,7 +116,7 @@ public class RoomOneController {
     System.out.println("Main Warning clicked");
     activateSpeech(
         "The system detected a critical damage.\n"
-            + "Please authorise yourself by clicking \nthe middle screen"
+            + "Please authorise yourself by clicking \nthe middle screen "
             + "to access the system\nand analyse the damage.");
   }
 
@@ -144,7 +144,7 @@ public class RoomOneController {
   @FXML
   private void clickWire(MouseEvent event) {
     GameState.isWireCollected = true;
-    activateSpeech("You have collected the wire!\nYou might need it to\n fix something...");
+    activateSpeech("You have collected the wire!\nYou might need it to\nfix something...");
     room.getChildren().remove(wire);
     room.getChildren().remove(wireImage);
   }

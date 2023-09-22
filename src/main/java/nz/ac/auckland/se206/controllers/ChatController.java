@@ -160,6 +160,7 @@ public class ChatController {
           public ChatMessage call() throws ApiProxyException {
             chatCompletionRequest.addMessage(msg);
             try {
+              showAiThinking();
               ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
               Choice result = chatCompletionResult.getChoices().iterator().next();
               chatCompletionRequest.addMessage(result.getChatMessage());
@@ -282,7 +283,6 @@ public class ChatController {
     ChatMessage msg = new ChatMessage("user", message);
 
     appendChatMessage(msg);
-    showAiThinking();
     runGpt(msg);
   }
 
