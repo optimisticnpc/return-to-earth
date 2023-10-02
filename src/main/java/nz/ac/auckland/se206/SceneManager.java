@@ -7,6 +7,7 @@ public class SceneManager {
 
   public enum AppUi {
     START,
+    SCORE_SCREEN,
     CHAT,
     ROOM_ONE,
     ROOM_TWO,

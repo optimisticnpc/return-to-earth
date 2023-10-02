@@ -97,6 +97,7 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
     SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
     SceneManager.addUi(AppUi.START, loadFxml("start"));
+    SceneManager.addUi(AppUi.SCORE_SCREEN, loadFxml("scorescreen"));
     SceneManager.addUi(AppUi.QUESTION_ONE, loadFxml("questionone"));
     SceneManager.addUi(AppUi.QUESTION_TWO, loadFxml("questiontwo"));
     SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
