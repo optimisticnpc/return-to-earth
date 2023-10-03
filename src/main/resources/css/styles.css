@@ -22,7 +22,8 @@
 
 #startButton,
 #restartButton,
-#exitButton {
+#exitButton,
+#continueButton {
     -fx-background-insets: 1;
     /* Fixes the black leaking out of the border*/
     -fx-font-size: 38px;
