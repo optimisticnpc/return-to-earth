@@ -46,10 +46,9 @@ public class GptPromptEngineering {
   }
 
   public static String getphaseTwoProgress() {
-    return "The user has to find a toolbox in the storage room. If the user asks for hints, answer"
-        + " by starting with the word Hint and then tell them that they have to find 4 digit"
-        + " passcodes to open the tool compartment and obtain the toolbox inside, do not add"
-        + " anything else.";
+    return "The user has to find a toolbox in the storage room. If the user asks for hints, tell"
+        + " them that they have to find 4 digit passcodes to open the tool compartment and"
+        + " obtain the toolbox inside, do not add anything else.";
   }
 
   public static String getHardphaseTwoProgress() {
@@ -60,7 +59,7 @@ public class GptPromptEngineering {
 
   public static String getphaseThreeProgress() {
     return "The user has to fix the engine outside the spaceship. If the user asks for hints,"
-        + " answer by starting with the word Hint, and then tell them that they have to"
+        + " tell them that they have to"
         + " unlock the hatch and reconnect the wire inside the hatch, do not add anything"
         + " else.";
   }
@@ -74,7 +73,7 @@ public class GptPromptEngineering {
 
   public static String getphaseFourProgress() {
     return "The user has to reactivate the engine in the main room. If the user asks for hints,"
-        + " answer by starting with the word Hint, and then tell them that they have to"
+        + " tell them that they have to"
         + " click the switches in the correct order to reactivate the engine. Do not add"
         + " anything else.";
   }
