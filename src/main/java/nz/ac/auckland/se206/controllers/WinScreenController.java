@@ -56,6 +56,7 @@ public class WinScreenController {
         ScoreScreenInfo.fastestHardTimeHundredths = hundredthsRemaining;
       }
     }
+    ScoreScreenInfo.saveTimesToFile();
     ScoreScreenController.updateFastestTimes();
   }
 

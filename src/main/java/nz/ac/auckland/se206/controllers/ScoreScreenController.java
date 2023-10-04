@@ -32,6 +32,7 @@ public class ScoreScreenController {
   }
 
   public void refreshTimes() {
+    ScoreScreenInfo.loadTimesFromFile();
     fastestEasyTimeLabel.setText(
         ScoreScreenInfo.formatTime(ScoreScreenInfo.fastestEasyTimeHundredths));
     fastestMediumTimeLabel.setText(
