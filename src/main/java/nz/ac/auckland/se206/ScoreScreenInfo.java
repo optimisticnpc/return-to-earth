@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class ScoreScreenInfo {
 
-  private static final String FILE_PATH = "src/main/resources/storage/times.txt";
+  private static final String FILE_PATH = "times.txt";
 
   public static int fastestEasyTimeHundredths = Integer.MAX_VALUE;
   public static int fastestMediumTimeHundredths = Integer.MAX_VALUE;
