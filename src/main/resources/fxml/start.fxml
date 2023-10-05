@@ -100,10 +100,18 @@
          </opaqueInsets>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" />
-      <Button fx:id="startButton" layoutX="406.0" layoutY="470.0" mnemonicParsing="false" onMouseClicked="#onClickStartButton" prefHeight="89.0" prefWidth="188.0" text="Start">
+      <Button fx:id="startButton" layoutX="407.0" layoutY="468.0" mnemonicParsing="false" onMouseClicked="#onClickStartButton" prefHeight="89.0" prefWidth="188.0" text="Start">
          <font>
             <Font size="38.0" />
          </font>
       </Button>
+      <Button fx:id="scoreScreenButton" contentDisplay="RIGHT" layoutX="938.0" layoutY="594.0" mnemonicParsing="false" onMouseClicked="#onClickScoreScreenButton" prefHeight="44.0" prefWidth="49.0" style="-fx-font-size: 12;">
+         <graphic>
+            <ImageView fitHeight="36.0" fitWidth="29.0" preserveRatio="true">
+               <image>
+                  <Image url="@../images/star_yellow_single.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </Pane>
