@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -20,6 +22,9 @@ public class ScoreScreenController {
   @FXML private ImageView easyStars;
   @FXML private ImageView mediumStars;
   @FXML private ImageView hardStars;
+  @FXML private Pane helpScreen;
+  @FXML private Button helpStarsButton;
+  @FXML private Button goBackButton;
 
   // Add to ScoreScreenController
   private static ScoreScreenController instance;
@@ -37,6 +42,7 @@ public class ScoreScreenController {
   @FXML
   public void initialize() {
     refreshTimes();
+    helpScreen.setVisible(false);
   }
 
   public void refreshTimes() {
@@ -81,5 +87,24 @@ public class ScoreScreenController {
   private void onGoBack() {
     Parent startParent = SceneManager.getUiRoot(AppUi.START);
     App.getScene().setRoot(startParent);
+  }
+
+  @FXML
+  private void onClickHelpStarsButton() {
+    helpScreen.setVisible(true);
+    goBackButton.setVisible(false);
+    helpStarsButton.setVisible(false);
+  }
+
+  /**
+   * Handles the click event on the close button in the help screen.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  private void onClickClose() {
+    helpScreen.setVisible(false);
+    goBackButton.setVisible(true);
+    helpStarsButton.setVisible(true);
   }
 }
