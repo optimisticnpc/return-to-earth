@@ -47,6 +47,9 @@ public class GameState {
 
   public static boolean isPartFixed = false;
 
+  // ** Indicates if the game is launched first time for setting up of the AI.*/
+  public static boolean isSetup = true;
+
   // ** indicates each phase of the game the player is in */
   public static boolean phaseTwo = false;
   public static boolean phaseThree = false;
@@ -55,6 +58,7 @@ public class GameState {
   public static void resetGame() throws IOException {
     // TODO: Update and double check this
     // Reset all game state variables
+    isSetup = true;
     isRiddleResolved = false;
     isWireCollected = false;
     isPasscodeSolved = false;
@@ -69,6 +73,7 @@ public class GameState {
     // Get new math puzzles and update room visuals
     App.resetMathQuestions();
     App.resetRooms();
+    App.resetChat();
     HintCounter.resetHintCount();
 
     Parent startRoot = SceneManager.getUiRoot(AppUi.START);

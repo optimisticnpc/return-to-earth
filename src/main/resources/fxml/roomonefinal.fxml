@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneFinalController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="651.0" prefWidth="1335.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneFinalController">
    <children>
       <ImageView fx:id="background" fitHeight="650.0" fitWidth="1082.0" layoutX="-41.0" pickOnBounds="true">
          <image>
@@ -17,6 +23,28 @@
       </ImageView>
       <Rectangle fx:id="reactivate" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="104.0" layoutX="404.0" layoutY="295.0" onMouseClicked="#clickReactivate" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="192.0" />
       <Polygon fx:id="movetoRoomTwo" fill="#ff0400" layoutX="12.0" layoutY="325.0" onMouseClicked="#clickRoomTwo" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
+      <VBox layoutX="705.0" layoutY="1.0" prefHeight="651.0" prefWidth="294.0" spacing="5" style="-fx-background-color: #29365c;">
+         <children>
+            <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="265.0" prefWidth="592.0" VBox.vgrow="ALWAYS">
+               <content>
+                  <VBox fx:id="chatLog" style="-fx-background-color: #45578f;" />
+               </content>
+            </ScrollPane>
+            <HBox spacing="5">
+               <children>
+                  <TextArea fx:id="inputText" onKeyPressed="#onEnterPressed" prefHeight="47.0" promptText="enter message..." style="-fx-background-color: #5d77c9;" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="sendButton" minWidth="52.0" mnemonicParsing="false" onAction="#setSendButtonAction" prefHeight="47.0" style="-fx-background-color: #ede56f;" text="Send" textFill="#1b00a3">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets topRightBottomLeft="5" />
+         </padding>
+      </VBox>
       <Polygon fx:id="movetoRoomThree" fill="#ff0400" layoutX="927.0" layoutY="325.0" onMouseClicked="#clickRoomThree" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" rotate="180.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
       <Rectangle fx:id="blueSwitch" height="36.0" layoutX="239.0" layoutY="87.0" onMouseClicked="#clickBlueSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="59.0" />
       <Rectangle fx:id="redSwitch" height="37.0" layoutX="464.0" layoutY="479.0" onMouseClicked="#clickRedSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="60.0" />

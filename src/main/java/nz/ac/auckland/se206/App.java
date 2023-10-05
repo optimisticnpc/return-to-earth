@@ -97,6 +97,7 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
     SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
     SceneManager.addUi(AppUi.START, loadFxml("start"));
+    SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
     SceneManager.addUi(AppUi.QUESTION_ONE, loadFxml("questionone"));
     SceneManager.addUi(AppUi.QUESTION_TWO, loadFxml("questiontwo"));
     SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
@@ -159,7 +160,7 @@ public class App extends Application {
           } else if (keyCombA.match(event)) {
             System.out.println("Ctrl + Alt + A was pressed!");
             // Get answers for all puzzles
-           
+
             // Riddle:
             System.out.println("Riddle: " + ChatController.getWordToGuess());
 

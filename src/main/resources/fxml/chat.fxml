@@ -1,44 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onKeyPressed="#onEnterPressed" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
+<AnchorPane prefHeight="745.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
   <children>
-    <TextArea fx:id="chatTextArea" editable="false" layoutX="31.0" layoutY="46.0" prefHeight="300.0" prefWidth="536.0" wrapText="true">
-         <font>
-            <Font name="Comic Sans MS" size="15.0" />
-         </font></TextArea>
-    <TextField fx:id="inputText" layoutX="31.0" layoutY="354.0" prefHeight="26.0" prefWidth="406.0" />
-    <Button fx:id="sendButton" layoutX="443.0" layoutY="356.0" mnemonicParsing="false" onAction="#onSendMessage" text="Send" />
-    <Button layoutX="443.0" layoutY="381.0" mnemonicParsing="false" onAction="#onGoBack" text="Go Back" />
-      <ImageView fx:id="loadingIcon" fitHeight="62.0" fitWidth="60.0" layoutX="481.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/loading_icon.gif" />
-         </image>
-      </ImageView>
+      <VBox layoutX="20.0" layoutY="47.0" prefHeight="445.0" prefWidth="294.0" spacing="5" style="-fx-background-color: #29365c;">
+         <children>
+            <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="265.0" prefWidth="592.0" VBox.vgrow="ALWAYS">
+               <content>
+                  <VBox fx:id="chatLog" style="-fx-background-color: #45578f;" />
+               </content>
+            </ScrollPane>
+            <HBox spacing="5">
+               <children>
+                  <TextArea fx:id="inputText" onKeyPressed="#onEnterPressed" prefHeight="47.0" promptText="enter message..." style="-fx-background-color: #5d77c9;" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="sendButton" minWidth="52.0" mnemonicParsing="false" onAction="#setSendButtonAction" prefHeight="47.0" style="-fx-background-color: #ede56f;" text="Send" textFill="#1b00a3">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets topRightBottomLeft="5" />
+         </padding>
+      </VBox>
+    <Button layoutX="544.0" layoutY="518.0" mnemonicParsing="false" onAction="#onGoBack" text="Go Back" />
       <Label fx:id="timerLabel" layoutX="31.0" layoutY="15.0" text="Time Remaining: 02:00">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fx:id="soundIcon" fitHeight="60.0" fitWidth="49.0" layoutX="518.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="soundIcon" fitHeight="60.0" fitWidth="49.0" layoutX="322.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/soundicon.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="robot" fitHeight="300.0" fitWidth="337.0" layoutX="592.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="robot" fitHeight="300.0" fitWidth="337.0" layoutX="605.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ai%20circle.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="robotThinking" fitHeight="299.0" fitWidth="309.0" layoutX="590.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="robotThinking" fitHeight="299.0" fitWidth="309.0" layoutX="603.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/ai%20thinking%20circle.png" />
          </image>
@@ -48,10 +62,15 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="hintLabel" layoutX="474.0" layoutY="11.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited">
+      <Label fx:id="hintLabel" layoutX="445.0" layoutY="11.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited">
          <font>
-            <Font size="18.0" />
+            <Font name="Arial" size="18.0" />
          </font>
       </Label>
+      <ImageView fx:id="loadingIcon" fitHeight="62.0" fitWidth="60.0" layoutX="322.0" layoutY="488.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/loading_icon.gif" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>
