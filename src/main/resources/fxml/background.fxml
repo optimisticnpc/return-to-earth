@@ -15,6 +15,11 @@
             <Image url="@../images/menu.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="spaceship" fitHeight="418.0" fitWidth="585.0" layoutX="-347.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/burning.png" />
+         </image>
+      </ImageView>
       <Label fx:id="timerLabel" layoutX="171.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00" textFill="WHITE">
          <font>
             <Font size="20.0" />
