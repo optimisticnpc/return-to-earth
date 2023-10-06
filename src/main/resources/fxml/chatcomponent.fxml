@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="281.0" prefWidth="294.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
+  <children>
+      <VBox prefHeight="287.0" prefWidth="294.0" spacing="5" style="-fx-background-color: #29365c;">
+         <children>
+            <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="383.0" prefWidth="230.0" VBox.vgrow="ALWAYS">
+               <content>
+                  <VBox fx:id="chatLog" prefHeight="368.0" prefWidth="282.0" style="-fx-background-color: #45578f;">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#onGoBack" text="Go Back" />
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <HBox spacing="5">
+               <children>
+                  <TextArea fx:id="inputText" onKeyPressed="#onEnterPressed" prefHeight="47.0" promptText="enter message..." style="-fx-background-color: #5d77c9;" HBox.hgrow="ALWAYS" />
+                  <ImageView fx:id="soundIcon" fitHeight="60.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/soundicon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="loadingIcon" fitHeight="62.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/loading_icon.gif" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="sendButton" minWidth="52.0" mnemonicParsing="false" onAction="#setSendButtonAction" prefHeight="47.0" style="-fx-background-color: #ede56f;" text="Send" textFill="#1b00a3">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets topRightBottomLeft="5" />
+         </padding>
+      </VBox>
+  </children>
+</AnchorPane>

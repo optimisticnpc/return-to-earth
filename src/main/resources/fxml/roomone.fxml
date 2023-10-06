@@ -8,7 +8,6 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 <?import nz.ac.auckland.se206.ball.BouncingBallPane?>
 
 <Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
@@ -70,26 +69,11 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Pane fx:id="backgroundScreen" layoutX="64.0" layoutY="40.0" prefHeight="561.0" prefWidth="873.0">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="574.0" layoutX="-9.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" width="885.0" />
-            <Button fx:id="closeButton" layoutX="713.0" layoutY="37.0" mnemonicParsing="false" onAction="#onClickClose" prefHeight="60.0" prefWidth="94.0" text="Close" textAlignment="CENTER">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
-            <Text layoutX="296.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fill="WHITE" layoutX="100.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The crew has evacuated with your fellow passengers while you were napping. Fix the ship and return to Earth or remain trapped in space forever!" textAlignment="CENTER" wrappingWidth="667.181640625">
-               <font>
-                  <Font size="50.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="258.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Good morning! ">
-               <font>
-                  <Font size="50.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
+      <fx:include fx:id="chatPanel" layoutY="367.0" source="chatcomponent.fxml" />
+      <Button fx:id="slideChatButton" layoutX="409.0" layoutY="584.0" mnemonicParsing="false" onAction="#onSlideChatButtonClicked" prefHeight="60.0" prefWidth="229.0" text="PRESS ME (Test Button)">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

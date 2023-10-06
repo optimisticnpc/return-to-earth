@@ -26,5 +26,11 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <Button fx:id="questionOneHintButton" layoutX="208.0" layoutY="487.0" mnemonicParsing="false" onAction="#onClickQuestionOneHintButton" text="Hint">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <fx:include layoutX="740.0" layoutY="350.0" source="chatcomponent.fxml" />
    </children>
 </Pane>

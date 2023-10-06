@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.Timer;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -9,9 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
@@ -42,6 +45,10 @@ public class RoomOneController {
   @FXML private ImageView wireImage;
   @FXML private BouncingBallPane bouncingBall;
   @FXML private Rectangle ballToggle;
+
+  @FXML private AnchorPane chatPanel;
+
+  private Boolean isPanelOnScreen = true;
 
   private CurrentScene currentScene = CurrentScene.getInstance();
 
@@ -198,5 +205,26 @@ public class RoomOneController {
     App.getScene().setRoot(chatRoot);
     GameState.isRoomOneFirst = false;
     currentScene.setCurrent(11);
+  }
+
+  @FXML
+  private void onSlideChatButtonClicked(ActionEvent event) {
+    System.out.println("onSlideChatButtonClicked()");
+
+    // Target X is the value relative to the initial value
+    double targetX;
+
+    if (isPanelOnScreen) {
+      targetX = -294;
+      isPanelOnScreen = false;
+    } else {
+      targetX = 0;
+      isPanelOnScreen = true;
+    }
+
+    TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), chatPanel);
+    System.out.println("target X = " + targetX);
+    tt.setToX(targetX);
+    tt.play();
   }
 }

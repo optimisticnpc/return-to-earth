@@ -3,14 +3,12 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import java.util.Random;
 import javafx.animation.FadeTransition;
-import javafx.animation.Interpolator;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,14 +20,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import javafx.util.Duration;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
-import nz.ac.auckland.se206.SceneManager;
-import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -86,9 +80,6 @@ public class ChatController {
   public void initialize() throws ApiProxyException {
     System.out.println("ChatController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
-    timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
-    hintCounter.setHintCount();
-    hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.5).setMaxTokens(120);
@@ -194,17 +185,9 @@ public class ChatController {
           public ChatMessage call() throws ApiProxyException {
             chatCompletionRequest.addMessage(msg);
             try {
-              showAiThinking();
               ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
               Choice result = chatCompletionResult.getChoices().iterator().next();
               chatCompletionRequest.addMessage(result.getChatMessage());
-              fade.setNode(robotThinking);
-              fade.setDuration(Duration.millis(300));
-              fade.setInterpolator(Interpolator.LINEAR);
-              fade.setFromValue(1);
-              fade.setToValue(0);
-              fade.play();
-              fade.setOnFinished(e -> robotThinking.setVisible(false));
               recordAndPrintTime(startTime);
               return result.getChatMessage();
             } catch (ApiProxyException e) {
@@ -320,19 +303,6 @@ public class ChatController {
     runGpt(msg);
   }
 
-  @FXML
-  public void showAiThinking() {
-    // Fade in the thinking image in 0.3s
-    robotThinking.setVisible(true);
-    FadeTransition fade = new FadeTransition();
-    fade.setNode(robotThinking);
-    fade.setDuration(Duration.millis(300));
-    fade.setInterpolator(Interpolator.LINEAR);
-    fade.setFromValue(0);
-    fade.setToValue(1);
-    fade.play();
-  }
-
   @FXML // send the message when the enter key is pressed
   private void onEnterPressed(KeyEvent event) {
     if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
@@ -368,17 +338,19 @@ public class ChatController {
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     textToSpeech.stop(); // Stop the text to speech
-    int current = currentScene.getCurrent();
-    AppUi room = AppUi.ROOM_ONE;
-    if (current == 11) {
-      currentScene.setCurrent(1);
-    } else if (current == 12) {
-      room = AppUi.ROOM_TWO;
-      currentScene.setCurrent(2);
-    } else {
-      room = AppUi.ROOM_THREE;
-      currentScene.setCurrent(3);
-    }
+
+    // TODO: Delete code
+    // int current = currentScene.getCurrent();
+    // AppUi room = AppUi.ROOM_ONE;
+    // if (current == 11) {
+    //   currentScene.setCurrent(1);
+    // } else if (current == 12) {
+    //   room = AppUi.ROOM_TWO;
+    //   currentScene.setCurrent(2);
+    // } else {
+    //   room = AppUi.ROOM_THREE;
+    //   currentScene.setCurrent(3);
+    // }
 
     if (GameState.isRiddleResolved && GameState.phaseTwo && !GameState.hard) {
       System.out.println("Phase 2");
@@ -387,8 +359,8 @@ public class ChatController {
       System.out.println("Phase 2(Hard)");
       runGpt(new ChatMessage("user", GptPromptEngineering.getHardphaseTwoProgress()));
     }
-    Parent roomRoot = SceneManager.getUiRoot(room);
-    App.getScene().setRoot(roomRoot);
+    // Parent roomRoot = SceneManager.getUiRoot(room);
+    // App.getScene().setRoot(roomRoot);
   }
 
   private void readMessage() {
