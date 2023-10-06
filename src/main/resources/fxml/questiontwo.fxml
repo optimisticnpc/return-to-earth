@@ -7,9 +7,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #969696;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.QuestionTwoController">
+<Pane prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #969696;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.QuestionTwoController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="418.0" layoutX="187.0" layoutY="131.0" stroke="BLACK" strokeType="INSIDE" width="628.0" />
+      <Button fx:id="goBackButton" layoutX="44.0" layoutY="44.0" onAction="#onGoBack" prefHeight="47.0" prefWidth="103.0" style="-fx-font-size: 18;" styleClass="otherButtons" text="Back">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="418.0" layoutX="186.0" layoutY="123.0" stroke="BLACK" strokeType="INSIDE" width="628.0" />
       <Label fx:id="questionTwoLabel" layoutX="246.0" layoutY="235.0" prefHeight="262.0" prefWidth="510.0" text="In a spaceship are space sheep and cosmic chickens. There are 22 animals altogether. If there are 74 legs, how many space sheep are there? (placeholder)" textFill="WHITE" wrapText="true">
          <font>
             <Font size="24.0" />
@@ -20,8 +25,7 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Button fx:id="goBackButton" layoutX="34.0" layoutY="33.0" onAction="#onGoBack" prefHeight="47.0" prefWidth="103.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-border-radius: 5;" text="Go Back" />
-      <Label fx:id="timerLabel" layoutX="187.0" layoutY="33.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
+      <Label fx:id="timerLabel" layoutX="186.0" layoutY="44.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
          <font>
             <Font size="20.0" />
          </font>

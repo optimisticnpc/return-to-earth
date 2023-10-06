@@ -33,7 +33,33 @@ public class SpacesuitPuzzleController {
   @FXML private Button submitCodeButton;
 
   // TODO: Get more words and make sure they are different from the riddle
-  private String[] words = {"blackhole", "venus", "comet", "satellite", "mars"};
+  private String[] unscrambleWords = {
+    "blackhole",
+    "venus",
+    "comet",
+    "satellite",
+    "saturn",
+    "saturn",
+    "jupiter",
+    "uranus",
+    "neptune",
+    "lightyear",
+    "universe",
+    "asteroid",
+    "meteorite",
+    "galaxy",
+    "mercury",
+    "constellation",
+    "orbit",
+    "nebula",
+    "rocket",
+    "supernova",
+    "stardust",
+    "astronaut",
+    "matter",
+    "cosmos",
+    "pluto"
+  };
 
   public void initialize() {
     System.out.println("SpacesuitPuzzleController.initialize()");
@@ -56,7 +82,7 @@ public class SpacesuitPuzzleController {
 
   private void pickAndScrambleWord() {
     // Randomly select a word from the array
-    correctWordString = words[(int) (Math.random() * words.length)];
+    correctWordString = unscrambleWords[(int) (Math.random() * unscrambleWords.length)];
 
     // Convert the word to a list of characters, shuffle it to get the scrambled version, and then
     // convert it back to a string.
@@ -72,7 +98,9 @@ public class SpacesuitPuzzleController {
   private void onSubmitCode() {
     String enteredPasscode = inputField.getText();
 
-    if (correctWordString.equals(enteredPasscode.toLowerCase())) {
+    // Check if they guessed correct word
+    // Ignore capitalisation and whitespace
+    if (correctWordString.equals(enteredPasscode.toLowerCase().replaceAll("\\s+", ""))) {
       resultLabel.setText("Correct! Compartment unlocked.");
       GameState.isSpacesuitUnlocked = true;
 
