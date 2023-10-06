@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.Random;
-import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -11,7 +10,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -22,7 +20,6 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -41,21 +38,12 @@ public class ChatController {
     return wordToGuess;
   }
 
-  // @FXML private TextArea chatTextArea;
-  // @FXML private TextField inputText;
-  // @FXML private Button sendButton;
   @FXML private ImageView loadingIcon;
   @FXML private ImageView soundIcon;
-  @FXML private Label timerLabel;
-  @FXML private Label hintLabel;
-  @FXML private ImageView robot;
-  @FXML private ImageView robotThinking;
   @FXML private TextArea inputText;
   @FXML private VBox chatLog;
   @FXML private ScrollPane scrollPane;
   @FXML private Button sendButton;
-
-  private FadeTransition fade = new FadeTransition();
 
   private TextToSpeech textToSpeech; // Text to speech object
 
@@ -76,42 +64,67 @@ public class ChatController {
    *
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
-  @FXML
-  public void initialize() throws ApiProxyException {
+  public void initialize() {
     System.out.println("ChatController.initialize()");
-    GameTimer gameTimer = GameTimer.getInstance();
 
+    setupChatConfiguration();
+    initializeTextToSpeech();
+    selectRandomRiddle();
+    setupSoundIconClickEvent();
+
+    try {
+      runChatPromptBasedOnGameState();
+    } catch (ApiProxyException e) {
+      // Handle the exception and provide feedback if needed.
+      e.printStackTrace();
+    }
+  }
+
+  private void setupChatConfiguration() {
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.5).setMaxTokens(120);
+  }
 
+  private void initializeTextToSpeech() {
     textToSpeech = new TextToSpeech();
+  }
 
+  private void selectRandomRiddle() {
     Random random = new Random();
     wordToGuess = riddles[random.nextInt(riddles.length)];
+  }
 
-    // Add a click event to the soundIcon so that the message is read when it is clicked
+  private void setupSoundIconClickEvent() {
     soundIcon.setOnMouseClicked(e -> readMessage());
+  }
 
+  private void runChatPromptBasedOnGameState() throws ApiProxyException {
     if (GameState.isSetup) {
       runGpt(new ChatMessage("user", GptPromptEngineering.getAIPersonality()));
       GameState.isSetup = false;
     } else if (!GameState.isRiddleResolved) {
-      runGpt(new ChatMessage("user", GptPromptEngineering.getaRiddle(wordToGuess)));
+      runGpt(new ChatMessage("user", GptPromptEngineering.getRiddle(wordToGuess)));
     } else {
       if (GameState.phaseThree && !GameState.hard) {
         System.out.println("Phase 3");
-        runGpt(new ChatMessage("user", GptPromptEngineering.getphaseThreeProgress()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getPhaseThreeProgress()));
       } else if (GameState.phaseThree && GameState.hard) {
         System.out.println("Phase 3(Hard)");
-        runGpt(new ChatMessage("user", GptPromptEngineering.getHardphaseThreeProgress()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getHardPhaseThreeProgress()));
       } else if (GameState.phaseFour && !GameState.hard) {
         System.out.println("Phase 4");
-        runGpt(new ChatMessage("user", GptPromptEngineering.getphaseFourProgress()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getPhaseFourProgress()));
       } else if (GameState.phaseFour && GameState.hard) {
         System.out.println("Phase 4(Hard)");
-        runGpt(new ChatMessage("user", GptPromptEngineering.getHardphaseFourProgress()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getHardPhaseFourProgress()));
       }
     }
+  }
+
+  public void setUIComponents(VBox chatLog, ScrollPane scrollPane, TextArea inputText) {
+    this.chatLog = chatLog;
+    this.scrollPane = scrollPane;
+    this.inputText = inputText;
   }
 
   public void addLabel(String message, Pos position) {
@@ -339,28 +352,13 @@ public class ChatController {
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     textToSpeech.stop(); // Stop the text to speech
 
-    // TODO: Delete code
-    // int current = currentScene.getCurrent();
-    // AppUi room = AppUi.ROOM_ONE;
-    // if (current == 11) {
-    //   currentScene.setCurrent(1);
-    // } else if (current == 12) {
-    //   room = AppUi.ROOM_TWO;
-    //   currentScene.setCurrent(2);
-    // } else {
-    //   room = AppUi.ROOM_THREE;
-    //   currentScene.setCurrent(3);
-    // }
-
     if (GameState.isRiddleResolved && GameState.phaseTwo && !GameState.hard) {
       System.out.println("Phase 2");
-      runGpt(new ChatMessage("user", GptPromptEngineering.getphaseTwoProgress()));
+      runGpt(new ChatMessage("user", GptPromptEngineering.getPhaseTwoProgress()));
     } else if (GameState.isRiddleResolved && GameState.phaseTwo && GameState.hard) {
       System.out.println("Phase 2(Hard)");
-      runGpt(new ChatMessage("user", GptPromptEngineering.getHardphaseTwoProgress()));
+      runGpt(new ChatMessage("user", GptPromptEngineering.getHardPhaseTwoProgress()));
     }
-    // Parent roomRoot = SceneManager.getUiRoot(room);
-    // App.getScene().setRoot(roomRoot);
   }
 
   private void readMessage() {
