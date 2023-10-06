@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.ScoreScreenInfo;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
@@ -31,13 +32,35 @@ public class WinScreenController {
 
     // Capture the time it took for the player to win
     int hundredthsRemaining = GameTimer.getInstance().getTimeHundredths();
-    displayWinTime(hundredthsRemaining);
+    int timeHundredths = calculateTimeUsed(hundredthsRemaining);
+    checkWinTime(timeHundredths);
+    displayWinTime(timeHundredths);
   }
 
-  public void displayWinTime(int hundredthsRemaining) {
+  private int calculateTimeUsed(int hundredthsRemaining) {
     // Subtract the time started with the time remaining to get the time used
-    int timeHundredths = StartController.getTimeSettingSeconds() * 100 - hundredthsRemaining;
+    return StartController.getTimeSettingSeconds() * 100 - hundredthsRemaining;
+  }
 
+  private void checkWinTime(int hundredthsRemaining) {
+    if (GameState.easy) {
+      if (hundredthsRemaining < ScoreScreenInfo.fastestEasyTimeHundredths) {
+        ScoreScreenInfo.fastestEasyTimeHundredths = hundredthsRemaining;
+      }
+    } else if (GameState.medium) {
+      if (hundredthsRemaining < ScoreScreenInfo.fastestMediumTimeHundredths) {
+        ScoreScreenInfo.fastestMediumTimeHundredths = hundredthsRemaining;
+      }
+    } else {
+      if (hundredthsRemaining < ScoreScreenInfo.fastestHardTimeHundredths) {
+        ScoreScreenInfo.fastestHardTimeHundredths = hundredthsRemaining;
+      }
+    }
+    ScoreScreenInfo.saveTimesToFile();
+    ScoreScreenController.updateFastestTimes();
+  }
+
+  public void displayWinTime(int timeHundredths) {
     int minutes = timeHundredths / 6000;
     int seconds = (timeHundredths % 6000) / 100;
     int hundredths = timeHundredths % 100;

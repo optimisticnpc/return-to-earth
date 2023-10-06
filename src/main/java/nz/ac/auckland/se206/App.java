@@ -15,6 +15,7 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.GlobalController;
 import nz.ac.auckland.se206.controllers.PasscodeController;
+import nz.ac.auckland.se206.controllers.ScoreScreenController;
 import nz.ac.auckland.se206.controllers.SpacesuitPuzzleController;
 
 /**
@@ -97,6 +98,7 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
     SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
     SceneManager.addUi(AppUi.START, loadFxml("start"));
+    SceneManager.addUi(AppUi.SCORE_SCREEN, loadFxml("scorescreen"));
     SceneManager.addUi(AppUi.QUESTION_ONE, loadFxml("questionone"));
     SceneManager.addUi(AppUi.QUESTION_TWO, loadFxml("questiontwo"));
     SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
@@ -135,6 +137,9 @@ public class App extends Application {
         new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
     KeyCombination keyCombR =
         new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
+    KeyCombination keyCombShiftR =
+        new KeyCodeCombination(
+            KeyCode.R, KeyCombination.ALT_DOWN, KeyCombination.SHIFT_DOWN); // Alt + Shift + R
 
     scene.addEventHandler(
         KeyEvent.KEY_PRESSED,
@@ -159,7 +164,7 @@ public class App extends Application {
           } else if (keyCombA.match(event)) {
             System.out.println("Ctrl + Alt + A was pressed!");
             // Get answers for all puzzles
-           
+
             // Riddle:
             System.out.println("Riddle: " + ChatController.getWordToGuess());
 
@@ -178,6 +183,10 @@ public class App extends Application {
             // Automatically skip riddles
             // TODO: Implement this properly + check implementation
             GameState.isRiddleResolved = true;
+
+          } else if (keyCombShiftR.match(event)) {
+            System.out.println("Alt + Shift + R was pressed!");
+            ScoreScreenController.updateFastestTimes();
           }
         });
   }

@@ -81,6 +81,12 @@ public class StartController {
   }
 
   @FXML
+  private void onClickScoreScreenButton() {
+    Parent scoreParent = SceneManager.getUiRoot(AppUi.SCORE_SCREEN);
+    App.getScene().setRoot(scoreParent);
+  }
+
+  @FXML
   private void onClickStartButton() throws IOException {
     // Need to change the difficulty here as well later
     timeSettingSeconds = (timeSetting + 1) * 120;
