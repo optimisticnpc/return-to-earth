@@ -8,14 +8,20 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.CurrentScene;
@@ -41,15 +47,19 @@ public class ChatController {
     return wordToGuess;
   }
 
-  @FXML private TextArea chatTextArea;
-  @FXML private TextField inputText;
-  @FXML private Button sendButton;
+  // @FXML private TextArea chatTextArea;
+  // @FXML private TextField inputText;
+  // @FXML private Button sendButton;
   @FXML private ImageView loadingIcon;
   @FXML private ImageView soundIcon;
   @FXML private Label timerLabel;
   @FXML private Label hintLabel;
   @FXML private ImageView robot;
   @FXML private ImageView robotThinking;
+  @FXML private TextArea inputText;
+  @FXML private VBox chatLog;
+  @FXML private ScrollPane scrollPane;
+  @FXML private Button sendButton;
 
   private FadeTransition fade = new FadeTransition();
 
@@ -77,7 +87,6 @@ public class ChatController {
     System.out.println("ChatController.initialize()");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
-
     hintCounter.setHintCount();
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
@@ -92,14 +101,11 @@ public class ChatController {
     // Add a click event to the soundIcon so that the message is read when it is clicked
     soundIcon.setOnMouseClicked(e -> readMessage());
 
-    if (!GameState.isRiddleResolved) {
-      if (GameState.easy) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getEasyAiRiddle(wordToGuess)));
-      } else if (GameState.medium) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getMediumAiRiddle(wordToGuess)));
-      } else if (GameState.hard) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getHardAiRiddle(wordToGuess)));
-      }
+    if (GameState.isSetup) {
+      runGpt(new ChatMessage("user", GptPromptEngineering.getAIPersonality()));
+      GameState.isSetup = false;
+    } else if (!GameState.isRiddleResolved) {
+      runGpt(new ChatMessage("user", GptPromptEngineering.getaRiddle(wordToGuess)));
     } else {
       if (GameState.phaseThree && !GameState.hard) {
         System.out.println("Phase 3");
@@ -117,26 +123,54 @@ public class ChatController {
     }
   }
 
-  /**
-   * Appends a chat message to the chat text area.
-   *
-   * @param msg the chat message to append
-   */
-  private void appendChatMessage(ChatMessage msg) {
-    // Display the user as "You" and the AI as "Qualy the AI".
-    String displayRole;
-    switch (msg.getRole()) {
-      case "user":
-        displayRole = "You";
-        break;
-      case "assistant":
-        displayRole = "AI";
-        break;
-      default:
-        displayRole = msg.getRole(); // default to the original role if not user or assistant
-        break;
+  public void addLabel(String message, Pos position) {
+    HBox hBox = new HBox();
+    hBox.setAlignment(position);
+    hBox.setPadding(new Insets(5, 5, 5, 10));
+
+    Text text = new Text(message);
+    if (position == Pos.CENTER_LEFT) {
+      text.setFont(javafx.scene.text.Font.font("Arial", 15));
+    } else if (position == Pos.CENTER_RIGHT) {
+      text.setFont(javafx.scene.text.Font.font("Comic Sans MS", 15));
     }
-    chatTextArea.appendText(displayRole + ": " + msg.getContent() + "\n\n");
+    TextFlow textFlow = new TextFlow(text);
+
+    if (position == Pos.CENTER_LEFT) {
+      textFlow.setStyle("-fx-background-color: rgb(255,242,102);" + "-fx-background-radius: 20px");
+    } else if (position == Pos.CENTER_RIGHT) {
+      textFlow.setStyle("-fx-background-color: rgb(255,255,255);" + "-fx-background-radius: 20px");
+    }
+
+    textFlow.setPadding(new Insets(5, 10, 5, 10));
+
+    hBox.getChildren().add(textFlow);
+    Platform.runLater(
+        new Runnable() {
+          @Override
+          public void run() {
+            chatLog.getChildren().add(hBox);
+          }
+        });
+  }
+
+  public void setSendButtonAction() {
+    String message = inputText.getText().replaceAll("[\n\r]", "");
+    inputText.clear();
+    try {
+      if (!message.isEmpty()) {
+        // show message on the sending client window
+        addLabel(message, Pos.CENTER_RIGHT);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    ChatMessage msg = new ChatMessage("user", message);
+    runGpt(msg);
+  }
+
+  public VBox getChatLog() {
+    return chatLog;
   }
 
   /**
@@ -220,9 +254,10 @@ public class ChatController {
               }
             }
           }
-          appendChatMessage(result);
+          addLabel(result.getContent(), Pos.CENTER_LEFT);
           if (GameState.phaseTwo || GameState.phaseThree || GameState.phaseFour) {
-            chatTextArea.setText("");
+            // clear the contents in VBOX
+            chatLog.getChildren().clear();
             GameState.phaseTwo = false;
             GameState.phaseThree = false;
             GameState.phaseFour = false;
@@ -282,7 +317,6 @@ public class ChatController {
     inputText.clear();
     ChatMessage msg = new ChatMessage("user", message);
 
-    appendChatMessage(msg);
     runGpt(msg);
   }
 
