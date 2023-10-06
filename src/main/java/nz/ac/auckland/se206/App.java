@@ -137,6 +137,8 @@ public class App extends Application {
         new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
     KeyCombination keyCombR =
         new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
+    KeyCombination keyCombT =
+        new KeyCodeCombination(KeyCode.T, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
     KeyCombination keyCombShiftR =
         new KeyCodeCombination(
             KeyCode.R, KeyCombination.ALT_DOWN, KeyCombination.SHIFT_DOWN); // Alt + Shift + R
@@ -180,9 +182,17 @@ public class App extends Application {
 
           } else if (keyCombR.match(event)) {
             System.out.println("Ctrl + Alt + R was pressed!");
+            System.out.println("Riddle skipped!");
             // Automatically skip riddles
             // TODO: Implement this properly + check implementation
             GameState.isRiddleResolved = true;
+
+          } else if (keyCombT.match(event)) {
+            System.out.println("Ctrl + Alt + T was pressed!");
+            System.out.println("Passcode skipped!");
+            // Automatically skip tools
+            // TODO: Implement this properly + check implementation
+            GameState.isPasscodeSolved = true;
 
           } else if (keyCombShiftR.match(event)) {
             System.out.println("Alt + Shift + R was pressed!");
