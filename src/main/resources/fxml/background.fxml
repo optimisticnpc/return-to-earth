@@ -15,7 +15,7 @@
             <Image url="@../images/menu.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="spaceship" fitHeight="524.0" fitWidth="910.0" layoutX="-347.0" layoutY="-50.0" pickOnBounds="true" preserveRatio="true" rotate="24.4">
+      <ImageView fx:id="spaceship" fitHeight="304.0" fitWidth="739.0" layoutX="408.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true" rotate="24.4">
          <image>
             <Image url="@../images/burning.png" />
          </image>

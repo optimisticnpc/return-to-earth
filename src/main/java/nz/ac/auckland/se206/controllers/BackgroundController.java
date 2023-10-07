@@ -1,14 +1,9 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.animation.Interpolator;
-import javafx.animation.TranslateTransition;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
@@ -21,7 +16,6 @@ public class BackgroundController {
   @FXML private Button continueButton;
   @FXML private Label timerLabel;
   @FXML private Label hintLabel;
-  @FXML private ImageView spaceship;
 
   private GameTimer gameTimer = GameTimer.getInstance();
 
@@ -35,21 +29,6 @@ public class BackgroundController {
     HintCounter hintCounter = HintCounter.getInstance();
     hintCounter.setHintCount();
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
-    initializeTranslate();
-  }
-
-  @FXML
-  private void initializeTranslate() {
-    Platform.runLater(
-        () -> {
-          TranslateTransition translate = new TranslateTransition();
-          translate.setNode(spaceship);
-          translate.setByX(750);
-          translate.setByY(750);
-          translate.setInterpolator(Interpolator.EASE_BOTH);
-          translate.setDuration(Duration.millis(10000));
-          translate.play();
-        });
   }
 
   /** Handles the action event when the continue button is clicked. */
