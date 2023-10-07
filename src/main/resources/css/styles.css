@@ -39,12 +39,37 @@
     -fx-padding: 10px 20px;
 }
 
+#scoreScreenButton,
+#helpStarsButton,
+#closeButton,
+.otherButtons {
+    -fx-background-insets: 0;
+    /* Fixes the black leaking out of the border*/
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: white;
+    /* Add white border */
+    -fx-border-width: 2px;
+    /* Set border width to thin */
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-text-fill: #FFF;
+    -fx-font-weight: bold;
+}
+
 #startButton:hover,
 #restartButton:hover,
 #exitButton:hover,
 #continueButton:hover {
     -fx-border-width: 0px;
     -fx-font-size: 38px;
+    -fx-effect: dropshadow(three-pass-box, lime, 10, 0.5, 0, 0);
+}
+
+#scoreScreenButton:hover,
+#helpStarsButton:hover, 
+#closeButton:hover,
+.otherButtons:hover {
+    -fx-border-width: 0px;
     -fx-effect: dropshadow(three-pass-box, lime, 10, 0.5, 0, 0);
 }
 
