@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -43,7 +44,9 @@ public class BackgroundController {
         () -> {
           TranslateTransition translate = new TranslateTransition();
           translate.setNode(spaceship);
-          translate.setByX(1500);
+          translate.setByX(750);
+          translate.setByY(750);
+          translate.setInterpolator(Interpolator.EASE_BOTH);
           translate.setDuration(Duration.millis(10000));
           translate.play();
         });
