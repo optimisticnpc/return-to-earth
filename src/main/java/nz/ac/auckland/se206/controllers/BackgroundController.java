@@ -1,7 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -39,12 +39,14 @@ public class BackgroundController {
 
   @FXML
   private void initializeTranslate() {
-    TranslateTransition translate = new TranslateTransition();
-    translate.setNode(spaceship);
-    translate.setByX(400);
-    translate.setDuration(Duration.millis(15000));
-    translate.setInterpolator(Interpolator.LINEAR);
-    translate.play();
+    Platform.runLater(
+        () -> {
+          TranslateTransition translate = new TranslateTransition();
+          translate.setNode(spaceship);
+          translate.setByX(1500);
+          translate.setDuration(Duration.millis(10000));
+          translate.play();
+        });
   }
 
   /** Handles the action event when the continue button is clicked. */

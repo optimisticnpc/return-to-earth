@@ -15,7 +15,7 @@
             <Image url="@../images/menu.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="spaceship" fitHeight="418.0" fitWidth="585.0" layoutX="-347.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="spaceship" fitHeight="524.0" fitWidth="910.0" layoutX="-349.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/burning.png" />
          </image>
@@ -35,17 +35,17 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Text fill="WHITE" layoutX="188.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The crew and your fellow passengers have evacuated while you were napping. Fix the ship and return to Earth or remain trapped in space forever!" textAlignment="CENTER" wrappingWidth="624.24609375">
+      <Text fill="WHITE" layoutX="188.0" layoutY="211.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="The crew and your fellow passengers have evacuated while you were napping. Fix the ship and return to Earth or remain trapped in space forever!" textAlignment="CENTER" wrappingWidth="624.24609375">
          <font>
             <Font name="System Bold" size="42.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="248.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Good morning!">
+      <Text fill="WHITE" layoutX="248.0" layoutY="139.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="Good morning!">
          <font>
             <Font name="System Bold" size="70.0" />
          </font>
       </Text>
-      <Button fx:id="continueButton" layoutX="380.0" layoutY="519.0" mnemonicParsing="false" onAction="#onContinue" prefHeight="89.0" prefWidth="240.0" text="Continue">
+      <Button fx:id="continueButton" layoutX="380.0" layoutY="519.0" mnemonicParsing="false" onAction="#onContinue" prefHeight="89.0" prefWidth="240.0" styleClass="continueButton" text="Continue">
          <font>
             <Font size="38.0" />
          </font>
