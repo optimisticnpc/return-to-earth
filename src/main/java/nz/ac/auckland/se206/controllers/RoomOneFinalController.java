@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Timer;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.SpeechBubble;
 
 /** Controller class for the room view. */
@@ -37,6 +39,7 @@ public class RoomOneFinalController {
   @FXML private ImageView speechBubble;
   @FXML private Rectangle reactivate;
   @FXML private Polygon reactivationHint;
+  @FXML private ImageView soundIcon;
 
   private ButtonOrder buttonOrder = ButtonOrder.getInstance();
   private String[] switchOrder = buttonOrder.getCorrectOrderArray();
@@ -47,6 +50,7 @@ public class RoomOneFinalController {
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
   private GameTimer gameTimer = GameTimer.getInstance();
+  private Sound sound = Sound.getInstance();
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -61,6 +65,18 @@ public class RoomOneFinalController {
     HintCounter hintCounter = HintCounter.getInstance();
     hintCounter.setHintCount();
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
+
+    soundIcon.imageProperty().bind(sound.soundImageProperty());
+  }
+
+  /**
+   * Handles the click event on the sound icon.
+   *
+   * @throws FileNotFoundException
+   */
+  @FXML
+  private void clickSoundIcon() throws FileNotFoundException {
+    sound.toggleImage();
   }
 
   /**
