@@ -22,7 +22,8 @@
 
 #startButton,
 #restartButton,
-#exitButton {
+#exitButton,
+#continueButton {
     -fx-background-insets: 1;
     /* Fixes the black leaking out of the border*/
     -fx-font-size: 38px;
@@ -57,7 +58,8 @@
 
 #startButton:hover,
 #restartButton:hover,
-#exitButton:hover {
+#exitButton:hover,
+#continueButton:hover {
     -fx-border-width: 0px;
     -fx-font-size: 38px;
     -fx-effect: dropshadow(three-pass-box, lime, 10, 0.5, 0, 0);

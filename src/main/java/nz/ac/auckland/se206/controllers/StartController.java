@@ -108,12 +108,13 @@ public class StartController {
       GameState.hard = true;
     }
     SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
+    SceneManager.addUi(AppUi.BACKGROUND, App.loadFxml("background"));
     SceneManager.addUi(AppUi.ROOM_ONE, App.loadFxml("roomone"));
     SceneManager.addUi(AppUi.ROOM_TWO, App.loadFxml("roomtwo"));
     SceneManager.addUi(AppUi.ROOM_THREE, App.loadFxml("roomthree"));
     SceneManager.addUi(AppUi.ROOM_ONE_FINAL, App.loadFxml("roomonefinal"));
 
-    Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
+    Parent roomRoot = SceneManager.getUiRoot(AppUi.BACKGROUND);
     currentScene.setCurrent(1);
     App.getScene().setRoot(roomRoot);
     GameTimer gameTimer = GameTimer.getInstance();

@@ -17,7 +17,8 @@ public class SceneManager {
     QUESTION_TWO,
     SPACESUIT_PUZZLE,
     REACTIVATION_ORDER,
-    ROOM_ONE_FINAL
+    ROOM_ONE_FINAL,
+    BACKGROUND
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();

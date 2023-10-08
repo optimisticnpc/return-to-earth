@@ -338,6 +338,9 @@ public class ChatController {
     AppUi room = AppUi.ROOM_ONE;
     if (current == 11) {
       currentScene.setCurrent(1);
+    } else if (current == 11 && GameState.isPartFixed) {
+      currentScene.setCurrent(1);
+      room = AppUi.ROOM_ONE_FINAL;
     } else if (current == 12) {
       room = AppUi.ROOM_TWO;
       currentScene.setCurrent(2);
