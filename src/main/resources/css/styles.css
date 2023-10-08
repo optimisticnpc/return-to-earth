@@ -64,7 +64,7 @@
 }
 
 #scoreScreenButton:hover,
-#helpStarsButton:hover, 
+#helpStarsButton:hover,
 #closeButton:hover,
 .otherButtons:hover {
     -fx-border-width: 0px;
@@ -106,5 +106,9 @@
 }
 
 .button-hoverable:hover {
+    -fx-opacity: 0.5;
+}
+
+#soundIcon:hover {
     -fx-opacity: 0.5;
 }

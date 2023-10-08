@@ -57,5 +57,10 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <ImageView fx:id="soundIcon" fitHeight="61.0" fitWidth="53.0" layoutX="940.0" layoutY="11.0" onMouseClicked="#clickSoundIcon" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/soundicon.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
