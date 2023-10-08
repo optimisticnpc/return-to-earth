@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Timer;
 import javafx.animation.FadeTransition;
@@ -19,6 +20,7 @@ import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.SpeechBubble;
 
 public class RoomTwoController {
@@ -36,10 +38,12 @@ public class RoomTwoController {
   @FXML private Polygon crate;
   @FXML private ImageView crateImage;
   @FXML private ImageView robot;
+  @FXML private ImageView soundIcon;
 
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
   private CurrentScene currentScene = CurrentScene.getInstance();
+  private Sound sound = Sound.getInstance();
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -54,11 +58,23 @@ public class RoomTwoController {
     hintCounter.setHintCount();
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
+    soundIcon.imageProperty().bind(sound.soundImageProperty());
+
     // Make the overlay images not visible
     toolBoxOpenImage.setOpacity(0);
     toolBoxCollectedImage.setOpacity(0);
     spacesuitRevealedImage.setOpacity(0);
     spacesuitCollectedImage.setOpacity(0);
+  }
+
+    /**
+   * Handles the click event on the sound icon.
+   * 
+   * @throws FileNotFoundException
+   */
+  @FXML
+  private void clickSoundIcon() throws FileNotFoundException {
+    sound.toggleImage();
   }
 
   /**
