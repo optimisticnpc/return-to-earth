@@ -76,9 +76,21 @@ public class ChatCentralControl {
     notifyObservers();
   }
 
-  private void notifyObservers() {
+  public void notifyObservers() {
     for (Observer observer : observers) {
       observer.update();
+    }
+  }
+
+  private void showAllLoadingIcons() {
+    for (Observer observer : observers) {
+      observer.showLoadingIcon();
+    }
+  }
+
+  private void hideAllLoadingIcons() {
+    for (Observer observer : observers) {
+      observer.hideLoadingIcon();
     }
   }
 
@@ -132,6 +144,8 @@ public class ChatCentralControl {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public void runGpt(ChatMessage msg) {
+    showAllLoadingIcons();
+
     long startTime = System.currentTimeMillis(); // Record time
 
     Task<ChatMessage> callGptTask =
@@ -155,7 +169,9 @@ public class ChatCentralControl {
                                 + " Please check your API key and internet connection and then"
                                 + " reload the game.")
                         .showAndWait();
+                    hideAllLoadingIcons();
                   });
+
               e.printStackTrace();
               return null;
             }
@@ -212,7 +228,7 @@ public class ChatCentralControl {
             System.out.println("Riddle resolved");
           }
 
-          // loadingIcon.setVisible(false); // hide the loading icon
+          hideAllLoadingIcons();
 
           // sendButton.setDisable(false); // Re-enable send button
           // inputText.setDisable(false); // Re-enable the input text area
@@ -231,7 +247,7 @@ public class ChatCentralControl {
                     .showAndWait();
               });
           // inputText.setDisable(false); // Re-enable the input text area
-          // loadingIcon.setVisible(false); // hide the loading icon
+          hideAllLoadingIcons();
         });
 
     new Thread(callGptTask).start();

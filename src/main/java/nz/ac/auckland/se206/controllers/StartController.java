@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -118,6 +119,7 @@ public class StartController {
     App.getScene().setRoot(roomRoot);
     GameTimer gameTimer = GameTimer.getInstance();
     OxygenMeter oxygenMeter = OxygenMeter.getInstance();
+    ChatCentralControl.getInstance().notifyObservers();
 
     gameTimer.startTimer();
     oxygenMeter.startTimer();
