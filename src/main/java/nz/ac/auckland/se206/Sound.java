@@ -31,6 +31,10 @@ public class Sound {
     return isSoundOn;
   }
 
+  public void resetSoundProperty() {
+    isSoundOn.set(true);
+  }
+
   public void toggleImage() throws FileNotFoundException {
     isSoundOn.set(!isSoundOnProperty().get());
 
