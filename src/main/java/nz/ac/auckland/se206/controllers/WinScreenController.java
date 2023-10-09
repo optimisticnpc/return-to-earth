@@ -66,14 +66,17 @@ public class WinScreenController {
    */
   private void checkWinTime(int hundredthsRemaining) {
     if (GameState.easy) {
+      // Sets time for if the difficulty is easy.
       if (hundredthsRemaining < ScoreScreenInfo.fastestEasyTimeHundredths) {
         ScoreScreenInfo.fastestEasyTimeHundredths = hundredthsRemaining;
       }
     } else if (GameState.medium) {
+      // Sets time for if the difficulty is medium.
       if (hundredthsRemaining < ScoreScreenInfo.fastestMediumTimeHundredths) {
         ScoreScreenInfo.fastestMediumTimeHundredths = hundredthsRemaining;
       }
     } else {
+      // Sets time for if the difficulty is hard.
       if (hundredthsRemaining < ScoreScreenInfo.fastestHardTimeHundredths) {
         ScoreScreenInfo.fastestHardTimeHundredths = hundredthsRemaining;
       }

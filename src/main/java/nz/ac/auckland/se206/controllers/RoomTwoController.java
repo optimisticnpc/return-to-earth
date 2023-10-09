@@ -76,7 +76,7 @@ public class RoomTwoController {
   /**
    * Handles the click event on the sound icon.
    *
-   * @throws FileNotFoundException
+   * @throws FileNotFoundException if file is not found.
    */
   @FXML
   private void clickSoundIcon() throws FileNotFoundException {
@@ -149,7 +149,7 @@ public class RoomTwoController {
   /**
    * Sets the text of the speech bubble and makes it visible for 5 seconds.
    *
-   * @param text
+   * @param text tex that is to be displayed in the bubble.
    */
   @FXML
   public void activateSpeech(String text) {
