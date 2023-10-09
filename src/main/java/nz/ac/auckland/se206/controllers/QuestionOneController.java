@@ -9,11 +9,19 @@ import nz.ac.auckland.se206.MathQuestionSelector;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
+/**
+ * Controller class for the Question One view. This class handles user interactions and UI updates
+ * for the Question One view.
+ */
 public class QuestionOneController {
 
   @FXML private Label timerLabel;
   @FXML private Label questionOneLabel;
 
+  /**
+   * Initializes the Question One view when it loads. This method sets up the timer label and
+   * displays the first math question.
+   */
   public void initialize() {
     System.out.println("QuestionOneController.initialize()");
 
@@ -24,6 +32,10 @@ public class QuestionOneController {
     questionOneLabel.setText(selector.getFirstQuestion());
   }
 
+  /**
+   * Handles the click event on the "Go Back" button. Navigates back to Room Two when the button is
+   * clicked.
+   */
   @FXML
   private void onGoBack() {
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);

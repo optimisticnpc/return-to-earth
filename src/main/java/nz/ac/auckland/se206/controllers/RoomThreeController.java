@@ -35,6 +35,10 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.SpeechBubble;
 
+/**
+ * Controller class for Room Three in the game. This class handles user interactions, game logic,
+ * and UI updates for Room Three.
+ */
 public class RoomThreeController {
   @FXML private Label timerLabel;
   @FXML private Label speechLabel;
@@ -153,6 +157,12 @@ public class RoomThreeController {
     currentScene.setCurrent(13);
   }
 
+  /**
+   * Handles the click event on the timing button within the timing minigame.
+   *
+   * @param event The mouse event triggered by clicking the timing button.
+   * @throws FileNotFoundException if there is an error with the background image file.
+   */
   @FXML
   public void pressTimingButton(MouseEvent event) throws FileNotFoundException {
     System.out.println(meter.getRotate());

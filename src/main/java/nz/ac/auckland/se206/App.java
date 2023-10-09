@@ -50,6 +50,7 @@ public class App extends Application {
     return scene;
   }
 
+  /** Resets the chat view by reloading the associated FXML file. */
   public static void resetChat() {
     try {
       SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
@@ -58,6 +59,11 @@ public class App extends Application {
     }
   }
 
+  /**
+   * Resets all the rooms in the app by reloading the associated FXML files.
+   *
+   * @throws IOException If the file is not found.
+   */
   public static void resetRooms() throws IOException {
     // Re initialize all the rooms
     try {
@@ -71,6 +77,12 @@ public class App extends Application {
     }
   }
 
+  /**
+   * Resets the math questions by using the MathQuestionSelector's setNewMathQuestions method and
+   * reloads the question pages.
+   *
+   * @throws IOException If the file is not found.
+   */
   public static void resetMathQuestions() throws IOException {
 
     try {
@@ -96,6 +108,7 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
+    // Loads in all the rooms
     SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
     SceneManager.addUi(AppUi.START, loadFxml("start"));
     SceneManager.addUi(AppUi.SCORE_SCREEN, loadFxml("scorescreen"));
@@ -127,6 +140,10 @@ public class App extends Application {
         });
   }
 
+  /**
+   * Handles the combination key pressed to automatically win, lose or show the user all the
+   * answers.
+   */
   private void cheatCodes() {
 
     KeyCombination keyCombL =
