@@ -105,7 +105,7 @@ public class App extends Application {
     SceneManager.addUi(AppUi.REACTIVATION_ORDER, loadFxml("reactivationorder"));
     Parent root = SceneManager.getUiRoot(AppUi.START);
     scene = new Scene(root, 1000, 650);
-    stage.setResizable(false);
+    // stage.setResizable(false);
     stage.setScene(scene);
     stage.show();
     root.requestFocus();

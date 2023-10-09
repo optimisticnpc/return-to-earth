@@ -76,7 +76,7 @@ public class RoomOneController {
    * Handles the click event on the arrow to Room 2.
    *
    * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
+   * @throws IOException if there is an error loading the Room 2
    */
   @FXML
   private void clickRoomTwo(MouseEvent event) throws IOException {
@@ -90,7 +90,7 @@ public class RoomOneController {
    * Handles the click event on the arrow to Room 3.
    *
    * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
+   * @throws IOException if there is an error loading the Room 3
    */
   @FXML
   private void clickRoomThree(MouseEvent event) throws IOException {
@@ -201,10 +201,11 @@ public class RoomOneController {
   @FXML
   private void clickAuthorisation(MouseEvent event) throws IOException {
     System.out.println("Authorisation clicked");
-    Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
-    App.getScene().setRoot(chatRoot);
-    GameState.isRoomOneFirst = false;
-    currentScene.setCurrent(11);
+
+    // Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
+    // App.getScene().setRoot(chatRoot);
+    // GameState.isRoomOneFirst = false;
+    // currentScene.setCurrent(11);
   }
 
   @FXML

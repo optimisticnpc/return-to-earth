@@ -9,17 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="281.0" prefWidth="294.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatComponentController">
+<AnchorPane prefHeight="650.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatComponentController">
   <children>
-      <VBox prefHeight="287.0" prefWidth="294.0" spacing="5" style="-fx-background-color: #29365c;">
+      <VBox prefHeight="657.0" prefWidth="294.0" spacing="5" style="-fx-background-color: #29365c;">
          <children>
             <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="383.0" prefWidth="230.0" VBox.vgrow="ALWAYS">
                <content>
-                  <VBox fx:id="chatLog" prefHeight="368.0" prefWidth="282.0" style="-fx-background-color: #45578f;">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#onGoBack" text="Go Back" />
-                     </children>
-                  </VBox>
+                  <VBox fx:id="chatLog" prefHeight="368.0" prefWidth="282.0" style="-fx-background-color: #45578f;" />
                </content>
             </ScrollPane>
             <HBox spacing="5">
@@ -37,5 +33,6 @@
             <Insets topRightBottomLeft="5" />
          </padding>
       </VBox>
+      <Button mnemonicParsing="false" onAction="#onGoBack" text="NEXT PHASE (placeholder)" />
   </children>
 </AnchorPane>

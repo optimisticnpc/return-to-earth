@@ -74,6 +74,7 @@ public class GameState {
     App.resetMathQuestions();
     App.resetRooms();
     App.resetChat();
+    // ChatCentralControl.resetChatCentralControl();
     HintCounter.resetHintCount();
 
     Parent startRoot = SceneManager.getUiRoot(AppUi.START);

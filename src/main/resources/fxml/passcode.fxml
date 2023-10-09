@@ -42,4 +42,5 @@
          <Font size="18.0" />
       </font>
    </Button>
+   <fx:include fx:id="chatPanel" layoutX="800.0" source="chatcomponent.fxml" />
 </AnchorPane>

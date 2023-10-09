@@ -31,6 +31,6 @@
             <Font size="30.0" />
          </font>
       </Button>
-      <fx:include layoutX="740.0" layoutY="350.0" source="chatcomponent.fxml" />
+      <fx:include layoutX="800.0" source="chatcomponent.fxml" />
    </children>
 </Pane>

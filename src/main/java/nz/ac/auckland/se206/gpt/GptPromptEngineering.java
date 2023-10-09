@@ -7,7 +7,7 @@ public class GptPromptEngineering {
     return "You are the AI system of this spaceship and your name is Space Destroyer. You are"
         + " responsible to get the spaceship back to the Earth safely. Unfortunately, one of"
         + " the spaceship's parts is malfunctioning and you need the user to fix it. You"
-        + " deperately need the user's help.";
+        + " desperately need the user's help.";
   }
 
   public static String getEasyHintSetup() {

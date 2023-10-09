@@ -75,14 +75,7 @@ public class ChatComponentController implements Observer {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-
-    // if (GameState.isRiddleResolved && GameState.phaseTwo && !GameState.hard) {
-    //   System.out.println("Phase 2");
-    //   runGpt(new ChatMessage("user", GptPromptEngineering.getPhaseTwoProgress()));
-    // } else if (GameState.isRiddleResolved && GameState.phaseTwo && GameState.hard) {
-    //   System.out.println("Phase 2(Hard)");
-    //   runGpt(new ChatMessage("user", GptPromptEngineering.getHardPhaseTwoProgress()));
-    // }
+    chatCentralControl.nextPhase();
   }
 
   public void addLabel(String message, Pos position) {
@@ -128,20 +121,20 @@ public class ChatComponentController implements Observer {
       String msgString = msg.getContent();
       if (msg.getRole().equals("assistant")) {
         addLabel(msgString, Pos.CENTER_LEFT);
-      } else {
+      } else if (msg.getRole().equals("user")) {
         addLabel(msgString, Pos.CENTER_RIGHT);
       }
     }
+
+    // Scroll to the bottom of the chatLog VBox
+    Platform.runLater(
+        () -> {
+          scrollPane.setVvalue(1.0);
+        });
   }
 
-  //   TODO: Find out why this doesn't work
-  // Scroll to the bottom of the chatLog VBox
-
-  // Platform.runLater(
-  //     () -> {
-  //      scrollPane.setVvalue(1.0);
-  //     });
-
-  // scrollPane.setVvalue(1.0);
-
+  @Override
+  public void clearContents() {
+    chatLog.getChildren().clear();
+  }
 }

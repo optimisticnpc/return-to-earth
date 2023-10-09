@@ -63,7 +63,6 @@ public class RoomOneFinalController {
 
     System.out.println("RoomOneFinalController.initialize()");
 
-    // bind the contents in the chat log to the chat log in the chat controller
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
     speechBubble.setVisible(false);
@@ -90,7 +89,7 @@ public class RoomOneFinalController {
    * Handles the click event on the arrow to Room 2.
    *
    * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
+   * @throws IOException if there is an error loading the room 2
    */
   @FXML
   public void clickRoomTwo(MouseEvent event) throws IOException {
@@ -104,7 +103,7 @@ public class RoomOneFinalController {
    * Handles the click event on the arrow to Room 3.
    *
    * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
+   * @throws IOException if there is an error loading the room 3
    */
   @FXML
   public void clickRoomThree(MouseEvent event) throws IOException {
@@ -129,7 +128,7 @@ public class RoomOneFinalController {
    * Handles the click event on the red switch.
    *
    * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
+   * @throws IOException if there is an error loading
    */
   @FXML
   public void clickRedSwitch(MouseEvent event) throws IOException {
@@ -148,7 +147,7 @@ public class RoomOneFinalController {
    * Handles the click event on the green switch.
    *
    * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
+   * @throws IOException if there is an error loading
    */
   @FXML
   public void clickGreenSwitch(MouseEvent event) throws IOException {
@@ -167,7 +166,7 @@ public class RoomOneFinalController {
    * Handles the click event on the blue switch.
    *
    * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
+   * @throws IOException if there is an error loading
    */
   @FXML
   public void clickBlueSwitch(MouseEvent event) throws IOException {
