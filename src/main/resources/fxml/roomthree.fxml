@@ -65,14 +65,14 @@
             <Font name="System Bold" size="28.0" />
          </font>
       </Text>
-      <ProgressBar fx:id="oxygenBar" layoutX="705.0" layoutY="595.0" prefHeight="35.0" prefWidth="281.0" progress="1.0" style="-fx-accent: red;" />
-      <Text fill="RED" layoutX="704.0" layoutY="589.0" stroke="BLACK" strokeType="OUTSIDE" text="OXYGEN METER:" wrappingWidth="295.10546875">
+      <ProgressBar fx:id="oxygenBar" layoutX="639.0" layoutY="593.0" prefHeight="35.0" prefWidth="281.0" progress="1.0" style="-fx-accent: red;" />
+      <Text fill="RED" layoutX="638.0" layoutY="587.0" stroke="BLACK" strokeType="OUTSIDE" text="OXYGEN METER:" wrappingWidth="295.10546875">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Text>
       <Polygon fx:id="movetoRoomOne" fill="#ff0400" layoutX="22.0" layoutY="325.0" onMouseClicked="#clickRoomOne" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
-      <Text fx:id="meterPercent" fill="RED" layoutX="921.0" layoutY="589.0" stroke="BLACK" strokeType="OUTSIDE" text="100%" wrappingWidth="70.0">
+      <Text fx:id="meterPercent" fill="RED" layoutX="855.0" layoutY="587.0" stroke="BLACK" strokeType="OUTSIDE" text="100%" wrappingWidth="70.0">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
