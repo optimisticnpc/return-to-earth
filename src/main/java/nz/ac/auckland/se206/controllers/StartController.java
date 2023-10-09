@@ -14,10 +14,20 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
+/**
+ * The StartController class controls the behavior and interactions of the start screen. It allows
+ * the player to select game difficulty and time settings, view the score screen, and start the
+ * game.
+ */
 public class StartController {
 
   private static int timeSettingSeconds;
 
+  /**
+   * Gets the selected time setting in seconds.
+   *
+   * @return The time setting in seconds.
+   */
   public static int getTimeSettingSeconds() {
     return timeSettingSeconds;
   }
@@ -41,11 +51,20 @@ public class StartController {
 
   private String[] timeStrings = {"2 min", "4 min", "6 min"};
 
+  /**
+   * Initializes the start screen, setting the default time setting and difficulty.
+   *
+   * @throws ApiProxyException If there is an issue with the TextToSpeech API.
+   */
   @FXML
   public void initialize() throws ApiProxyException {
     System.out.println("StartController.initialize()");
   }
 
+  /**
+   * Handles the action when the "Next Difficulty" button is clicked, cycling through difficulty
+   * levels.
+   */
   @FXML
   private void onClickNextDifficultyButton() {
     if (this.currDifficulty < 2) {
@@ -55,6 +74,10 @@ public class StartController {
     }
   }
 
+  /**
+   * Handles the action when the "Previous Difficulty" button is clicked, cycling through difficulty
+   * levels.
+   */
   @FXML
   private void onClickPrevDifficultyButton() {
     if (this.currDifficulty > 0) {
@@ -64,6 +87,7 @@ public class StartController {
     }
   }
 
+  /** Handles the action when the "Next Time" button is clicked, cycling through time settings. */
   @FXML
   private void onClickNextTimeButton() {
     if (this.timeSetting < 2) {
@@ -72,6 +96,9 @@ public class StartController {
     }
   }
 
+  /**
+   * Handles the action when the "Previous Time" button is clicked, cycling through time settings.
+   */
   @FXML
   private void onClickPrevTimeButton() {
     if (this.timeSetting > 0) {
@@ -80,12 +107,22 @@ public class StartController {
     }
   }
 
+  /**
+   * Handles the action when the "Score Screen" button is clicked, allowing the player to view the
+   * score screen.
+   */
   @FXML
   private void onClickScoreScreenButton() {
     Parent scoreParent = SceneManager.getUiRoot(AppUi.SCORE_SCREEN);
     App.getScene().setRoot(scoreParent);
   }
 
+  /**
+   * Handles the action when the "Start" button is clicked, starting the game with the selected
+   * settings.
+   *
+   * @throws IOException If there is an issue with starting the game.
+   */
   @FXML
   private void onClickStartButton() throws IOException {
     // Need to change the difficulty here as well later

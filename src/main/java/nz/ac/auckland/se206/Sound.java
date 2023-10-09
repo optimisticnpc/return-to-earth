@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
  */
 public class Sound {
 
+  /** Singleton instance of the Sound class. */
   private static Sound instance = null;
 
   /**

@@ -23,6 +23,12 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.SpeechBubble;
 
+/**
+ * The RoomTwoController class controls the behavior and interactions within Room Two of the game.
+ * This room contains various elements and interactions, including speech bubbles, timers, puzzle
+ * items, and navigation to other scenes. It manages the state of the room, such as whether puzzle
+ * items have been collected or revealed, and handles player interactions.
+ */
 public class RoomTwoController {
   @FXML private Pane room;
   @FXML private Label timerLabel;
@@ -170,6 +176,14 @@ public class RoomTwoController {
     speechLabel.setVisible(true);
   }
 
+  /**
+   * Handles the click event on the crate element. If the toolbox has been collected, this method
+   * initiates a fade-out animation for the crate image, followed by removing both the crate and
+   * crate image from the room's children.
+   *
+   * @param event The mouse event triggered by clicking on the crate.
+   * @throws InterruptedException if there is an issue with thread execution during the animation.
+   */
   @FXML
   public void clickCrate(MouseEvent event) throws InterruptedException {
     System.out.println("Crate clicked");
