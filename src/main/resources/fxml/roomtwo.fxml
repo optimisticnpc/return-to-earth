@@ -83,5 +83,6 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <fx:include fx:id="chatPanel" layoutX="700.0" source="chatcomponent.fxml" />
    </children>
 </Pane>

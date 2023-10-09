@@ -121,12 +121,6 @@ public class ChatController {
     }
   }
 
-  public void setUIComponents(VBox chatLog, ScrollPane scrollPane, TextArea inputText) {
-    this.chatLog = chatLog;
-    this.scrollPane = scrollPane;
-    this.inputText = inputText;
-  }
-
   public void addLabel(String message, Pos position) {
     HBox hBox = new HBox();
     hBox.setAlignment(position);
@@ -185,109 +179,109 @@ public class ChatController {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   private void runGpt(ChatMessage msg) {
-    // Disable the input text area so the user cannot type while GPT is loading
-    // Also disable send button
-    inputText.setDisable(true);
-    sendButton.setDisable(true);
-    loadingIcon.setVisible(true); // show the loading icon
-    long startTime = System.currentTimeMillis(); // Record time
+    // // Disable the input text area so the user cannot type while GPT is loading
+    // // Also disable send button
+    // inputText.setDisable(true);
+    // sendButton.setDisable(true);
+    // loadingIcon.setVisible(true); // show the loading icon
+    // long startTime = System.currentTimeMillis(); // Record time
 
-    Task<ChatMessage> callGptTask =
-        new Task<>() {
-          @Override
-          public ChatMessage call() throws ApiProxyException {
-            chatCompletionRequest.addMessage(msg);
-            try {
-              ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
-              Choice result = chatCompletionResult.getChoices().iterator().next();
-              chatCompletionRequest.addMessage(result.getChatMessage());
-              recordAndPrintTime(startTime);
-              return result.getChatMessage();
-            } catch (ApiProxyException e) {
-              Platform.runLater(
-                  () -> {
-                    // Show an alert dialog or some other notification to the user.
-                    new Alert(
-                            Alert.AlertType.ERROR,
-                            "An error occurred while communicating with the OpenAI's servers."
-                                + " Please check your API key and internet connection and then"
-                                + " reload the game.")
-                        .showAndWait();
-                    loadingIcon.setVisible(false); // hide the loading icon
-                  });
-              e.printStackTrace();
-              return null;
-            }
-          }
-        };
+    // Task<ChatMessage> callGptTask =
+    //     new Task<>() {
+    //       @Override
+    //       public ChatMessage call() throws ApiProxyException {
+    //         chatCompletionRequest.addMessage(msg);
+    //         try {
+    //           ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+    //           Choice result = chatCompletionResult.getChoices().iterator().next();
+    //           chatCompletionRequest.addMessage(result.getChatMessage());
+    //           recordAndPrintTime(startTime);
+    //           return result.getChatMessage();
+    //         } catch (ApiProxyException e) {
+    //           Platform.runLater(
+    //               () -> {
+    //                 // Show an alert dialog or some other notification to the user.
+    //                 new Alert(
+    //                         Alert.AlertType.ERROR,
+    //                         "An error occurred while communicating with the OpenAI's servers."
+    //                             + " Please check your API key and internet connection and then"
+    //                             + " reload the game.")
+    //                     .showAndWait();
+    //                 loadingIcon.setVisible(false); // hide the loading icon
+    //               });
+    //           e.printStackTrace();
+    //           return null;
+    //         }
+    //       }
+    //     };
 
-    callGptTask.setOnSucceeded(
-        event -> {
-          ChatMessage result = callGptTask.getValue();
+    // callGptTask.setOnSucceeded(
+    //     event -> {
+    //       ChatMessage result = callGptTask.getValue();
 
-          // Store the message in messageString variable
-          if (result.getRole().equals("assistant")) {
-            messageString = result.getContent();
-          }
-          if (GameState.medium) {
-            if (result.getRole().equals("assistant") && result.getContent().startsWith("Hint")) {
-              int count = countOccurrences("hint", messageString.toLowerCase());
-              if (hintCounter.getMediumHintCount() > 0) {
-                if (hintCounter.getMediumHintCount() - count >= 0) {
-                  hintCounter.decrementHintCount(count);
-                } else {
-                  result =
-                      new ChatMessage(
-                          "AI",
-                          "You can only ask for"
-                              + " "
-                              + hintCounter.getMediumHintCount()
-                              + " "
-                              + "more hints.");
-                }
-              } else {
-                result = new ChatMessage("AI", "You cannot get any more hints.");
-              }
-            }
-          }
-          addLabel(result.getContent(), Pos.CENTER_LEFT);
-          if (GameState.phaseTwo || GameState.phaseThree || GameState.phaseFour) {
-            // clear the contents in VBOX
-            chatLog.getChildren().clear();
-            GameState.phaseTwo = false;
-            GameState.phaseThree = false;
-            GameState.phaseFour = false;
-          }
-          if (result.getRole().equals("assistant")
-              && result.getContent().startsWith("Authorization Complete")) {
-            GameState.isRiddleResolved = true;
-            GameState.phaseTwo = true;
-            System.out.println("Riddle resolved");
-          }
+    //       // Store the message in messageString variable
+    //       if (result.getRole().equals("assistant")) {
+    //         messageString = result.getContent();
+    //       }
+    //       if (GameState.medium) {
+    //         if (result.getRole().equals("assistant") && result.getContent().startsWith("Hint")) {
+    //           int count = countOccurrences("hint", messageString.toLowerCase());
+    //           if (hintCounter.getMediumHintCount() > 0) {
+    //             if (hintCounter.getMediumHintCount() - count >= 0) {
+    //               hintCounter.decrementHintCount(count);
+    //             } else {
+    //               result =
+    //                   new ChatMessage(
+    //                       "AI",
+    //                       "You can only ask for"
+    //                           + " "
+    //                           + hintCounter.getMediumHintCount()
+    //                           + " "
+    //                           + "more hints.");
+    //             }
+    //           } else {
+    //             result = new ChatMessage("AI", "You cannot get any more hints.");
+    //           }
+    //         }
+    //       }
+    //       addLabel(result.getContent(), Pos.CENTER_LEFT);
+    //       if (GameState.phaseTwo || GameState.phaseThree || GameState.phaseFour) {
+    //         // clear the contents in VBOX
+    //         chatLog.getChildren().clear();
+    //         GameState.phaseTwo = false;
+    //         GameState.phaseThree = false;
+    //         GameState.phaseFour = false;
+    //       }
+    //       if (result.getRole().equals("assistant")
+    //           && result.getContent().startsWith("Authorization Complete")) {
+    //         GameState.isRiddleResolved = true;
+    //         GameState.phaseTwo = true;
+    //         System.out.println("Riddle resolved");
+    //       }
 
-          loadingIcon.setVisible(false); // hide the loading icon
+    //       loadingIcon.setVisible(false); // hide the loading icon
 
-          sendButton.setDisable(false); // Re-enable send button
-          inputText.setDisable(false); // Re-enable the input text area
-        });
+    //       sendButton.setDisable(false); // Re-enable send button
+    //       inputText.setDisable(false); // Re-enable the input text area
+    //     });
 
-    callGptTask.setOnFailed(
-        event -> {
-          Platform.runLater(
-              () -> {
-                // Show an alert dialog or some other notification to the user.
-                new Alert(
-                        Alert.AlertType.ERROR,
-                        "An error occurred while communicating with the OpenAI's servers. Please"
-                            + " check your API key and internet connection and then reload the"
-                            + " game.")
-                    .showAndWait();
-              });
-          inputText.setDisable(false); // Re-enable the input text area
-          loadingIcon.setVisible(false); // hide the loading icon
-        });
+    // callGptTask.setOnFailed(
+    //     event -> {
+    //       Platform.runLater(
+    //           () -> {
+    //             // Show an alert dialog or some other notification to the user.
+    //             new Alert(
+    //                     Alert.AlertType.ERROR,
+    //                     "An error occurred while communicating with the OpenAI's servers. Please"
+    //                         + " check your API key and internet connection and then reload the"
+    //                         + " game.")
+    //                 .showAndWait();
+    //           });
+    //       inputText.setDisable(false); // Re-enable the input text area
+    //       loadingIcon.setVisible(false); // hide the loading icon
+    //     });
 
-    new Thread(callGptTask).start();
+    // new Thread(callGptTask).start();
   }
 
   protected void recordAndPrintTime(long startTime) {
