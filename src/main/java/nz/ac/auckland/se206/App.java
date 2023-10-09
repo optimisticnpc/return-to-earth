@@ -58,11 +58,12 @@ public class App extends Application {
   }
 
   public static void resetRooms() throws IOException {
-    // Re initialize all the rooms
+    // Re initialize all the rooms the need to be reset every round
     try {
       SceneManager.addUi(AppUi.ROOM_ONE, loadFxml("roomone"));
       SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
       SceneManager.addUi(AppUi.ROOM_THREE, loadFxml("roomthree"));
+      SceneManager.addUi(AppUi.ROOM_ONE_FINAL, App.loadFxml("roomonefinal"));
       SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
       SceneManager.addUi(AppUi.REACTIVATION_ORDER, loadFxml("reactivationorder"));
     } catch (IOException e) {
@@ -95,14 +96,17 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
+
+    // NOTE: All the other rooms get initialized at start button press so that chat is inialized
+    // After difficulty is chosen
+
+    // These rooms are only initialized once:
     SceneManager.addUi(AppUi.START, loadFxml("start"));
     SceneManager.addUi(AppUi.SCORE_SCREEN, loadFxml("scorescreen"));
+
+    // TODO: remove this legacy code
     SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
-    SceneManager.addUi(AppUi.QUESTION_ONE, loadFxml("questionone"));
-    SceneManager.addUi(AppUi.QUESTION_TWO, loadFxml("questiontwo"));
-    SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
-    SceneManager.addUi(AppUi.REACTIVATION_ORDER, loadFxml("reactivationorder"));
+
     Parent root = SceneManager.getUiRoot(AppUi.START);
     scene = new Scene(root, 1000, 650);
     // stage.setResizable(false);

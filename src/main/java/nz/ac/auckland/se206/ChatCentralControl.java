@@ -46,10 +46,16 @@ public class ChatCentralControl {
   private List<ChatMessage> messages = new ArrayList<>();
 
   private ChatCentralControl() {
+    initializeChatCentralControl();
+  }
+
+  public void initializeChatCentralControl() {
     System.out.println("ChatCentralControl Iniatialized");
 
     setupChatConfiguration();
     selectRandomRiddle();
+    observers = new ArrayList<>();
+    messages = new ArrayList<>();
 
     try {
       runChatPromptBasedOnGameState();
@@ -57,10 +63,6 @@ public class ChatCentralControl {
       // Handle the exception and provide feedback if needed.
       e.printStackTrace();
     }
-  }
-
-  public static void resetChatCentralControl() {
-    instance = new ChatCentralControl();
   }
 
   public void addObserver(Observer observer) {
@@ -101,12 +103,13 @@ public class ChatCentralControl {
   }
 
   private void runChatPromptBasedOnGameState() throws ApiProxyException {
-    if (GameState.isSetup) {
-      // TODO: TEMPORARY BYPASS bc idk why its not working
-      //   System.out.println("PERSONALITY RUN");
-      //   runGpt(new ChatMessage("system", GptPromptEngineering.getAIPersonality()));
-      //   GameState.isSetup = false;
-      // } else if (!GameState.isRiddleResolved) {
+    // if (GameState.isSetup) {
+    // TODO: TEMPORARY BYPASS bc idk why its not working
+    //   System.out.println("PERSONALITY RUN");
+    //   runGpt(new ChatMessage("system", GptPromptEngineering.getAIPersonality()));
+    //   GameState.isSetup = false;
+    // } else
+    if (!GameState.isRiddleResolved) {
       System.out.println("RIDDLE GENERATED");
       runGpt(new ChatMessage("user", GptPromptEngineering.getRiddle(wordToGuess)));
     } else {
@@ -145,6 +148,7 @@ public class ChatCentralControl {
    */
   public void runGpt(ChatMessage msg) {
     showAllLoadingIcons();
+    System.out.println("GPT LOADING");
 
     long startTime = System.currentTimeMillis(); // Record time
 

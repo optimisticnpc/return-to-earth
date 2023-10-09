@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="651.0" prefWidth="1335.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneFinalController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="651.0" prefWidth="1335.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneFinalController">
    <children>
       <ImageView fx:id="background" fitHeight="650.0" fitWidth="1082.0" layoutX="-41.0" pickOnBounds="true">
          <image>
