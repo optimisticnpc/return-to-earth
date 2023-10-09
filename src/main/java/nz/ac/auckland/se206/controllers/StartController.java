@@ -12,6 +12,7 @@ import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /**
@@ -156,8 +157,10 @@ public class StartController {
     App.getScene().setRoot(roomRoot);
     GameTimer gameTimer = GameTimer.getInstance();
     OxygenMeter oxygenMeter = OxygenMeter.getInstance();
+    Sound sound = Sound.getInstance();
 
     gameTimer.startTimer();
     oxygenMeter.startTimer();
+    sound.resetSoundProperty();
   }
 }

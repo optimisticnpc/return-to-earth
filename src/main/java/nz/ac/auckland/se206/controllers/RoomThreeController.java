@@ -67,6 +67,7 @@ public class RoomThreeController {
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
   private Sound sound = Sound.getInstance();
+  private Boolean isWarningShown = false;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -76,6 +77,7 @@ public class RoomThreeController {
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
     OxygenMeter oxygenMeter = OxygenMeter.getInstance();
+    oxygenMeter.setRoomThreeController(this);
     oxygenBar.progressProperty().bind(oxygenMeter.oxygenProgressProperty());
     meterPercent.textProperty().bind(oxygenMeter.percentProgressProperty());
 
@@ -120,6 +122,20 @@ public class RoomThreeController {
         };
     Thread rotateThread = new Thread(rotateTask);
     rotateThread.start();
+  }
+
+  /** Shows a low oxygen warning when oxygen is under 30% and it's the first warning. */
+  public void showLowOxygen() {
+    if (!isWarningShown) {
+      activateSpeech("OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
+      isWarningShown = true;
+    }
+  }
+
+  /** Changes oxygen meter colour and width once spacesuit is collected. */
+  public void showSpacesuitOxygen() {
+    oxygenBar.setStyle("-fx-accent: #ADD8E6;");
+    oxygenBar.setPrefWidth(350);
   }
 
   /**

@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.controllers.RoomThreeController;
 
 /**
  * The`OxygenMeter class manages the oxygen level and its display in the game. It follows the
@@ -17,6 +18,7 @@ import javafx.util.Duration;
 public class OxygenMeter {
 
   /** The singleton instance of the `OxygenMeter` class. */
+
   private static OxygenMeter instance = null;
 
   /**
@@ -44,7 +46,13 @@ public class OxygenMeter {
   private StringProperty percentProgressProperty = new SimpleStringProperty();
 
   /** A BigDecimal object representing the oxygen progress. */
+
   private BigDecimal progress = new BigDecimal(String.format("%.2f", 1.0));
+  private RoomThreeController roomThree;
+
+  public void setRoomThreeController(RoomThreeController controller) {
+    this.roomThree = controller;
+  }
 
   /**
    * Constructs a new OxygenMeter object and initializes the timeline for managing oxygen levels.
@@ -66,6 +74,9 @@ public class OxygenMeter {
                       } else {
                         progress =
                             new BigDecimal(String.format("%.2f", progress.doubleValue() - 0.05));
+                      }
+                      if (progress.doubleValue() < 0.3) {
+                        roomThree.showLowOxygen();
                       }
                       // Display oxygen level as percentage
                       oxygenProgressProperty.set(progress.doubleValue());
@@ -90,6 +101,7 @@ public class OxygenMeter {
                       oxygenProgressProperty.set(progress.doubleValue());
                       percentProgressProperty.set("100%");
                       GameState.isSpacesuitJustCollected = false;
+                      roomThree.showSpacesuitOxygen();
                     }
                   }
                 }));
