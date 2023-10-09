@@ -12,7 +12,6 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.GlobalController;
 import nz.ac.auckland.se206.controllers.PasscodeController;
 import nz.ac.auckland.se206.controllers.ScoreScreenController;
@@ -167,7 +166,7 @@ public class App extends Application {
             // Get answers for all puzzles
 
             // Riddle:
-            System.out.println("Riddle: " + ChatController.getWordToGuess());
+            System.out.println("Riddle: " + ChatCentralControl.getWordToGuess());
 
             // Passcode:
             System.out.println("Code: " + PasscodeController.getCorrectPassCodeString());
