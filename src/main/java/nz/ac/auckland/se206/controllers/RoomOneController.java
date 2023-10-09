@@ -201,7 +201,7 @@ public class RoomOneController {
   @FXML
   private void clickAuthorisation(MouseEvent event) throws IOException {
     System.out.println("Authorisation clicked");
-
+    GameState.isAuthorising = true;
     // Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
     // App.getScene().setRoot(chatRoot);
     // GameState.isRoomOneFirst = false;

@@ -95,8 +95,10 @@ public class ChatCentralControl {
       //   runGpt(new ChatMessage("system", GptPromptEngineering.getAIPersonality()));
       //   GameState.isSetup = false;
       // } else if (!GameState.isRiddleResolved) {
-      System.out.println("RIDDLE GENERATED");
-      runGpt(new ChatMessage("user", GptPromptEngineering.getRiddle(wordToGuess)));
+      runGpt(new ChatMessage("user", GptPromptEngineering.getAIPersonality()));
+      System.out.println("SET UP COMPLETED");
+      // runGpt(new ChatMessage("user", GptPromptEngineering.getRiddle(wordToGuess)));
+      GameState.isSetup = false;
     } else {
       if (GameState.phaseThree && !GameState.hard) {
         System.out.println("Phase 3");

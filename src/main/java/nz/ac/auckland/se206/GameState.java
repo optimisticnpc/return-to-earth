@@ -33,6 +33,8 @@ public class GameState {
   // revealed. */
   public static boolean isToolboxRevealed = false;
 
+  public static boolean isAuthorising = false;
+
   // ** Indicates that the player has clicked on the tool box to collect it, the visual in the room
   // will show the tool box as taken */
   public static boolean isToolboxCollected = false;

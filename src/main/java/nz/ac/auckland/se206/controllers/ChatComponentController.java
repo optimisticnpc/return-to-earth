@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import nz.ac.auckland.se206.ChatCentralControl;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Observer;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -63,7 +64,16 @@ public class ChatComponentController implements Observer {
     }
     ChatMessage msg = new ChatMessage("user", message);
     chatCentralControl.addMessage(msg);
-    chatCentralControl.runGpt(msg);
+
+    if (!GameState.isAuthorising) {
+      addLabel(
+          "You need to be authorised to talk to Space Destroyer. Please click the middle screen"
+              + " in the main control room to authorise yourself.",
+          Pos.CENTER_LEFT);
+      ;
+    } else {
+      chatCentralControl.runGpt(msg);
+    }
   }
 
   /**
