@@ -4,11 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The MathQuestionSelector class manages the selection and generation of mathematical questions for
+ * the game. It follows the singleton design pattern to ensure a single instance throughout the
+ * application.
+ */
 public class MathQuestionSelector {
+
+  /** The singleton instance of the `MathQuestionSelector` class. */
   private static MathQuestionSelector instance;
 
-  // Static methods
-  // Singleton design pattern
+  /**
+   * Gets the singleton instance of the `MathQuestionSelector` class.
+   *
+   * @return The singleton instance of the `MathQuestionSelector` class.
+   */
   public static MathQuestionSelector getInstance() {
     if (instance == null) {
       instance = new MathQuestionSelector();
@@ -16,10 +26,19 @@ public class MathQuestionSelector {
     return instance;
   }
 
+  /** The list of available mathematical questions. */
   private List<MathQuestion> mathQuestions = new ArrayList<>();
+
+  /** A random number generator for selecting questions. */
   private Random random = new Random();
+
+  /** An array to store the selected mathematical puzzles. */
   private MathQuestion[] selectedPuzzles;
 
+  /**
+   * Constructs a new MathQuestionSelector object and initializes the available mathematical
+   * questions.
+   */
   private MathQuestionSelector() {
     initializeQuestions();
 
@@ -27,6 +46,11 @@ public class MathQuestionSelector {
     selectedPuzzles = selectTwoRandomMathQuestions();
   }
 
+  /**
+   * Selects two random maths questions to be used for that instance of the game.
+   *
+   * @return two randomly selected maths questions.
+   */
   private MathQuestion[] selectTwoRandomMathQuestions() {
     int firstIndex = random.nextInt(mathQuestions.size());
     int secondIndex;
@@ -37,24 +61,41 @@ public class MathQuestionSelector {
     return new MathQuestion[] {mathQuestions.get(firstIndex), mathQuestions.get(secondIndex)};
   }
 
+  /** Selects and sets two new random mathematical questions. */
   public void setNewMathQuestions() {
     selectedPuzzles = selectTwoRandomMathQuestions();
   }
 
+  /**
+   * Generates a passcode based on the answers to the selected mathematical questions.
+   *
+   * @return The generated passcode.
+   */
   public String generatePasscode() {
     String firstAnswer = selectedPuzzles[0].getAnswer();
     String secondAnswer = selectedPuzzles[1].getAnswer();
     return firstAnswer + secondAnswer;
   }
 
+  /**
+   * Gets the text of the first selected mathematical question.
+   *
+   * @return The text of the first selected mathematical question.
+   */
   public String getFirstQuestion() {
     return selectedPuzzles[0].getQuestion();
   }
 
+  /**
+   * Gets the text of the second selected mathematical question.
+   *
+   * @return The text of the second selected mathematical question.
+   */
   public String getSecondQuestion() {
     return selectedPuzzles[1].getQuestion();
   }
 
+  /** Initializes the list of available mathematical questions. */
   private void initializeQuestions() {
     // Initialize all the math questions
 

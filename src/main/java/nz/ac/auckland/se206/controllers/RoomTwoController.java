@@ -67,9 +67,9 @@ public class RoomTwoController {
     spacesuitCollectedImage.setOpacity(0);
   }
 
-    /**
+  /**
    * Handles the click event on the sound icon.
-   * 
+   *
    * @throws FileNotFoundException
    */
   @FXML
