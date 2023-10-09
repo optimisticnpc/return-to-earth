@@ -115,6 +115,11 @@ public class TextToSpeech {
     }
   }
 
+  /**
+   * Stops the text-to-speech synthesis process.
+   *
+   * @throws TextToSpeechException if an error occurs during the cancellation process.
+   */
   public void stop() {
     try {
       synthesizer.cancel();

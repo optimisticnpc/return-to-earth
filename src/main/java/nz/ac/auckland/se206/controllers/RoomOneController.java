@@ -57,7 +57,7 @@ public class RoomOneController {
   /**
    * Initializes the room view, it is called when the room loads.
    *
-   * @throws FileNotFoundException
+   * @throws FileNotFoundException if the file is not found.
    */
   public void initialize() throws FileNotFoundException {
 
@@ -85,7 +85,7 @@ public class RoomOneController {
   /**
    * Handles the click event on the sound icon.
    *
-   * @throws FileNotFoundException
+   * @throws FileNotFoundException if file is not found.
    */
   @FXML
   private void clickSoundIcon() throws FileNotFoundException {
@@ -179,7 +179,7 @@ public class RoomOneController {
   /**
    * Sets the text of the speech bubble and makes it visible for 5 seconds.
    *
-   * @param text
+   * @param text text that is to be displayed in the bubble.
    */
   @FXML
   private void activateSpeech(String text) {

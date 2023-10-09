@@ -72,7 +72,7 @@ public class RoomOneFinalController {
   /**
    * Handles the click event on the sound icon.
    *
-   * @throws FileNotFoundException
+   * @throws FileNotFoundException if file is not found.
    */
   @FXML
   private void clickSoundIcon() throws FileNotFoundException {
@@ -176,7 +176,7 @@ public class RoomOneFinalController {
   }
 
   /**
-   * Handles the click event on the reactivate screen
+   * Handles the click event on the reactivate screen.
    *
    * @param event the mouse event
    * @throws IOException if there is an error loading the winscreen
@@ -201,7 +201,7 @@ public class RoomOneFinalController {
   /**
    * Sets the text of the speech bubble and makes it visible for 5 seconds.
    *
-   * @param text
+   * @param text text that is it to be displayed in the bubble.
    */
   @FXML
   public void activateSpeech(String text) {
@@ -222,7 +222,7 @@ public class RoomOneFinalController {
   }
 
   /**
-   * Handles the click event on the robot
+   * Handles the click event on the robot.
    *
    * @param event the mouse event
    * @throws IOException if there is an error loading the chat view

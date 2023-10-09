@@ -51,17 +51,15 @@ public class Sound {
     return isSoundOn;
   }
 
-  /**
-  * Resets the sound property to true.
-  */
+  /** Resets the sound property to true. */
   public void resetSoundProperty() {
     isSoundOn.set(true);
   }
 
-   /**
+  /**
    * Toggles the sound icon to on or off depending on the isSoundOn boolean property.
    *
-   * @throws FileNotFoundException
+   * @throws FileNotFoundException if the file is not found.
    */
   public void toggleImage() throws FileNotFoundException {
     isSoundOn.set(!isSoundOnProperty().get());

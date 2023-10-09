@@ -37,6 +37,11 @@ public class ChatController {
 
   private static String wordToGuess;
 
+  /**
+   * Method that gets the word that will be the key of the riddle to be used.
+   *
+   * @return the word the user must guess in the riddle.
+   */
   public static String getWordToGuess() {
     return wordToGuess;
   }
@@ -259,6 +264,11 @@ public class ChatController {
     new Thread(callGptTask).start();
   }
 
+  /**
+   * Records the elapsed time since the provided start time and prints it to the console.
+   *
+   * @param startTime The starting time to calculate the elapsed time from.
+   */
   protected void recordAndPrintTime(long startTime) {
     long time = System.currentTimeMillis() - startTime;
     System.out.println();
@@ -286,6 +296,7 @@ public class ChatController {
     runGpt(msg);
   }
 
+  /** Displays the AI thinking animation by fading in the thinking image. */
   @FXML
   public void showAiThinking() {
     // Fade in the thinking image in 0.3s
@@ -299,14 +310,19 @@ public class ChatController {
     fade.play();
   }
 
-  @FXML // send the message when the enter key is pressed
+  /**
+   * Sends the message when the Enter key is pressed.
+   *
+   * @param event The KeyEvent triggered by the Enter key press.
+   */
+  @FXML
   private void onEnterPressed(KeyEvent event) {
     if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
       sendButton.fire();
     }
   }
 
-  /** Count the number of occurrences of a given word in the sentence */
+  /** Count the number of occurrences of a given word in the sentence. */
   private int countOccurrences(String word, String sentence) {
     // Split the sentence into an array of words
     String[] words = sentence.split("\\s+");
@@ -360,6 +376,7 @@ public class ChatController {
     App.getScene().setRoot(roomRoot);
   }
 
+  /** Initiates text-to-speech to read the message and manages the sound icon button state. */
   private void readMessage() {
     // Disable the soundIcon button when the message starts to be read
     // Prevent the user from clicking the button multiple times

@@ -22,16 +22,6 @@ import nz.ac.auckland.se206.ScoreScreenInfo;
  * screen.
  */
 public class ScoreScreenController {
-  @FXML private Label fastestEasyTimeLabel;
-  @FXML private Label fastestMediumTimeLabel;
-  @FXML private Label fastestHardTimeLabel;
-  @FXML private ImageView easyStars;
-  @FXML private ImageView mediumStars;
-  @FXML private ImageView hardStars;
-  @FXML private Pane helpScreen;
-  @FXML private Button helpStarsButton;
-  @FXML private Button goBackButton;
-
   // Add to ScoreScreenController
   private static ScoreScreenController instance;
 
@@ -41,6 +31,16 @@ public class ScoreScreenController {
       instance.refreshTimes();
     }
   }
+
+  @FXML private Label fastestEasyTimeLabel;
+  @FXML private Label fastestMediumTimeLabel;
+  @FXML private Label fastestHardTimeLabel;
+  @FXML private ImageView easyStars;
+  @FXML private ImageView mediumStars;
+  @FXML private ImageView hardStars;
+  @FXML private Pane helpScreen;
+  @FXML private Button helpStarsButton;
+  @FXML private Button goBackButton;
 
   /**
    * Initializes a new instance of the ScoreScreenController class. This constructor sets the

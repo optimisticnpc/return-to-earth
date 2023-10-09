@@ -85,7 +85,7 @@ public class GameTimer {
     timeline.playFromStart();
   }
 
-  /** Stops the timer. */
+  /** This method stops the timer to prevent any later bugs occuring. */
   public void stopTimer() {
     timeline.stop();
   }
@@ -99,7 +99,7 @@ public class GameTimer {
     return timeDisplay;
   }
 
-  /** Updates the time display. */
+  /** Updates the time display to show the remaining time in the format "Time remaining: MM:SS". */
   private void updateTimeDisplay() {
     int minutes = timeHundredths / 6000;
     int seconds = (timeHundredths % 6000) / 100;

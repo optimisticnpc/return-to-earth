@@ -3,6 +3,12 @@ package nz.ac.auckland.se206.gpt;
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
 
+  /**
+   * Generates a GPT prompt for an easy AI riddle.
+   *
+   * @param wordToGuess The word that the riddle should contain.
+   * @return A GPT prompt for an easy AI riddle.
+   */
   public static String getEasyAiRiddle(String wordToGuess) {
     // Prompt GPT for the easy difficulty
     // i.e allow infite hints
@@ -17,6 +23,12 @@ public class GptPromptEngineering {
         + " gives up, do not give the answer.";
   }
 
+  /**
+   * Generates a GPT prompt for a medium AI riddle.
+   *
+   * @param wordToGuess The word that the riddle should contain.
+   * @return A GPT prompt for a medium AI riddle.
+   */
   public static String getMediumAiRiddle(String wordToGuess) {
     // Prompt GPT for the medium difficulty
     // The number of hints is managed in ChatController
@@ -31,6 +43,12 @@ public class GptPromptEngineering {
         + " answer.";
   }
 
+  /**
+   * Generates a GPT prompt for a hard AI riddle.
+   *
+   * @param wordToGuess The word that the riddle should contain.
+   * @return A GPT prompt for a hard AI riddle.
+   */
   public static String getHardAiRiddle(String wordToGuess) {
     // Prompt GPT for the hard difficulty
     // No hints allowed
@@ -45,6 +63,11 @@ public class GptPromptEngineering {
         + " do not give the answer.";
   }
 
+  /**
+   * Generates a GPT prompt for phase two progress.
+   *
+   * @return A GPT prompt for phase two progress.
+   */
   public static String getphaseTwoProgress() {
     return "The user has to find a toolbox in the storage room. If the user asks for hints, answer"
         + " by starting with the word Hint and then tell them that they have to find 4 digit"
@@ -52,12 +75,22 @@ public class GptPromptEngineering {
         + " anything else.";
   }
 
+  /**
+   * Generates a GPT prompt for hard phase two progress.
+   *
+   * @return A GPT prompt for hard phase two progress.
+   */
   public static String getHardphaseTwoProgress() {
     return "Now, The user has to find a toolbox in the storage room, which will be helpful to fix"
         + " the malfunctioning part of the spaceship. If the user asks for help, simply tell"
         + " them to find the tool box in the storage room.";
   }
 
+  /**
+   * Generates a GPT prompt for phase three progress.
+   *
+   * @return A GPT prompt for phase three progress.
+   */
   public static String getphaseThreeProgress() {
     return "The user has to fix the engine outside the spaceship. If the user asks for hints,"
         + " answer by starting with the word Hint, and then tell them that they have to"
@@ -65,6 +98,11 @@ public class GptPromptEngineering {
         + " else.";
   }
 
+  /**
+   * Generates a GPT prompt for hard phase three progress.
+   *
+   * @return A GPT prompt for hard phase three progress.
+   */
   public static String getHardphaseThreeProgress() {
     return "The user now has to fix the malfunctioning engine from outside the spaceship with the"
         + " tools that they just found. If the user asks for help, simply tell them to fix"
@@ -72,6 +110,11 @@ public class GptPromptEngineering {
         + " anything else.";
   }
 
+  /**
+   * Generates a GPT prompt for phase four progress.
+   *
+   * @return A GPT prompt for phase four progress.
+   */
   public static String getphaseFourProgress() {
     return "The user has to reactivate the engine in the main room. If the user asks for hints,"
         + " answer by starting with the word Hint, and then tell them that they have to"
@@ -79,6 +122,11 @@ public class GptPromptEngineering {
         + " anything else.";
   }
 
+  /**
+   * Generates a GPT prompt for hard phase four progress.
+   *
+   * @return A GPT prompt for hard phase four progress.
+   */
   public static String getHardphaseFourProgress() {
     return "The user has to reactivate the engine in the main room. If the user asks for hints,"
         + " simply tell them that they have to reactivate the engine from the main room. Do"

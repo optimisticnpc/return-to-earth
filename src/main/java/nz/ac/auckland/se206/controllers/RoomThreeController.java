@@ -97,7 +97,7 @@ public class RoomThreeController {
   /**
    * Handles the click event on the sound icon.
    *
-   * @throws FileNotFoundException
+   * @throws FileNotFoundException if the file is not found.
    */
   @FXML
   private void clickSoundIcon() throws FileNotFoundException {
