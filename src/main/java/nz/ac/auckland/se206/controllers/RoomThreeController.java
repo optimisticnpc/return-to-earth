@@ -128,6 +128,12 @@ public class RoomThreeController {
     }
   }
 
+  /** Changes oxygen meter colour and width once spacesuit is collected. */
+  public void showSpacesuitOxygen() {
+    oxygenBar.setStyle("-fx-accent: #ADD8E6;");
+    oxygenBar.setPrefWidth(350);
+  }
+
   /**
    * Handles the click event on the authorisation button.
    *
