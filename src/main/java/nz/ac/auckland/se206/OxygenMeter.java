@@ -9,9 +9,9 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.controllers.RoomThreeController;
 
 public class OxygenMeter {
-
   private static OxygenMeter instance = null;
 
   public static OxygenMeter getInstance() {
@@ -26,12 +26,11 @@ public class OxygenMeter {
   private DoubleProperty oxygenProgressProperty = new SimpleDoubleProperty();
   private StringProperty percentProgressProperty = new SimpleStringProperty();
   private BigDecimal progress = new BigDecimal(String.format("%.2f", 1.0));
+  private RoomThreeController roomThree;
 
-  // if (!GameState.isOxygenWarned) {
-  //   roomThreeController.activateSpeech(
-  //       "OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
-  //   GameState.isOxygenWarned = true;
-  // }
+  public void setRoomThreeController(RoomThreeController controller) {
+    this.roomThree = controller;
+  }
 
   public OxygenMeter() {
     timeline =
@@ -48,6 +47,9 @@ public class OxygenMeter {
                       } else {
                         progress =
                             new BigDecimal(String.format("%.2f", progress.doubleValue() - 0.05));
+                      }
+                      if (progress.doubleValue() < 0.3) {
+                        roomThree.showLowOxygen();
                       }
                       // Display oxygen level as percentage
                       oxygenProgressProperty.set(progress.doubleValue());
