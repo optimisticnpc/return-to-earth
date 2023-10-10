@@ -2,28 +2,25 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.Random;
-import javafx.animation.FadeTransition;
-import javafx.animation.Interpolator;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.util.Duration;
-import nz.ac.auckland.se206.App;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
-import nz.ac.auckland.se206.SceneManager;
-import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -41,17 +38,12 @@ public class ChatController {
     return wordToGuess;
   }
 
-  @FXML private TextArea chatTextArea;
-  @FXML private TextField inputText;
-  @FXML private Button sendButton;
   @FXML private ImageView loadingIcon;
   @FXML private ImageView soundIcon;
-  @FXML private Label timerLabel;
-  @FXML private Label hintLabel;
-  @FXML private ImageView robot;
-  @FXML private ImageView robotThinking;
-
-  private FadeTransition fade = new FadeTransition();
+  @FXML private TextArea inputText;
+  @FXML private VBox chatLog;
+  @FXML private ScrollPane scrollPane;
+  @FXML private Button sendButton;
 
   private TextToSpeech textToSpeech; // Text to speech object
 
@@ -72,71 +64,111 @@ public class ChatController {
    *
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
-  @FXML
-  public void initialize() throws ApiProxyException {
+  public void initialize() {
     System.out.println("ChatController.initialize()");
-    GameTimer gameTimer = GameTimer.getInstance();
-    timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
-    hintCounter.setHintCount();
-    hintLabel.textProperty().bind(hintCounter.hintCountProperty());
+    setupChatConfiguration();
+    initializeTextToSpeech();
+    selectRandomRiddle();
+    setupSoundIconClickEvent();
 
+    try {
+      runChatPromptBasedOnGameState();
+    } catch (ApiProxyException e) {
+      // Handle the exception and provide feedback if needed.
+      e.printStackTrace();
+    }
+  }
+
+  private void setupChatConfiguration() {
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.5).setMaxTokens(120);
+  }
 
+  private void initializeTextToSpeech() {
     textToSpeech = new TextToSpeech();
+  }
 
+  private void selectRandomRiddle() {
     Random random = new Random();
     wordToGuess = riddles[random.nextInt(riddles.length)];
+  }
 
-    // Add a click event to the soundIcon so that the message is read when it is clicked
+  private void setupSoundIconClickEvent() {
     soundIcon.setOnMouseClicked(e -> readMessage());
+  }
 
-    if (!GameState.isRiddleResolved) {
-      if (GameState.easy) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getEasyAiRiddle(wordToGuess)));
-      } else if (GameState.medium) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getMediumAiRiddle(wordToGuess)));
-      } else if (GameState.hard) {
-        runGpt(new ChatMessage("user", GptPromptEngineering.getHardAiRiddle(wordToGuess)));
-      }
+  private void runChatPromptBasedOnGameState() throws ApiProxyException {
+    if (GameState.isSetup) {
+      runGpt(new ChatMessage("user", GptPromptEngineering.getAIPersonality()));
+      GameState.isSetup = false;
+    } else if (!GameState.isRiddleResolved) {
+      runGpt(new ChatMessage("user", GptPromptEngineering.getRiddle(wordToGuess)));
     } else {
       if (GameState.phaseThree && !GameState.hard) {
         System.out.println("Phase 3");
-        runGpt(new ChatMessage("user", GptPromptEngineering.getphaseThreeProgress()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getPhaseThreeProgress()));
       } else if (GameState.phaseThree && GameState.hard) {
         System.out.println("Phase 3(Hard)");
-        runGpt(new ChatMessage("user", GptPromptEngineering.getHardphaseThreeProgress()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getHardPhaseThreeProgress()));
       } else if (GameState.phaseFour && !GameState.hard) {
         System.out.println("Phase 4");
-        runGpt(new ChatMessage("user", GptPromptEngineering.getphaseFourProgress()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getPhaseFourProgress()));
       } else if (GameState.phaseFour && GameState.hard) {
         System.out.println("Phase 4(Hard)");
-        runGpt(new ChatMessage("user", GptPromptEngineering.getHardphaseFourProgress()));
+        runGpt(new ChatMessage("user", GptPromptEngineering.getHardPhaseFourProgress()));
       }
     }
   }
 
-  /**
-   * Appends a chat message to the chat text area.
-   *
-   * @param msg the chat message to append
-   */
-  private void appendChatMessage(ChatMessage msg) {
-    // Display the user as "You" and the AI as "Qualy the AI".
-    String displayRole;
-    switch (msg.getRole()) {
-      case "user":
-        displayRole = "You";
-        break;
-      case "assistant":
-        displayRole = "AI";
-        break;
-      default:
-        displayRole = msg.getRole(); // default to the original role if not user or assistant
-        break;
+  public void addLabel(String message, Pos position) {
+    HBox hBox = new HBox();
+    hBox.setAlignment(position);
+    hBox.setPadding(new Insets(5, 5, 5, 10));
+
+    Text text = new Text(message);
+    if (position == Pos.CENTER_LEFT) {
+      text.setFont(javafx.scene.text.Font.font("Arial", 15));
+    } else if (position == Pos.CENTER_RIGHT) {
+      text.setFont(javafx.scene.text.Font.font("Comic Sans MS", 15));
     }
-    chatTextArea.appendText(displayRole + ": " + msg.getContent() + "\n\n");
+    TextFlow textFlow = new TextFlow(text);
+
+    if (position == Pos.CENTER_LEFT) {
+      textFlow.setStyle("-fx-background-color: rgb(255,242,102);" + "-fx-background-radius: 20px");
+    } else if (position == Pos.CENTER_RIGHT) {
+      textFlow.setStyle("-fx-background-color: rgb(255,255,255);" + "-fx-background-radius: 20px");
+    }
+
+    textFlow.setPadding(new Insets(5, 10, 5, 10));
+
+    hBox.getChildren().add(textFlow);
+    Platform.runLater(
+        new Runnable() {
+          @Override
+          public void run() {
+            chatLog.getChildren().add(hBox);
+          }
+        });
+  }
+
+  public void setSendButtonAction() {
+    String message = inputText.getText().replaceAll("[\n\r]", "");
+    inputText.clear();
+    try {
+      if (!message.isEmpty()) {
+        // show message on the sending client window
+        addLabel(message, Pos.CENTER_RIGHT);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    ChatMessage msg = new ChatMessage("user", message);
+    runGpt(msg);
+  }
+
+  public VBox getChatLog() {
+    return chatLog;
   }
 
   /**
@@ -147,116 +179,109 @@ public class ChatController {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   private void runGpt(ChatMessage msg) {
-    // Disable the input text area so the user cannot type while GPT is loading
-    // Also disable send button
-    inputText.setDisable(true);
-    sendButton.setDisable(true);
-    loadingIcon.setVisible(true); // show the loading icon
-    long startTime = System.currentTimeMillis(); // Record time
+    // // Disable the input text area so the user cannot type while GPT is loading
+    // // Also disable send button
+    // inputText.setDisable(true);
+    // sendButton.setDisable(true);
+    // loadingIcon.setVisible(true); // show the loading icon
+    // long startTime = System.currentTimeMillis(); // Record time
 
-    Task<ChatMessage> callGptTask =
-        new Task<>() {
-          @Override
-          public ChatMessage call() throws ApiProxyException {
-            chatCompletionRequest.addMessage(msg);
-            try {
-              showAiThinking();
-              ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
-              Choice result = chatCompletionResult.getChoices().iterator().next();
-              chatCompletionRequest.addMessage(result.getChatMessage());
-              fade.setNode(robotThinking);
-              fade.setDuration(Duration.millis(300));
-              fade.setInterpolator(Interpolator.LINEAR);
-              fade.setFromValue(1);
-              fade.setToValue(0);
-              fade.play();
-              fade.setOnFinished(e -> robotThinking.setVisible(false));
-              recordAndPrintTime(startTime);
-              return result.getChatMessage();
-            } catch (ApiProxyException e) {
-              Platform.runLater(
-                  () -> {
-                    // Show an alert dialog or some other notification to the user.
-                    new Alert(
-                            Alert.AlertType.ERROR,
-                            "An error occurred while communicating with the OpenAI's servers."
-                                + " Please check your API key and internet connection and then"
-                                + " reload the game.")
-                        .showAndWait();
-                    loadingIcon.setVisible(false); // hide the loading icon
-                  });
-              e.printStackTrace();
-              return null;
-            }
-          }
-        };
+    // Task<ChatMessage> callGptTask =
+    //     new Task<>() {
+    //       @Override
+    //       public ChatMessage call() throws ApiProxyException {
+    //         chatCompletionRequest.addMessage(msg);
+    //         try {
+    //           ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+    //           Choice result = chatCompletionResult.getChoices().iterator().next();
+    //           chatCompletionRequest.addMessage(result.getChatMessage());
+    //           recordAndPrintTime(startTime);
+    //           return result.getChatMessage();
+    //         } catch (ApiProxyException e) {
+    //           Platform.runLater(
+    //               () -> {
+    //                 // Show an alert dialog or some other notification to the user.
+    //                 new Alert(
+    //                         Alert.AlertType.ERROR,
+    //                         "An error occurred while communicating with the OpenAI's servers."
+    //                             + " Please check your API key and internet connection and then"
+    //                             + " reload the game.")
+    //                     .showAndWait();
+    //                 loadingIcon.setVisible(false); // hide the loading icon
+    //               });
+    //           e.printStackTrace();
+    //           return null;
+    //         }
+    //       }
+    //     };
 
-    callGptTask.setOnSucceeded(
-        event -> {
-          ChatMessage result = callGptTask.getValue();
+    // callGptTask.setOnSucceeded(
+    //     event -> {
+    //       ChatMessage result = callGptTask.getValue();
 
-          // Store the message in messageString variable
-          if (result.getRole().equals("assistant")) {
-            messageString = result.getContent();
-          }
-          if (GameState.medium) {
-            if (result.getRole().equals("assistant") && result.getContent().startsWith("Hint")) {
-              int count = countOccurrences("hint", messageString.toLowerCase());
-              if (hintCounter.getMediumHintCount() > 0) {
-                if (hintCounter.getMediumHintCount() - count >= 0) {
-                  hintCounter.decrementHintCount(count);
-                } else {
-                  result =
-                      new ChatMessage(
-                          "AI",
-                          "You can only ask for"
-                              + " "
-                              + hintCounter.getMediumHintCount()
-                              + " "
-                              + "more hints.");
-                }
-              } else {
-                result = new ChatMessage("AI", "You cannot get any more hints.");
-              }
-            }
-          }
-          appendChatMessage(result);
-          if (GameState.phaseTwo || GameState.phaseThree || GameState.phaseFour) {
-            chatTextArea.setText("");
-            GameState.phaseTwo = false;
-            GameState.phaseThree = false;
-            GameState.phaseFour = false;
-          }
-          if (result.getRole().equals("assistant")
-              && result.getContent().startsWith("Authorization Complete")) {
-            GameState.isRiddleResolved = true;
-            GameState.phaseTwo = true;
-            System.out.println("Riddle resolved");
-          }
+    //       // Store the message in messageString variable
+    //       if (result.getRole().equals("assistant")) {
+    //         messageString = result.getContent();
+    //       }
+    //       if (GameState.medium) {
+    //         if (result.getRole().equals("assistant") && result.getContent().startsWith("Hint")) {
+    //           int count = countOccurrences("hint", messageString.toLowerCase());
+    //           if (hintCounter.getMediumHintCount() > 0) {
+    //             if (hintCounter.getMediumHintCount() - count >= 0) {
+    //               hintCounter.decrementHintCount(count);
+    //             } else {
+    //               result =
+    //                   new ChatMessage(
+    //                       "AI",
+    //                       "You can only ask for"
+    //                           + " "
+    //                           + hintCounter.getMediumHintCount()
+    //                           + " "
+    //                           + "more hints.");
+    //             }
+    //           } else {
+    //             result = new ChatMessage("AI", "You cannot get any more hints.");
+    //           }
+    //         }
+    //       }
+    //       addLabel(result.getContent(), Pos.CENTER_LEFT);
+    //       if (GameState.phaseTwo || GameState.phaseThree || GameState.phaseFour) {
+    //         // clear the contents in VBOX
+    //         chatLog.getChildren().clear();
+    //         GameState.phaseTwo = false;
+    //         GameState.phaseThree = false;
+    //         GameState.phaseFour = false;
+    //       }
+    //       if (result.getRole().equals("assistant")
+    //           && result.getContent().startsWith("Authorization Complete")) {
+    //         GameState.isRiddleResolved = true;
+    //         GameState.phaseTwo = true;
+    //         System.out.println("Riddle resolved");
+    //       }
 
-          loadingIcon.setVisible(false); // hide the loading icon
+    //       loadingIcon.setVisible(false); // hide the loading icon
 
-          sendButton.setDisable(false); // Re-enable send button
-          inputText.setDisable(false); // Re-enable the input text area
-        });
+    //       sendButton.setDisable(false); // Re-enable send button
+    //       inputText.setDisable(false); // Re-enable the input text area
+    //     });
 
-    callGptTask.setOnFailed(
-        event -> {
-          Platform.runLater(
-              () -> {
-                // Show an alert dialog or some other notification to the user.
-                new Alert(
-                        Alert.AlertType.ERROR,
-                        "An error occurred while communicating with the OpenAI's servers. Please"
-                            + " check your API key and internet connection and then reload the"
-                            + " game.")
-                    .showAndWait();
-              });
-          inputText.setDisable(false); // Re-enable the input text area
-          loadingIcon.setVisible(false); // hide the loading icon
-        });
+    // callGptTask.setOnFailed(
+    //     event -> {
+    //       Platform.runLater(
+    //           () -> {
+    //             // Show an alert dialog or some other notification to the user.
+    //             new Alert(
+    //                     Alert.AlertType.ERROR,
+    //                     "An error occurred while communicating with the OpenAI's servers. Please"
+    //                         + " check your API key and internet connection and then reload the"
+    //                         + " game.")
+    //                 .showAndWait();
+    //           });
+    //       inputText.setDisable(false); // Re-enable the input text area
+    //       loadingIcon.setVisible(false); // hide the loading icon
+    //     });
 
-    new Thread(callGptTask).start();
+    // new Thread(callGptTask).start();
   }
 
   protected void recordAndPrintTime(long startTime) {
@@ -282,21 +307,7 @@ public class ChatController {
     inputText.clear();
     ChatMessage msg = new ChatMessage("user", message);
 
-    appendChatMessage(msg);
     runGpt(msg);
-  }
-
-  @FXML
-  public void showAiThinking() {
-    // Fade in the thinking image in 0.3s
-    robotThinking.setVisible(true);
-    FadeTransition fade = new FadeTransition();
-    fade.setNode(robotThinking);
-    fade.setDuration(Duration.millis(300));
-    fade.setInterpolator(Interpolator.LINEAR);
-    fade.setFromValue(0);
-    fade.setToValue(1);
-    fade.play();
   }
 
   @FXML // send the message when the enter key is pressed
@@ -334,27 +345,14 @@ public class ChatController {
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     textToSpeech.stop(); // Stop the text to speech
-    int current = currentScene.getCurrent();
-    AppUi room = AppUi.ROOM_ONE;
-    if (current == 11) {
-      currentScene.setCurrent(1);
-    } else if (current == 12) {
-      room = AppUi.ROOM_TWO;
-      currentScene.setCurrent(2);
-    } else {
-      room = AppUi.ROOM_THREE;
-      currentScene.setCurrent(3);
-    }
 
     if (GameState.isRiddleResolved && GameState.phaseTwo && !GameState.hard) {
       System.out.println("Phase 2");
-      runGpt(new ChatMessage("user", GptPromptEngineering.getphaseTwoProgress()));
+      runGpt(new ChatMessage("user", GptPromptEngineering.getPhaseTwoProgress()));
     } else if (GameState.isRiddleResolved && GameState.phaseTwo && GameState.hard) {
       System.out.println("Phase 2(Hard)");
-      runGpt(new ChatMessage("user", GptPromptEngineering.getHardphaseTwoProgress()));
+      runGpt(new ChatMessage("user", GptPromptEngineering.getHardPhaseTwoProgress()));
     }
-    Parent roomRoot = SceneManager.getUiRoot(room);
-    App.getScene().setRoot(roomRoot);
   }
 
   private void readMessage() {

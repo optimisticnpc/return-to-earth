@@ -75,6 +75,7 @@ public class WinScreenController {
 
   @FXML
   private void onClickRestartButton(ActionEvent event) throws IOException {
-    GameState.resetGame();
+    GameState.resetGameVariables();
+    GameState.goToStart();
   }
 }

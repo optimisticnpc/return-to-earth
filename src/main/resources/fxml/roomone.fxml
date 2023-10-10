@@ -8,88 +8,72 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 <?import nz.ac.auckland.se206.ball.BouncingBallPane?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
    <children>
-      <ImageView fx:id="background" fitHeight="650.0" fitWidth="1082.0" layoutX="-41.0" pickOnBounds="true">
+      <ImageView fx:id="background" fitHeight="650.0" fitWidth="1082.0" layoutX="233.0" pickOnBounds="true">
          <image>
             <Image url="@../images/MainRoom.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="mainWarning" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="35.0" layoutX="313.0" layoutY="88.0" onMouseClicked="#clickMainWarning" opacity="0.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" width="383.0" />
-      <Rectangle fx:id="authRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="104.0" layoutX="404.0" layoutY="295.0" onMouseClicked="#clickAuthorisation" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="192.0" />
-      <Rectangle fx:id="engineWarning" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="72.0" layoutX="623.0" layoutY="319.0" onMouseClicked="#clickEngineWarning" opacity="0.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" width="128.0" />
-      <Polygon fx:id="movetoRoomTwo" fill="#ff0400" layoutX="12.0" layoutY="325.0" onMouseClicked="#clickRoomTwo" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
-      <Polygon fx:id="movetoRoomThree" fill="#ff0400" layoutX="927.0" layoutY="325.0" onMouseClicked="#clickRoomThree" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" rotate="180.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
-      <BouncingBallPane fx:id="bouncingBall" layoutX="261.0" layoutY="332.0" prefHeight="48.0" prefWidth="106.0" />
-      <Rectangle fx:id="ballToggle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="77.0" layoutX="247.0" layoutY="317.0" onMouseClicked="#clickBallToggle" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="135.0" />
-      <ImageView fitHeight="373.0" fitWidth="190.0" layoutX="67.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="mainWarning" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="35.0" layoutX="587.0" layoutY="88.0" onMouseClicked="#clickMainWarning" opacity="0.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" width="383.0" />
+      <Rectangle fx:id="authRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="104.0" layoutX="678.0" layoutY="295.0" onMouseClicked="#clickAuthorisation" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="192.0" />
+      <Rectangle fx:id="engineWarning" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="72.0" layoutX="897.0" layoutY="319.0" onMouseClicked="#clickEngineWarning" opacity="0.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" width="128.0" />
+      <Polygon fx:id="movetoRoomTwo" fill="#ff0400" layoutX="286.0" layoutY="325.0" onMouseClicked="#clickRoomTwo" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
+      <Polygon fx:id="movetoRoomThree" fill="#ff0400" layoutX="1201.0" layoutY="325.0" onMouseClicked="#clickRoomThree" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" rotate="180.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
+      <BouncingBallPane fx:id="bouncingBall" layoutX="535.0" layoutY="332.0" prefHeight="48.0" prefWidth="106.0" />
+      <Rectangle fx:id="ballToggle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="77.0" layoutX="521.0" layoutY="317.0" onMouseClicked="#clickBallToggle" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="135.0" />
+      <ImageView fitHeight="373.0" fitWidth="190.0" layoutX="341.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ai.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="robot" fitHeight="373.0" fitWidth="190.0" layoutX="68.0" layoutY="289.0" onMouseClicked="#clickAuthorisation" pickOnBounds="true" preserveRatio="true" styleClass="robot-hoverable">
+      <ImageView fx:id="robot" fitHeight="373.0" fitWidth="190.0" layoutX="342.0" layoutY="289.0" onMouseClicked="#clickAuthorisation" pickOnBounds="true" preserveRatio="true" styleClass="robot-hoverable">
          <image>
             <Image url="@../images/ai%20hover.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="210.0" layoutY="155.0">
+      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="484.0" layoutY="155.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="230.0" layoutY="168.0" prefHeight="96.0" prefWidth="269.0">
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="504.0" layoutY="168.0" prefHeight="96.0" prefWidth="269.0">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <ImageView fx:id="wireImage" fitHeight="56.0" fitWidth="167.0" layoutX="807.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true" rotate="17.4">
+      <ImageView fx:id="wireImage" fitHeight="56.0" fitWidth="167.0" layoutX="1081.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true" rotate="17.4">
          <image>
             <Image url="@../images/wire.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="wire" fitHeight="56.0" fitWidth="167.0" layoutX="807.0" layoutY="385.0" onMouseClicked="#clickWire" pickOnBounds="true" preserveRatio="true" rotate="17.4" styleClass="rectangle-hoverable">
+      <ImageView fx:id="wire" fitHeight="56.0" fitWidth="167.0" layoutX="1081.0" layoutY="385.0" onMouseClicked="#clickWire" pickOnBounds="true" preserveRatio="true" rotate="17.4" styleClass="rectangle-hoverable">
          <image>
             <Image url="@../images/wire%20hover.png" />
          </image>
       </ImageView>
-      <Label fx:id="timerLabel" layoutX="171.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
+      <Label fx:id="timerLabel" layoutX="445.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="571.0" layoutY="24.0" prefHeight="35.0" prefWidth="202.0" text="Hints Remaining :" textFill="#e5ff00">
+      <Label layoutX="845.0" layoutY="24.0" prefHeight="35.0" prefWidth="202.0" text="Hints Remaining :" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="hintLabel" layoutX="755.0" layoutY="24.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
+      <Label fx:id="hintLabel" layoutX="1029.0" layoutY="24.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Pane fx:id="backgroundScreen" layoutX="64.0" layoutY="40.0" prefHeight="561.0" prefWidth="873.0">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="574.0" layoutX="-9.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" width="885.0" />
-            <Button fx:id="closeButton" layoutX="713.0" layoutY="37.0" mnemonicParsing="false" onAction="#onClickClose" prefHeight="60.0" prefWidth="94.0" text="Close" textAlignment="CENTER">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
-            <Text layoutX="296.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fill="WHITE" layoutX="100.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The crew has evacuated with your fellow passengers while you were napping. Fix the ship and return to Earth or remain trapped in space forever!" textAlignment="CENTER" wrappingWidth="667.181640625">
-               <font>
-                  <Font size="50.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="258.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Good morning! ">
-               <font>
-                  <Font size="50.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
+      <Button fx:id="slideChatButton" layoutX="683.0" layoutY="584.0" mnemonicParsing="false" onAction="#onSlideChatButtonClicked" prefHeight="60.0" prefWidth="229.0" text="PRESS ME (Test Button)">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <fx:include fx:id="chatPanel" source="chatcomponent.fxml" />
    </children>
 </Pane>

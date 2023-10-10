@@ -4,10 +4,15 @@ import java.io.IOException;
 import java.util.Timer;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
@@ -37,6 +42,10 @@ public class RoomOneFinalController {
   @FXML private ImageView speechBubble;
   @FXML private Rectangle reactivate;
   @FXML private Polygon reactivationHint;
+  @FXML private TextArea inputText;
+  @FXML private VBox chatLog;
+  @FXML private ScrollPane scrollPane;
+  @FXML private Button sendButton;
 
   private ButtonOrder buttonOrder = ButtonOrder.getInstance();
   private String[] switchOrder = buttonOrder.getCorrectOrderArray();
@@ -45,6 +54,7 @@ public class RoomOneFinalController {
   private CurrentScene currentScene = CurrentScene.getInstance();
 
   private SpeechBubble speech = SpeechBubble.getInstance();
+  private ChatController chatController = new ChatController();
   private Timer timer = new Timer();
   private GameTimer gameTimer = GameTimer.getInstance();
 
@@ -52,6 +62,7 @@ public class RoomOneFinalController {
   public void initialize() {
 
     System.out.println("RoomOneFinalController.initialize()");
+
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
     speechBubble.setVisible(false);
@@ -63,11 +74,22 @@ public class RoomOneFinalController {
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
   }
 
+  public void setSendButtonAction() {
+    chatController.setSendButtonAction();
+  }
+
+  @FXML // send the message when the enter key is pressed
+  private void onEnterPressed(KeyEvent event) {
+    if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
+      sendButton.fire();
+    }
+  }
+
   /**
    * Handles the click event on the arrow to Room 2.
    *
    * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
+   * @throws IOException if there is an error loading the room 2
    */
   @FXML
   public void clickRoomTwo(MouseEvent event) throws IOException {
@@ -81,7 +103,7 @@ public class RoomOneFinalController {
    * Handles the click event on the arrow to Room 3.
    *
    * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
+   * @throws IOException if there is an error loading the room 3
    */
   @FXML
   public void clickRoomThree(MouseEvent event) throws IOException {
@@ -106,7 +128,7 @@ public class RoomOneFinalController {
    * Handles the click event on the red switch.
    *
    * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
+   * @throws IOException if there is an error loading
    */
   @FXML
   public void clickRedSwitch(MouseEvent event) throws IOException {
@@ -125,7 +147,7 @@ public class RoomOneFinalController {
    * Handles the click event on the green switch.
    *
    * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
+   * @throws IOException if there is an error loading
    */
   @FXML
   public void clickGreenSwitch(MouseEvent event) throws IOException {
@@ -144,7 +166,7 @@ public class RoomOneFinalController {
    * Handles the click event on the blue switch.
    *
    * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
+   * @throws IOException if there is an error loading
    */
   @FXML
   public void clickBlueSwitch(MouseEvent event) throws IOException {
