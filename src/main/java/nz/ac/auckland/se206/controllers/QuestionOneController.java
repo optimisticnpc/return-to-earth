@@ -37,6 +37,9 @@ public class QuestionOneController {
    * clicked.
    */
   @FXML
+  private void onClickQuestionOneHintButton() {}
+
+  @FXML
   private void onGoBack() {
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
     App.getScene().setRoot(roomTwoRoot);

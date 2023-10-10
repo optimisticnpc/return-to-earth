@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -145,12 +146,21 @@ public class StartController {
       GameState.medium = false;
       GameState.hard = true;
     }
-    SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
-    SceneManager.addUi(AppUi.BACKGROUND, App.loadFxml("background"));
-    SceneManager.addUi(AppUi.ROOM_ONE, App.loadFxml("roomone"));
-    SceneManager.addUi(AppUi.ROOM_TWO, App.loadFxml("roomtwo"));
-    SceneManager.addUi(AppUi.ROOM_THREE, App.loadFxml("roomthree"));
-    SceneManager.addUi(AppUi.ROOM_ONE_FINAL, App.loadFxml("roomonefinal"));
+
+    SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat")); // legacy code
+
+    // Don't ask me why this is needed. I have no idea
+    // All I know is that without this, the behaviour is really weird
+    if (GameState.isAfterFirstRound) {
+      ChatCentralControl.getInstance().initializeChatCentralControl();
+    } else {
+      GameState.isAfterFirstRound = true;
+    }
+
+    // Initialize rooms here so that chat is initialized after difficulty is chosen
+    App.resetRooms();
+    App.resetMathQuestions();
+
 
     Parent roomRoot = SceneManager.getUiRoot(AppUi.BACKGROUND);
     currentScene.setCurrent(1);

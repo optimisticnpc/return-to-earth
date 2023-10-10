@@ -12,7 +12,6 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.controllers.GlobalController;
 import nz.ac.auckland.se206.controllers.PasscodeController;
 import nz.ac.auckland.se206.controllers.ScoreScreenController;
@@ -65,11 +64,12 @@ public class App extends Application {
    * @throws IOException If the file is not found.
    */
   public static void resetRooms() throws IOException {
-    // Re initialize all the rooms
+    // Re initialize all the rooms the need to be reset every round
     try {
       SceneManager.addUi(AppUi.ROOM_ONE, loadFxml("roomone"));
       SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
       SceneManager.addUi(AppUi.ROOM_THREE, loadFxml("roomthree"));
+      SceneManager.addUi(AppUi.ROOM_ONE_FINAL, App.loadFxml("roomonefinal"));
       SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
       SceneManager.addUi(AppUi.REACTIVATION_ORDER, loadFxml("reactivationorder"));
     } catch (IOException e) {
@@ -108,16 +108,20 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    // Loads in all the rooms
+
+    // NOTE: All the other rooms get initialized at start button press so that chat is inialized
+    // After difficulty is chosen
+
+    // These rooms are only initialized once:
     SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
     SceneManager.addUi(AppUi.START, loadFxml("start"));
     SceneManager.addUi(AppUi.SCORE_SCREEN, loadFxml("scorescreen"));
-    SceneManager.addUi(AppUi.QUESTION_ONE, loadFxml("questionone"));
-    SceneManager.addUi(AppUi.QUESTION_TWO, loadFxml("questiontwo"));
-    SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
-    SceneManager.addUi(AppUi.REACTIVATION_ORDER, loadFxml("reactivationorder"));
+
+    // TODO: remove this legacy code
+    SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
+
     Parent root = SceneManager.getUiRoot(AppUi.START);
-    scene = new Scene(root, 1000, 650);
+    scene = new Scene(root, 1280, 720);
     stage.setResizable(false);
     stage.setScene(scene);
     stage.show();
@@ -154,6 +158,8 @@ public class App extends Application {
         new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
     KeyCombination keyCombR =
         new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
+    KeyCombination keyCombT =
+        new KeyCodeCombination(KeyCode.T, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
     KeyCombination keyCombShiftR =
         new KeyCodeCombination(
             KeyCode.R, KeyCombination.ALT_DOWN, KeyCombination.SHIFT_DOWN); // Alt + Shift + R
@@ -183,7 +189,7 @@ public class App extends Application {
             // Get answers for all puzzles
 
             // Riddle:
-            System.out.println("Riddle: " + ChatController.getWordToGuess());
+            System.out.println("Riddle: " + ChatCentralControl.getWordToGuess());
 
             // Passcode:
             System.out.println("Code: " + PasscodeController.getCorrectPassCodeString());
@@ -197,9 +203,17 @@ public class App extends Application {
 
           } else if (keyCombR.match(event)) {
             System.out.println("Ctrl + Alt + R was pressed!");
+            System.out.println("Riddle skipped!");
             // Automatically skip riddles
             // TODO: Implement this properly + check implementation
             GameState.isRiddleResolved = true;
+
+          } else if (keyCombT.match(event)) {
+            System.out.println("Ctrl + Alt + T was pressed!");
+            System.out.println("Passcode skipped!");
+            // Automatically skip tools
+            // TODO: Implement this properly + check implementation
+            GameState.isPasscodeSolved = true;
 
           } else if (keyCombShiftR.match(event)) {
             System.out.println("Alt + Shift + R was pressed!");

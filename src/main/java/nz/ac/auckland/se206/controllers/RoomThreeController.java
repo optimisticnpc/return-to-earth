@@ -151,10 +151,6 @@ public class RoomThreeController {
       activateSpeech("Authorisation needed to access\nthe system.");
       return;
     }
-    Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
-    App.getScene().setRoot(chatRoot);
-    // Let the game know that the previous scene was room 3
-    currentScene.setCurrent(13);
   }
 
   /**
@@ -245,7 +241,9 @@ public class RoomThreeController {
       background.setImage(img);
       GameState.isPartFixed = true;
       GameState.phaseFour = true;
-      SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
+      // SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
+      // TODO: Reload chat?
+
       activateSpeech(
           "You have fixed the engine!\n Now you have to reactivate it\n from somewhere...");
       ;

@@ -7,6 +7,8 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 /** Represents the state of the game. */
 public class GameState {
 
+  public static boolean isAfterFirstRound = false;
+
   /** Indicates whether the riddle has been resolved. */
   public static boolean isRiddleResolved = false;
 
@@ -47,20 +49,24 @@ public class GameState {
 
   public static boolean isPartFixed = false;
 
+  // ** Indicates if the game is launched first time for setting up of the AI.*/
+  public static boolean isSetup = true;
+
   // ** indicates each phase of the game the player is in */
   public static boolean phaseTwo = false;
   public static boolean phaseThree = false;
   public static boolean phaseFour = false;
 
-  /**
+   /**
    * Resets the game by clearing and initializing game state variables, updating room visuals, and
    * returning to the start screen.
    *
    * @throws IOException if there is an I/O error
    */
-  public static void resetGame() throws IOException {
+  public static void resetGameVariables() throws IOException {
     // TODO: Update and double check this
     // Reset all game state variables
+    isSetup = true;
     isRiddleResolved = false;
     isWireCollected = false;
     isPasscodeSolved = false;
@@ -71,12 +77,10 @@ public class GameState {
     isSpacesuitCollected = false;
     isSpacesuitJustCollected = false;
     isPartFixed = false;
-
-    // Get new math puzzles and update room visuals
-    App.resetMathQuestions();
-    App.resetRooms();
     HintCounter.resetHintCount();
+  }
 
+  public static void goToStart() {
     Parent startRoot = SceneManager.getUiRoot(AppUi.START);
     App.getScene().setRoot(startRoot);
   }

@@ -56,6 +56,7 @@ public class ScoreScreenController {
    */
   @FXML
   public void initialize() {
+    System.out.println("ScoreScreenController.initialize()");
     refreshTimes();
     helpScreen.setVisible(false);
   }
@@ -103,7 +104,6 @@ public class ScoreScreenController {
     try (InputStream stream = new FileInputStream(imagePath)) {
       imageView.setImage(new Image(stream));
     } catch (IOException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }

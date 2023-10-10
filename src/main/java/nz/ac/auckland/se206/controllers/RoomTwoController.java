@@ -96,10 +96,6 @@ public class RoomTwoController {
       activateSpeech("Authorisation needed to access\nthe system.");
       return;
     }
-    Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
-    App.getScene().setRoot(chatRoot);
-    // Let the game know that the previous scene was room 2
-    currentScene.setCurrent(12);
   }
 
   /**
@@ -266,7 +262,8 @@ public class RoomTwoController {
       collectToolbox();
       GameState.isToolboxCollected = true;
       GameState.phaseThree = true;
-      SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
+      // TODO:
+      // SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
       System.out.println("Toolbox collected");
     }
   }

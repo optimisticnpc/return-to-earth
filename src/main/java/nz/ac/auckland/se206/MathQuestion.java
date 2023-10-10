@@ -10,6 +10,8 @@ public class MathQuestion {
 
   /** The correct answer to the mathematical question. */
   private String answer;
+  private String hint1;
+  private String hint2;
 
   /**
    * Constructs a new MathQuestion object with the specified question text and answer.
@@ -20,6 +22,13 @@ public class MathQuestion {
   public MathQuestion(String question, String answer) {
     this.question = question;
     this.answer = answer;
+  }
+
+  public MathQuestion(String question, String answer, String hint1, String hint2) {
+    this.question = question;
+    this.answer = answer;
+    this.hint1 = hint1;
+    this.hint2 = hint2;
   }
 
   /**
@@ -38,5 +47,13 @@ public class MathQuestion {
    */
   public String getAnswer() {
     return answer;
+  }
+
+  public String getHint1() {
+    return hint1;
+  }
+
+  public String getHint2() {
+    return hint2;
   }
 }
