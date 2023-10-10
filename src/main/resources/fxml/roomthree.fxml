@@ -108,5 +108,10 @@
       </Label>
       <Polygon fx:id="movetoRoomOne" fill="#ff0400" layoutX="320.0" layoutY="360.0" onMouseClicked="#clickRoomOne" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
       <fx:include fx:id="chatPanel" source="chatcomponent.fxml" />
+      <ImageView fx:id="soundIcon" fitHeight="61.0" fitWidth="53.0" layoutX="940.0" layoutY="11.0" onMouseClicked="#clickSoundIcon" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/soundicon.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

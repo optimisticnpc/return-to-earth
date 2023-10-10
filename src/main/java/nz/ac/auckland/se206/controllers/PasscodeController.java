@@ -15,13 +15,27 @@ import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
+/**
+ * Controller class for the Passcode view. This class handles user interactions and UI updates for
+ * entering a passcode.
+ */
 public class PasscodeController {
   private static String correctPassCodeString;
 
+  /**
+   * Sets the correct passcode string to be compared with user input.
+   *
+   * @param correctPassCodeString The correct passcode to unlock the compartment.
+   */
   public static void setCorrectPassCodeString(String correctPassCodeString) {
     PasscodeController.correctPassCodeString = correctPassCodeString;
   }
 
+  /**
+   * Gets the correct passcode string for validation.
+   *
+   * @return The correct passcode string.
+   */
   public static String getCorrectPassCodeString() {
     return correctPassCodeString;
   }
@@ -31,6 +45,10 @@ public class PasscodeController {
   @FXML private Label resultLabel;
   @FXML private Button checkButton;
 
+  /**
+   * Initializes the Passcode view when it loads. This method sets up the timer label, restricts
+   * passcode input length, and enables Enter key validation.
+   */
   @FXML
   public void initialize() {
     System.out.println("PasscodeController.initialize()");
@@ -58,6 +76,10 @@ public class PasscodeController {
         });
   }
 
+  /**
+   * Handles the click event on the "Check" button. Compares the entered passcode with the correct
+   * passcode and provides feedback.
+   */
   @FXML
   private void onCheckPasscode() {
     String enteredPasscode = passcodeField.getText();
@@ -78,6 +100,10 @@ public class PasscodeController {
     }
   }
 
+  /**
+   * Handles the click event on the "Go Back" button. Navigates back to Room Two when the button is
+   * clicked.
+   */
   @FXML
   private void onGoBack() {
     System.out.println("go back clicked");

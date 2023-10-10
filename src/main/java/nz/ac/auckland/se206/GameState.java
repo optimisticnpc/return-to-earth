@@ -17,7 +17,7 @@ public class GameState {
 
   public static boolean isGameWon = false;
 
-  /** Indicates the difficulties of the game */
+  /** Indicates the difficulties of the game. */
   public static boolean easy = true;
 
   public static boolean medium = false;
@@ -57,6 +57,12 @@ public class GameState {
   public static boolean phaseThree = false;
   public static boolean phaseFour = false;
 
+   /**
+   * Resets the game by clearing and initializing game state variables, updating room visuals, and
+   * returning to the start screen.
+   *
+   * @throws IOException if there is an I/O error
+   */
   public static void resetGameVariables() throws IOException {
     // TODO: Update and double check this
     // Reset all game state variables

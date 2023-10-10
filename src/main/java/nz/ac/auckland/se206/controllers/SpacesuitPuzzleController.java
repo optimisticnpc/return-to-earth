@@ -18,10 +18,20 @@ import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
+/**
+ * The SpacesuitPuzzleController class controls the behavior and interactions of the spacesuit
+ * puzzle screen. It allows the player to solve a word puzzle to unlock a compartment and proceed
+ * with the game.
+ */
 public class SpacesuitPuzzleController {
 
   private static String correctWordString;
 
+  /**
+   * Gets the correct word string for the puzzle.
+   *
+   * @return The correct word string.
+   */
   public static String getCorrectWordString() {
     return correctWordString;
   }
@@ -61,6 +71,9 @@ public class SpacesuitPuzzleController {
     "pluto"
   };
 
+  /**
+   * Initializes the spacesuit puzzle screen, setting up the timer, input field, and scrambled word.
+   */
   public void initialize() {
     System.out.println("SpacesuitPuzzleController.initialize()");
 
@@ -80,6 +93,7 @@ public class SpacesuitPuzzleController {
     pickAndScrambleWord();
   }
 
+  /** Picks a random word, scrambles it, and sets it as the puzzle word for the player to solve. */
   private void pickAndScrambleWord() {
     // Randomly select a word from the array
     correctWordString = unscrambleWords[(int) (Math.random() * unscrambleWords.length)];
@@ -94,6 +108,10 @@ public class SpacesuitPuzzleController {
     scrambledWordLabel.setText(scrambledWord.toUpperCase());
   }
 
+  /**
+   * Handles the action when the player submits a word to unlock the compartment. Checks if the
+   * entered word matches the correct word and provides feedback.
+   */
   @FXML
   private void onSubmitCode() {
     String enteredPasscode = inputField.getText();
@@ -116,6 +134,10 @@ public class SpacesuitPuzzleController {
     }
   }
 
+  /**
+   * Handles the action when the player goes back from the spacesuit puzzle screen to the previous
+   * room.
+   */
   @FXML
   private void onGoBack() {
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);

@@ -1,13 +1,16 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Timer;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -22,6 +25,7 @@ import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.SpeechBubble;
 import nz.ac.auckland.se206.ball.BouncingBallPane;
 
@@ -29,8 +33,7 @@ import nz.ac.auckland.se206.ball.BouncingBallPane;
 public class RoomOneController {
 
   @FXML private Pane room;
-  @FXML private Button closeButton;
-  @FXML private Pane backgroundScreen;
+  @FXML private ImageView background;
   @FXML private Rectangle mainWarning;
   @FXML private Rectangle authRectangle;
   @FXML private Rectangle engineWarning;
@@ -45,6 +48,7 @@ public class RoomOneController {
   @FXML private ImageView wireImage;
   @FXML private BouncingBallPane bouncingBall;
   @FXML private Rectangle ballToggle;
+  @FXML private ImageView soundIcon;
 
   @FXML private AnchorPane chatPanel;
 
@@ -56,8 +60,14 @@ public class RoomOneController {
   private Timer timer = new Timer();
   private GameTimer gameTimer = GameTimer.getInstance();
 
-  /** Initializes the room view, it is called when the room loads. */
-  public void initialize() {
+  private Sound sound = Sound.getInstance();
+
+  /**
+   * Initializes the room view, it is called when the room loads.
+   *
+   * @throws FileNotFoundException if the file is not found.
+   */
+  public void initialize() throws FileNotFoundException {
 
     System.out.println("RoomOneController.initialize()");
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
@@ -70,6 +80,24 @@ public class RoomOneController {
     HintCounter hintCounter = HintCounter.getInstance();
     hintCounter.setHintCount();
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
+
+    soundIcon.imageProperty().bind(sound.soundImageProperty());
+    InputStream soundOn = new FileInputStream("src/main/resources/images/soundicon.png");
+    Image soundOnImage = new Image(soundOn);
+    sound.soundImageProperty().set(soundOnImage);
+
+    activateSpeech(
+        "Hey you! Have you passed the\nauthorisation riddle to be\ntouching this stuff?");
+  }
+
+  /**
+   * Handles the click event on the sound icon.
+   *
+   * @throws FileNotFoundException if file is not found.
+   */
+  @FXML
+  private void clickSoundIcon() throws FileNotFoundException {
+    sound.toggleImage();
   }
 
   /**
@@ -157,22 +185,9 @@ public class RoomOneController {
   }
 
   /**
-   * Handles the click event on the close button.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  private void onClickClose(ActionEvent event) {
-    backgroundScreen.getChildren().clear();
-    room.getChildren().remove(backgroundScreen);
-    activateSpeech(
-        "Hey you! Have you passed the\nauthorisation riddle to be\ntouching this stuff?");
-  }
-
-  /**
    * Sets the text of the speech bubble and makes it visible for 5 seconds.
    *
-   * @param text
+   * @param text text that is to be displayed in the bubble.
    */
   @FXML
   private void activateSpeech(String text) {

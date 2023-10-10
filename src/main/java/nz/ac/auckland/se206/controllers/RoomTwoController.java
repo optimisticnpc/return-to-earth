@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Timer;
 import javafx.animation.FadeTransition;
@@ -19,8 +20,15 @@ import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.SpeechBubble;
 
+/**
+ * The RoomTwoController class controls the behavior and interactions within Room Two of the game.
+ * This room contains various elements and interactions, including speech bubbles, timers, puzzle
+ * items, and navigation to other scenes. It manages the state of the room, such as whether puzzle
+ * items have been collected or revealed, and handles player interactions.
+ */
 public class RoomTwoController {
   @FXML private Pane room;
   @FXML private Label timerLabel;
@@ -36,10 +44,12 @@ public class RoomTwoController {
   @FXML private Polygon crate;
   @FXML private ImageView crateImage;
   @FXML private ImageView robot;
+  @FXML private ImageView soundIcon;
 
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
   private CurrentScene currentScene = CurrentScene.getInstance();
+  private Sound sound = Sound.getInstance();
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -54,11 +64,23 @@ public class RoomTwoController {
     hintCounter.setHintCount();
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
+    soundIcon.imageProperty().bind(sound.soundImageProperty());
+
     // Make the overlay images not visible
     toolBoxOpenImage.setOpacity(0);
     toolBoxCollectedImage.setOpacity(0);
     spacesuitRevealedImage.setOpacity(0);
     spacesuitCollectedImage.setOpacity(0);
+  }
+
+  /**
+   * Handles the click event on the sound icon.
+   *
+   * @throws FileNotFoundException if file is not found.
+   */
+  @FXML
+  private void clickSoundIcon() throws FileNotFoundException {
+    sound.toggleImage();
   }
 
   /**
@@ -123,7 +145,7 @@ public class RoomTwoController {
   /**
    * Sets the text of the speech bubble and makes it visible for 5 seconds.
    *
-   * @param text
+   * @param text tex that is to be displayed in the bubble.
    */
   @FXML
   public void activateSpeech(String text) {
@@ -150,6 +172,14 @@ public class RoomTwoController {
     speechLabel.setVisible(true);
   }
 
+  /**
+   * Handles the click event on the crate element. If the toolbox has been collected, this method
+   * initiates a fade-out animation for the crate image, followed by removing both the crate and
+   * crate image from the room's children.
+   *
+   * @param event The mouse event triggered by clicking on the crate.
+   * @throws InterruptedException if there is an issue with thread execution during the animation.
+   */
   @FXML
   public void clickCrate(MouseEvent event) throws InterruptedException {
     System.out.println("Crate clicked");
