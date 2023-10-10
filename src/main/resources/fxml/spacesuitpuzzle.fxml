@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #969696;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SpacesuitPuzzleController">
+<Pane prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #969696;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SpacesuitPuzzleController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="418.0" layoutX="197.0" layoutY="141.0" stroke="BLACK" strokeType="INSIDE" width="628.0" />
 
@@ -30,6 +30,5 @@
             <Font size="18.0" />
          </font>
       </Button>
-      
    </children>
 </Pane>

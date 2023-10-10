@@ -41,6 +41,7 @@ public class ScoreScreenController {
 
   @FXML
   public void initialize() {
+    System.out.println("ScoreScreenController.initialize()");
     refreshTimes();
     helpScreen.setVisible(false);
   }
