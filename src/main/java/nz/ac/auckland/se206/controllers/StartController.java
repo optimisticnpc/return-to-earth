@@ -161,7 +161,6 @@ public class StartController {
     App.resetRooms();
     App.resetMathQuestions();
 
-
     Parent roomRoot = SceneManager.getUiRoot(AppUi.BACKGROUND);
     currentScene.setCurrent(1);
     App.getScene().setRoot(roomRoot);

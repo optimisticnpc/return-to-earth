@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import nz.ac.auckland.se206.ball.BouncingBallPane?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneFinalController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneFinalController">
    <children>
       <ImageView fx:id="background" fitHeight="722.0" fitWidth="1082.0" layoutX="233.0" pickOnBounds="true">
          <image>
@@ -17,9 +17,9 @@
          </image>
       </ImageView>
       <Rectangle fx:id="reactivate" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="117.0" layoutX="678.0" layoutY="327.0" onMouseClicked="#clickReactivate" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="190.0" />
-      <Rectangle fx:id="blueSwitch" height="46.0" layoutX="511.0" layoutY="93.0" onMouseClicked="#clickBlueSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="63.0" />
-      <Rectangle fx:id="redSwitch" height="37.0" layoutX="739.0" layoutY="533.0" onMouseClicked="#clickRedSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="60.0" />
-      <Rectangle fx:id="greenSwitch" height="46.0" layoutX="977.0" layoutY="92.0" onMouseClicked="#clickGreenSwitch" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="63.0" />
+      <Rectangle fx:id="blueSwitch" height="38.0" layoutX="825.0" layoutY="491.0" onMouseClicked="#clickBlueSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="44.0" />
+      <Rectangle fx:id="redSwitch" height="36.0" layoutX="746.0" layoutY="491.0" onMouseClicked="#clickRedSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="45.0" />
+      <Rectangle fx:id="greenSwitch" height="37.0" layoutX="667.0" layoutY="491.0" onMouseClicked="#clickGreenSwitch" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="44.0" />
       <ImageView fitHeight="373.0" fitWidth="190.0" layoutX="371.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ai.png" />
@@ -50,7 +50,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Polygon fx:id="reactivationHint" layoutX="954.0" layoutY="670.0" onMouseClicked="#clickReactivationHint" points="41.5, -45.5, 3.25, -26.75, -32.5, -16.75, -12.0, 28.0, 30.5, 12.75, 71.5, -7.75, 54.25, -26.75" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle-hoverable" />
+      <Polygon fx:id="reactivationHint" layoutX="954.0" layoutY="670.0" onMouseClicked="#clickReactivationHint" points="40.5, -49.0, 9.0, -33.0, -49.5, -7.75, -34.0, 42.0, 31.5, 21.0, 72.0, -0.5, 54.25, -26.75" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle-hoverable" />
       <Label fx:id="timerLabel" layoutX="492.0" layoutY="22.0" prefHeight="35.0" prefWidth="328.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
          <font>
             <Font size="20.0" />
@@ -61,7 +61,7 @@
       <BouncingBallPane fx:id="bouncingBall" layoutX="534.0" layoutY="361.0" prefHeight="63.0" prefWidth="112.0" />
       <Rectangle fx:id="ballToggle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="78.0" layoutX="523.0" layoutY="353.0" onMouseClicked="#clickBallToggle" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="129.0" />
       <fx:include fx:id="chatPanel" source="chatcomponent.fxml" />
-      <ImageView fx:id="soundIcon" fitHeight="61.0" fitWidth="53.0" layoutX="940.0" layoutY="11.0" onMouseClicked="#clickSoundIcon" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="soundIcon" fitHeight="61.0" fitWidth="53.0" layoutX="1215.0" layoutY="15.0" onMouseClicked="#clickSoundIcon" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/soundicon.png" />
          </image>

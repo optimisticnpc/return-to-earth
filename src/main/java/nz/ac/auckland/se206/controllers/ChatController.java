@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import java.util.Random;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -18,15 +17,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the chat view. */
@@ -59,10 +54,6 @@ public class ChatController {
   private String[] riddles = {
     "blackhole", "star", "moon", "sun", "venus", "comet", "satellite", "mars"
   };
-
-  private CurrentScene currentScene = CurrentScene.getInstance();
-
-  private HintCounter hintCounter = HintCounter.getInstance();
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -321,18 +312,18 @@ public class ChatController {
   }
 
   /** Displays the AI thinking animation by fading in the thinking image. */
-//   @FXML
-//   public void showAiThinking() {
-//     // Fade in the thinking image in 0.3s
-//     robotThinking.setVisible(true);
-//     FadeTransition fade = new FadeTransition();
-//     fade.setNode(robotThinking);
-//     fade.setDuration(Duration.millis(300));
-//     fade.setInterpolator(Interpolator.LINEAR);
-//     fade.setFromValue(0);
-//     fade.setToValue(1);
-//     fade.play();
-//   }
+  //   @FXML
+  //   public void showAiThinking() {
+  //     // Fade in the thinking image in 0.3s
+  //     robotThinking.setVisible(true);
+  //     FadeTransition fade = new FadeTransition();
+  //     fade.setNode(robotThinking);
+  //     fade.setDuration(Duration.millis(300));
+  //     fade.setInterpolator(Interpolator.LINEAR);
+  //     fade.setFromValue(0);
+  //     fade.setToValue(1);
+  //     fade.play();
+  //   }
 
   /**
    * Sends the message when the Enter key is pressed.
