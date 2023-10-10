@@ -187,13 +187,9 @@ public class ChatCentralControl {
             }
           }
 
-          // Added message to message list
-          messages.add(result);
-          // TODO: Find best location for this
-          notifyObservers();
-
           if (GameState.phaseTwo || GameState.phaseThree || GameState.phaseFour) {
             // clear the contents in VBOX
+            messages.clear();
             clearContentsOfChats();
             GameState.phaseTwo = false;
             GameState.phaseThree = false;
@@ -205,7 +201,15 @@ public class ChatCentralControl {
             GameState.isRiddleResolved = true;
             GameState.phaseTwo = true;
             System.out.println("Riddle resolved");
+            // after 3 seconds, clear the contents in VBOX and run phase 2
+
+            runGpt(new ChatMessage("system", GptPromptEngineering.getPhaseTwoProgress()));
           }
+
+          // Added message to message list
+          messages.add(result);
+          // TODO: Find best location for this
+          notifyObservers();
 
           // loadingIcon.setVisible(false); // hide the loading icon
 

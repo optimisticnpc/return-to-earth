@@ -25,6 +25,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -33,6 +34,8 @@ import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SpeechBubble;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 public class RoomThreeController {
   @FXML private Label timerLabel;
@@ -60,6 +63,7 @@ public class RoomThreeController {
   private boolean unscrewed = false;
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
+  private ChatCentralControl chat = ChatCentralControl.getInstance();
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -200,8 +204,11 @@ public class RoomThreeController {
       background.setImage(img);
       GameState.isPartFixed = true;
       GameState.phaseFour = true;
-      // SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
-      // TODO: Reload chat?
+      if (!GameState.hard) {
+        chat.runGpt(new ChatMessage("system", GptPromptEngineering.getPhaseFourProgress()));
+      } else {
+        chat.runGpt(new ChatMessage("system", GptPromptEngineering.getHardPhaseFourProgress()));
+      }
 
       activateSpeech(
           "You have fixed the engine!\n Now you have to reactivate it\n from somewhere...");

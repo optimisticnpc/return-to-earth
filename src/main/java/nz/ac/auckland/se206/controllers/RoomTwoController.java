@@ -13,6 +13,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -20,6 +21,8 @@ import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SpeechBubble;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 public class RoomTwoController {
   @FXML private Pane room;
@@ -40,6 +43,7 @@ public class RoomTwoController {
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
   private CurrentScene currentScene = CurrentScene.getInstance();
+  private ChatCentralControl chat = ChatCentralControl.getInstance();
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -232,8 +236,11 @@ public class RoomTwoController {
       collectToolbox();
       GameState.isToolboxCollected = true;
       GameState.phaseThree = true;
-      // TODO:
-      // SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
+      if (GameState.hard) {
+        chat.runGpt(new ChatMessage("system", GptPromptEngineering.getHardPhaseThreeProgress()));
+      } else {
+        chat.runGpt(new ChatMessage("system", GptPromptEngineering.getPhaseThreeProgress()));
+      }
       System.out.println("Toolbox collected");
     }
   }

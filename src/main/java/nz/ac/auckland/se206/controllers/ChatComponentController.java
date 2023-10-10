@@ -70,7 +70,7 @@ public class ChatComponentController implements Observer {
           "You need to be authorised to talk to Space Destroyer or access the system for security"
               + " reasons.\n Please click the middle screen in the main control room to authorise"
               + " yourself.",
-          Pos.CENTER_LEFT);
+          Pos.CENTER);
       ;
     } else {
       chatCentralControl.runGpt(msg);
@@ -99,6 +99,8 @@ public class ChatComponentController implements Observer {
       text.setFont(javafx.scene.text.Font.font("Arial", 15));
     } else if (position == Pos.CENTER_RIGHT) {
       text.setFont(javafx.scene.text.Font.font("Comic Sans MS", 15));
+    } else if (position == Pos.CENTER) {
+      text.setFont(javafx.scene.text.Font.font("Franklin Gothic Medium", 15));
     }
     TextFlow textFlow = new TextFlow(text);
 
@@ -106,6 +108,8 @@ public class ChatComponentController implements Observer {
       textFlow.setStyle("-fx-background-color: rgb(255,242,102);" + "-fx-background-radius: 20px");
     } else if (position == Pos.CENTER_RIGHT) {
       textFlow.setStyle("-fx-background-color: rgb(255,255,255);" + "-fx-background-radius: 20px");
+    } else if (position == Pos.CENTER) {
+      textFlow.setStyle("-fx-background-color: rgb(255,117,128);" + "-fx-background-radius: 20px");
     }
 
     textFlow.setPadding(new Insets(5, 10, 5, 10));
