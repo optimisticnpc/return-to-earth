@@ -7,24 +7,24 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoseScreenController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoseScreenController">
    <children>
-      <ImageView fitHeight="677.0" fitWidth="1167.0" layoutX="-83.0" layoutY="-3.0" preserveRatio="true">
+      <ImageView fitHeight="940.0" fitWidth="1372.0" layoutX="-71.0" layoutY="-3.0" preserveRatio="true">
          <image>
             <Image url="@../images/losescreen.png" />
          </image>
       </ImageView>
-      <Button fx:id="exitButton" layoutX="400.0" layoutY="400.0" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="90.0" prefWidth="200.0" text="Exit ">
+      <Button fx:id="exitButton" layoutX="544.0" layoutY="424.0" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="90.0" prefWidth="200.0" text="Exit ">
          <font>
             <Font size="38.0" />
          </font>
       </Button>
-      <Button fx:id="restartButton" layoutX="400.0" layoutY="301.0" mnemonicParsing="false" onAction="#onClickRestartButton" prefHeight="90.0" prefWidth="200.0" text="Restart">
+      <Button fx:id="restartButton" layoutX="544.0" layoutY="325.0" mnemonicParsing="false" onAction="#onClickRestartButton" prefHeight="90.0" prefWidth="200.0" text="Restart">
          <font>
             <Font size="38.0" />
          </font>
       </Button>
-      <Text fill="WHITE" layoutX="339.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You Lost" textAlignment="CENTER" wrappingWidth="322.900390625">
+      <Text fill="WHITE" layoutX="483.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You Lost" textAlignment="CENTER" wrappingWidth="322.900390625">
          <font>
             <Font size="60.0" />
          </font>

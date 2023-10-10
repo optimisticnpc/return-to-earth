@@ -24,6 +24,7 @@ import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SpeechBubble;
+import nz.ac.auckland.se206.ball.BouncingBallPane;
 
 /** Controller class for the room view. */
 public class RoomOneFinalController {
@@ -46,6 +47,8 @@ public class RoomOneFinalController {
   @FXML private VBox chatLog;
   @FXML private ScrollPane scrollPane;
   @FXML private Button sendButton;
+  @FXML private BouncingBallPane bouncingBall;
+  @FXML private Rectangle ballToggle;
 
   private ButtonOrder buttonOrder = ButtonOrder.getInstance();
   private String[] switchOrder = buttonOrder.getCorrectOrderArray();
@@ -240,5 +243,15 @@ public class RoomOneFinalController {
     App.getScene().setRoot(chatRoot);
     GameState.isRoomOneFirst = false;
     currentScene.setCurrent(11);
+  }
+
+  /**
+   * Handles the click event on the bouncing ball pane.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  private void clickBallToggle(MouseEvent event) {
+    bouncingBall.setVisible(!bouncingBall.isVisible());
   }
 }
