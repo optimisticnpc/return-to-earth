@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.Random;
 import java.util.Timer;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -24,6 +26,8 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SpeechBubble;
 import nz.ac.auckland.se206.ball.BouncingBallPane;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 /** Controller class for the room view. */
 public class RoomOneController {
@@ -55,6 +59,11 @@ public class RoomOneController {
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
   private GameTimer gameTimer = GameTimer.getInstance();
+  private ChatCentralControl chatCentralControl = ChatCentralControl.getInstance();
+  private String[] riddles = {
+    "blackhole", "star", "moon", "sun", "venus", "comet", "satellite", "mars"
+  };
+  private String wordToGuess;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -202,10 +211,38 @@ public class RoomOneController {
   private void clickAuthorisation(MouseEvent event) throws IOException {
     System.out.println("Authorisation clicked");
     GameState.isAuthorising = true;
+    if (GameState.isRoomOneFirst) {
+      selectRandomRiddle();
+      if (GameState.easy) {
+        chatCentralControl.runGpt(
+            new ChatMessage(
+                "system",
+                GptPromptEngineering.getRiddle(wordToGuess)
+                    + GptPromptEngineering.getEasyHintSetup()));
+      } else if (GameState.medium) {
+        chatCentralControl.runGpt(
+            new ChatMessage(
+                "system",
+                GptPromptEngineering.getRiddle(wordToGuess)
+                    + GptPromptEngineering.getMediumHintSetup()));
+      } else if (GameState.hard) {
+        chatCentralControl.runGpt(
+            new ChatMessage(
+                "system",
+                GptPromptEngineering.getRiddle(wordToGuess)
+                    + GptPromptEngineering.getHardHintSetup()));
+      }
+    }
+
     // Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
     // App.getScene().setRoot(chatRoot);
     // GameState.isRoomOneFirst = false;
     // currentScene.setCurrent(11);
+  }
+
+  private void selectRandomRiddle() {
+    Random random = new Random();
+    wordToGuess = riddles[random.nextInt(riddles.length)];
   }
 
   @FXML

@@ -67,8 +67,9 @@ public class ChatComponentController implements Observer {
 
     if (!GameState.isAuthorising) {
       addLabel(
-          "You need to be authorised to talk to Space Destroyer. Please click the middle screen"
-              + " in the main control room to authorise yourself.",
+          "You need to be authorised to talk to Space Destroyer or access the system for security"
+              + " reasons.\n Please click the middle screen in the main control room to authorise"
+              + " yourself.",
           Pos.CENTER_LEFT);
       ;
     } else {

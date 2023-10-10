@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import java.util.Random;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -25,8 +24,6 @@ import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the chat view. */
@@ -99,9 +96,9 @@ public class ChatController {
   }
 
   private void runChatPromptBasedOnGameState() throws ApiProxyException {
-    if (GameState.isSetup) {
+    if (GameState.isPersonalitySetup) {
       runGpt(new ChatMessage("user", GptPromptEngineering.getAIPersonality()));
-      GameState.isSetup = false;
+      GameState.isPersonalitySetup = false;
     } else if (!GameState.isRiddleResolved) {
       runGpt(new ChatMessage("user", GptPromptEngineering.getRiddle(wordToGuess)));
     } else {

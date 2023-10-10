@@ -50,7 +50,7 @@ public class GameState {
   public static boolean isPartFixed = false;
 
   // ** Indicates if the game is launched first time for setting up of the AI.*/
-  public static boolean isSetup = true;
+  public static boolean isPersonalitySetup = true;
 
   // ** indicates each phase of the game the player is in */
   public static boolean phaseTwo = false;
@@ -60,7 +60,7 @@ public class GameState {
   public static void resetGame() throws IOException {
     // TODO: Update and double check this
     // Reset all game state variables
-    isSetup = true;
+    isPersonalitySetup = true;
     isRiddleResolved = false;
     isWireCollected = false;
     isPasscodeSolved = false;

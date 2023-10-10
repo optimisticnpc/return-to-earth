@@ -3,7 +3,6 @@ package nz.ac.auckland.se206;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.Alert;
@@ -39,17 +38,12 @@ public class ChatCentralControl {
 
   private String messageString = "";
 
-  private String[] riddles = {
-    "blackhole", "star", "moon", "sun", "venus", "comet", "satellite", "mars"
-  };
-
   private List<ChatMessage> messages = new ArrayList<>();
 
   private ChatCentralControl() {
     System.out.println("ChatCentralControl Iniatialized");
 
     setupChatConfiguration();
-    selectRandomRiddle();
 
     try {
       runChatPromptBasedOnGameState();
@@ -89,16 +83,15 @@ public class ChatCentralControl {
   }
 
   private void runChatPromptBasedOnGameState() throws ApiProxyException {
-    if (GameState.isSetup) {
+    if (GameState.isPersonalitySetup) {
       // TODO: TEMPORARY BYPASS bc idk why its not working
       //   System.out.println("PERSONALITY RUN");
       //   runGpt(new ChatMessage("system", GptPromptEngineering.getAIPersonality()));
       //   GameState.isSetup = false;
       // } else if (!GameState.isRiddleResolved) {
-      runGpt(new ChatMessage("user", GptPromptEngineering.getAIPersonality()));
-      System.out.println("SET UP COMPLETED");
-      // runGpt(new ChatMessage("user", GptPromptEngineering.getRiddle(wordToGuess)));
-      GameState.isSetup = false;
+      System.out.println("System setup completed!");
+      runGpt(new ChatMessage("system", GptPromptEngineering.getAIPersonality()));
+      GameState.isPersonalitySetup = false;
     } else {
       if (GameState.phaseThree && !GameState.hard) {
         System.out.println("Phase 3");
@@ -269,11 +262,6 @@ public class ChatCentralControl {
 
   private void setupChatConfiguration() {
     chatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.5).setMaxTokens(120);
-  }
-
-  private void selectRandomRiddle() {
-    Random random = new Random();
-    wordToGuess = riddles[random.nextInt(riddles.length)];
+        new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.5).setMaxTokens(100);
   }
 }

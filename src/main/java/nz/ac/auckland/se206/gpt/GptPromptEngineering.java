@@ -5,9 +5,10 @@ public class GptPromptEngineering {
 
   public static String getAIPersonality() {
     return "You are the AI system of this spaceship and your name is Space Destroyer. You are"
-        + " responsible to get the spaceship back to the Earth safely. Unfortunately, one of"
-        + " the spaceship's parts is malfunctioning and you need the user to fix it. You"
-        + " desperately need the user's help.";
+               + " responsible to get the spaceship back to the Earth safely. Unfortunately, one of"
+               + " the spaceship's parts is malfunctioning and you need the user to fix it. You"
+               + " desperately need the user's help. Begin by simply introducing yourself. Do not"
+               + " add anything else";
   }
 
   public static String getEasyHintSetup() {
