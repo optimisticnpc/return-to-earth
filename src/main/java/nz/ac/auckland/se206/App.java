@@ -66,6 +66,7 @@ public class App extends Application {
   public static void resetRooms() throws IOException {
     // Re initialize all the rooms the need to be reset every round
     try {
+      SceneManager.addUi(AppUi.BACKGROUND, loadFxml("background"));
       SceneManager.addUi(AppUi.ROOM_ONE, loadFxml("roomone"));
       SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
       SceneManager.addUi(AppUi.ROOM_THREE, loadFxml("roomthree"));

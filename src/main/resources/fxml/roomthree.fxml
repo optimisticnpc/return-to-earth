@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomThreeController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomThreeController">
    <children>
       <ImageView fx:id="background" fitHeight="749.0" fitWidth="1315.0" layoutX="135.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -85,13 +85,13 @@
             <Font name="System Bold" size="32.0" />
          </font>
       </Text>
-      <ProgressBar fx:id="oxygenBar" layoutX="986.0" layoutY="672.0" prefHeight="35.0" prefWidth="281.0" progress="1.0" style="-fx-accent: red;" />
-      <Text fill="RED" layoutX="985.0" layoutY="666.0" stroke="BLACK" strokeType="OUTSIDE" text="OXYGEN METER:" wrappingWidth="295.10546875">
+      <ProgressBar fx:id="oxygenBar" layoutX="913.0" layoutY="671.0" prefHeight="35.0" prefWidth="281.0" progress="1.0" style="-fx-accent: red;" />
+      <Text fill="RED" layoutX="912.0" layoutY="665.0" stroke="BLACK" strokeType="OUTSIDE" text="OXYGEN METER:" wrappingWidth="295.10546875">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Text>
-      <Text fx:id="meterPercent" fill="RED" layoutX="1202.0" layoutY="666.0" stroke="BLACK" strokeType="OUTSIDE" text="100%" wrappingWidth="70.0">
+      <Text fx:id="meterPercent" fill="RED" layoutX="1129.0" layoutY="665.0" stroke="BLACK" strokeType="OUTSIDE" text="100%" wrappingWidth="70.0">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
@@ -108,7 +108,7 @@
       </Label>
       <Polygon fx:id="movetoRoomOne" fill="#ff0400" layoutX="320.0" layoutY="360.0" onMouseClicked="#clickRoomOne" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
       <fx:include fx:id="chatPanel" source="chatcomponent.fxml" />
-      <ImageView fx:id="soundIcon" fitHeight="61.0" fitWidth="53.0" layoutX="940.0" layoutY="11.0" onMouseClicked="#clickSoundIcon" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="soundIcon" fitHeight="61.0" fitWidth="53.0" layoutX="1215.0" layoutY="15.0" onMouseClicked="#clickSoundIcon" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/soundicon.png" />
          </image>

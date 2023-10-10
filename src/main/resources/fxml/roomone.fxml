@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import nz.ac.auckland.se206.ball.BouncingBallPane?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
    <children>
       <ImageView fx:id="background" fitHeight="720.0" fitWidth="1082.0" layoutX="233.0" pickOnBounds="true">
          <image>
@@ -69,7 +69,7 @@
       <BouncingBallPane fx:id="bouncingBall" layoutX="531.0" layoutY="361.0" prefHeight="63.0" prefWidth="115.0" />
       <Rectangle fx:id="ballToggle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="78.0" layoutX="523.0" layoutY="353.0" onMouseClicked="#clickBallToggle" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="129.0" />
       <fx:include fx:id="chatPanel" source="chatcomponent.fxml" />
-      <ImageView fx:id="soundIcon" fitHeight="61.0" fitWidth="53.0" layoutX="940.0" layoutY="11.0" onMouseClicked="#clickSoundIcon" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="soundIcon" fitHeight="61.0" fitWidth="53.0" layoutX="1215.0" layoutY="15.0" onMouseClicked="#clickSoundIcon" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/soundicon.png" />
          </image>
