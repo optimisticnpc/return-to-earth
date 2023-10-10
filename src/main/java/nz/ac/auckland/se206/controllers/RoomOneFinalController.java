@@ -19,7 +19,6 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ButtonOrder;
 import nz.ac.auckland.se206.CurrentScene;
-import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
@@ -73,7 +72,7 @@ public class RoomOneFinalController {
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
     bouncingBall.setVisible(false);
-    
+
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
@@ -246,21 +245,6 @@ public class RoomOneFinalController {
           }
         },
         5000);
-  }
-
-  /**
-   * Handles the click event on the robot.
-   *
-   * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
-   */
-  @FXML
-  public void clickRobot(MouseEvent event) throws IOException {
-    System.out.println("Robot clicked");
-    Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
-    App.getScene().setRoot(chatRoot);
-    GameState.isRoomOneFirst = false;
-    currentScene.setCurrent(11);
   }
 
   /**
