@@ -68,6 +68,8 @@ public class RoomOneFinalController {
 
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
+    bouncingBall.setVisible(false);
+    
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
