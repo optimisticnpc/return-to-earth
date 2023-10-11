@@ -128,10 +128,26 @@ public class RoomOneController {
   @FXML
   private void clickMainWarning(MouseEvent event) throws IOException {
     System.out.println("Main Warning clicked");
-    activateSpeech(
-        "Critical damage detected on the ship.\n"
-            + "Please authorise yourself by clicking \nthe middle screen "
-            + "to access the system\nand analyse the damage.");
+    if (!GameState.isRiddleResolved) {
+      activateSpeech(
+          "Critical damage detected on the ship.\n"
+              + "Please authorise yourself by clicking \nthe middle screen "
+              + "to access the system\nand analyse the damage.");
+      chatCentralControl.addMessage(
+          new ChatMessage(
+              "system",
+              "Critical damage detected on the ship.\n"
+                  + "Please authorise yourself by clicking \nthe middle screen "
+                  + "to access the system\nand analyse the damage."));
+    } else {
+      activateSpeech(
+          "Critical damage detected on the engine!\n" + "Please find the spare tools and\nfix it!");
+      chatCentralControl.addMessage(
+          new ChatMessage(
+              "system",
+              "Critical damage detected on the engine!\n"
+                  + "Please find the spare tools and\nfix it!"));
+    }
   }
 
   /**
@@ -146,6 +162,15 @@ public class RoomOneController {
     // If riddle not solved tell the player to get authorization
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation needed to access\nthe system.");
+      chatCentralControl.addMessage(
+          new ChatMessage(
+              "system",
+              "Authorisation needed to access\n"
+                  + "the damage analysis.\n"
+                  + "Please authorise yourself by clicking \n"
+                  + "the middle screen \n"
+                  + "to access the system\n"
+                  + "and analyse the damage."));
     } else {
       activateSpeech(
           "Critical failure on the main engine\n" + "Please find the spare parts and\nfix it!");
@@ -161,6 +186,10 @@ public class RoomOneController {
   private void clickWire(MouseEvent event) {
     GameState.isWireCollected = true;
     activateSpeech("You have collected the wire!\nYou might need it to\nfix something...");
+    chatCentralControl.addMessage(
+        new ChatMessage(
+            "system",
+            "You have collected the wire!\n" + "You might need it to\n" + "fix something..."));
     room.getChildren().remove(wire);
     room.getChildren().remove(wireImage);
   }

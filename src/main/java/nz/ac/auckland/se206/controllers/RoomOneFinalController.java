@@ -17,6 +17,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ButtonOrder;
+import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -24,6 +25,7 @@ import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SpeechBubble;
+import nz.ac.auckland.se206.gpt.ChatMessage;
 
 /** Controller class for the room view. */
 public class RoomOneFinalController {
@@ -55,6 +57,7 @@ public class RoomOneFinalController {
 
   private SpeechBubble speech = SpeechBubble.getInstance();
   private ChatController chatController = new ChatController();
+  private ChatCentralControl chatCentralControl = ChatCentralControl.getInstance();
   private Timer timer = new Timer();
   private GameTimer gameTimer = GameTimer.getInstance();
 
@@ -201,6 +204,9 @@ public class RoomOneFinalController {
       switchIndex = 0;
       correctSwitch = 0;
       activateSpeech("Press the buttons in the right order\n" + "to reactivate! Please try again!");
+      chatCentralControl.addMessage(
+          new ChatMessage(
+              "system", "Press the buttons in the right order to reactivate! Please try again!!"));
     }
   }
 

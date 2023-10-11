@@ -48,6 +48,10 @@ public class ChatComponentController implements Observer {
     chatCentralControl.getMessages();
   }
 
+  public static ChatComponentController getInstance() {
+    return new ChatComponentController();
+  }
+
   @FXML // send the message when the enter key is pressed
   private void onEnterPressed(KeyEvent event) {
     if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
@@ -138,6 +142,8 @@ public class ChatComponentController implements Observer {
         addLabel(msgString, Pos.CENTER_LEFT);
       } else if (msg.getRole().equals("user")) {
         addLabel(msgString, Pos.CENTER_RIGHT);
+      } else if (msg.getRole().equals("system")) {
+        addLabel(msgString, Pos.CENTER);
       }
     }
 
