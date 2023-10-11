@@ -95,6 +95,16 @@ public class MathQuestionSelector {
     return selectedPuzzles[1].getQuestion();
   }
 
+  public String getFirstQuestionHint() {
+    return selectedPuzzles[0].getHint1();
+  }
+
+  public String getSecondHint() {
+    return selectedPuzzles[1].getHint1();
+  }
+
+  
+
   /** Initializes the list of available mathematical questions. */
   private void initializeQuestions() {
     // Initialize all the math questions

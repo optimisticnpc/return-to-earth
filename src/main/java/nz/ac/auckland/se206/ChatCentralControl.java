@@ -294,4 +294,13 @@ public class ChatCentralControl {
     Random random = new Random();
     wordToGuess = riddles[random.nextInt(riddles.length)];
   }
+
+  public ChatCompletionRequest getChatCompletionRequest() {
+    return chatCompletionRequest;
+  }
+
+  /** Prints all the messages in the request with their corresponding roles. */
+  public void printChatCompletionRequestMessages() {
+    chatCompletionRequest.printMessages();
+  }
 }
