@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -32,6 +33,7 @@ public class StartController {
   @FXML private Button startButton;
 
   private CurrentScene currentScene = CurrentScene.getInstance();
+  private ChatCentralControl chatCentralControl = ChatCentralControl.getInstance();
   private int currDifficulty = 0;
   private String[] difficulty = {"Easy", "Medium", "Hard"};
   private String[] difficultyHelp = {"- Infinite hints! -", "- 5 hints! -", "- 0 hints! -"};
@@ -116,6 +118,7 @@ public class StartController {
     Parent roomRoot = SceneManager.getUiRoot(AppUi.ROOM_ONE);
     currentScene.setCurrent(1);
     App.getScene().setRoot(roomRoot);
+    chatCentralControl.notifyObservers();
     GameTimer gameTimer = GameTimer.getInstance();
     OxygenMeter oxygenMeter = OxygenMeter.getInstance();
 

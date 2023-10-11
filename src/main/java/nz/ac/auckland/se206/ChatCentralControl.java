@@ -70,7 +70,7 @@ public class ChatCentralControl {
     notifyObservers();
   }
 
-  private void notifyObservers() {
+  public void notifyObservers() {
     for (Observer observer : observers) {
       observer.update();
     }
