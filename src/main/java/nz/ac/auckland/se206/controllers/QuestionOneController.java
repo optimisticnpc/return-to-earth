@@ -47,8 +47,9 @@ public class QuestionOneController {
         .addMessage(new ChatMessage("system", GptPromptEngineering.hintMathQuestionPrompt()));
     
 
-        ChatMessage msg = new ChatMessage("user", "Please help me with the first question");
+        ChatMessage msg = new ChatMessage("user", "Please give me a hint for the first question");
 
+        // Add asking for hint message to chat
         ChatCentralControl.getInstance().addMessage(msg);
         ChatCentralControl.getInstance().runGpt(msg);
   }

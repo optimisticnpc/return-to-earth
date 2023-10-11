@@ -13,10 +13,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 /**
  * The SpacesuitPuzzleController class controls the behavior and interactions of the spacesuit
@@ -142,5 +145,17 @@ public class SpacesuitPuzzleController {
   private void onGoBack() {
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
     App.getScene().setRoot(roomTwoRoot);
+  }
+
+  @FXML
+  private void onClickWordScrambleHintButton() {
+    ChatCentralControl.getInstance()
+        .getChatCompletionRequest()
+        .addMessage(new ChatMessage("system", GptPromptEngineering.hintWorScrambleSetup()));
+
+    ChatMessage msg = new ChatMessage("user", "Please give me a hint for the word scramble question");
+
+    ChatCentralControl.getInstance().addMessage(msg);
+    ChatCentralControl.getInstance().runGpt(msg);
   }
 }

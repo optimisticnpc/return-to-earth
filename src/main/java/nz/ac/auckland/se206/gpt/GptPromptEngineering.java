@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.gpt;
 
 import nz.ac.auckland.se206.MathQuestionSelector;
+import nz.ac.auckland.se206.controllers.SpacesuitPuzzleController;
 
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
@@ -104,9 +105,11 @@ public class GptPromptEngineering {
 
   public static String hintMathQuestionSetup() {
 
-    return "If the user asks you for a hint for the questions, ask them if it is the first or"
-        + " second question if they have not specified. ";
+    return "The user has two questions they need to solve. They may ask for hints. ";
   }
+
+  // "If the user asks you for a hint for the questions, ask them if it is the first or"
+  // + " second question if they have not specified. "
 
   public static String hintQuestionOneSetup() {
 
@@ -122,6 +125,9 @@ public class GptPromptEngineering {
 
   public static String hintWorScrambleSetup() {
 
-    return "If the user asks you for a hint for the word scramble give them a hint for the answer ";
+    return "If the user asks you for a hint for the word scramble give them a hint for the answer"
+        + " \""
+        + SpacesuitPuzzleController.getCorrectWordString()
+        + "\". ";
   }
 }
