@@ -43,8 +43,14 @@ public class QuestionOneController {
   private void onClickQuestionOneHintButton() {
 
     ChatCentralControl.getInstance()
-        .runGpt((new ChatMessage("system", GptPromptEngineering.hintMathQuestionPrompt())));
-    System.out.println();
+        .getChatCompletionRequest()
+        .addMessage(new ChatMessage("system", GptPromptEngineering.hintMathQuestionPrompt()));
+    
+
+        ChatMessage msg = new ChatMessage("user", "Please help me with the first question");
+
+        ChatCentralControl.getInstance().addMessage(msg);
+        ChatCentralControl.getInstance().runGpt(msg);
   }
 
   @FXML

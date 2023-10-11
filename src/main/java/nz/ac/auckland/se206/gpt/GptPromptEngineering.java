@@ -104,19 +104,24 @@ public class GptPromptEngineering {
 
   public static String hintMathQuestionSetup() {
 
-    return "If the user asks you for a hint for the math questions, ask them if it is the first or"
-        + " second question if they have not specified.";
+    return "If the user asks you for a hint for the questions, ask them if it is the first or"
+        + " second question if they have not specified. ";
   }
 
   public static String hintQuestionOneSetup() {
 
-    return "It is for the first question tell them that: "
+    return "If it is for the first question tell them that: "
         + MathQuestionSelector.getInstance().getFirstQuestionHint();
   }
 
   public static String hintQuestionTwoSetup() {
 
-    return "It is for the second question tell them that: "
-        + MathQuestionSelector.getInstance().getFirstQuestionHint();
+    return "If it is for the second question tell them that: "
+        + MathQuestionSelector.getInstance().getSecondQuestionHint();
+  }
+
+  public static String hintWorScrambleSetup() {
+
+    return "If the user asks you for a hint for the word scramble give them a hint for the answer ";
   }
 }

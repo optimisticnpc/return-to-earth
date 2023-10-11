@@ -42,7 +42,7 @@ public class ChatComponentController implements Observer {
   public void initialize() {
     System.out.println("ChatComponentController.initialize()");
 
-    showLoadingIcon();
+    hideLoadingIcon();
     chatCentralControl = ChatCentralControl.getInstance();
     chatCentralControl.addObserver(this);
     chatCentralControl.getMessages();

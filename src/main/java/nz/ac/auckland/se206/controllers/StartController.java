@@ -161,6 +161,9 @@ public class StartController {
     App.resetRooms();
     App.resetMathQuestions();
 
+    // Refresh chats again to fix bug where chats weren't updated even though riddle was received
+    ChatCentralControl.getInstance().notifyObservers();
+
     Parent roomRoot = SceneManager.getUiRoot(AppUi.BACKGROUND);
     currentScene.setCurrent(1);
     App.getScene().setRoot(roomRoot);
