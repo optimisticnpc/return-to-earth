@@ -14,6 +14,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -22,6 +23,8 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.SpeechBubble;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 /**
  * The RoomTwoController class controls the behavior and interactions within Room Two of the game.
@@ -50,6 +53,7 @@ public class RoomTwoController {
   private Timer timer = new Timer();
   private CurrentScene currentScene = CurrentScene.getInstance();
   private Sound sound = Sound.getInstance();
+  private ChatCentralControl chat = ChatCentralControl.getInstance();
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -229,6 +233,10 @@ public class RoomTwoController {
       collectSpacesuit();
       activateSpeech(
           "You have collected the spacesuit!\nNow you're able to stay outside\nfor longer!");
+      chat.addMessage(
+          new ChatMessage(
+              "assistant",
+              "You have collected the spacesuit!\nNow you're able to stay outside\nfor longer!"));
       GameState.isSpacesuitCollected = true;
       GameState.isSpacesuitJustCollected = true;
     }
@@ -247,6 +255,13 @@ public class RoomTwoController {
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation needed to access\n the system.");
+      chat.addMessage(
+          new ChatMessage(
+              "system",
+              "You need to be authorised to talk to Space Destroyer or access the system for"
+                  + " security reasons.\n"
+                  + " Please click the middle screen in the main control room to authorise"
+                  + " yourself."));
       return;
     }
 
@@ -262,8 +277,11 @@ public class RoomTwoController {
       collectToolbox();
       GameState.isToolboxCollected = true;
       GameState.phaseThree = true;
-      // TODO:
-      // SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
+      if (GameState.hard) {
+        chat.runGpt(new ChatMessage("system", GptPromptEngineering.getHardPhaseThreeProgress()));
+      } else {
+        chat.runGpt(new ChatMessage("system", GptPromptEngineering.getPhaseThreeProgress()));
+      }
       System.out.println("Toolbox collected");
     }
   }

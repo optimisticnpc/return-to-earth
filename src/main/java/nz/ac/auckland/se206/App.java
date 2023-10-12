@@ -49,14 +49,7 @@ public class App extends Application {
     return scene;
   }
 
-  /** Resets the chat view by reloading the associated FXML file. */
-  public static void resetChat() {
-    try {
-      SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+
 
   /**
    * Resets all the rooms in the app by reloading the associated FXML files.
@@ -66,6 +59,7 @@ public class App extends Application {
   public static void resetRooms() throws IOException {
     // Re initialize all the rooms the need to be reset every round
     try {
+      SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
       SceneManager.addUi(AppUi.BACKGROUND, loadFxml("background"));
       SceneManager.addUi(AppUi.ROOM_ONE, loadFxml("roomone"));
       SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
@@ -114,12 +108,8 @@ public class App extends Application {
     // After difficulty is chosen
 
     // These rooms are only initialized once:
-    SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
     SceneManager.addUi(AppUi.START, loadFxml("start"));
     SceneManager.addUi(AppUi.SCORE_SCREEN, loadFxml("scorescreen"));
-
-    // TODO: remove this legacy code
-    SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
 
     Parent root = SceneManager.getUiRoot(AppUi.START);
     scene = new Scene(root, 1280, 720);
