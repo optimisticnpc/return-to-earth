@@ -95,8 +95,10 @@ public class RoomOneController {
     Image soundOnImage = new Image(soundOn);
     sound.soundImageProperty().set(soundOnImage);
 
-    activateSpeech(
-        "Hey you! Have you passed the\nauthorisation riddle to be\ntouching this stuff?");
+    // I don't think we need this. Also it sometimes doesn't show up if the player is clicking
+    // quickly through the background story screen
+    // activateSpeech(
+    //     "Hey you! Have you passed the\nauthorisation riddle to be\ntouching this stuff?");
   }
 
   /**
@@ -160,7 +162,7 @@ public class RoomOneController {
       activateSpeech(
           "Critical damage detected on the ship.\n"
               + "Please authorise yourself by clicking \nthe middle screen "
-              + "to access the system\nand analyse the damage.");
+              + "to access the system and analyse the damage.");
       chatCentralControl.addMessage(
           new ChatMessage(
               "system",
@@ -169,7 +171,8 @@ public class RoomOneController {
                   + "to access the system\nand analyse the damage."));
     } else {
       activateSpeech(
-          "Critical damage detected on the engine!\n" + "Please find the spare tools and\nfix it!");
+          "Critical damage detected on the engine!\n"
+              + "Please find the tools required and fix it!");
       chatCentralControl.addMessage(
           new ChatMessage(
               "system",
@@ -193,12 +196,9 @@ public class RoomOneController {
       chatCentralControl.addMessage(
           new ChatMessage(
               "system",
-              "Authorisation needed to access\n"
-                  + "the damage analysis.\n"
-                  + "Please authorise yourself by clicking \n"
-                  + "the middle screen \n"
-                  + "to access the system\n"
-                  + "and analyse the damage."));
+              "Authorisation needed.\n"
+                  + "Please authorise yourself by clicking the middle screen"
+                  + "to access the system and analyse the damage."));
     } else {
       activateSpeech(
           "Critical failure on the main engine\n" + "Please find the spare parts and\nfix it!");
@@ -277,7 +277,6 @@ public class RoomOneController {
                     + GptPromptEngineering.getHardHintSetup()));
       }
     }
-
   }
 
   private void selectRandomRiddle() {
