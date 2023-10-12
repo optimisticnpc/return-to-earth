@@ -33,10 +33,15 @@ import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.SpeechBubble;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
+/**
+ * Controller class for Room Three in the game. This class handles user interactions, game logic,
+ * and UI updates for Room Three.
+ */
 public class RoomThreeController {
   @FXML private Label timerLabel;
   @FXML private Label speechLabel;
@@ -57,12 +62,15 @@ public class RoomThreeController {
   @FXML private Pane room;
   @FXML private Text meterPercent;
   @FXML private ImageView robot;
+  @FXML private ImageView soundIcon;
 
   private CurrentScene currentScene = CurrentScene.getInstance();
   private RotateTransition rotate = new RotateTransition();
   private boolean unscrewed = false;
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
+  private Sound sound = Sound.getInstance();
+  private Boolean isWarningShown = false;
   private ChatCentralControl chat = ChatCentralControl.getInstance();
 
   /** Initializes the room view, it is called when the room loads. */
@@ -73,6 +81,7 @@ public class RoomThreeController {
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
     OxygenMeter oxygenMeter = OxygenMeter.getInstance();
+    oxygenMeter.setRoomThreeController(this);
     oxygenBar.progressProperty().bind(oxygenMeter.oxygenProgressProperty());
     meterPercent.textProperty().bind(oxygenMeter.percentProgressProperty());
 
@@ -85,6 +94,18 @@ public class RoomThreeController {
     HintCounter hintCounter = HintCounter.getInstance();
     hintCounter.setHintCount();
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
+
+    soundIcon.imageProperty().bind(sound.soundImageProperty());
+  }
+
+  /**
+   * Handles the click event on the sound icon.
+   *
+   * @throws FileNotFoundException if the file is not found.
+   */
+  @FXML
+  private void clickSoundIcon() throws FileNotFoundException {
+    sound.toggleImage();
   }
 
   /** Initializes the rotating meter, it is called when the screw is clicked. */
@@ -107,6 +128,20 @@ public class RoomThreeController {
     rotateThread.start();
   }
 
+  /** Shows a low oxygen warning when oxygen is under 30% and it's the first warning. */
+  public void showLowOxygen() {
+    if (!isWarningShown) {
+      activateSpeech("OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
+      isWarningShown = true;
+    }
+  }
+
+  /** Changes oxygen meter colour and width once spacesuit is collected. */
+  public void showSpacesuitOxygen() {
+    oxygenBar.setStyle("-fx-accent: #ADD8E6;");
+    oxygenBar.setPrefWidth(350);
+  }
+
   /**
    * Handles the click event on the authorisation button.
    *
@@ -122,6 +157,12 @@ public class RoomThreeController {
     }
   }
 
+  /**
+   * Handles the click event on the timing button within the timing minigame.
+   *
+   * @param event The mouse event triggered by clicking the timing button.
+   * @throws FileNotFoundException if there is an error with the background image file.
+   */
   @FXML
   public void pressTimingButton(MouseEvent event) throws FileNotFoundException {
     System.out.println(meter.getRotate());

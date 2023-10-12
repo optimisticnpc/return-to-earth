@@ -18,10 +18,20 @@ import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
+/**
+ * The SpacesuitPuzzleController class controls the behavior and interactions of the spacesuit
+ * puzzle screen. It allows the player to solve a word puzzle to unlock a compartment and proceed
+ * with the game.
+ */
 public class SpacesuitPuzzleController {
 
   private static String correctWordString;
 
+  /**
+   * Gets the correct word string for the puzzle.
+   *
+   * @return The correct word string.
+   */
   public static String getCorrectWordString() {
     return correctWordString;
   }
@@ -33,8 +43,37 @@ public class SpacesuitPuzzleController {
   @FXML private Button submitCodeButton;
 
   // TODO: Get more words and make sure they are different from the riddle
-  private String[] words = {"blackhole", "venus", "comet", "satellite", "mars"};
+  private String[] unscrambleWords = {
+    "blackhole",
+    "venus",
+    "comet",
+    "satellite",
+    "saturn",
+    "saturn",
+    "jupiter",
+    "uranus",
+    "neptune",
+    "lightyear",
+    "universe",
+    "asteroid",
+    "meteorite",
+    "galaxy",
+    "mercury",
+    "constellation",
+    "orbit",
+    "nebula",
+    "rocket",
+    "supernova",
+    "stardust",
+    "astronaut",
+    "matter",
+    "cosmos",
+    "pluto"
+  };
 
+  /**
+   * Initializes the spacesuit puzzle screen, setting up the timer, input field, and scrambled word.
+   */
   public void initialize() {
     System.out.println("SpacesuitPuzzleController.initialize()");
 
@@ -54,9 +93,10 @@ public class SpacesuitPuzzleController {
     pickAndScrambleWord();
   }
 
+  /** Picks a random word, scrambles it, and sets it as the puzzle word for the player to solve. */
   private void pickAndScrambleWord() {
     // Randomly select a word from the array
-    correctWordString = words[(int) (Math.random() * words.length)];
+    correctWordString = unscrambleWords[(int) (Math.random() * unscrambleWords.length)];
 
     // Convert the word to a list of characters, shuffle it to get the scrambled version, and then
     // convert it back to a string.
@@ -68,11 +108,17 @@ public class SpacesuitPuzzleController {
     scrambledWordLabel.setText(scrambledWord.toUpperCase());
   }
 
+  /**
+   * Handles the action when the player submits a word to unlock the compartment. Checks if the
+   * entered word matches the correct word and provides feedback.
+   */
   @FXML
   private void onSubmitCode() {
     String enteredPasscode = inputField.getText();
 
-    if (correctWordString.equals(enteredPasscode.toLowerCase())) {
+    // Check if they guessed correct word
+    // Ignore capitalisation and whitespace
+    if (correctWordString.equals(enteredPasscode.toLowerCase().replaceAll("\\s+", ""))) {
       resultLabel.setText("Correct! Compartment unlocked.");
       GameState.isSpacesuitUnlocked = true;
 
@@ -88,6 +134,10 @@ public class SpacesuitPuzzleController {
     }
   }
 
+  /**
+   * Handles the action when the player goes back from the spacesuit puzzle screen to the previous
+   * room.
+   */
   @FXML
   private void onGoBack() {
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);

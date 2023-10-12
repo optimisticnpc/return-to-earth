@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Timer;
 import javafx.fxml.FXML;
@@ -19,12 +20,13 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ButtonOrder;
 import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
-import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.SpeechBubble;
+import nz.ac.auckland.se206.ball.BouncingBallPane;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
 /** Controller class for the room view. */
@@ -48,6 +50,9 @@ public class RoomOneFinalController {
   @FXML private VBox chatLog;
   @FXML private ScrollPane scrollPane;
   @FXML private Button sendButton;
+  @FXML private BouncingBallPane bouncingBall;
+  @FXML private Rectangle ballToggle;
+  @FXML private ImageView soundIcon;
 
   private ButtonOrder buttonOrder = ButtonOrder.getInstance();
   private String[] switchOrder = buttonOrder.getCorrectOrderArray();
@@ -60,6 +65,7 @@ public class RoomOneFinalController {
   private ChatCentralControl chatCentralControl = ChatCentralControl.getInstance();
   private Timer timer = new Timer();
   private GameTimer gameTimer = GameTimer.getInstance();
+  private Sound sound = Sound.getInstance();
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -68,6 +74,8 @@ public class RoomOneFinalController {
 
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
+    bouncingBall.setVisible(false);
+
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
@@ -75,6 +83,18 @@ public class RoomOneFinalController {
     HintCounter hintCounter = HintCounter.getInstance();
     hintCounter.setHintCount();
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
+
+    soundIcon.imageProperty().bind(sound.soundImageProperty());
+  }
+
+  /**
+   * Handles the click event on the sound icon.
+   *
+   * @throws FileNotFoundException if file is not found.
+   */
+  @FXML
+  private void clickSoundIcon() throws FileNotFoundException {
+    sound.toggleImage();
   }
 
   public void setSendButtonAction() {
@@ -185,7 +205,7 @@ public class RoomOneFinalController {
   }
 
   /**
-   * Handles the click event on the reactivate screen
+   * Handles the click event on the reactivate screen.
    *
    * @param event the mouse event
    * @throws IOException if there is an error loading the winscreen
@@ -213,7 +233,7 @@ public class RoomOneFinalController {
   /**
    * Sets the text of the speech bubble and makes it visible for 5 seconds.
    *
-   * @param text
+   * @param text text that is it to be displayed in the bubble.
    */
   @FXML
   public void activateSpeech(String text) {
@@ -234,17 +254,12 @@ public class RoomOneFinalController {
   }
 
   /**
-   * Handles the click event on the robot
+   * Handles the click event on the bouncing ball pane.
    *
    * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  public void clickRobot(MouseEvent event) throws IOException {
-    System.out.println("Robot clicked");
-    Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
-    App.getScene().setRoot(chatRoot);
-    GameState.isRoomOneFirst = false;
-    currentScene.setCurrent(11);
+  private void clickBallToggle(MouseEvent event) {
+    bouncingBall.setVisible(!bouncingBall.isVisible());
   }
 }

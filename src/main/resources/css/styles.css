@@ -22,7 +22,8 @@
 
 #startButton,
 #restartButton,
-#exitButton {
+#exitButton,
+#continueButton {
     -fx-background-insets: 1;
     /* Fixes the black leaking out of the border*/
     -fx-font-size: 38px;
@@ -57,14 +58,15 @@
 
 #startButton:hover,
 #restartButton:hover,
-#exitButton:hover {
+#exitButton:hover,
+#continueButton:hover {
     -fx-border-width: 0px;
     -fx-font-size: 38px;
     -fx-effect: dropshadow(three-pass-box, lime, 10, 0.5, 0, 0);
 }
 
 #scoreScreenButton:hover,
-#helpStarsButton:hover, 
+#helpStarsButton:hover,
 #closeButton:hover,
 .otherButtons:hover {
     -fx-border-width: 0px;
@@ -106,5 +108,9 @@
 }
 
 .button-hoverable:hover {
+    -fx-opacity: 0.5;
+}
+
+#soundIcon:hover {
     -fx-opacity: 0.5;
 }

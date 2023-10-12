@@ -43,6 +43,7 @@ public class ChatComponentController implements Observer {
   public void initialize() {
     System.out.println("ChatComponentController.initialize()");
 
+    showLoadingIcon();
     chatCentralControl = ChatCentralControl.getInstance();
     chatCentralControl.addObserver(this);
     chatCentralControl.getMessages();
@@ -157,5 +158,15 @@ public class ChatComponentController implements Observer {
   @Override
   public void clearContents() {
     chatLog.getChildren().clear();
+  }
+
+  @Override
+  public void showLoadingIcon() {
+    loadingIcon.setVisible(true);
+  }
+
+  @Override
+  public void hideLoadingIcon() {
+    loadingIcon.setVisible(false);
   }
 }

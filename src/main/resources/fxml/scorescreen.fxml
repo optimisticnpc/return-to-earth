@@ -11,25 +11,25 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ScoreScreenController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ScoreScreenController">
    <children>
-      <ImageView fitHeight="677.0" fitWidth="1167.0" layoutX="-144.0" layoutY="-5.0" preserveRatio="true">
+      <ImageView fitHeight="777.0" fitWidth="1400.0" preserveRatio="true">
          <image>
             <Image url="@../images/menu.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="656.0" layoutX="-4.0" layoutY="-4.0" opacity="0.2" stroke="BLACK" strokeType="INSIDE" width="1016.0" />
-      <Text fill="WHITE" layoutX="239.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scores" textAlignment="CENTER" wrappingWidth="522.4326171875">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="731.0" layoutX="-4.0" layoutY="-4.0" opacity="0.2" stroke="BLACK" strokeType="INSIDE" width="1288.0" />
+      <Text fill="WHITE" layoutX="405.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scores" textAlignment="CENTER" wrappingWidth="522.4326171875">
          <font>
             <Font size="60.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="537.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fastest Times" textAlignment="CENTER" wrappingWidth="522.4326171875">
+      <Text fill="WHITE" layoutX="728.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fastest Times" textAlignment="CENTER" wrappingWidth="522.4326171875">
          <font>
             <Font size="40.0" />
          </font>
       </Text>
-      <HBox layoutX="88.0" layoutY="179.0" prefHeight="364.0" prefWidth="905.0" spacing="60.0">
+      <HBox layoutX="88.0" layoutY="179.0" prefHeight="399.0" prefWidth="1128.0" spacing="220.0">
          <children>
             <VBox prefHeight="364.0" prefWidth="473.0" spacing="86.0">
                <children>
@@ -75,25 +75,25 @@
          <font>
             <Font size="20.0" />
          </font></Button>
-      <ImageView fx:id="easyStars" fitHeight="174.0" fitWidth="350.0" layoutX="307.0" layoutY="136.0" preserveRatio="true">
+      <ImageView fx:id="easyStars" fitHeight="174.0" fitWidth="350.0" layoutX="413.0" layoutY="136.0" preserveRatio="true">
          <image>
             <Image url="@../images/stars_grey.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="hardStars" fitHeight="174.0" fitWidth="350.0" layoutX="307.0" layoutY="439.0" preserveRatio="true">
+      <ImageView fx:id="hardStars" fitHeight="174.0" fitWidth="350.0" layoutX="413.0" layoutY="439.0" preserveRatio="true">
          <image>
             <Image url="@../images/stars_grey.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="mediumStars" fitHeight="174.0" fitWidth="350.0" layoutX="307.0" layoutY="286.0" preserveRatio="true">
+      <ImageView fx:id="mediumStars" fitHeight="174.0" fitWidth="350.0" layoutX="413.0" layoutY="286.0" preserveRatio="true">
          <image>
             <Image url="@../images/stars_grey.png" />
          </image>
       </ImageView>
-      <Pane fx:id="helpScreen" layoutX="-4.0" layoutY="-4.0" prefHeight="656.0" prefWidth="1006.0" visible="false">
+      <Pane fx:id="helpScreen" layoutX="148.0" layoutY="-31.0" prefHeight="656.0" prefWidth="1006.0" visible="false">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="574.0" layoutX="61.0" layoutY="41.0" stroke="BLACK" strokeType="INSIDE" width="885.0" />
-            <Button fx:id="closeButton" layoutX="880.0" layoutY="49.0" mnemonicParsing="false" onAction="#onClickClose" prefHeight="54.0" prefWidth="54.0" textAlignment="CENTER">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="574.0" layoutX="50.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" width="885.0" />
+            <Button fx:id="closeButton" layoutX="869.0" layoutY="136.0" mnemonicParsing="false" onAction="#onClickClose" prefHeight="54.0" prefWidth="54.0" textAlignment="CENTER">
                <font>
                   <Font size="6.0" />
                </font>
@@ -105,7 +105,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <VBox layoutX="154.0" layoutY="98.0" prefHeight="441.0" prefWidth="350.0">
+            <VBox layoutX="143.0" layoutY="185.0" prefHeight="441.0" prefWidth="350.0">
                <children>
                   <ImageView fitHeight="147.0" fitWidth="325.0" preserveRatio="true">
                      <image>
@@ -124,26 +124,26 @@
                   </ImageView>
                </children>
             </VBox>
-            <Text fill="WHITE" layoutX="593.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4:00 to 6:00" textAlignment="CENTER" wrappingWidth="231.9853515625">
+            <Text fill="WHITE" layoutX="582.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4:00 to 6:00" textAlignment="CENTER" wrappingWidth="231.9853515625">
                <font>
                   <Font size="35.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="593.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2:00 to 4:00" textAlignment="CENTER" wrappingWidth="231.9853515625">
+            <Text fill="WHITE" layoutX="582.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2:00 to 4:00" textAlignment="CENTER" wrappingWidth="231.9853515625">
                <font>
                   <Font size="35.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="593.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Under 2:00" textAlignment="CENTER" wrappingWidth="231.9853515625">
+            <Text fill="WHITE" layoutX="582.0" layoutY="580.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Under 2:00" textAlignment="CENTER" wrappingWidth="231.9853515625">
                <font>
                   <Font size="35.0" />
                </font>
             </Text>
          </children>
       </Pane>
-      <Button fx:id="helpStarsButton" contentDisplay="RIGHT" layoutX="938.0" layoutY="594.0" mnemonicParsing="false" onAction="#onClickHelpStarsButton" prefHeight="44.0" prefWidth="49.0" style="-fx-font-size: 19;" text="?">
+      <Button fx:id="helpStarsButton" contentDisplay="RIGHT" layoutX="1190.0" layoutY="640.0" mnemonicParsing="false" onAction="#onClickHelpStarsButton" prefHeight="56.0" prefWidth="56.0" style="-fx-font-size: 25;" text="?">
          <font>
-            <Font size="19.0" />
+            <Font size="30.0" />
          </font>
       </Button>
    </children>

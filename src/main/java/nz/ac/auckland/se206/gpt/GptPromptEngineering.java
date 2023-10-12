@@ -51,6 +51,11 @@ public class GptPromptEngineering {
         + " them to find the tool box in the storage room.";
   }
 
+  /**
+   * Generates a GPT prompt for phase three progress.
+   *
+   * @return A GPT prompt for phase three progress.
+   */
   public static String getPhaseThreeProgress() {
     return "The user has to fix the engine outside the spaceship. Simply tell them thay they have"
         + " to go outside the spaceship to fix the engine. Do not add anything else. If the"
@@ -58,13 +63,24 @@ public class GptPromptEngineering {
         + " the wire inside the hatch, do not add anything else.";
   }
 
+  /**
+   * Generates a GPT prompt for hard phase three progress.
+   *
+   * @return A GPT prompt for hard phase three progress.
+   */
   public static String getHardPhaseThreeProgress() {
+
     return "The user now has to fix the malfunctioning engine from outside the spaceship with the"
         + " tools that they just found. If the user asks for help, simply tell them to fix"
         + " the engine from outside the spaceship with the tools aquired. Do not add"
         + " anything else.";
   }
 
+  /**
+   * Generates a GPT prompt for phase four progress.
+   *
+   * @return A GPT prompt for phase four progress.
+   */
   public static String getPhaseFourProgress() {
     return "The user has to reactivate the engine in the main room. Simply tell them to go back to"
                + " the main room for reactivation of the engine. Do not add anything else. If the"
@@ -72,7 +88,13 @@ public class GptPromptEngineering {
                + " correct order to reactivate the engine. Do not add anything else.";
   }
 
+  /**
+   * Generates a GPT prompt for hard phase four progress.
+   *
+   * @return A GPT prompt for hard phase four progress.
+   */
   public static String getHardPhaseFourProgress() {
+
     return "The user has to reactivate the engine in the main room. If the user asks for hints,"
         + " simply tell them that they have to reactivate the engine from the main room. Do"
         + " not add anything else.";

@@ -13,24 +13,44 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomThreeController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomThreeController">
    <children>
-      <ImageView fx:id="background" fitHeight="650.0" fitWidth="1182.0" layoutX="-71.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="background" fitHeight="749.0" fitWidth="1315.0" layoutX="135.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/spaceship%20exterior.png" />
          </image>
       </ImageView>
-      <Label fx:id="timerLabel" layoutX="25.0" layoutY="20.0" prefHeight="35.0" prefWidth="319.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining: 02:00">
+      <Label fx:id="timerLabel" layoutX="333.0" layoutY="5.0" prefHeight="35.0" prefWidth="319.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining: 02:00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Polygon fx:id="hatch" fill="DODGERBLUE" layoutX="446.0" layoutY="403.0" onMouseClicked="#clickHatch" opacity="0.0" points="-69.0555419921875, -24.1923828125, 112.9444580078125, -122.1923828125, 191.9444580078125, -9.1923828125, 11.9444580078125, 89.8076171875" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="screwOne" fill="WHITE" layoutX="400.0" layoutY="385.0" onMousePressed="#pressScrew" opacity="0.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
-      <Circle fx:id="screwTwo" fill="WHITE" layoutX="552.0" layoutY="306.0" onMousePressed="#pressScrew" opacity="0.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
-      <Circle fx:id="screwThree" fill="WHITE" layoutX="612.0" layoutY="387.0" onMousePressed="#pressScrew" opacity="0.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
-      <Circle fx:id="screwFour" fill="WHITE" layoutX="464.0" layoutY="470.0" onMousePressed="#pressScrew" opacity="0.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
-      <VBox fx:id="puzzleScreen" alignment="CENTER" layoutX="161.0" layoutY="69.0" prefHeight="533.0" prefWidth="691.0" visible="false">
+      <Polygon fx:id="hatch" fill="DODGERBLUE" layoutX="717.0" layoutY="388.0" onMouseClicked="#clickHatch" opacity="0.0" points="-75.33331298828125, 25.333343505859375, 131.33331298828125, -88.66665649414062, 223.33331298828125, 35.333343505859375, 18.66668701171875, 150.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="screwOne" fill="WHITE" layoutX="672.0" layoutY="418.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
+      <Circle fx:id="screwTwo" fill="WHITE" layoutX="844.0" layoutY="328.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
+      <Circle fx:id="screwThree" fill="WHITE" layoutX="912.0" layoutY="418.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
+      <Circle fx:id="screwFour" fill="WHITE" layoutX="743.0" layoutY="514.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
+      <ImageView fitHeight="116.0" fitWidth="116.0" layoutX="558.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" rotate="132.5">
+         <image>
+            <Image url="@../images/ai%20circle%20room3.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="robot" fitHeight="116.0" fitWidth="116.0" layoutX="558.0" layoutY="171.0" onMouseClicked="#clickAuthorisation" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="132.5" styleClass="robot-hoverable">
+         <image>
+            <Image url="@../images/ai%20circle%20room3%20hover.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="620.0" layoutY="35.0">
+         <image>
+            <Image url="@../images/speech-bubble.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="643.0" layoutY="46.0" prefHeight="96.0" prefWidth="269.0">
+         <font>
+            <Font size="15.0" />
+                     </font>
+      </Label>
+      <VBox fx:id="puzzleScreen" alignment="CENTER" layoutX="447.0" layoutY="94.0" prefHeight="533.0" prefWidth="691.0" visible="false">
          <children>
             <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" text="Select Wrench Power!">
                <font>
@@ -55,58 +75,43 @@
             <Insets />
          </opaqueInsets>
       </VBox>
-      <ImageView fx:id="meter" fitHeight="14.0" fitWidth="190.0" layoutX="412.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="meter" fitHeight="14.0" fitWidth="190.0" layoutX="698.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/meterstick.png" />
          </image>
       </ImageView>
-      <Text fx:id="success" fill="WHITE" layoutX="401.0" layoutY="199.0" stroke="BLACK" strokeType="OUTSIDE" text="SUCCESS! YOU OPENED THE HATCH!" textAlignment="CENTER" visible="false" wrappingWidth="198.10546875">
+      <Text fx:id="success" fill="WHITE" layoutX="696.0" layoutY="280.0" stroke="BLACK" strokeType="OUTSIDE" text="SUCCESS! YOU OPENED THE HATCH!" textAlignment="CENTER" visible="false" wrappingWidth="210.74999999999977">
          <font>
-            <Font name="System Bold" size="28.0" />
+            <Font name="System Bold" size="32.0" />
          </font>
       </Text>
-      <ProgressBar fx:id="oxygenBar" layoutX="705.0" layoutY="595.0" prefHeight="35.0" prefWidth="281.0" progress="1.0" style="-fx-accent: red;" />
-      <Text fill="RED" layoutX="704.0" layoutY="589.0" stroke="BLACK" strokeType="OUTSIDE" text="OXYGEN METER:" wrappingWidth="295.10546875">
+      <ProgressBar fx:id="oxygenBar" layoutX="913.0" layoutY="671.0" prefHeight="35.0" prefWidth="281.0" progress="1.0" style="-fx-accent: red;" />
+      <Text fill="RED" layoutX="912.0" layoutY="665.0" stroke="BLACK" strokeType="OUTSIDE" text="OXYGEN METER:" wrappingWidth="295.10546875">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Text>
-      <Polygon fx:id="movetoRoomOne" fill="#ff0400" layoutX="22.0" layoutY="325.0" onMouseClicked="#clickRoomOne" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
-      <Text fx:id="meterPercent" fill="RED" layoutX="921.0" layoutY="589.0" stroke="BLACK" strokeType="OUTSIDE" text="100%" wrappingWidth="70.0">
+      <Text fx:id="meterPercent" fill="RED" layoutX="1129.0" layoutY="665.0" stroke="BLACK" strokeType="OUTSIDE" text="100%" wrappingWidth="70.0">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Text>
-      <ImageView fitHeight="99.0" fitWidth="103.0" layoutX="302.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true" rotate="132.5">
-         <image>
-            <Image url="@../images/ai%20circle%20room3.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="robot" fitHeight="99.0" fitWidth="103.0" layoutX="302.0" layoutY="168.0" onMouseClicked="#clickAuthorisation" pickOnBounds="true" preserveRatio="true" rotate="132.5" styleClass="robot-hoverable">
-         <image>
-            <Image url="@../images/ai%20circle%20room3%20hover.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="384.0" layoutY="53.0">
-         <image>
-            <Image url="@../images/speech-bubble.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="408.0" layoutY="67.0" prefHeight="96.0" prefWidth="269.0">
-         <font>
-            <Font size="15.0" />
-                     </font>
-      </Label>
-      <Label layoutX="479.0" layoutY="20.0" prefHeight="35.0" prefWidth="237.0" text="Hints Remaining:" textFill="#1900ff">
+      <Label layoutX="750.0" layoutY="5.0" prefHeight="35.0" prefWidth="237.0" text="Hints Remaining:" textFill="#1900ff">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="hintLabel" layoutX="652.0" layoutY="20.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#1900ff">
+      <Label fx:id="hintLabel" layoutX="923.0" layoutY="5.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#1900ff">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <fx:include fx:id="chatPanel" layoutX="700.0" source="chatcomponent.fxml" />
+      <Polygon fx:id="movetoRoomOne" fill="#ff0400" layoutX="320.0" layoutY="360.0" onMouseClicked="#clickRoomOne" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
+      <fx:include fx:id="chatPanel" source="chatcomponent.fxml" />
+      <ImageView fx:id="soundIcon" fitHeight="61.0" fitWidth="53.0" layoutX="1215.0" layoutY="15.0" onMouseClicked="#clickSoundIcon" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/soundicon.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

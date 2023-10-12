@@ -8,81 +8,84 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="650.0" prefWidth="1000.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomTwoController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomTwoController">
    <children>
-      <ImageView fitHeight="668.0" fitWidth="1096.0" layoutX="-39.0">
+      <ImageView fitHeight="748.0" fitWidth="1220.0" layoutX="170.0" layoutY="-26.0">
          <image>
             <Image url="@../images/storage_blank.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="toolBoxOpenImage" fitHeight="89.0" fitWidth="162.0" layoutX="333.0" layoutY="544.0" opacity="0.0" pickOnBounds="true">
+      <ImageView fx:id="toolBoxOpenImage" fitHeight="99.0" fitWidth="182.0" layoutX="582.0" layoutY="583.0" pickOnBounds="true">
          <image>
             <Image url="@../images/tools.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="toolBoxCollectedImage" fitHeight="82.0" fitWidth="155.0" layoutX="340.0" layoutY="551.0" pickOnBounds="true">
+      <ImageView fx:id="toolBoxCollectedImage" fitHeight="90.0" fitWidth="171.0" layoutX="593.0" layoutY="592.0" opacity="0.0" pickOnBounds="true">
          <image>
             <Image url="@../images/trap.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="spacesuitRevealedImage" fitHeight="243.0" fitWidth="109.0" layoutX="721.0" layoutY="270.0">
+      <Polygon fx:id="toolCompartment" fill="WHITE" layoutX="663.0" layoutY="612.0" onMouseClicked="#clickToolCompartment" opacity="0.0" points="-66.25, 68.5, 66.75, 68.5, 99.25, -14.5, -19.75, -14.5" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="rectangle-hoverable" />
+      <Rectangle fx:id="questionOne1" arcHeight="20.0" arcWidth="20.0" height="70.0" layoutX="632.0" layoutY="425.0" onMouseClicked="#clickQuestionOne" opacity="0.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle-hoverable" width="50.0" />
+      <Rectangle fx:id="questionTwo1" arcHeight="20.0" arcWidth="20.0" height="70.0" layoutX="693.0" layoutY="425.0" onMouseClicked="#clickQuestionTwo" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle-hoverable" width="52.0" />
+      <Polygon fx:id="movetoRoomOne" fill="#ff0400" layoutX="1210.0" layoutY="360.0" onMouseClicked="#clickRoomOne" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" rotate="180.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
+      <ImageView fx:id="spacesuitRevealedImage" fitHeight="270.0" fitWidth="120.0" layoutX="1017.0" layoutY="276.0">
          <image>
             <Image url="@../images/tempspacesuitimage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="spacesuitCollectedImage" fitHeight="241.0" fitWidth="111.0" layoutX="718.0" layoutY="271.0" pickOnBounds="true">
+      <ImageView fx:id="spacesuitCollectedImage" fitHeight="270.0" fitWidth="121.0" layoutX="1016.0" layoutY="277.0" pickOnBounds="true">
          <image>
             <Image url="@../images/spacesuitGone.png" />
          </image>
       </ImageView>
-      <Polygon fx:id="toolCompartment" fill="WHITE" layoutX="410.0" layoutY="568.0" onMouseClicked="#clickToolCompartment" opacity="0.0" points="-67.25, 63.5, 54.5, 63.5, 84.75, -11.0, -24.0, -11.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="rectangle-hoverable" />
-      <Rectangle fx:id="questionOne" arcHeight="5.0" arcWidth="5.0" height="63.0" layoutX="376.0" layoutY="403.0" onMouseClicked="#clickQuestionOne" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
-      <Rectangle fx:id="questionTwo" arcHeight="5.0" arcWidth="5.0" height="63.0" layoutX="432.0" layoutY="403.0" onMouseClicked="#clickQuestionTwo" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
-      <Rectangle fx:id="questionOne1" arcHeight="20.0" arcWidth="20.0" height="63.0" layoutX="375.0" layoutY="403.0" onMouseClicked="#clickQuestionOne" opacity="0.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle-hoverable" width="47.0" />
-      <Rectangle fx:id="questionTwo1" arcHeight="20.0" arcWidth="20.0" height="62.0" layoutX="430.0" layoutY="404.0" onMouseClicked="#clickQuestionTwo" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle-hoverable" width="48.0" />
-      <Polygon fx:id="movetoRoomOne" fill="#ff0400" layoutX="927.0" layoutY="325.0" onMouseClicked="#clickRoomOne" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" rotate="180.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
-      <Rectangle fx:id="spacesuit" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="238.0" layoutX="722.0" layoutY="274.0" onMouseClicked="#clickSpacesuit" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-hoverable" width="107.0" />
-      <ImageView fx:id="crateImage" fitHeight="306.0" fitWidth="181.0" layoutX="714.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="spacesuit" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="270.0" layoutX="1017.0" layoutY="279.0" onMouseClicked="#clickSpacesuit" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-hoverable" width="120.0" />
+      <ImageView fx:id="crateImage" fitHeight="346.0" fitWidth="193.0" layoutX="1014.0" layoutY="274.0" pickOnBounds="true">
          <image>
             <Image url="@../images/crate.png" />
          </image>
       </ImageView>
-      <Polygon fx:id="crate" fill="DODGERBLUE" layoutX="776.0" layoutY="314.0" onMouseClicked="#clickCrate" opacity="0.0" points="-62.0, 196.0, -7.5, 261.0, 115.5, 261.0, 115.5, 17.5, 56.0, -41.5, -62.0, -42.0" stroke="BLACK" strokeType="INSIDE" />
-      <ImageView fitHeight="373.0" fitWidth="190.0" layoutX="67.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
+      <Polygon fx:id="crate" fill="DODGERBLUE" layoutX="1080.0" layoutY="347.0" onMouseClicked="#clickCrate" opacity="0.0" points="-62.0, 196.0, -8.5, 273.0, 127.0, 273.0, 127.0, -2.5, 57.5, -73.0, -62.0, -73.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fitHeight="373.0" fitWidth="190.0" layoutX="363.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ai.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="robot" fitHeight="373.0" fitWidth="190.0" layoutX="68.0" layoutY="289.0" onMouseClicked="#clickAuthorisation" pickOnBounds="true" preserveRatio="true" styleClass="robot-hoverable">
+      <ImageView fx:id="robot" fitHeight="373.0" fitWidth="190.0" layoutX="364.0" layoutY="305.0" onMouseClicked="#clickAuthorisation" pickOnBounds="true" preserveRatio="true" styleClass="robot-hoverable">
          <image>
             <Image url="@../images/ai%20hover.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="194.0" layoutY="130.0">
+      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="473.0" layoutY="169.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="214.0" layoutY="143.0" prefHeight="96.0" prefWidth="269.0">
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="493.0" layoutY="182.0" prefHeight="96.0" prefWidth="269.0">
          <font>
             <Font size="15.0" />
                      </font>
       </Label>
-      <Label layoutX="477.0" layoutY="40.0" prefHeight="35.0" prefWidth="249.0" text="Hints Remaining:" textFill="#e5ff00">
+      <Label layoutX="810.0" layoutY="14.0" prefHeight="35.0" prefWidth="249.0" text="Hints Remaining:" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="hintLabel" layoutX="667.0" layoutY="40.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
+      <Label fx:id="hintLabel" layoutX="1000.0" layoutY="14.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="timerLabel" layoutX="92.0" layoutY="40.0" prefHeight="35.0" prefWidth="328.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
+      <Label fx:id="timerLabel" layoutX="425.0" layoutY="14.0" prefHeight="35.0" prefWidth="328.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <fx:include fx:id="chatPanel" layoutX="950.0" source="chatcomponent.fxml" />
+      <fx:include fx:id="chatPanel" source="chatcomponent.fxml" />
+      <ImageView fx:id="soundIcon" fitHeight="61.0" fitWidth="53.0" layoutX="1215.0" layoutY="15.0" onMouseClicked="#clickSoundIcon" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/soundicon.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

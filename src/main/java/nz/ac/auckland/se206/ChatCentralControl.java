@@ -41,9 +41,16 @@ public class ChatCentralControl {
   private List<ChatMessage> messages = new ArrayList<>();
 
   private ChatCentralControl() {
+    initializeChatCentralControl();
+  }
+
+  public void initializeChatCentralControl() {
     System.out.println("ChatCentralControl Iniatialized");
 
     setupChatConfiguration();
+
+    observers = new ArrayList<>();
+    messages = new ArrayList<>();
 
     try {
       runChatPromptBasedOnGameState();
@@ -51,10 +58,6 @@ public class ChatCentralControl {
       // Handle the exception and provide feedback if needed.
       e.printStackTrace();
     }
-  }
-
-  public static void resetChatCentralControl() {
-    instance = new ChatCentralControl();
   }
 
   public void addObserver(Observer observer) {
@@ -73,6 +76,18 @@ public class ChatCentralControl {
   public void notifyObservers() {
     for (Observer observer : observers) {
       observer.update();
+    }
+  }
+
+  private void showAllLoadingIcons() {
+    for (Observer observer : observers) {
+      observer.showLoadingIcon();
+    }
+  }
+
+  private void hideAllLoadingIcons() {
+    for (Observer observer : observers) {
+      observer.hideLoadingIcon();
     }
   }
 
@@ -127,6 +142,9 @@ public class ChatCentralControl {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public void runGpt(ChatMessage msg) {
+    showAllLoadingIcons();
+    System.out.println("GPT LOADING");
+
     long startTime = System.currentTimeMillis(); // Record time
 
     Task<ChatMessage> callGptTask =
@@ -150,7 +168,9 @@ public class ChatCentralControl {
                                 + " Please check your API key and internet connection and then"
                                 + " reload the game.")
                         .showAndWait();
+                    hideAllLoadingIcons();
                   });
+
               e.printStackTrace();
               return null;
             }
@@ -211,7 +231,12 @@ public class ChatCentralControl {
           // TODO: Find best location for this
           notifyObservers();
 
-          // loadingIcon.setVisible(false); // hide the loading icon
+          // Added message to message list
+          messages.add(result);
+          // TODO: Find best location for this
+          notifyObservers();
+
+          hideAllLoadingIcons();
 
           // sendButton.setDisable(false); // Re-enable send button
           // inputText.setDisable(false); // Re-enable the input text area
@@ -230,7 +255,7 @@ public class ChatCentralControl {
                     .showAndWait();
               });
           // inputText.setDisable(false); // Re-enable the input text area
-          // loadingIcon.setVisible(false); // hide the loading icon
+          hideAllLoadingIcons();
         });
 
     new Thread(callGptTask).start();
