@@ -254,8 +254,8 @@ public class RoomOneController {
   @FXML
   private void clickAuthorisation(MouseEvent event) throws IOException {
     System.out.println("Authorisation clicked");
-    GameState.isAuthorising = true;
-    if (GameState.isRoomOneFirst) {
+    if (GameState.isRoomOneFirst && !GameState.isAuthorising) {
+      GameState.isAuthorising = true;
       selectRandomRiddle();
       if (GameState.easy) {
         chatCentralControl.runGpt(
