@@ -278,10 +278,6 @@ public class RoomOneController {
       }
     }
 
-    // Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
-    // App.getScene().setRoot(chatRoot);
-    // GameState.isRoomOneFirst = false;
-    // currentScene.setCurrent(11);
   }
 
   private void selectRandomRiddle() {

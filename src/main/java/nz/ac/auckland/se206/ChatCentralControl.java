@@ -46,7 +46,6 @@ public class ChatCentralControl {
 
   public void initializeChatCentralControl() {
     System.out.println("ChatCentralControl Iniatialized");
-
     setupChatConfiguration();
 
     observers = new ArrayList<>();
@@ -99,11 +98,6 @@ public class ChatCentralControl {
 
   private void runChatPromptBasedOnGameState() throws ApiProxyException {
     if (GameState.isPersonalitySetup) {
-      // TODO: TEMPORARY BYPASS bc idk why its not working
-      //   System.out.println("PERSONALITY RUN");
-      //   runGpt(new ChatMessage("system", GptPromptEngineering.getAIPersonality()));
-      //   GameState.isSetup = false;
-      // } else if (!GameState.isRiddleResolved) {
       System.out.println("System setup completed!");
       runGpt(new ChatMessage("system", GptPromptEngineering.getAIPersonality()));
       GameState.isPersonalitySetup = false;

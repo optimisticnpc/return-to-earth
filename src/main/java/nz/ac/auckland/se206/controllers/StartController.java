@@ -44,7 +44,6 @@ public class StartController {
   @FXML private Button startButton;
 
   private CurrentScene currentScene = CurrentScene.getInstance();
-  private ChatCentralControl chatCentralControl = ChatCentralControl.getInstance();
   private int currDifficulty = 0;
   private String[] difficulty = {"Easy", "Medium", "Hard"};
   private String[] difficultyHelp = {"- Infinite hints! -", "- 5 hints! -", "- 0 hints! -"};
@@ -148,8 +147,6 @@ public class StartController {
       GameState.hard = true;
     }
 
-    SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat")); // legacy code
-
     // Don't ask me why this is needed. I have no idea
     // All I know is that without this, the behaviour is really weird
     if (GameState.isAfterFirstRound) {
@@ -168,7 +165,7 @@ public class StartController {
     Parent roomRoot = SceneManager.getUiRoot(AppUi.BACKGROUND);
     currentScene.setCurrent(1);
     App.getScene().setRoot(roomRoot);
-    chatCentralControl.notifyObservers();
+    ChatCentralControl.getInstance().notifyObservers();
     GameTimer gameTimer = GameTimer.getInstance();
     OxygenMeter oxygenMeter = OxygenMeter.getInstance();
     Sound sound = Sound.getInstance();

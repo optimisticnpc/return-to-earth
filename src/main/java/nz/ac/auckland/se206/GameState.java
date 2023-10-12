@@ -59,7 +59,7 @@ public class GameState {
   public static boolean phaseThree = false;
   public static boolean phaseFour = false;
 
-   /**
+  /**
    * Resets the game by clearing and initializing game state variables, updating room visuals, and
    * returning to the start screen.
    *

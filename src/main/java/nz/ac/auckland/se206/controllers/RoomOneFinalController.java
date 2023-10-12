@@ -61,7 +61,6 @@ public class RoomOneFinalController {
   private CurrentScene currentScene = CurrentScene.getInstance();
 
   private SpeechBubble speech = SpeechBubble.getInstance();
-  private ChatController chatController = new ChatController();
   private ChatCentralControl chatCentralControl = ChatCentralControl.getInstance();
   private Timer timer = new Timer();
   private GameTimer gameTimer = GameTimer.getInstance();
@@ -95,10 +94,6 @@ public class RoomOneFinalController {
   @FXML
   private void clickSoundIcon() throws FileNotFoundException {
     sound.toggleImage();
-  }
-
-  public void setSendButtonAction() {
-    chatController.setSendButtonAction();
   }
 
   @FXML // send the message when the enter key is pressed
