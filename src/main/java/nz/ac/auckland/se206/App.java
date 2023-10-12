@@ -161,6 +161,8 @@ public class App extends Application {
         new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
     KeyCombination keyCombT =
         new KeyCodeCombination(KeyCode.T, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
+    KeyCombination keyCombC =
+        new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
     KeyCombination keyCombShiftR =
         new KeyCodeCombination(
             KeyCode.R, KeyCombination.ALT_DOWN, KeyCombination.SHIFT_DOWN); // Alt + Shift + R
@@ -219,6 +221,9 @@ public class App extends Application {
           } else if (keyCombShiftR.match(event)) {
             System.out.println("Alt + Shift + R was pressed!");
             ScoreScreenController.updateFastestTimes();
+          } else if (keyCombC.match(event)) {
+            System.out.println("Ctrl + Alt + C was pressed!" + '\n');
+            ChatCentralControl.getInstance().printChatCompletionRequestMessages();
           }
         });
   }

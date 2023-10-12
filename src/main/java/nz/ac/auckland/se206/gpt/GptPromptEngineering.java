@@ -1,5 +1,8 @@
 package nz.ac.auckland.se206.gpt;
 
+import nz.ac.auckland.se206.MathQuestionSelector;
+import nz.ac.auckland.se206.controllers.SpacesuitPuzzleController;
+
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
 
@@ -98,5 +101,37 @@ public class GptPromptEngineering {
     return "The user has to reactivate the engine in the main room. If the user asks for hints,"
         + " simply tell them that they have to reactivate the engine from the main room. Do"
         + " not add anything else.";
+  }
+
+  public static String hintMathQuestionPrompt() {
+    return hintMathQuestionSetup() + hintQuestionOneSetup() + hintQuestionTwoSetup();
+  }
+
+  public static String hintMathQuestionSetup() {
+
+    return "The user has two questions they need to solve. They may ask for hints. ";
+  }
+
+  // "If the user asks you for a hint for the questions, ask them if it is the first or"
+  // + " second question if they have not specified. "
+
+  public static String hintQuestionOneSetup() {
+
+    return "If it is for the first question tell them that: "
+        + MathQuestionSelector.getInstance().getFirstQuestionHint();
+  }
+
+  public static String hintQuestionTwoSetup() {
+
+    return "If it is for the second question tell them that: "
+        + MathQuestionSelector.getInstance().getSecondQuestionHint();
+  }
+
+  public static String hintWorScrambleSetup() {
+
+    return "If the user asks you for a hint for the word scramble give them a hint for the answer"
+        + " \""
+        + SpacesuitPuzzleController.getCorrectWordString()
+        + "\". ";
   }
 }

@@ -293,4 +293,13 @@ public class ChatCentralControl {
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.5).setMaxTokens(100);
   }
+
+  public ChatCompletionRequest getChatCompletionRequest() {
+    return chatCompletionRequest;
+  }
+
+  /** Prints all the messages in the request with their corresponding roles. */
+  public void printChatCompletionRequestMessages() {
+    chatCompletionRequest.printMessages();
+  }
 }
