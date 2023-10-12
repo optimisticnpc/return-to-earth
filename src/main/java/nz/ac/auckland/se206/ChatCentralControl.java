@@ -231,11 +231,6 @@ public class ChatCentralControl {
           // TODO: Find best location for this
           notifyObservers();
 
-          // Added message to message list
-          messages.add(result);
-          // TODO: Find best location for this
-          notifyObservers();
-
           hideAllLoadingIcons();
 
           // sendButton.setDisable(false); // Re-enable send button
