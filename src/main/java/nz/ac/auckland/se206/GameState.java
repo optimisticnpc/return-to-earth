@@ -69,6 +69,7 @@ public class GameState {
     // TODO: Update and double check this
     // Reset all game state variables
     isPersonalitySetup = true;
+    isAuthorising = false;
     isRiddleResolved = false;
     isWireCollected = false;
     isPasscodeSolved = false;

@@ -36,6 +36,12 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 /** Controller class for the room view. */
 public class RoomOneController {
 
+  private static String wordToGuess;
+
+  public static String getWordToGuess() {
+    return wordToGuess;
+  }
+
   @FXML private Pane room;
   @FXML private ImageView background;
   @FXML private Rectangle mainWarning;
@@ -67,7 +73,6 @@ public class RoomOneController {
   private String[] riddles = {
     "blackhole", "star", "moon", "sun", "venus", "comet", "satellite", "mars"
   };
-  private String wordToGuess;
 
   private Sound sound = Sound.getInstance();
 

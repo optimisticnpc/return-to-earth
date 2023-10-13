@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.controllers.GlobalController;
 import nz.ac.auckland.se206.controllers.PasscodeController;
+import nz.ac.auckland.se206.controllers.RoomOneController;
 import nz.ac.auckland.se206.controllers.ScoreScreenController;
 import nz.ac.auckland.se206.controllers.SpacesuitPuzzleController;
 
@@ -48,8 +49,6 @@ public class App extends Application {
   public static Scene getScene() {
     return scene;
   }
-
-
 
   /**
    * Resets all the rooms in the app by reloading the associated FXML files.
@@ -182,7 +181,7 @@ public class App extends Application {
             // Get answers for all puzzles
 
             // Riddle:
-            System.out.println("Riddle: " + ChatCentralControl.getWordToGuess());
+            System.out.println("Riddle: " + RoomOneController.getWordToGuess());
 
             // Passcode:
             System.out.println("Code: " + PasscodeController.getCorrectPassCodeString());
