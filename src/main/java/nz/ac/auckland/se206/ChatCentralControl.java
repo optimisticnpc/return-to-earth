@@ -96,6 +96,18 @@ public class ChatCentralControl {
     }
   }
 
+  private void enableAllTextBoxes() {
+    for (Observer observer : observers) {
+      observer.enableTextBox();
+    }
+  }
+
+  private void disableAllTextBoxes() {
+    for (Observer observer : observers) {
+      observer.disableTextBox();
+    }
+  }
+
   private void runChatPromptBasedOnGameState() throws ApiProxyException {
     if (GameState.isPersonalitySetup) {
       System.out.println("System setup completed!");
@@ -137,6 +149,8 @@ public class ChatCentralControl {
    */
   public void runGpt(ChatMessage msg) {
     showAllLoadingIcons();
+    disableAllTextBoxes();
+
     System.out.println("GPT LOADING");
 
     long startTime = System.currentTimeMillis(); // Record time
@@ -163,6 +177,7 @@ public class ChatCentralControl {
                                 + " reload the game.")
                         .showAndWait();
                     hideAllLoadingIcons();
+                    enableAllTextBoxes();
                   });
 
               e.printStackTrace();
@@ -226,9 +241,7 @@ public class ChatCentralControl {
           notifyObservers();
 
           hideAllLoadingIcons();
-
-          // sendButton.setDisable(false); // Re-enable send button
-          // inputText.setDisable(false); // Re-enable the input text area
+          enableAllTextBoxes();
         });
 
     callGptTask.setOnFailed(
@@ -243,7 +256,7 @@ public class ChatCentralControl {
                             + " game.")
                     .showAndWait();
               });
-          // inputText.setDisable(false); // Re-enable the input text area
+          enableAllTextBoxes();
           hideAllLoadingIcons();
         });
 

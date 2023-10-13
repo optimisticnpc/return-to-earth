@@ -169,4 +169,14 @@ public class ChatComponentController implements Observer {
   public void hideLoadingIcon() {
     loadingIcon.setVisible(false);
   }
+
+  @Override
+  public void enableTextBox() {
+    inputText.setDisable(false);
+  }
+
+  @Override
+  public void disableTextBox() {
+    inputText.setDisable(true);
+  }
 }
