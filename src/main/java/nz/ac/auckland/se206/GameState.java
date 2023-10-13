@@ -59,6 +59,10 @@ public class GameState {
   public static boolean phaseThree = false;
   public static boolean phaseFour = false;
 
+  /* Variables for if certain prompts have been added */
+  public static boolean isMathQuestionPromptAdded = false;
+  public static boolean isWordScramblePromptAdded = false;
+
   /**
    * Resets the game by clearing and initializing game state variables, updating room visuals, and
    * returning to the start screen.
@@ -80,6 +84,9 @@ public class GameState {
     isSpacesuitCollected = false;
     isSpacesuitJustCollected = false;
     isPartFixed = false;
+
+    isMathQuestionPromptAdded = false;
+    isWordScramblePromptAdded = false;
     HintCounter.resetHintCount();
   }
 

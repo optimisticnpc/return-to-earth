@@ -197,13 +197,7 @@ public class RoomOneController {
     System.out.println("Engine Warning clicked");
     // If riddle not solved tell the player to get authorization
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access\nthe system.");
-      chatCentralControl.addMessage(
-          new ChatMessage(
-              "system",
-              "Authorisation needed.\n"
-                  + "Please authorise yourself by clicking the middle screen"
-                  + "to access the system and analyse the damage."));
+      activateSpeech("Authorisation needed to access the system.");
     } else {
       activateSpeech(
           "Critical failure on the main engine\n" + "Please find the spare parts and\nfix it!");

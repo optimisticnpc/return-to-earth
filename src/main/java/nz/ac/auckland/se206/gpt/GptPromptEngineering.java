@@ -86,9 +86,9 @@ public class GptPromptEngineering {
    */
   public static String getPhaseFourProgress() {
     return "The user has to reactivate the engine in the main room. Simply tell them to go back to"
-               + " the main room for reactivation of the engine. Do not add anything else. If the"
-               + " user asks for hints, tell them that they have to click the switches in the"
-               + " correct order to reactivate the engine. Do not add anything else.";
+        + " the main room for reactivation of the engine. Do not add anything else. If the"
+        + " user asks for hints, tell them that they have to click the switches in the"
+        + " correct order to reactivate the engine. Do not add anything else.";
   }
 
   /**
@@ -127,7 +127,7 @@ public class GptPromptEngineering {
         + MathQuestionSelector.getInstance().getSecondQuestionHint();
   }
 
-  public static String hintWorScrambleSetup() {
+  public static String hintWordScrambleSetup() {
 
     return "If the user asks you for a hint for the word scramble give them a hint for the answer"
         + " \""

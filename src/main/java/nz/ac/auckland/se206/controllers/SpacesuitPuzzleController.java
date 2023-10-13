@@ -44,6 +44,7 @@ public class SpacesuitPuzzleController {
   @FXML private Label resultLabel;
   @FXML private Label scrambledWordLabel;
   @FXML private Button submitCodeButton;
+  @FXML private Button wordScrambleHintButton;
 
   // TODO: Get more words and make sure they are different from the riddle
   private String[] unscrambleWords = {
@@ -127,6 +128,7 @@ public class SpacesuitPuzzleController {
 
       // Disable passcode field and button after correct passcode entered.
       submitCodeButton.setDisable(true);
+      wordScrambleHintButton.setDisable(true);
       inputField.setDisable(true);
     } else {
       resultLabel.setText("Incorrect. Try again.");
@@ -149,9 +151,6 @@ public class SpacesuitPuzzleController {
 
   @FXML
   private void onClickWordScrambleHintButton() {
-    ChatCentralControl.getInstance()
-        .getChatCompletionRequest()
-        .addMessage(new ChatMessage("system", GptPromptEngineering.hintWorScrambleSetup()));
 
     ChatMessage msg = new ChatMessage("user", "Please give me a hint for the word scramble question");
 

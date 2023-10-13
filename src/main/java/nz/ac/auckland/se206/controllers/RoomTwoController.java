@@ -130,8 +130,20 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionOne(MouseEvent event) throws IOException {
+
+    addMathPromptsIfNotAdded();
+
     Parent questionOneRoot = SceneManager.getUiRoot(AppUi.QUESTION_ONE);
     App.getScene().setRoot(questionOneRoot);
+  }
+
+  private void addMathPromptsIfNotAdded() {
+    if (!GameState.isMathQuestionPromptAdded) {
+      ChatCentralControl.getInstance()
+          .getChatCompletionRequest()
+          .addMessage(new ChatMessage("system", GptPromptEngineering.hintMathQuestionPrompt()));
+      GameState.isMathQuestionPromptAdded = true;
+    }
   }
 
   /**
@@ -142,6 +154,9 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionTwo(MouseEvent event) throws IOException {
+
+    addMathPromptsIfNotAdded();
+
     Parent questionTwoRoot = SceneManager.getUiRoot(AppUi.QUESTION_TWO);
     App.getScene().setRoot(questionTwoRoot);
   }
@@ -203,6 +218,15 @@ public class RoomTwoController {
     }
   }
 
+  private void addWordScramblePromptsIfNotAdded() {
+    if (!GameState.isWordScramblePromptAdded) {
+      ChatCentralControl.getInstance()
+          .getChatCompletionRequest()
+          .addMessage(new ChatMessage("system", GptPromptEngineering.hintWordScrambleSetup()));
+      GameState.isWordScramblePromptAdded = true;
+    }
+  }
+
   /**
    * Handles the click event on the spacesuit.
    *
@@ -222,9 +246,9 @@ public class RoomTwoController {
     // If the scramble word puzzle hasn't been solved
     // Go to enter access key screen
     if (!GameState.isSpacesuitUnlocked) {
+      addWordScramblePromptsIfNotAdded();
       Parent spacesuitPuzzlesRoom = SceneManager.getUiRoot(AppUi.SPACESUIT_PUZZLE);
       App.getScene().setRoot(spacesuitPuzzlesRoom);
-
       // If spacesuit hasn't been revealed
     } else if (!GameState.isSpacesuitRevealed) {
       revealSpacesuit();

@@ -10,7 +10,6 @@ import nz.ac.auckland.se206.MathQuestionSelector;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
-import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 /**
  * Controller class for the Question One view. This class handles user interactions and UI updates
@@ -35,25 +34,20 @@ public class QuestionOneController {
     questionOneLabel.setText(selector.getFirstQuestion());
   }
 
+  @FXML
+  private void onClickQuestionOneHintButton() {
+
+    ChatMessage msg = new ChatMessage("user", "Please give me a hint for the first question");
+
+    // Add asking for hint message to chat
+    ChatCentralControl.getInstance().addMessage(msg);
+    ChatCentralControl.getInstance().runGpt(msg);
+  }
+
   /**
    * Handles the click event on the "Go Back" button. Navigates back to Room Two when the button is
    * clicked.
    */
-  @FXML
-  private void onClickQuestionOneHintButton() {
-
-    ChatCentralControl.getInstance()
-        .getChatCompletionRequest()
-        .addMessage(new ChatMessage("system", GptPromptEngineering.hintMathQuestionPrompt()));
-    
-
-        ChatMessage msg = new ChatMessage("user", "Please give me a hint for the first question");
-
-        // Add asking for hint message to chat
-        ChatCentralControl.getInstance().addMessage(msg);
-        ChatCentralControl.getInstance().runGpt(msg);
-  }
-
   @FXML
   private void onGoBack() {
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
