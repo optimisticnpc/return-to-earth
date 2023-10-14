@@ -1,5 +1,8 @@
 package nz.ac.auckland.se206.gpt;
 
+import javafx.geometry.Pos;
+import nz.ac.auckland.se206.ChatCentralControl;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MathQuestionSelector;
 import nz.ac.auckland.se206.controllers.SpacesuitPuzzleController;
 
@@ -21,6 +24,11 @@ public class GptPromptEngineering {
   public static String getMediumHintSetup() {
     return " If the user asks for any help, you should answer with the word Hint, and give them a"
         + " hint";
+  }
+
+  public static String getMediumHintReminder() {
+    return "Remember if the user asks for any help at all, you start your answer with the word"
+               + " Hint, and give them a hint";
   }
 
   public static String getHardHintSetup() {
@@ -133,5 +141,19 @@ public class GptPromptEngineering {
         + " \""
         + SpacesuitPuzzleController.getCorrectWordString()
         + "\". ";
+  }
+
+
+  // Used for hint buttons
+
+  public static boolean checkIfAuthorisedAndPrintMessage() {
+  if (!GameState.isAuthorising) {
+      ChatMessage message = new ChatMessage("system", "You need to be authorised to talk to Space Destroyer for security"
+              + " reasons.\nPlease click the middle screen in the main control room to authorise"
+              + " yourself.");
+      ChatCentralControl.getInstance().addMessage(message);
+      return true;
+    }
+return false;
   }
 }

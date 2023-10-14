@@ -139,9 +139,14 @@ public class RoomTwoController {
 
   private void addMathPromptsIfNotAdded() {
     if (!GameState.isMathQuestionPromptAdded) {
+      String prompt = GptPromptEngineering.hintMathQuestionPrompt();
+      if (GameState.medium) {
+        prompt = prompt + GptPromptEngineering.getMediumHintReminder();
+      }
+
       ChatCentralControl.getInstance()
           .getChatCompletionRequest()
-          .addMessage(new ChatMessage("system", GptPromptEngineering.hintMathQuestionPrompt()));
+          .addMessage(new ChatMessage("system", prompt));
       GameState.isMathQuestionPromptAdded = true;
     }
   }
@@ -220,9 +225,14 @@ public class RoomTwoController {
 
   private void addWordScramblePromptsIfNotAdded() {
     if (!GameState.isWordScramblePromptAdded) {
+      String prompt = GptPromptEngineering.hintWordScrambleSetup();
+      if (GameState.medium) {
+        prompt = prompt + GptPromptEngineering.getMediumHintReminder();
+      }
+
       ChatCentralControl.getInstance()
           .getChatCompletionRequest()
-          .addMessage(new ChatMessage("system", GptPromptEngineering.hintWordScrambleSetup()));
+          .addMessage(new ChatMessage("system", prompt));
       GameState.isWordScramblePromptAdded = true;
     }
   }

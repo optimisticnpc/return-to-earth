@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.Alert;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -212,6 +213,14 @@ public class ChatCentralControl {
                 }
               } else {
                 result = new ChatMessage("AI", "You cannot get any more hints.");
+                // Disable all hint buttons in question rooms
+
+                SceneManager.getController(SceneManager.getUiRoot(AppUi.QUESTION_ONE))
+                    .disableHintButton();
+                SceneManager.getController(SceneManager.getUiRoot(AppUi.QUESTION_TWO))
+                    .disableHintButton();
+                SceneManager.getController(SceneManager.getUiRoot(AppUi.SPACESUIT_PUZZLE))
+                    .disableHintButton();
               }
             }
           }
@@ -303,5 +312,13 @@ public class ChatCentralControl {
   /** Prints all the messages in the request with their corresponding roles. */
   public void printChatCompletionRequestMessages() {
     chatCompletionRequest.printMessages();
+  }
+
+  /** Prints all the messages that should be displayed in the chat panel * */
+  public void printChatPanelMessages() {
+    for (ChatMessage message : messages) {
+      System.out.println("-------------------------");
+      System.out.println(message.getRole() + ": " + message.getContent());
+    }
   }
 }
