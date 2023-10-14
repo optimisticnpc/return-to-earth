@@ -8,6 +8,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * The Sound class manages the sound settings for the application. The class is implemented as a
@@ -30,8 +31,9 @@ public class Sound {
     return instance;
   }
 
-  private BooleanProperty isSoundOn = new SimpleBooleanProperty(true);
+  private BooleanProperty isSoundOn = new SimpleBooleanProperty(false);
   private ObjectProperty<Image> soundImage = new SimpleObjectProperty<>();
+  private boolean isDisabled = false;
 
   /**
    * Gets the object property representing the sound icon image.
@@ -51,9 +53,9 @@ public class Sound {
     return isSoundOn;
   }
 
-  /** Resets the sound property to true. */
+  /** Resets the sound property to false. */
   public void resetSoundProperty() {
-    isSoundOn.set(true);
+    isSoundOn.set(false);
   }
 
   /**
@@ -62,17 +64,30 @@ public class Sound {
    * @throws FileNotFoundException if the file is not found.
    */
   public void toggleImage() throws FileNotFoundException {
-    isSoundOn.set(!isSoundOnProperty().get());
+    if (!isDisabled) {
+      isSoundOn.set(!isSoundOnProperty().get());
 
-    // Sets icon to sound on version if sound is on and off if sound is off.
-    if (isSoundOn.get()) {
-      InputStream soundOn = new FileInputStream("src/main/resources/images/soundicon.png");
-      Image soundOnImage = new Image(soundOn);
-      soundImage.set(soundOnImage);
-    } else {
-      InputStream soundOff = new FileInputStream("src/main/resources/images/soundicondisable.png");
-      Image soundOffImage = new Image(soundOff);
-      soundImage.set(soundOffImage);
+      // Sets icon to sound on version if sound is on and off if sound is off.
+      if (isSoundOn.get()) {
+        InputStream soundOn = new FileInputStream("src/main/resources/images/soundicon.png");
+        Image soundOnImage = new Image(soundOn);
+        soundImage.set(soundOnImage);
+      } else {
+        InputStream soundOff =
+            new FileInputStream("src/main/resources/images/soundicondisable.png");
+        Image soundOffImage = new Image(soundOff);
+        soundImage.set(soundOffImage);
+      }
     }
+  }
+
+  /** Disables or enables the user's ability to click on the sound icon. */
+  public void setDisable(boolean disable) {
+    isDisabled = disable;
+  }
+
+  public void setOpacity(double opacity) {
+    ImageView imageView = new ImageView(soundImage.get());
+    imageView.setOpacity(opacity);
   }
 }

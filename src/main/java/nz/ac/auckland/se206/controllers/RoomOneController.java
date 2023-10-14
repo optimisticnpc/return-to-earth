@@ -82,9 +82,9 @@ public class RoomOneController {
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
-    InputStream soundOn = new FileInputStream("src/main/resources/images/soundicon.png");
-    Image soundOnImage = new Image(soundOn);
-    sound.soundImageProperty().set(soundOnImage);
+    InputStream soundOff = new FileInputStream("src/main/resources/images/soundicondisable.png");
+    Image soundOffImage = new Image(soundOff);
+    sound.soundImageProperty().set(soundOffImage);
 
     activateSpeech(
         "Hey you! Have you passed the\nauthorisation riddle to be\ntouching this stuff?");

@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the chat view. */
 public class ChatCentralControl {
@@ -44,6 +45,9 @@ public class ChatCentralControl {
   };
 
   private List<ChatMessage> messages = new ArrayList<>();
+
+  private TextToSpeech textToSpeech = new TextToSpeech();
+  private Sound sound = Sound.getInstance();
 
   private ChatCentralControl() {
     initializeChatCentralControl();
@@ -214,6 +218,9 @@ public class ChatCentralControl {
 
           // Added message to message list
           messages.add(result);
+          if (sound.isSoundOnProperty().get()) {
+            readMessage(result.getContent());
+          }
           // TODO: Find best location for this
           notifyObservers();
 
@@ -273,6 +280,28 @@ public class ChatCentralControl {
     }
     System.out.println(count);
     return count;
+  }
+
+  /** Initiates text-to-speech to read the message and manages the sound icon button state. */
+  private void readMessage(String messageString) {
+    // Disable the soundIcon button when the message starts to be read
+    // Prevent the user from clicking the button multiple times
+    sound.setDisable(true);
+    sound.setOpacity(0.2);
+
+    // Create a new thread to read the message
+    new Thread(
+            () -> {
+              try {
+                textToSpeech.speak(messageString);
+              } catch (Exception e) {
+                e.printStackTrace();
+              }
+              // Re-enable the soundIcon button when the message has been read
+              Platform.runLater(() -> sound.setDisable(false));
+              Platform.runLater(() -> sound.setOpacity(1.0));
+            })
+        .start();
   }
 
   protected void recordAndPrintTime(long startTime) {
