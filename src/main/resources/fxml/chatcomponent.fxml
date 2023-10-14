@@ -22,11 +22,11 @@
             </ScrollPane>
             <HBox spacing="5">
                <children>
-                  <TextArea fx:id="inputText" onKeyPressed="#onEnterPressed" prefHeight="47.0" promptText="enter message..." style="-fx-background-color: #5d77c9;" HBox.hgrow="ALWAYS">
+                  <TextArea fx:id="inputText" onKeyPressed="#onEnterPressed" prefHeight="47.0" prefWidth="233.0" promptText="enter message..." style="-fx-background-color: #5d77c9;" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="13.0" />
                      </font></TextArea>
-                  <Button fx:id="sendButton" minWidth="52.0" mnemonicParsing="false" onAction="#setSendButtonAction" prefHeight="47.0" style="-fx-background-color: #ede56f;" text="Send" textFill="#1b00a3">
+                  <Button fx:id="sendButton" minWidth="52.0" mnemonicParsing="false" onAction="#setSendButtonAction" prefHeight="47.0" prefWidth="69.0" style="-fx-background-color: #ede56f;" text="Send" textFill="#1b00a3">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="15.0" />
                      </font>
@@ -38,7 +38,7 @@
             <Insets topRightBottomLeft="5" />
          </padding>
       </VBox>
-      <ImageView fx:id="loadingIcon" fitHeight="36.0" fitWidth="42.0" layoutX="205.0" layoutY="674.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="loadingIcon" fitHeight="36.0" fitWidth="42.0" layoutX="190.0" layoutY="674.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/loading_icon.gif" />
          </image>
