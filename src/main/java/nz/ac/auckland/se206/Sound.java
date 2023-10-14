@@ -4,11 +4,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 /**
  * The Sound class manages the sound settings for the application. The class is implemented as a
@@ -33,6 +34,7 @@ public class Sound {
 
   private BooleanProperty isSoundOn = new SimpleBooleanProperty(false);
   private ObjectProperty<Image> soundImage = new SimpleObjectProperty<>();
+  private DoubleProperty iconOpacity = new SimpleDoubleProperty(1.0);
   private boolean isDisabled = false;
 
   /**
@@ -86,8 +88,21 @@ public class Sound {
     isDisabled = disable;
   }
 
+  /**
+   * Gets the DoubleProperty representing the opacity of the sound icon image.
+   *
+   * @return The DoubleProperty for the icon's opacity.
+   */
+  public DoubleProperty iconOpacityProperty() {
+    return iconOpacity;
+  }
+
+  /**
+   * Sets the opacity of the sound icon image.
+   *
+   * @param opacity The opacity value (between 0.0 and 1.0).
+   */
   public void setOpacity(double opacity) {
-    ImageView imageView = new ImageView(soundImage.get());
-    imageView.setOpacity(opacity);
+    iconOpacity.set(opacity);
   }
 }

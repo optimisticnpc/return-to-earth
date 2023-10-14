@@ -218,9 +218,8 @@ public class ChatCentralControl {
 
           // Added message to message list
           messages.add(result);
-          if (sound.isSoundOnProperty().get()) {
-            readMessage(result.getContent());
-          }
+          // TTS the message
+          readMessage(result.getContent());
           // TODO: Find best location for this
           notifyObservers();
 
@@ -288,12 +287,13 @@ public class ChatCentralControl {
     // Prevent the user from clicking the button multiple times
     sound.setDisable(true);
     sound.setOpacity(0.2);
-
     // Create a new thread to read the message
     new Thread(
             () -> {
               try {
-                textToSpeech.speak(messageString);
+                if (sound.isSoundOnProperty().get()) {
+                  textToSpeech.speak(messageString);
+                }
               } catch (Exception e) {
                 e.printStackTrace();
               }
