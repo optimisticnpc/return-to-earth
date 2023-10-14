@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
@@ -24,11 +25,14 @@ public class LoseScreenController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
+    Sound sound = Sound.getInstance();
     // Tell the player they have lost
     new Thread(
             () -> {
               try {
-                textToSpeech.speak("You lost!");
+                if (sound.isSoundOnProperty().get()) {
+                  textToSpeech.speak("You lost!");
+                }
               } catch (Exception e) {
                 e.printStackTrace();
               }

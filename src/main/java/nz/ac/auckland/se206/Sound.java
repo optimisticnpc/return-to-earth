@@ -32,7 +32,7 @@ public class Sound {
     return instance;
   }
 
-  private BooleanProperty isSoundOn = new SimpleBooleanProperty(false);
+  private BooleanProperty isSoundOn = new SimpleBooleanProperty(true);
   private ObjectProperty<Image> soundImage = new SimpleObjectProperty<>();
   private DoubleProperty iconOpacity = new SimpleDoubleProperty(1.0);
   private boolean isDisabled = false;
@@ -57,7 +57,7 @@ public class Sound {
 
   /** Resets the sound property to false. */
   public void resetSoundProperty() {
-    isSoundOn.set(false);
+    isSoundOn.set(true);
   }
 
   /**

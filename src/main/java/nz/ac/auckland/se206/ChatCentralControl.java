@@ -153,6 +153,7 @@ public class ChatCentralControl {
   public void runGpt(ChatMessage msg) {
     showAllLoadingIcons();
     System.out.println("GPT LOADING");
+    textToSpeech.stop();
 
     long startTime = System.currentTimeMillis(); // Record time
 
@@ -218,8 +219,6 @@ public class ChatCentralControl {
 
           // Added message to message list
           messages.add(result);
-          // TTS the message
-          readMessage(result.getContent());
           // TODO: Find best location for this
           notifyObservers();
 
@@ -282,24 +281,16 @@ public class ChatCentralControl {
   }
 
   /** Initiates text-to-speech to read the message and manages the sound icon button state. */
-  private void readMessage(String messageString) {
-    // Disable the soundIcon button when the message starts to be read
-    // Prevent the user from clicking the button multiple times
-    sound.setDisable(true);
-    sound.setOpacity(0.2);
+  public void readMessage() {
     // Create a new thread to read the message
     new Thread(
             () -> {
               try {
-                if (sound.isSoundOnProperty().get()) {
-                  textToSpeech.speak(messageString);
-                }
+                textToSpeech.speak(messageString);
+
               } catch (Exception e) {
                 e.printStackTrace();
               }
-              // Re-enable the soundIcon button when the message has been read
-              Platform.runLater(() -> sound.setDisable(false));
-              Platform.runLater(() -> sound.setOpacity(1.0));
             })
         .start();
   }

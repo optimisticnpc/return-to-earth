@@ -83,9 +83,9 @@ public class RoomOneController {
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
     soundIcon.opacityProperty().bind(sound.iconOpacityProperty());
-    InputStream soundOff = new FileInputStream("src/main/resources/images/soundicondisable.png");
-    Image soundOffImage = new Image(soundOff);
-    sound.soundImageProperty().set(soundOffImage);
+    InputStream soundOn = new FileInputStream("src/main/resources/images/soundicon.png");
+    Image soundOnImage = new Image(soundOn);
+    sound.soundImageProperty().set(soundOnImage);
 
     activateSpeech(
         "Hey you! Have you passed the\nauthorisation riddle to be\ntouching this stuff?");

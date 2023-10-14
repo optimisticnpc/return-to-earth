@@ -130,18 +130,20 @@ public class RoomThreeController {
   public void showLowOxygen() {
     if (!GameState.isWarningShown) {
       activateSpeech("OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
-      // Text to speech tells the player they are low on oxygen
-      new Thread(
-              () -> {
-                try {
-                  if (sound.isSoundOnProperty().get()) {
-                    textToSpeech.speak("Return immediately!");
+      if (sound.isSoundOnProperty().get()) {
+        // Text to speech tells the player they are low on oxygen
+        new Thread(
+                () -> {
+                  try {
+                    if (sound.isSoundOnProperty().get()) {
+                      textToSpeech.speak("Return immediately!");
+                    }
+                  } catch (Exception e) {
+                    e.printStackTrace();
                   }
-                } catch (Exception e) {
-                  e.printStackTrace();
-                }
-              })
-          .start();
+                })
+            .start();
+      }
       GameState.isWarningShown = true;
     }
   }

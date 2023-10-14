@@ -11,23 +11,32 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="2000.0" maxWidth="500.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatComponentController">
+<AnchorPane maxHeight="2000.0" maxWidth="500.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatComponentController">
   <children>
       <VBox prefHeight="720.0" prefWidth="310.0" spacing="5" style="-fx-background-color: #29365c;">
          <children>
-            <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="383.0" prefWidth="230.0" VBox.vgrow="ALWAYS">
+            <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="623.0" prefWidth="300.0" VBox.vgrow="ALWAYS">
                <content>
-                  <VBox fx:id="chatLog" prefHeight="368.0" prefWidth="282.0" style="-fx-background-color: #45578f;" />
+                  <VBox fx:id="chatLog" prefHeight="578.0" prefWidth="298.0" style="-fx-background-color: #45578f;" />
                </content>
             </ScrollPane>
-            <HBox spacing="5">
+            <HBox prefHeight="96.0" prefWidth="300.0" spacing="5">
                <children>
-                  <TextArea fx:id="inputText" onKeyPressed="#onEnterPressed" prefHeight="47.0" promptText="enter message..." style="-fx-background-color: #5d77c9;" HBox.hgrow="ALWAYS" />
-                  <Button fx:id="sendButton" minWidth="52.0" mnemonicParsing="false" onAction="#setSendButtonAction" prefHeight="47.0" style="-fx-background-color: #ede56f;" text="Send" textFill="#1b00a3">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                     </font>
-                  </Button>
+                  <TextArea fx:id="inputText" onKeyPressed="#onEnterPressed" prefHeight="141.0" prefWidth="230.0" promptText="enter message..." style="-fx-background-color: #5d77c9;" HBox.hgrow="ALWAYS" />
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="10">
+                     <children>
+                        <Button fx:id="sendButton" minWidth="52.0" mnemonicParsing="false" onAction="#setSendButtonAction" prefHeight="38.0" prefWidth="69.0" style="-fx-background-color: #ede56f;" text="Send" textFill="#1b00a3">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="playMessage" minWidth="52.0" mnemonicParsing="false" onAction="#playMessageAction" prefHeight="38.0" prefWidth="69.0" style="-fx-background-color: #ede56f;" text="Play Message" textAlignment="CENTER" textFill="#1b00a3" wrapText="true">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </children>
@@ -35,11 +44,11 @@
             <Insets topRightBottomLeft="5" />
          </padding>
       </VBox>
-      <ImageView fx:id="loadingIcon" fitHeight="62.0" fitWidth="60.0" layoutX="14.0" layoutY="593.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="loadingIcon" fitHeight="62.0" fitWidth="60.0" layoutX="14.0" layoutY="526.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/loading_icon.gif" />
          </image>
       </ImageView>
-      <Button layoutX="126.0" layoutY="627.0" mnemonicParsing="false" onAction="#onGoBack" text="NEXT PHASE (placeholder)" />
+      <Button layoutX="126.0" layoutY="560.0" mnemonicParsing="false" onAction="#onGoBack" text="NEXT PHASE (placeholder)" />
   </children>
 </AnchorPane>
