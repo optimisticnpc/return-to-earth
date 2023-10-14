@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Random;
 import java.util.Timer;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -19,6 +20,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -28,9 +30,17 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.SpeechBubble;
 import nz.ac.auckland.se206.ball.BouncingBallPane;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 /** Controller class for the room view. */
 public class RoomOneController {
+
+  private static String wordToGuess;
+
+  public static String getWordToGuess() {
+    return wordToGuess;
+  }
 
   @FXML private Pane room;
   @FXML private ImageView background;
@@ -59,6 +69,10 @@ public class RoomOneController {
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
   private GameTimer gameTimer = GameTimer.getInstance();
+  private ChatCentralControl chatCentralControl = ChatCentralControl.getInstance();
+  private String[] riddles = {
+    "blackhole", "star", "moon", "sun", "venus", "comet", "satellite", "mars"
+  };
 
   private Sound sound = Sound.getInstance();
 
@@ -86,8 +100,10 @@ public class RoomOneController {
     Image soundOnImage = new Image(soundOn);
     sound.soundImageProperty().set(soundOnImage);
 
-    activateSpeech(
-        "Hey you! Have you passed the\nauthorisation riddle to be\ntouching this stuff?");
+    // I don't think we need this. Also it sometimes doesn't show up if the player is clicking
+    // quickly through the background story screen
+    // activateSpeech(
+    //     "Hey you! Have you passed the\nauthorisation riddle to be\ntouching this stuff?");
   }
 
   /**
@@ -147,10 +163,27 @@ public class RoomOneController {
   @FXML
   private void clickMainWarning(MouseEvent event) throws IOException {
     System.out.println("Main Warning clicked");
-    activateSpeech(
-        "Critical damage detected on the ship.\n"
-            + "Please authorise yourself by clicking \nthe middle screen "
-            + "to access the system\nand analyse the damage.");
+    if (!GameState.isRiddleResolved) {
+      activateSpeech(
+          "Critical damage detected on the ship.\n"
+              + "Please authorise yourself by clicking \nthe middle screen "
+              + "to access the system and analyse the damage.");
+      chatCentralControl.addMessage(
+          new ChatMessage(
+              "system",
+              "Critical damage detected on the ship.\n"
+                  + "Please authorise yourself by clicking \nthe middle screen "
+                  + "to access the system\nand analyse the damage."));
+    } else {
+      activateSpeech(
+          "Critical damage detected on the engine!\n"
+              + "Please find the tools required and fix it!");
+      chatCentralControl.addMessage(
+          new ChatMessage(
+              "system",
+              "Critical damage detected on the engine!\n"
+                  + "Please find the spare tools and\nfix it!"));
+    }
   }
 
   /**
@@ -164,7 +197,7 @@ public class RoomOneController {
     System.out.println("Engine Warning clicked");
     // If riddle not solved tell the player to get authorization
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access\nthe system.");
+      activateSpeech("Authorisation needed to access the system.");
     } else {
       activateSpeech(
           "Critical failure on the main engine\n" + "Please find the spare parts and\nfix it!");
@@ -180,6 +213,10 @@ public class RoomOneController {
   private void clickWire(MouseEvent event) {
     GameState.isWireCollected = true;
     activateSpeech("You have collected the wire!\nYou might need it to\nfix something...");
+    chatCentralControl.addMessage(
+        new ChatMessage(
+            "system",
+            "You have collected the wire!\n" + "You might need it to\n" + "fix something..."));
     room.getChildren().remove(wire);
     room.getChildren().remove(wireImage);
   }
@@ -216,11 +253,34 @@ public class RoomOneController {
   @FXML
   private void clickAuthorisation(MouseEvent event) throws IOException {
     System.out.println("Authorisation clicked");
+    if (GameState.isRoomOneFirst && !GameState.isAuthorising) {
+      GameState.isAuthorising = true;
+      selectRandomRiddle();
+      if (GameState.easy) {
+        chatCentralControl.runGpt(
+            new ChatMessage(
+                "system",
+                GptPromptEngineering.getRiddle(wordToGuess)
+                    + GptPromptEngineering.getEasyHintSetup()));
+      } else if (GameState.medium) {
+        chatCentralControl.runGpt(
+            new ChatMessage(
+                "system",
+                GptPromptEngineering.getRiddle(wordToGuess)
+                    + GptPromptEngineering.getMediumHintSetup()));
+      } else if (GameState.hard) {
+        chatCentralControl.runGpt(
+            new ChatMessage(
+                "system",
+                GptPromptEngineering.getRiddle(wordToGuess)
+                    + GptPromptEngineering.getHardHintSetup()));
+      }
+    }
+  }
 
-    // Parent chatRoot = SceneManager.getUiRoot(AppUi.CHAT);
-    // App.getScene().setRoot(chatRoot);
-    // GameState.isRoomOneFirst = false;
-    // currentScene.setCurrent(11);
+  private void selectRandomRiddle() {
+    Random random = new Random();
+    wordToGuess = riddles[random.nextInt(riddles.length)];
   }
 
   @FXML

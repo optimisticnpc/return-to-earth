@@ -206,4 +206,12 @@ public class ChatCompletionRequest {
       throw new ApiProxyException("Problem calling API: " + e.getMessage());
     }
   }
+
+  /** Prints all the messages in the request with their corresponding roles. */
+  public void printMessages() {
+    for (ChatMessage message : messages) {
+      System.out.println("-------------------------");
+      System.out.println(message.getRole() + ": " + message.getContent());
+    }
+  }
 }

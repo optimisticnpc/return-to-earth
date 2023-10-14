@@ -3,11 +3,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #969696;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SpacesuitPuzzleController">
+<Pane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #969696;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SpacesuitPuzzleController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="418.0" layoutX="522.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="628.0" />
 
@@ -31,5 +33,15 @@
          </font>
       </Button>
       <fx:include fx:id="chatPanel" source="chatcomponent.fxml" />
+      <Button fx:id="wordScrambleHintButton" layoutX="552.0" layoutY="641.0" mnemonicParsing="false" onAction="#onClickWordScrambleHintButton" style="-fx-font-size: 27;" styleClass="otherButtons" text="Hint">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="196.0" fitWidth="200.0" layoutX="328.0" layoutY="510.0" preserveRatio="true">
+         <image>
+            <Image url="@../images/ai%20circle.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

@@ -1,5 +1,8 @@
 package nz.ac.auckland.se206.gpt;
 
+import nz.ac.auckland.se206.MathQuestionSelector;
+import nz.ac.auckland.se206.controllers.SpacesuitPuzzleController;
+
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
 
@@ -7,7 +10,8 @@ public class GptPromptEngineering {
     return "You are the AI system of this spaceship and your name is Space Destroyer. You are"
         + " responsible to get the spaceship back to the Earth safely. Unfortunately, one of"
         + " the spaceship's parts is malfunctioning and you need the user to fix it. You"
-        + " desperately need the user's help.";
+        + " desperately need the user's help. Begin by simply introducing yourself. Do not"
+        + " add anything else";
   }
 
   public static String getEasyHintSetup() {
@@ -26,19 +30,22 @@ public class GptPromptEngineering {
   public static String getRiddle(String wordToGuess) {
     // Prompt GPT for the easy difficulty
     // i.e allow infite hints
-    return "Tell me a riddle with answer "
+    return "The user has to authorise themselves by solving a riddle to access the system. Provide"
+        + " a riddle with answer "
         + wordToGuess
-        + ". Begin by simply stating the riddle, do not add anything else. You should"
-        + " answer with the words Authorization Complete when the answer is correct and tell"
-        + " them to go search the other rooms. You cannot,"
+        + ". Begin by simply stating the riddle, do not add anything else. You should answer with"
+        + " the words Authorization Complete when the answer is correct and tell them to go search"
+        + " the other rooms. When the answer is wrong, tell the user to try again. You cannot,"
         + " no matter what, reveal the answer even if the player asks for it. Even if the player"
         + " gives up, do not give the answer.";
   }
 
   public static String getPhaseTwoProgress() {
-    return "The user has to find a toolbox in the storage room. If the user asks for hints, tell"
-        + " them that they have to find 4 digit passcodes to open the tool compartment and"
-        + " obtain the toolbox inside, do not add anything else.";
+    return "The user has to find a toolbox in the storage room to find the right tool for"
+        + " malfunctioning part. Simply tell them to search the storage room to find the"
+        + " tool box. Do not add anything else. When the user asks for hints, tell them that"
+        + " they have to find 4 digit passcodes to open the tool compartment and obtain the"
+        + " toolbox inside, do not add anything else.";
   }
 
   public static String getHardPhaseTwoProgress() {
@@ -53,10 +60,10 @@ public class GptPromptEngineering {
    * @return A GPT prompt for phase three progress.
    */
   public static String getPhaseThreeProgress() {
-    return "The user has to fix the engine outside the spaceship. If the user asks for hints,"
-        + " tell them that they have to"
-        + " unlock the hatch and reconnect the wire inside the hatch, do not add anything"
-        + " else.";
+    return "The user has to fix the engine outside the spaceship. Simply tell them thay they have"
+        + " to go outside the spaceship to fix the engine. Do not add anything else. If the"
+        + " user asks for hints, tell them that they have to unlock the hatch and reconnect"
+        + " the wire inside the hatch, do not add anything else.";
   }
 
   /**
@@ -78,10 +85,10 @@ public class GptPromptEngineering {
    * @return A GPT prompt for phase four progress.
    */
   public static String getPhaseFourProgress() {
-    return "The user has to reactivate the engine in the main room. If the user asks for hints,"
-        + " tell them that they have to"
-        + " click the switches in the correct order to reactivate the engine. Do not add"
-        + " anything else.";
+    return "The user has to reactivate the engine in the main room. Simply tell them to go back to"
+        + " the main room for reactivation of the engine. Do not add anything else. If the"
+        + " user asks for hints, tell them that they have to click the switches in the"
+        + " correct order to reactivate the engine. Do not add anything else.";
   }
 
   /**
@@ -94,5 +101,37 @@ public class GptPromptEngineering {
     return "The user has to reactivate the engine in the main room. If the user asks for hints,"
         + " simply tell them that they have to reactivate the engine from the main room. Do"
         + " not add anything else.";
+  }
+
+  public static String hintMathQuestionPrompt() {
+    return hintMathQuestionSetup() + hintQuestionOneSetup() + hintQuestionTwoSetup();
+  }
+
+  public static String hintMathQuestionSetup() {
+
+    return "The user has two questions they need to solve. They may ask for hints. ";
+  }
+
+  // "If the user asks you for a hint for the questions, ask them if it is the first or"
+  // + " second question if they have not specified. "
+
+  public static String hintQuestionOneSetup() {
+
+    return "If it is for the first question tell them that: "
+        + MathQuestionSelector.getInstance().getFirstQuestionHint();
+  }
+
+  public static String hintQuestionTwoSetup() {
+
+    return "If it is for the second question tell them that: "
+        + MathQuestionSelector.getInstance().getSecondQuestionHint();
+  }
+
+  public static String hintWordScrambleSetup() {
+
+    return "If the user asks you for a hint for the word scramble give them a hint for the answer"
+        + " \""
+        + SpacesuitPuzzleController.getCorrectWordString()
+        + "\". ";
   }
 }

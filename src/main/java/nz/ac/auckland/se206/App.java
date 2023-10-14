@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.controllers.GlobalController;
 import nz.ac.auckland.se206.controllers.PasscodeController;
+import nz.ac.auckland.se206.controllers.RoomOneController;
 import nz.ac.auckland.se206.controllers.ScoreScreenController;
 import nz.ac.auckland.se206.controllers.SpacesuitPuzzleController;
 
@@ -49,15 +50,6 @@ public class App extends Application {
     return scene;
   }
 
-  /** Resets the chat view by reloading the associated FXML file. */
-  public static void resetChat() {
-    try {
-      SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
   /**
    * Resets all the rooms in the app by reloading the associated FXML files.
    *
@@ -66,6 +58,7 @@ public class App extends Application {
   public static void resetRooms() throws IOException {
     // Re initialize all the rooms the need to be reset every round
     try {
+      SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
       SceneManager.addUi(AppUi.BACKGROUND, loadFxml("background"));
       SceneManager.addUi(AppUi.ROOM_ONE, loadFxml("roomone"));
       SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
@@ -114,12 +107,8 @@ public class App extends Application {
     // After difficulty is chosen
 
     // These rooms are only initialized once:
-    SceneManager.addUi(AppUi.PASSCODE, loadFxml("passcode"));
     SceneManager.addUi(AppUi.START, loadFxml("start"));
     SceneManager.addUi(AppUi.SCORE_SCREEN, loadFxml("scorescreen"));
-
-    // TODO: remove this legacy code
-    SceneManager.addUi(AppUi.CHAT, loadFxml("chat"));
 
     Parent root = SceneManager.getUiRoot(AppUi.START);
     scene = new Scene(root, 1280, 720);
@@ -161,6 +150,8 @@ public class App extends Application {
         new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
     KeyCombination keyCombT =
         new KeyCodeCombination(KeyCode.T, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
+    KeyCombination keyCombC =
+        new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
     KeyCombination keyCombShiftR =
         new KeyCodeCombination(
             KeyCode.R, KeyCombination.ALT_DOWN, KeyCombination.SHIFT_DOWN); // Alt + Shift + R
@@ -190,7 +181,7 @@ public class App extends Application {
             // Get answers for all puzzles
 
             // Riddle:
-            System.out.println("Riddle: " + ChatCentralControl.getWordToGuess());
+            System.out.println("Riddle: " + RoomOneController.getWordToGuess());
 
             // Passcode:
             System.out.println("Code: " + PasscodeController.getCorrectPassCodeString());
@@ -219,6 +210,9 @@ public class App extends Application {
           } else if (keyCombShiftR.match(event)) {
             System.out.println("Alt + Shift + R was pressed!");
             ScoreScreenController.updateFastestTimes();
+          } else if (keyCombC.match(event)) {
+            System.out.println("Ctrl + Alt + C was pressed!" + '\n');
+            ChatCentralControl.getInstance().printChatCompletionRequestMessages();
           }
         });
   }

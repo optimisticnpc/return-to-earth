@@ -3,7 +3,6 @@ package nz.ac.auckland.se206;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.Alert;
@@ -39,10 +38,6 @@ public class ChatCentralControl {
 
   private String messageString = "";
 
-  private String[] riddles = {
-    "blackhole", "star", "moon", "sun", "venus", "comet", "satellite", "mars"
-  };
-
   private List<ChatMessage> messages = new ArrayList<>();
 
   private ChatCentralControl() {
@@ -51,9 +46,8 @@ public class ChatCentralControl {
 
   public void initializeChatCentralControl() {
     System.out.println("ChatCentralControl Iniatialized");
-
     setupChatConfiguration();
-    selectRandomRiddle();
+
     observers = new ArrayList<>();
     messages = new ArrayList<>();
 
@@ -102,16 +96,23 @@ public class ChatCentralControl {
     }
   }
 
+  private void enableAllTextBoxes() {
+    for (Observer observer : observers) {
+      observer.enableTextBox();
+    }
+  }
+
+  private void disableAllTextBoxes() {
+    for (Observer observer : observers) {
+      observer.disableTextBox();
+    }
+  }
+
   private void runChatPromptBasedOnGameState() throws ApiProxyException {
-    // if (GameState.isSetup) {
-    // TODO: TEMPORARY BYPASS bc idk why its not working
-    //   System.out.println("PERSONALITY RUN");
-    //   runGpt(new ChatMessage("system", GptPromptEngineering.getAIPersonality()));
-    //   GameState.isSetup = false;
-    // } else
-    if (!GameState.isRiddleResolved) {
-      System.out.println("RIDDLE GENERATED");
-      runGpt(new ChatMessage("user", GptPromptEngineering.getRiddle(wordToGuess)));
+    if (GameState.isPersonalitySetup) {
+      System.out.println("System setup completed!");
+      runGpt(new ChatMessage("system", GptPromptEngineering.getAIPersonality()));
+      GameState.isPersonalitySetup = false;
     } else {
       if (GameState.phaseThree && !GameState.hard) {
         System.out.println("Phase 3");
@@ -148,6 +149,8 @@ public class ChatCentralControl {
    */
   public void runGpt(ChatMessage msg) {
     showAllLoadingIcons();
+    disableAllTextBoxes();
+
     System.out.println("GPT LOADING");
 
     long startTime = System.currentTimeMillis(); // Record time
@@ -174,6 +177,7 @@ public class ChatCentralControl {
                                 + " reload the game.")
                         .showAndWait();
                     hideAllLoadingIcons();
+                    enableAllTextBoxes();
                   });
 
               e.printStackTrace();
@@ -212,13 +216,9 @@ public class ChatCentralControl {
             }
           }
 
-          // Added message to message list
-          messages.add(result);
-          // TODO: Find best location for this
-          notifyObservers();
-
           if (GameState.phaseTwo || GameState.phaseThree || GameState.phaseFour) {
             // clear the contents in VBOX
+            messages.clear();
             clearContentsOfChats();
             GameState.phaseTwo = false;
             GameState.phaseThree = false;
@@ -230,12 +230,18 @@ public class ChatCentralControl {
             GameState.isRiddleResolved = true;
             GameState.phaseTwo = true;
             System.out.println("Riddle resolved");
+            // after 3 seconds, clear the contents in VBOX and run phase 2
+
+            runGpt(new ChatMessage("system", GptPromptEngineering.getPhaseTwoProgress()));
           }
 
-          hideAllLoadingIcons();
+          // Added message to message list
+          messages.add(result);
+          // TODO: Find best location for this
+          notifyObservers();
 
-          // sendButton.setDisable(false); // Re-enable send button
-          // inputText.setDisable(false); // Re-enable the input text area
+          hideAllLoadingIcons();
+          enableAllTextBoxes();
         });
 
     callGptTask.setOnFailed(
@@ -250,7 +256,7 @@ public class ChatCentralControl {
                             + " game.")
                     .showAndWait();
               });
-          // inputText.setDisable(false); // Re-enable the input text area
+          enableAllTextBoxes();
           hideAllLoadingIcons();
         });
 
@@ -287,11 +293,15 @@ public class ChatCentralControl {
 
   private void setupChatConfiguration() {
     chatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.5).setMaxTokens(120);
+        new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.5).setMaxTokens(100);
   }
 
-  private void selectRandomRiddle() {
-    Random random = new Random();
-    wordToGuess = riddles[random.nextInt(riddles.length)];
+  public ChatCompletionRequest getChatCompletionRequest() {
+    return chatCompletionRequest;
+  }
+
+  /** Prints all the messages in the request with their corresponding roles. */
+  public void printChatCompletionRequestMessages() {
+    chatCompletionRequest.printMessages();
   }
 }
