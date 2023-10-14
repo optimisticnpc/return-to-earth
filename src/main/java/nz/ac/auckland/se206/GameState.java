@@ -45,6 +45,8 @@ public class GameState {
 
   public static boolean isSpacesuitCollected = false;
 
+  public static boolean isWarningShown = false;
+
   public static boolean isSpacesuitJustCollected = false;
 
   public static boolean isPartFixed = false;
@@ -57,7 +59,7 @@ public class GameState {
   public static boolean phaseThree = false;
   public static boolean phaseFour = false;
 
-   /**
+  /**
    * Resets the game by clearing and initializing game state variables, updating room visuals, and
    * returning to the start screen.
    *
@@ -75,6 +77,7 @@ public class GameState {
     isSpacesuitUnlocked = false;
     isSpacesuitRevealed = false;
     isSpacesuitCollected = false;
+    isWarningShown = false;
     isSpacesuitJustCollected = false;
     isPartFixed = false;
     HintCounter.resetHintCount();

@@ -34,6 +34,7 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.SpeechBubble;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
  * Controller class for Room Three in the game. This class handles user interactions, game logic,
@@ -67,7 +68,7 @@ public class RoomThreeController {
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
   private Sound sound = Sound.getInstance();
-  private Boolean isWarningShown = false;
+  private TextToSpeech textToSpeech = new TextToSpeech();
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -127,9 +128,21 @@ public class RoomThreeController {
 
   /** Shows a low oxygen warning when oxygen is under 30% and it's the first warning. */
   public void showLowOxygen() {
-    if (!isWarningShown) {
+    if (!GameState.isWarningShown) {
       activateSpeech("OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
-      isWarningShown = true;
+      // Text to speech tells the player they are low on oxygen
+      new Thread(
+              () -> {
+                try {
+                  if (sound.isSoundOnProperty().get()) {
+                    textToSpeech.speak("Return immediately!");
+                  }
+                } catch (Exception e) {
+                  e.printStackTrace();
+                }
+              })
+          .start();
+      GameState.isWarningShown = true;
     }
   }
 
