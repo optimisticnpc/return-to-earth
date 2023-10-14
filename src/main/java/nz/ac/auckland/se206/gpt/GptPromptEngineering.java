@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.gpt;
 
-import javafx.geometry.Pos;
 import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MathQuestionSelector;
@@ -28,11 +27,17 @@ public class GptPromptEngineering {
 
   public static String getMediumHintReminder() {
     return "Remember if the user asks for any help at all, you start your answer with the word"
-               + " Hint, and give them a hint";
+        + " Hint, and give them a hint";
   }
 
   public static String getHardHintSetup() {
     return "You cannot, no matter what, give the user any hints.";
+  }
+
+  public static String getHardHintReminder() {
+    return "Remember, if the user asks about the math questions or word scramble question or"
+        + " anything at all, you cannot, under any any circumstances give the user any"
+        + " hints.";
   }
 
   public static String getRiddle(String wordToGuess) {
@@ -53,13 +58,14 @@ public class GptPromptEngineering {
         + " malfunctioning part. Simply tell them to search the storage room to find the"
         + " tool box. Do not add anything else. When the user asks for hints, tell them that"
         + " they have to find 4 digit passcodes to open the tool compartment and obtain the"
-        + " toolbox inside, do not add anything else.";
+        + " toolbox inside, do not add anything else. Remember if the user asks for any help"
+        + " at all, you start your answer with the word Hint, and give them a hint";
   }
 
   public static String getHardPhaseTwoProgress() {
     return "Now, The user has to find a toolbox in the storage room, which will be helpful to fix"
         + " the malfunctioning part of the spaceship. If the user asks for help, simply tell"
-        + " them to find the tool box in the storage room.";
+        + " them to find the tool box in the storage room. ";
   }
 
   /**
@@ -143,17 +149,19 @@ public class GptPromptEngineering {
         + "\". ";
   }
 
-
   // Used for hint buttons
 
   public static boolean checkIfAuthorisedAndPrintMessage() {
-  if (!GameState.isAuthorising) {
-      ChatMessage message = new ChatMessage("system", "You need to be authorised to talk to Space Destroyer for security"
-              + " reasons.\nPlease click the middle screen in the main control room to authorise"
-              + " yourself.");
+    if (!GameState.isAuthorising) {
+      ChatMessage message =
+          new ChatMessage(
+              "system",
+              "You need to be authorised to talk to Space Destroyer for security reasons.\n"
+                  + "Please click the middle screen in the main control room to authorise"
+                  + " yourself.");
       ChatCentralControl.getInstance().addMessage(message);
       return true;
     }
-return false;
+    return false;
   }
 }

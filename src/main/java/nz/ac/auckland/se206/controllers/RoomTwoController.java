@@ -130,8 +130,9 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionOne(MouseEvent event) throws IOException {
-
-    addMathPromptsIfNotAdded();
+    if (!GameState.hard) {
+      addMathPromptsIfNotAdded();
+    }
 
     Parent questionOneRoot = SceneManager.getUiRoot(AppUi.QUESTION_ONE);
     App.getScene().setRoot(questionOneRoot);
@@ -159,8 +160,9 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionTwo(MouseEvent event) throws IOException {
-
-    addMathPromptsIfNotAdded();
+  if (!GameState.hard) {
+      addMathPromptsIfNotAdded();
+    }
 
     Parent questionTwoRoot = SceneManager.getUiRoot(AppUi.QUESTION_TWO);
     App.getScene().setRoot(questionTwoRoot);
@@ -256,7 +258,11 @@ public class RoomTwoController {
     // If the scramble word puzzle hasn't been solved
     // Go to enter access key screen
     if (!GameState.isSpacesuitUnlocked) {
-      addWordScramblePromptsIfNotAdded();
+      // Add hint prompts only if difficulty is not hard
+      if (!GameState.hard) {
+        addWordScramblePromptsIfNotAdded();
+      }
+
       Parent spacesuitPuzzlesRoom = SceneManager.getUiRoot(AppUi.SPACESUIT_PUZZLE);
       App.getScene().setRoot(spacesuitPuzzlesRoom);
       // If spacesuit hasn't been revealed

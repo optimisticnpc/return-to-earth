@@ -47,10 +47,7 @@ public class App extends Application {
     Parent root = loader.load();
     Object controller = loader.getController();
 
-    String string = "Controller " + controller.toString() + "is instance of MyControllers";
-    System.out.println(string);
     if (controller instanceof MyControllers) {
-      System.out.println("ADDING CONTROLLER " + controller);
       MyControllers myController = (MyControllers) controller;
       SceneManager.addController(root, myController);
     }
