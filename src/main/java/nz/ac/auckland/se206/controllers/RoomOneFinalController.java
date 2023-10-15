@@ -84,6 +84,7 @@ public class RoomOneFinalController {
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
+    soundIcon.opacityProperty().bind(sound.iconOpacityProperty());
   }
 
   /**

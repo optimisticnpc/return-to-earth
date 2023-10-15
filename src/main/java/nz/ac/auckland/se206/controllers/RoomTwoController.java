@@ -69,6 +69,7 @@ public class RoomTwoController {
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
+    soundIcon.opacityProperty().bind(sound.iconOpacityProperty());
 
     // Make the overlay images not visible
     toolBoxOpenImage.setOpacity(0);

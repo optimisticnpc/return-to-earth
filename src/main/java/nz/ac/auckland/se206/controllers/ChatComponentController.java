@@ -32,6 +32,7 @@ public class ChatComponentController implements Observer {
   @FXML private VBox chatLog;
   @FXML private ScrollPane scrollPane;
   @FXML private Button sendButton;
+  @FXML private Button playMessage;
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -78,6 +79,11 @@ public class ChatComponentController implements Observer {
     } else {
       chatCentralControl.runGpt(msg);
     }
+    
+  /** PlayMessageAction plays the last message written by GPT. */
+  @FXML
+  public void playMessageAction() {
+    chatCentralControl.readMessage();
   }
 
   public void addLabel(String message, Pos position) {
