@@ -96,6 +96,7 @@ public class RoomOneController {
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
+    soundIcon.opacityProperty().bind(sound.iconOpacityProperty());
     InputStream soundOn = new FileInputStream("src/main/resources/images/soundicon.png");
     Image soundOnImage = new Image(soundOn);
     sound.soundImageProperty().set(soundOnImage);

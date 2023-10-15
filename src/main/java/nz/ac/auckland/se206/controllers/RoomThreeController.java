@@ -37,6 +37,7 @@ import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.SpeechBubble;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
  * Controller class for Room Three in the game. This class handles user interactions, game logic,
@@ -70,7 +71,7 @@ public class RoomThreeController {
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
   private Sound sound = Sound.getInstance();
-  private Boolean isWarningShown = false;
+  private TextToSpeech textToSpeech = new TextToSpeech();
   private ChatCentralControl chat = ChatCentralControl.getInstance();
 
   /** Initializes the room view, it is called when the room loads. */
@@ -96,6 +97,7 @@ public class RoomThreeController {
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
+    soundIcon.opacityProperty().bind(sound.iconOpacityProperty());
   }
 
   /**
@@ -130,9 +132,23 @@ public class RoomThreeController {
 
   /** Shows a low oxygen warning when oxygen is under 30% and it's the first warning. */
   public void showLowOxygen() {
-    if (!isWarningShown) {
+    if (!GameState.isWarningShown) {
       activateSpeech("OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
-      isWarningShown = true;
+      if (sound.isSoundOnProperty().get()) {
+        // Text to speech tells the player they are low on oxygen
+        new Thread(
+                () -> {
+                  try {
+                    if (sound.isSoundOnProperty().get()) {
+                      textToSpeech.speak("Return immediately!");
+                    }
+                  } catch (Exception e) {
+                    e.printStackTrace();
+                  }
+                })
+            .start();
+      }
+      GameState.isWarningShown = true;
     }
   }
 

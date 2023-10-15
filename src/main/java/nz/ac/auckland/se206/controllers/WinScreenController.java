@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.ScoreScreenInfo;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
@@ -30,11 +31,14 @@ public class WinScreenController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
+    Sound sound = Sound.getInstance();
     // Text to speech tells the player they have won
     new Thread(
             () -> {
               try {
-                textToSpeech.speak("Congratulations you win!");
+                if (sound.isSoundOnProperty().get()) {
+                  textToSpeech.speak("Congratulations you win!");
+                }
               } catch (Exception e) {
                 e.printStackTrace();
               }
