@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the chat view. */
 public class ChatCentralControl {
@@ -44,6 +45,9 @@ public class ChatCentralControl {
   };
 
   private List<ChatMessage> messages = new ArrayList<>();
+
+  private TextToSpeech textToSpeech = new TextToSpeech();
+  private Sound sound = Sound.getInstance();
 
   private ChatCentralControl() {
     initializeChatCentralControl();
@@ -149,6 +153,7 @@ public class ChatCentralControl {
   public void runGpt(ChatMessage msg) {
     showAllLoadingIcons();
     System.out.println("GPT LOADING");
+    textToSpeech.stop();
 
     long startTime = System.currentTimeMillis(); // Record time
 
@@ -273,6 +278,21 @@ public class ChatCentralControl {
     }
     System.out.println(count);
     return count;
+  }
+
+  /** Initiates text-to-speech to read the message and manages the sound icon button state. */
+  public void readMessage() {
+    // Create a new thread to read the message
+    new Thread(
+            () -> {
+              try {
+                textToSpeech.speak(messageString);
+
+              } catch (Exception e) {
+                e.printStackTrace();
+              }
+            })
+        .start();
   }
 
   protected void recordAndPrintTime(long startTime) {

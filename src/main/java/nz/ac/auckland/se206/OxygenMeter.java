@@ -97,6 +97,7 @@ public class OxygenMeter {
                       percentProgressProperty.set("100%");
                       GameState.isSpacesuitJustCollected = false;
                       roomThree.showSpacesuitOxygen();
+                      GameState.isWarningShown = false;
                     }
                   }
                 }));

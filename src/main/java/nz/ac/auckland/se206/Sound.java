@@ -4,8 +4,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
 
@@ -32,6 +34,8 @@ public class Sound {
 
   private BooleanProperty isSoundOn = new SimpleBooleanProperty(true);
   private ObjectProperty<Image> soundImage = new SimpleObjectProperty<>();
+  private DoubleProperty iconOpacity = new SimpleDoubleProperty(1.0);
+  private boolean isDisabled = false;
 
   /**
    * Gets the object property representing the sound icon image.
@@ -51,7 +55,7 @@ public class Sound {
     return isSoundOn;
   }
 
-  /** Resets the sound property to true. */
+  /** Resets the sound property to false. */
   public void resetSoundProperty() {
     isSoundOn.set(true);
   }
@@ -62,17 +66,43 @@ public class Sound {
    * @throws FileNotFoundException if the file is not found.
    */
   public void toggleImage() throws FileNotFoundException {
-    isSoundOn.set(!isSoundOnProperty().get());
+    if (!isDisabled) {
+      isSoundOn.set(!isSoundOnProperty().get());
 
-    // Sets icon to sound on version if sound is on and off if sound is off.
-    if (isSoundOn.get()) {
-      InputStream soundOn = new FileInputStream("src/main/resources/images/soundicon.png");
-      Image soundOnImage = new Image(soundOn);
-      soundImage.set(soundOnImage);
-    } else {
-      InputStream soundOff = new FileInputStream("src/main/resources/images/soundicondisable.png");
-      Image soundOffImage = new Image(soundOff);
-      soundImage.set(soundOffImage);
+      // Sets icon to sound on version if sound is on and off if sound is off.
+      if (isSoundOn.get()) {
+        InputStream soundOn = new FileInputStream("src/main/resources/images/soundicon.png");
+        Image soundOnImage = new Image(soundOn);
+        soundImage.set(soundOnImage);
+      } else {
+        InputStream soundOff =
+            new FileInputStream("src/main/resources/images/soundicondisable.png");
+        Image soundOffImage = new Image(soundOff);
+        soundImage.set(soundOffImage);
+      }
     }
+  }
+
+  /** Disables or enables the user's ability to click on the sound icon. */
+  public void setDisable(boolean disable) {
+    isDisabled = disable;
+  }
+
+  /**
+   * Gets the DoubleProperty representing the opacity of the sound icon image.
+   *
+   * @return The DoubleProperty for the icon's opacity.
+   */
+  public DoubleProperty iconOpacityProperty() {
+    return iconOpacity;
+  }
+
+  /**
+   * Sets the opacity of the sound icon image.
+   *
+   * @param opacity The opacity value (between 0.0 and 1.0).
+   */
+  public void setOpacity(double opacity) {
+    iconOpacity.set(opacity);
   }
 }

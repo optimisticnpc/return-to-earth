@@ -5,7 +5,6 @@ import javax.speech.Central;
 import javax.speech.EngineException;
 import javax.speech.synthesis.Synthesizer;
 import javax.speech.synthesis.SynthesizerModeDesc;
-import nz.ac.auckland.se206.Sound;
 
 /** Text-to-speech API using the JavaX speech library. */
 public class TextToSpeech {
@@ -34,7 +33,6 @@ public class TextToSpeech {
   }
 
   private final Synthesizer synthesizer;
-  private Sound sound = Sound.getInstance();
 
   /**
    * Constructs the TextToSpeech object creating and allocating the speech synthesizer. English
@@ -83,14 +81,12 @@ public class TextToSpeech {
     if (sentence == null) {
       throw new IllegalArgumentException("Text cannot be null.");
     }
-    if (sound.isSoundOnProperty().get()) {
-      try {
-        synthesizer.resume();
-        synthesizer.speakPlainText(sentence, null);
-        synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
-      } catch (final AudioException | InterruptedException e) {
-        throw new TextToSpeechException(e.getMessage());
-      }
+    try {
+      synthesizer.resume();
+      synthesizer.speakPlainText(sentence, null);
+      synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
+    } catch (final AudioException | InterruptedException e) {
+      throw new TextToSpeechException(e.getMessage());
     }
   }
 
