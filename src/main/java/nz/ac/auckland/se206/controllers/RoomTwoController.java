@@ -131,8 +131,9 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionOne(MouseEvent event) throws IOException {
-
-    addMathPromptsIfNotAdded();
+    if (!GameState.hard) {
+      addMathPromptsIfNotAdded();
+    }
 
     Parent questionOneRoot = SceneManager.getUiRoot(AppUi.QUESTION_ONE);
     App.getScene().setRoot(questionOneRoot);
@@ -140,9 +141,14 @@ public class RoomTwoController {
 
   private void addMathPromptsIfNotAdded() {
     if (!GameState.isMathQuestionPromptAdded) {
+      String prompt = GptPromptEngineering.hintMathQuestionPrompt();
+      if (GameState.medium) {
+        prompt = prompt + GptPromptEngineering.getMediumHintReminder();
+      }
+
       ChatCentralControl.getInstance()
           .getChatCompletionRequest()
-          .addMessage(new ChatMessage("system", GptPromptEngineering.hintMathQuestionPrompt()));
+          .addMessage(new ChatMessage("system", prompt));
       GameState.isMathQuestionPromptAdded = true;
     }
   }
@@ -155,8 +161,9 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionTwo(MouseEvent event) throws IOException {
-
-    addMathPromptsIfNotAdded();
+  if (!GameState.hard) {
+      addMathPromptsIfNotAdded();
+    }
 
     Parent questionTwoRoot = SceneManager.getUiRoot(AppUi.QUESTION_TWO);
     App.getScene().setRoot(questionTwoRoot);
@@ -221,9 +228,14 @@ public class RoomTwoController {
 
   private void addWordScramblePromptsIfNotAdded() {
     if (!GameState.isWordScramblePromptAdded) {
+      String prompt = GptPromptEngineering.hintWordScrambleSetup();
+      if (GameState.medium) {
+        prompt = prompt + GptPromptEngineering.getMediumHintReminder();
+      }
+
       ChatCentralControl.getInstance()
           .getChatCompletionRequest()
-          .addMessage(new ChatMessage("system", GptPromptEngineering.hintWordScrambleSetup()));
+          .addMessage(new ChatMessage("system", prompt));
       GameState.isWordScramblePromptAdded = true;
     }
   }
@@ -247,7 +259,11 @@ public class RoomTwoController {
     // If the scramble word puzzle hasn't been solved
     // Go to enter access key screen
     if (!GameState.isSpacesuitUnlocked) {
-      addWordScramblePromptsIfNotAdded();
+      // Add hint prompts only if difficulty is not hard
+      if (!GameState.hard) {
+        addWordScramblePromptsIfNotAdded();
+      }
+
       Parent spacesuitPuzzlesRoom = SceneManager.getUiRoot(AppUi.SPACESUIT_PUZZLE);
       App.getScene().setRoot(spacesuitPuzzlesRoom);
       // If spacesuit hasn't been revealed

@@ -71,8 +71,8 @@ public class RoomThreeController {
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
   private Sound sound = Sound.getInstance();
-  private TextToSpeech textToSpeech = new TextToSpeech();
   private ChatCentralControl chat = ChatCentralControl.getInstance();
+  private TextToSpeech textToSpeech = new TextToSpeech();
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {

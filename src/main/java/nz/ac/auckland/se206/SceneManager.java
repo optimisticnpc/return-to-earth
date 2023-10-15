@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import java.util.HashMap;
+import java.util.Map;
 import javafx.scene.Parent;
 
 /**
@@ -29,6 +30,9 @@ public class SceneManager {
   /** A HashMap that stores the mapping of AppUi enums to their corresponding scenes. */
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
 
+  /** A HashMap that stores the mapping of AppUi enums to their corresponding scene controllers. */
+  private static Map<Parent, MyControllers> controllerMap = new HashMap<>();
+
   /**
    * Adds a scene to the scene map with the specified enum value and scene.
    *
@@ -47,5 +51,13 @@ public class SceneManager {
    */
   public static Parent getUiRoot(AppUi appUi) {
     return sceneMap.get(appUi);
+  }
+
+  public static void addController(Parent uiRoot, MyControllers controller) {
+    controllerMap.put(uiRoot, controller);
+  }
+
+  public static MyControllers getController(Parent uiRoot) {
+    return controllerMap.get(uiRoot);
   }
 }

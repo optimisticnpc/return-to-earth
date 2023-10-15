@@ -43,7 +43,15 @@ public class App extends Application {
    * @throws IOException If the file is not found.
    */
   public static Parent loadFxml(final String fxml) throws IOException {
-    return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
+    Parent root = loader.load();
+    Object controller = loader.getController();
+
+    if (controller instanceof MyControllers) {
+      MyControllers myController = (MyControllers) controller;
+      SceneManager.addController(root, myController);
+    }
+    return root;
   }
 
   public static Scene getScene() {
@@ -155,6 +163,8 @@ public class App extends Application {
     KeyCombination keyCombShiftR =
         new KeyCodeCombination(
             KeyCode.R, KeyCombination.ALT_DOWN, KeyCombination.SHIFT_DOWN); // Alt + Shift + R
+    KeyCombination keyCombV =
+        new KeyCodeCombination(KeyCode.V, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
 
     scene.addEventHandler(
         KeyEvent.KEY_PRESSED,
@@ -213,6 +223,9 @@ public class App extends Application {
           } else if (keyCombC.match(event)) {
             System.out.println("Ctrl + Alt + C was pressed!" + '\n');
             ChatCentralControl.getInstance().printChatCompletionRequestMessages();
+          } else if (keyCombV.match(event)) {
+            System.out.println("Ctrl + Alt + V was pressed!" + '\n');
+            ChatCentralControl.getInstance().printChatPanelMessages();
           }
         });
   }

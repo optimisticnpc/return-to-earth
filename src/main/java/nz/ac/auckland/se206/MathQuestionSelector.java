@@ -127,7 +127,8 @@ public class MathQuestionSelector {
                 + " the second group is 10 times the third group. How many aliens are there"
                 + " altogether if the third group has 1 alien?",
             "31",
-            "Group 1 = Group 2 + 10, Group 2 = Group 3 * 10. ",
+            "Group 1 = Group 2 + 10, Group 2 = Group 3 * 10. Just work backwards from what you know"
+                + " about group 3.",
             "Group 1 has 20 aliens, Group 2 has 10 aliens. "));
     mathQuestions.add(
         new MathQuestion(

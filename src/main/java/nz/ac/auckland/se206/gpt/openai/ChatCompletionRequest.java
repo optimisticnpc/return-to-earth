@@ -60,6 +60,10 @@ public class ChatCompletionRequest {
     return this;
   }
 
+  public void removeLastMessage() {
+    messages.remove(messages.size() - 1);
+  }
+
   /**
    * Adds a message to the request with the specified role and content.
    *

@@ -16,6 +16,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.MyControllers;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -26,7 +27,7 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
  * puzzle screen. It allows the player to solve a word puzzle to unlock a compartment and proceed
  * with the game.
  */
-public class SpacesuitPuzzleController {
+public class SpacesuitPuzzleController implements MyControllers {
 
   private static String correctWordString;
 
@@ -95,6 +96,10 @@ public class SpacesuitPuzzleController {
         });
 
     pickAndScrambleWord();
+
+    if (GameState.hard) {
+      wordScrambleHintButton.setVisible(false);
+    }
   }
 
   /** Picks a random word, scrambles it, and sets it as the puzzle word for the player to solve. */
@@ -152,9 +157,19 @@ public class SpacesuitPuzzleController {
   @FXML
   private void onClickWordScrambleHintButton() {
 
-    ChatMessage msg = new ChatMessage("user", "Please give me a hint for the word scramble question");
+    if (GptPromptEngineering.checkIfAuthorisedAndPrintMessage()) {
+      return;
+    }
+
+    ChatMessage msg =
+        new ChatMessage("user", "Please give me a hint for the word scramble question");
 
     ChatCentralControl.getInstance().addMessage(msg);
     ChatCentralControl.getInstance().runGpt(msg);
+  }
+
+  @Override
+  public void disableHintButton() {
+    wordScrambleHintButton.setDisable(true);
   }
 }

@@ -1,9 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.io.IOException;
 import java.util.List;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -87,18 +85,6 @@ public class ChatComponentController implements Observer {
   @FXML
   public void playMessageAction() {
     chatCentralControl.readMessage();
-  }
-
-  /**
-   * Navigates back to the previous view.
-   *
-   * @param event the action event triggered by the go back button
-   * @throws ApiProxyException if there is an error communicating with the API proxy
-   * @throws IOException if there is an I/O error
-   */
-  @FXML
-  private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    chatCentralControl.nextPhase();
   }
 
   public void addLabel(String message, Pos position) {

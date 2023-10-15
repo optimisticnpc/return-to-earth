@@ -214,10 +214,6 @@ public class RoomOneController {
   private void clickWire(MouseEvent event) {
     GameState.isWireCollected = true;
     activateSpeech("You have collected the wire!\nYou might need it to\nfix something...");
-    chatCentralControl.addMessage(
-        new ChatMessage(
-            "system",
-            "You have collected the wire!\n" + "You might need it to\n" + "fix something..."));
     room.getChildren().remove(wire);
     room.getChildren().remove(wireImage);
   }
