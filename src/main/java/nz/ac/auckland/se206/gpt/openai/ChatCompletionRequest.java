@@ -60,6 +60,10 @@ public class ChatCompletionRequest {
     return this;
   }
 
+  public void removeLastMessage() {
+    messages.remove(messages.size() - 1);
+  }
+
   /**
    * Adds a message to the request with the specified role and content.
    *
@@ -204,6 +208,14 @@ public class ChatCompletionRequest {
 
     } catch (Exception e) {
       throw new ApiProxyException("Problem calling API: " + e.getMessage());
+    }
+  }
+
+  /** Prints all the messages in the request with their corresponding roles. */
+  public void printMessages() {
+    for (ChatMessage message : messages) {
+      System.out.println("-------------------------");
+      System.out.println(message.getRole() + ": " + message.getContent());
     }
   }
 }

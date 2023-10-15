@@ -147,8 +147,6 @@ public class StartController {
       GameState.hard = true;
     }
 
-    SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat")); // legacy code
-
     // Don't ask me why this is needed. I have no idea
     // All I know is that without this, the behaviour is really weird
     if (GameState.isAfterFirstRound) {
@@ -161,9 +159,13 @@ public class StartController {
     App.resetRooms();
     App.resetMathQuestions();
 
+    // Refresh chats again to fix bug where chats weren't updated even though riddle was received
+    ChatCentralControl.getInstance().notifyObservers();
+
     Parent roomRoot = SceneManager.getUiRoot(AppUi.BACKGROUND);
     currentScene.setCurrent(1);
     App.getScene().setRoot(roomRoot);
+    ChatCentralControl.getInstance().notifyObservers();
     GameTimer gameTimer = GameTimer.getInstance();
     OxygenMeter oxygenMeter = OxygenMeter.getInstance();
     Sound sound = Sound.getInstance();

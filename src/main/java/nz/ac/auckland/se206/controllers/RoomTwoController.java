@@ -14,6 +14,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -22,6 +23,8 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.SpeechBubble;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 /**
  * The RoomTwoController class controls the behavior and interactions within Room Two of the game.
@@ -50,6 +53,7 @@ public class RoomTwoController {
   private Timer timer = new Timer();
   private CurrentScene currentScene = CurrentScene.getInstance();
   private Sound sound = Sound.getInstance();
+  private ChatCentralControl chat = ChatCentralControl.getInstance();
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -127,8 +131,26 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionOne(MouseEvent event) throws IOException {
+    if (!GameState.hard) {
+      addMathPromptsIfNotAdded();
+    }
+
     Parent questionOneRoot = SceneManager.getUiRoot(AppUi.QUESTION_ONE);
     App.getScene().setRoot(questionOneRoot);
+  }
+
+  private void addMathPromptsIfNotAdded() {
+    if (!GameState.isMathQuestionPromptAdded) {
+      String prompt = GptPromptEngineering.hintMathQuestionPrompt();
+      if (GameState.medium) {
+        prompt = prompt + GptPromptEngineering.getMediumHintReminder();
+      }
+
+      ChatCentralControl.getInstance()
+          .getChatCompletionRequest()
+          .addMessage(new ChatMessage("system", prompt));
+      GameState.isMathQuestionPromptAdded = true;
+    }
   }
 
   /**
@@ -139,6 +161,10 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionTwo(MouseEvent event) throws IOException {
+  if (!GameState.hard) {
+      addMathPromptsIfNotAdded();
+    }
+
     Parent questionTwoRoot = SceneManager.getUiRoot(AppUi.QUESTION_TWO);
     App.getScene().setRoot(questionTwoRoot);
   }
@@ -200,6 +226,20 @@ public class RoomTwoController {
     }
   }
 
+  private void addWordScramblePromptsIfNotAdded() {
+    if (!GameState.isWordScramblePromptAdded) {
+      String prompt = GptPromptEngineering.hintWordScrambleSetup();
+      if (GameState.medium) {
+        prompt = prompt + GptPromptEngineering.getMediumHintReminder();
+      }
+
+      ChatCentralControl.getInstance()
+          .getChatCompletionRequest()
+          .addMessage(new ChatMessage("system", prompt));
+      GameState.isWordScramblePromptAdded = true;
+    }
+  }
+
   /**
    * Handles the click event on the spacesuit.
    *
@@ -219,9 +259,13 @@ public class RoomTwoController {
     // If the scramble word puzzle hasn't been solved
     // Go to enter access key screen
     if (!GameState.isSpacesuitUnlocked) {
+      // Add hint prompts only if difficulty is not hard
+      if (!GameState.hard) {
+        addWordScramblePromptsIfNotAdded();
+      }
+
       Parent spacesuitPuzzlesRoom = SceneManager.getUiRoot(AppUi.SPACESUIT_PUZZLE);
       App.getScene().setRoot(spacesuitPuzzlesRoom);
-
       // If spacesuit hasn't been revealed
     } else if (!GameState.isSpacesuitRevealed) {
       revealSpacesuit();
@@ -230,6 +274,10 @@ public class RoomTwoController {
       collectSpacesuit();
       activateSpeech(
           "You have collected the spacesuit!\nNow you're able to stay outside\nfor longer!");
+      chat.addMessage(
+          new ChatMessage(
+              "assistant",
+              "You have collected the spacesuit!\nNow you're able to stay outside\nfor longer!"));
       GameState.isSpacesuitCollected = true;
       GameState.isSpacesuitJustCollected = true;
     }
@@ -248,6 +296,13 @@ public class RoomTwoController {
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation needed to access\n the system.");
+      chat.addMessage(
+          new ChatMessage(
+              "system",
+              "You need to be authorised to talk to Space Destroyer or access the system for"
+                  + " security reasons.\n"
+                  + " Please click the middle screen in the main control room to authorise"
+                  + " yourself."));
       return;
     }
 
@@ -263,8 +318,11 @@ public class RoomTwoController {
       collectToolbox();
       GameState.isToolboxCollected = true;
       GameState.phaseThree = true;
-      // TODO:
-      // SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
+      if (GameState.hard) {
+        chat.runGpt(new ChatMessage("system", GptPromptEngineering.getHardPhaseThreeProgress()));
+      } else {
+        chat.runGpt(new ChatMessage("system", GptPromptEngineering.getPhaseThreeProgress()));
+      }
       System.out.println("Toolbox collected");
     }
   }

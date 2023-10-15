@@ -35,6 +35,8 @@ public class GameState {
   // revealed. */
   public static boolean isToolboxRevealed = false;
 
+  public static boolean isAuthorising = false;
+
   // ** Indicates that the player has clicked on the tool box to collect it, the visual in the room
   // will show the tool box as taken */
   public static boolean isToolboxCollected = false;
@@ -52,12 +54,16 @@ public class GameState {
   public static boolean isPartFixed = false;
 
   // ** Indicates if the game is launched first time for setting up of the AI.*/
-  public static boolean isSetup = true;
+  public static boolean isPersonalitySetup = true;
 
   // ** indicates each phase of the game the player is in */
   public static boolean phaseTwo = false;
   public static boolean phaseThree = false;
   public static boolean phaseFour = false;
+
+  /* Variables for if certain prompts have been added */
+  public static boolean isMathQuestionPromptAdded = false;
+  public static boolean isWordScramblePromptAdded = false;
 
   /**
    * Resets the game by clearing and initializing game state variables, updating room visuals, and
@@ -68,7 +74,8 @@ public class GameState {
   public static void resetGameVariables() throws IOException {
     // TODO: Update and double check this
     // Reset all game state variables
-    isSetup = true;
+    isPersonalitySetup = true;
+    isAuthorising = false;
     isRiddleResolved = false;
     isWireCollected = false;
     isPasscodeSolved = false;
@@ -80,6 +87,9 @@ public class GameState {
     isWarningShown = false;
     isSpacesuitJustCollected = false;
     isPartFixed = false;
+
+    isMathQuestionPromptAdded = false;
+    isWordScramblePromptAdded = false;
     HintCounter.resetHintCount();
   }
 

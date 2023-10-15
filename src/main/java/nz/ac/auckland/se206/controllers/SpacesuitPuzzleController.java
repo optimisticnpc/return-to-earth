@@ -13,17 +13,21 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.MyControllers;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 /**
  * The SpacesuitPuzzleController class controls the behavior and interactions of the spacesuit
  * puzzle screen. It allows the player to solve a word puzzle to unlock a compartment and proceed
  * with the game.
  */
-public class SpacesuitPuzzleController {
+public class SpacesuitPuzzleController implements MyControllers {
 
   private static String correctWordString;
 
@@ -41,6 +45,7 @@ public class SpacesuitPuzzleController {
   @FXML private Label resultLabel;
   @FXML private Label scrambledWordLabel;
   @FXML private Button submitCodeButton;
+  @FXML private Button wordScrambleHintButton;
 
   // TODO: Get more words and make sure they are different from the riddle
   private String[] unscrambleWords = {
@@ -91,6 +96,10 @@ public class SpacesuitPuzzleController {
         });
 
     pickAndScrambleWord();
+
+    if (GameState.hard) {
+      wordScrambleHintButton.setVisible(false);
+    }
   }
 
   /** Picks a random word, scrambles it, and sets it as the puzzle word for the player to solve. */
@@ -124,6 +133,7 @@ public class SpacesuitPuzzleController {
 
       // Disable passcode field and button after correct passcode entered.
       submitCodeButton.setDisable(true);
+      wordScrambleHintButton.setDisable(true);
       inputField.setDisable(true);
     } else {
       resultLabel.setText("Incorrect. Try again.");
@@ -142,5 +152,24 @@ public class SpacesuitPuzzleController {
   private void onGoBack() {
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
     App.getScene().setRoot(roomTwoRoot);
+  }
+
+  @FXML
+  private void onClickWordScrambleHintButton() {
+
+    if (GptPromptEngineering.checkIfAuthorisedAndPrintMessage()) {
+      return;
+    }
+
+    ChatMessage msg =
+        new ChatMessage("user", "Please give me a hint for the word scramble question");
+
+    ChatCentralControl.getInstance().addMessage(msg);
+    ChatCentralControl.getInstance().runGpt(msg);
+  }
+
+  @Override
+  public void disableHintButton() {
+    wordScrambleHintButton.setDisable(true);
   }
 }

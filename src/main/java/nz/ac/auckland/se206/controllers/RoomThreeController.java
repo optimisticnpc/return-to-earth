@@ -25,6 +25,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
@@ -34,6 +35,8 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.SpeechBubble;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
@@ -68,6 +71,7 @@ public class RoomThreeController {
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
   private Sound sound = Sound.getInstance();
+  private ChatCentralControl chat = ChatCentralControl.getInstance();
   private TextToSpeech textToSpeech = new TextToSpeech();
 
   /** Initializes the room view, it is called when the room loads. */
@@ -228,6 +232,8 @@ public class RoomThreeController {
     // If toolbox not collected
     if (!GameState.isToolboxCollected) {
       activateSpeech("You need to find the right tools\nto open this hatch.");
+      chat.addMessage(
+          new ChatMessage("assistant", "You need to find the right tools\nto open this hatch."));
       return;
     }
 
@@ -257,11 +263,18 @@ public class RoomThreeController {
       background.setImage(img);
       GameState.isPartFixed = true;
       GameState.phaseFour = true;
-      // SceneManager.addUi(AppUi.CHAT, App.loadFxml("chat"));
-      // TODO: Reload chat?
+      if (!GameState.hard) {
+        chat.runGpt(new ChatMessage("system", GptPromptEngineering.getPhaseFourProgress()));
+      } else {
+        chat.runGpt(new ChatMessage("system", GptPromptEngineering.getHardPhaseFourProgress()));
+      }
 
       activateSpeech(
           "You have fixed the engine!\n Now you have to reactivate it\n from somewhere...");
+      chat.addMessage(
+          new ChatMessage(
+              "assistant",
+              "You have fixed the engine!\n Now you have to reactivate it\n from somewhere..."));
       ;
     }
   }

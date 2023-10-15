@@ -1,9 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.io.IOException;
 import java.util.List;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import nz.ac.auckland.se206.ChatCentralControl;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Observer;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -41,12 +40,16 @@ public class ChatComponentController implements Observer {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public void initialize() {
-    System.out.println("ChatComponentController.initialize()");
+    // System.out.println("ChatComponentController.initialize()");
 
-    showLoadingIcon();
+    hideLoadingIcon();
     chatCentralControl = ChatCentralControl.getInstance();
     chatCentralControl.addObserver(this);
     chatCentralControl.getMessages();
+  }
+
+  public static ChatComponentController getInstance() {
+    return new ChatComponentController();
   }
 
   @FXML // send the message when the enter key is pressed
@@ -65,25 +68,23 @@ public class ChatComponentController implements Observer {
     }
     ChatMessage msg = new ChatMessage("user", message);
     chatCentralControl.addMessage(msg);
-    chatCentralControl.runGpt(msg);
+
+    if (!GameState.isAuthorising) {
+      addLabel(
+          "You need to be authorised to talk to Space Destroyer for security"
+              + " reasons.\nPlease click the middle screen in the main control room to authorise"
+              + " yourself.",
+          Pos.CENTER);
+      ;
+    } else {
+      chatCentralControl.runGpt(msg);
+    }
   }
 
   /** PlayMessageAction plays the last message written by GPT. */
   @FXML
   public void playMessageAction() {
     chatCentralControl.readMessage();
-  }
-
-  /**
-   * Navigates back to the previous view.
-   *
-   * @param event the action event triggered by the go back button
-   * @throws ApiProxyException if there is an error communicating with the API proxy
-   * @throws IOException if there is an I/O error
-   */
-  @FXML
-  private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    chatCentralControl.nextPhase();
   }
 
   public void addLabel(String message, Pos position) {
@@ -96,6 +97,8 @@ public class ChatComponentController implements Observer {
       text.setFont(javafx.scene.text.Font.font("Arial", 15));
     } else if (position == Pos.CENTER_RIGHT) {
       text.setFont(javafx.scene.text.Font.font("Comic Sans MS", 15));
+    } else if (position == Pos.CENTER) {
+      text.setFont(javafx.scene.text.Font.font("Franklin Gothic Medium", 15));
     }
     TextFlow textFlow = new TextFlow(text);
 
@@ -103,6 +106,8 @@ public class ChatComponentController implements Observer {
       textFlow.setStyle("-fx-background-color: rgb(255,242,102);" + "-fx-background-radius: 20px");
     } else if (position == Pos.CENTER_RIGHT) {
       textFlow.setStyle("-fx-background-color: rgb(255,255,255);" + "-fx-background-radius: 20px");
+    } else if (position == Pos.CENTER) {
+      textFlow.setStyle("-fx-background-color: rgb(255,117,128);" + "-fx-background-radius: 20px");
     }
 
     textFlow.setPadding(new Insets(5, 10, 5, 10));
@@ -131,6 +136,8 @@ public class ChatComponentController implements Observer {
         addLabel(msgString, Pos.CENTER_LEFT);
       } else if (msg.getRole().equals("user")) {
         addLabel(msgString, Pos.CENTER_RIGHT);
+      } else if (msg.getRole().equals("system")) {
+        addLabel(msgString, Pos.CENTER);
       }
     }
 
@@ -154,5 +161,15 @@ public class ChatComponentController implements Observer {
   @Override
   public void hideLoadingIcon() {
     loadingIcon.setVisible(false);
+  }
+
+  @Override
+  public void enableTextBox() {
+    inputText.setDisable(false);
+  }
+
+  @Override
+  public void disableTextBox() {
+    inputText.setDisable(true);
   }
 }
