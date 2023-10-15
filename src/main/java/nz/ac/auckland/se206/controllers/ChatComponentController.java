@@ -79,7 +79,8 @@ public class ChatComponentController implements Observer {
     } else {
       chatCentralControl.runGpt(msg);
     }
-    
+  }
+
   /** PlayMessageAction plays the last message written by GPT. */
   @FXML
   public void playMessageAction() {

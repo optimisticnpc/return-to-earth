@@ -71,7 +71,6 @@ public class RoomThreeController {
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
   private Sound sound = Sound.getInstance();
-  private Boolean isWarningShown = false;
   private ChatCentralControl chat = ChatCentralControl.getInstance();
   private TextToSpeech textToSpeech = new TextToSpeech();
 
