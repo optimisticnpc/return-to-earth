@@ -10,29 +10,34 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.StartController">
+
+<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.StartController">
    <children>
       <ImageView fitHeight="777.0" fitWidth="1400.0" preserveRatio="true">
          <image>
             <Image url="@../images/menu.png" />
          </image>
       </ImageView>
-      <VBox alignment="TOP_CENTER" layoutX="285.0" layoutY="62.0" prefHeight="409.0" prefWidth="476.0" spacing="10.0">
+      <VBox alignment="TOP_CENTER" layoutX="237.0" layoutY="67.0" prefHeight="409.0" prefWidth="476.0" spacing="10.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="119.0" prefWidth="476.0">
+            <VBox alignment="CENTER">
                <children>
-                  <ImageView fitHeight="292.0" fitWidth="730.0" preserveRatio="true">
+                  <ImageView fitHeight="318.0" fitWidth="806.0" preserveRatio="true">
                      <image>
                         <Image url="@../images/title.png" />
                      </image>
                   </ImageView>
                </children>
             </VBox>
-            <VBox prefHeight="52.0" prefWidth="476.0" />
+            <VBox prefHeight="20.0" prefWidth="806.0">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </VBox>
             <VBox alignment="CENTER" prefHeight="99.0" prefWidth="476.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="107.0" prefWidth="476.0" spacing="10.0">
-    <children>
+      <children>
         <Button fx:id="prevDifficultyButton" onAction="#onClickPrevDifficultyButton" styleClass="arrow-button">
             <graphic>
                 <ImageView fitHeight="60.0" fitWidth="60.0" preserveRatio="true" rotate="180.0">
@@ -56,8 +61,8 @@
                 </ImageView>
             </graphic>
         </Button>
-    </children>
-</HBox>
+      </children>
+      </HBox>
                   <Label fx:id="helpLabel" alignment="CENTER" prefHeight="26.0" prefWidth="184.0" text="- Infinite hints! -" textAlignment="CENTER">
                      <font>
                         <Font name="Arial" size="22.0" />
@@ -65,8 +70,8 @@
                   </Label>
                </children>
             </VBox>
-<HBox alignment="CENTER" prefHeight="82.0" prefWidth="476.0" spacing="10.0">
-    <children>
+      <HBox alignment="CENTER" prefHeight="82.0" prefWidth="476.0" spacing="10.0">
+      <children>
         <Button fx:id="prevTimeButton" onAction="#onClickPrevTimeButton" styleClass="arrow-button">
             <graphic>
                 <ImageView fitHeight="60.0" fitWidth="60.0" preserveRatio="true" rotate="180.0">
@@ -90,15 +95,15 @@
                 </ImageView>
             </graphic>
         </Button>
-    </children>
-</HBox>
+      </children>
+      </HBox>
 
-         </children>
+               </children>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </VBox>
-      <Button fx:id="startButton" layoutX="561.0" layoutY="584.0" mnemonicParsing="false" onMouseClicked="#onClickStartButton" prefHeight="89.0" prefWidth="188.0" text="Start">
+      <Button fx:id="startButton" layoutX="546.0" layoutY="587.0" mnemonicParsing="false" onMouseClicked="#onClickStartButton" prefHeight="89.0" prefWidth="188.0" text="Start">
          <font>
             <Font size="38.0" />
          </font>
@@ -110,6 +115,7 @@
                   <Image url="@../images/star_yellow_single.png" />
                </image>
             </ImageView>
-         </graphic></Button>
+         </graphic>
+      </Button>
    </children>
 </Pane>
