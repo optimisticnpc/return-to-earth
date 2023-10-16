@@ -150,7 +150,8 @@ public class GptPromptEngineering {
     return "If the user asks you for a hint for the word scramble give them a hint for the answer"
         + " \""
         + WordScrambleController.getCorrectWordString()
-        + "\". ";
+        + ". Do not give them the correct answer straight away. Only give them the answer after"
+        + " they ask for hints twice.";
   }
 
   // Used for hint buttons
