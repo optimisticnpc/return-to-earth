@@ -26,7 +26,6 @@ import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
-import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -92,7 +91,7 @@ public class RoomOneController {
   public void initialize() throws FileNotFoundException {
 
     System.out.println("RoomOneController.initialize()");
-    timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
+
     // initially sets speech bubble to invisible.
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
@@ -103,10 +102,6 @@ public class RoomOneController {
 
     // bouncingBall.setVisible(false); TODO: Undo this
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
-    // update hintlabel according to the difficulty
-    HintCounter hintCounter = HintCounter.getInstance();
-    hintCounter.setHintCount();
-    hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
     soundIcon.opacityProperty().bind(sound.getIconOpacityProperty());
@@ -367,9 +362,7 @@ public class RoomOneController {
     }
   }
 
-  /**
-   * Selects a random riddle from the list of riddles.
-   */
+  /** Selects a random riddle from the list of riddles. */
   private void selectRandomRiddle() {
     Random random = new Random();
     wordToGuess = riddles[random.nextInt(riddles.length)];
@@ -377,6 +370,7 @@ public class RoomOneController {
 
   /**
    * Handles the click event on the wire compartment.
+   *
    * @param event the mouse event
    */
   @FXML
@@ -454,9 +448,7 @@ public class RoomOneController {
     fadeTransition.play();
   }
 
-  /**
-   * Handles the click event on the keypad.
-   */
+  /** Handles the click event on the keypad. */
   private void addWordScramblePromptsIfNotAdded() {
     // Add hint prompts only if difficulty is not hard
     if (!GameState.isWordScramblePromptAdded) {

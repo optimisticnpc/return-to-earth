@@ -20,11 +20,6 @@
       
       <Button fx:id="submitCodeButton" layoutX="1000.0" layoutY="452.0" onAction="#onSubmitCode" prefHeight="50.0" prefWidth="103.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-border-radius: 5;" text="Enter" />
       <Label fx:id="resultLabel" layoutX="579.0" layoutY="517.0" prefHeight="35.0" prefWidth="326.0" style="-fx-font-size: 16; -fx-text-fill: white;" text="" />
-      <Label fx:id="timerLabel" layoutX="511.0" layoutY="81.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <Button fx:id="goBackButton" layoutX="369.0" layoutY="81.0" onAction="#onGoBack" prefHeight="47.0" prefWidth="103.0" style="-fx-font-size: 18;" styleClass="otherButtons" text="Back">
          <font>
             <Font size="18.0" />
@@ -37,5 +32,6 @@
          </font>
       </Button>
  <fx:include layoutX="330.0" layoutY="402.0" source="loadingCircle.fxml" />
+      <fx:include layoutX="521.0" layoutY="81.0" source="timerhintdisplay.fxml" />
    </children>
 </Pane>

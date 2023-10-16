@@ -3,16 +3,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #969696;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.QuestionTwoController">
+<Pane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #969696;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.QuestionTwoController">
    <children>
-      <Button fx:id="goBackButton" layoutX="357.0" layoutY="69.0" onAction="#onGoBack" prefHeight="47.0" prefWidth="103.0" style="-fx-font-size: 18;" styleClass="otherButtons" text="Back">
+      <Button fx:id="goBackButton" layoutX="360.0" layoutY="78.0" onAction="#onGoBack" prefHeight="47.0" prefWidth="103.0" style="-fx-font-size: 18;" styleClass="otherButtons" text="Back">
          <font>
             <Font size="18.0" />
          </font>
@@ -34,29 +31,7 @@
             <Font size="30.0" />
          </font>
       </Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="59.0" layoutX="504.0" layoutY="72.0" stroke="#9ea4ff" strokeType="OUTSIDE" strokeWidth="3.0" width="253.0">
-         <fill>
-            <RadialGradient centerX="0.5" centerY="0.7748815165876777" radius="0.867816091954023">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.3055555522441864" green="0.375" blue="1.0" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.07894736528396606" green="0.07894736528396606" blue="0.07894736528396606" />
-                     </color>
-                  </Stop>
-               </stops>
-            </RadialGradient>
-         </fill>
-      </Rectangle>
-      <Label fx:id="timerLabel" layoutX="528.0" layoutY="83.0" prefHeight="35.0" prefWidth="328.0" style="-fx-font-weight: bold;" text="Time Remaining: 02:00" textFill="#3eff00">
-         <font>
-            <Font name="Symbol" size="20.0" />
-         </font>
-      </Label>
       <fx:include layoutX="330.0" layoutY="402.0" source="loadingCircle.fxml" />
+      <fx:include layoutX="490.0" layoutY="78.0" source="timerhintdisplay.fxml" />
    </children>
 </Pane>

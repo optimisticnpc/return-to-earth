@@ -38,7 +38,7 @@ public class LoadingAnimationController implements LoadingAnimationsIterface {
   /** Called by JavaFX when controller is created (after elements have been initialized). */
   @FXML
   public void initialize() {
-    System.out.println("LoadingAnimationController.initialize()");
+    // System.out.println("LoadingAnimationController.initialize()");
     speechBubble.setVisible(false);
     textLabel.setVisible(false);
 

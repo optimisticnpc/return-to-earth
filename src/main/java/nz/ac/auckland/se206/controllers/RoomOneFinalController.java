@@ -20,7 +20,6 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ButtonOrder;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameTimer;
-import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
@@ -68,17 +67,11 @@ public class RoomOneFinalController {
 
     System.out.println("RoomOneFinalController.initialize()");
 
-    timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
-
     bouncingBall.setVisible(false);
 
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
-    // update hintlabel according to the difficulty
-    HintCounter hintCounter = HintCounter.getInstance();
-    hintCounter.setHintCount();
-    hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
     soundIcon.opacityProperty().bind(sound.getIconOpacityProperty());

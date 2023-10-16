@@ -12,7 +12,6 @@ import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SpeechBubble;
@@ -36,10 +35,6 @@ public class JokeController {
     speechBubble.setVisible(true);
     normalSpeechLabel.setVisible(false);
     normalSpeechLabel.textProperty().bind(speech.speechDisplayProperty());
-
-    // Bind timer
-    GameTimer gameTimer = GameTimer.getInstance();
-    timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
   }
 
   /**

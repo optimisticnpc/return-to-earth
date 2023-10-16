@@ -28,8 +28,6 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.GameTimer;
-import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -79,9 +77,6 @@ public class RoomThreeController {
   public void initialize() {
     System.out.println("RoomThreeController.initialize()");
 
-    // Bind timer
-    GameTimer gameTimer = GameTimer.getInstance();
-    timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
     OxygenMeter oxygenMeter = OxygenMeter.getInstance();
     oxygenMeter.setRoomThreeController(this);
     oxygenBar.progressProperty().bind(oxygenMeter.oxygenProgressProperty());
@@ -91,11 +86,6 @@ public class RoomThreeController {
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
-
-    // Set hint counter
-    HintCounter hintCounter = HintCounter.getInstance();
-    hintCounter.setHintCount();
-    hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
     soundIcon.opacityProperty().bind(sound.getIconOpacityProperty());

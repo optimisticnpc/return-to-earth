@@ -15,7 +15,6 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.MyControllers;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -35,7 +34,6 @@ public class WordScrambleController implements MyControllers {
     return correctWordString;
   }
 
-  @FXML private Label timerLabel;
   @FXML private TextField inputField;
   @FXML private Label resultLabel;
   @FXML private Label scrambledWordLabel;
@@ -77,10 +75,6 @@ public class WordScrambleController implements MyControllers {
    */
   public void initialize() {
     System.out.println("WordScrambleController.initialize()");
-
-    // Bind timer
-    GameTimer gameTimer = GameTimer.getInstance();
-    timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
     // Allow pressing enter to submit the code
     inputField.addEventFilter(
