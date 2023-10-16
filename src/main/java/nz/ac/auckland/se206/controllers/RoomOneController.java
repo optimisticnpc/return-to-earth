@@ -111,6 +111,34 @@ public class RoomOneController {
     InputStream soundOn = new FileInputStream("src/main/resources/images/soundicon.png");
     Image soundOnImage = new Image(soundOn);
     sound.soundImageProperty().set(soundOnImage);
+
+    setupAiHoverImageListeners();
+  }
+
+  private void setupAiHoverImageListeners() {
+
+    // Hide the hover image of the AI when loading animation is playing
+    GameState.isLoadingAnimationlaying.addListener(
+        (observable, oldValue, newValue) -> {
+          if (!oldValue && newValue) { // If it changes from false to true
+            hideAiHoverImage();
+          }
+        });
+
+    GameState.isLoadingAnimationlaying.addListener(
+        (observable, oldValue, newValue) -> {
+          if (oldValue && !newValue) { // If it changes true to false
+            showAiHoverImage();
+          }
+        });
+  }
+
+  private void hideAiHoverImage() {
+    robot.setVisible(false);
+  }
+
+  private void showAiHoverImage() {
+    robot.setVisible(true);
   }
 
   /**

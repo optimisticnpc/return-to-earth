@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.AnimationCentralControl;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.LoadingAnimationsIterface;
 
 public class LoadingAnimationController implements LoadingAnimationsIterface {
@@ -62,6 +63,8 @@ public class LoadingAnimationController implements LoadingAnimationsIterface {
 
   public void playAnimation() {
 
+    GameState.isLoadingAnimationlaying.set(true);
+
     speechBubble.setVisible(true);
     textLabel.setVisible(true);
 
@@ -81,6 +84,8 @@ public class LoadingAnimationController implements LoadingAnimationsIterface {
   }
 
   public void stopAnimation() {
+    GameState.isLoadingAnimationlaying.set(false);
+
     if (currentTransition != null) {
       currentTransition.stop();
     }
