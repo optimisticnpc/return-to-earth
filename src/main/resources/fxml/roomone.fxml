@@ -7,9 +7,10 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import nz.ac.auckland.se206.ball.BouncingBallPane?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
+<!-- <?import nz.ac.auckland.se206.ball.BouncingBallPane?> -->
+
+<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
    <children>
       <ImageView fx:id="background" fitHeight="720.0" fitWidth="1082.0" layoutX="233.0" pickOnBounds="true">
          <image>
@@ -24,7 +25,7 @@
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="478.0" layoutY="232.0" prefHeight="96.0" prefWidth="269.0">
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="478.0" layoutY="232.0" prefHeight="96.0" prefWidth="269.0" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>
@@ -54,19 +55,18 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <ImageView fx:id="wireImage" fitHeight="56.0" fitWidth="167.0" layoutX="1084.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true" rotate="17.4">
+      <ImageView fx:id="wireImage" fitHeight="56.0" fitWidth="167.0" layoutX="1084.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true" rotate="17.4">
          <image>
             <Image url="@../images/wire.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="wire" fitHeight="56.0" fitWidth="167.0" layoutX="1084.0" layoutY="439.0" onMouseClicked="#clickWire" pickOnBounds="true" preserveRatio="true" rotate="17.4" styleClass="rectangle-hoverable">
+      <ImageView fx:id="wire" fitHeight="56.0" fitWidth="167.0" layoutX="1084.0" layoutY="535.0" onMouseClicked="#clickWire" pickOnBounds="true" preserveRatio="true" rotate="17.4" styleClass="rectangle-hoverable">
          <image>
             <Image url="@../images/wire%20hover.png" />
          </image>
       </ImageView>
-      <Polygon fx:id="movetoRoomTwo" fill="#ff0400" layoutX="320.0" layoutY="360.0" onMouseClicked="#clickRoomTwo" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
-      <Polygon fx:id="movetoRoomThree" fill="#ff0400" layoutX="1210.0" layoutY="360.0" onMouseClicked="#clickRoomThree" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" rotate="180.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
-      <BouncingBallPane fx:id="bouncingBall" layoutX="531.0" layoutY="361.0" prefHeight="63.0" prefWidth="115.0" />
+      <Polygon fx:id="wireCompartment" fill="DODGERBLUE" layoutX="1077.0" layoutY="555.0" onMouseClicked="#clickWireCompartment" opacity="0.54" points="-20.0, 8.0, 168.2667236328125, 70.3333740234375, 182.1334228515625, -9.6666259765625, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
+      <!-- <BouncingBallPane fx:id="bouncingBall" layoutX="531.0" layoutY="361.0" prefHeight="63.0" prefWidth="115.0" /> -->
       <Rectangle fx:id="ballToggle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="78.0" layoutX="523.0" layoutY="353.0" onMouseClicked="#clickBallToggle" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="129.0" />
       <fx:include fx:id="chatPanel" source="chatcomponent.fxml" />
       <ImageView fx:id="soundIcon" fitHeight="61.0" fitWidth="53.0" layoutX="1215.0" layoutY="15.0" onMouseClicked="#clickSoundIcon" pickOnBounds="true" preserveRatio="true">
@@ -74,5 +74,7 @@
             <Image url="@../images/soundicon.png" />
          </image>
       </ImageView>
+      <Polygon fx:id="movetoRoomTwo" fill="#ff0400" layoutX="320.0" layoutY="360.0" onMouseClicked="#clickRoomTwo" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
+      <Polygon fx:id="movetoRoomThree" fill="#ff0400" layoutX="1210.0" layoutY="360.0" onMouseClicked="#clickRoomThree" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" rotate="180.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
    </children>
 </Pane>

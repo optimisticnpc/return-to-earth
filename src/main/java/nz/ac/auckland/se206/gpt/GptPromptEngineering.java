@@ -3,7 +3,7 @@ package nz.ac.auckland.se206.gpt;
 import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MathQuestionSelector;
-import nz.ac.auckland.se206.controllers.SpacesuitPuzzleController;
+import nz.ac.auckland.se206.controllers.WordScrambleController;
 
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
@@ -145,7 +145,7 @@ public class GptPromptEngineering {
 
     return "If the user asks you for a hint for the word scramble give them a hint for the answer"
         + " \""
-        + SpacesuitPuzzleController.getCorrectWordString()
+        + WordScrambleController.getCorrectWordString()
         + "\". ";
   }
 
@@ -163,5 +163,23 @@ public class GptPromptEngineering {
       return true;
     }
     return false;
+  }
+
+  public static String getJokePrompt() {
+    return "You are the AI system of this spaceship and your name is Space Destroyer (you do not"
+        + " need to mention this, the user already knows you). You are responsible to get"
+        + " the spaceship back to the Earth safely. Unfortunately, one of the spaceship's"
+        + " parts is malfunctioning and you need the user to fix it.The player needs to"
+        + " access an upgraded spacesuit as part of this mission. However only the most"
+        + " witty and qualified people can access this suitAsk the player to tell you a"
+        + " joke. If you think the joke is funny, respond with 'Hahahaha' and explain why"
+        + " you found the joke funny. If you don't find the joke funny, respond with 'That's"
+        + " not funny' and provide reasons for why you didn't find it amusing. Continue"
+        + " asking the player for jokes until they share one that you find funny.";
+  }
+
+  public static String getFirstJokeMessage() {
+    return "Only the greatest and funniest space explorers may use the super space suit. Please"
+        + " tell me a funny joke and then I will let you access the spacesuit.";
   }
 }

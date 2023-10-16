@@ -161,7 +161,7 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionTwo(MouseEvent event) throws IOException {
-  if (!GameState.hard) {
+    if (!GameState.hard) {
       addMathPromptsIfNotAdded();
     }
 
@@ -226,20 +226,6 @@ public class RoomTwoController {
     }
   }
 
-  private void addWordScramblePromptsIfNotAdded() {
-    if (!GameState.isWordScramblePromptAdded) {
-      String prompt = GptPromptEngineering.hintWordScrambleSetup();
-      if (GameState.medium) {
-        prompt = prompt + GptPromptEngineering.getMediumHintReminder();
-      }
-
-      ChatCentralControl.getInstance()
-          .getChatCompletionRequest()
-          .addMessage(new ChatMessage("system", prompt));
-      GameState.isWordScramblePromptAdded = true;
-    }
-  }
-
   /**
    * Handles the click event on the spacesuit.
    *
@@ -256,28 +242,16 @@ public class RoomTwoController {
       return;
     }
 
-    // If the scramble word puzzle hasn't been solved
-    // Go to enter access key screen
-    if (!GameState.isSpacesuitUnlocked) {
-      // Add hint prompts only if difficulty is not hard
-      if (!GameState.hard) {
-        addWordScramblePromptsIfNotAdded();
-      }
-
-      Parent spacesuitPuzzlesRoom = SceneManager.getUiRoot(AppUi.SPACESUIT_PUZZLE);
-      App.getScene().setRoot(spacesuitPuzzlesRoom);
-      // If spacesuit hasn't been revealed
-    } else if (!GameState.isSpacesuitRevealed) {
+    if (!GameState.isSpacesuitRevealed) {
       revealSpacesuit();
       GameState.isSpacesuitRevealed = true;
+    } else if (!GameState.isSpacesuitUnlocked) {
+      Parent spacesuitPuzzlesRoom = SceneManager.getUiRoot(AppUi.JOKE_PUZZLE);
+      App.getScene().setRoot(spacesuitPuzzlesRoom);
     } else if (!GameState.isSpacesuitCollected) {
       collectSpacesuit();
       activateSpeech(
-          "You have collected the spacesuit!\nNow you're able to stay outside\nfor longer!");
-      chat.addMessage(
-          new ChatMessage(
-              "assistant",
-              "You have collected the spacesuit!\nNow you're able to stay outside\nfor longer!"));
+          "You have collected the spacesuit! Now you're able to stay outside for longer!");
       GameState.isSpacesuitCollected = true;
       GameState.isSpacesuitJustCollected = true;
     }

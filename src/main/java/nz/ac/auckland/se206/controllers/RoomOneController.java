@@ -59,6 +59,7 @@ public class RoomOneController {
   @FXML private BouncingBallPane bouncingBall;
   @FXML private Rectangle ballToggle;
   @FXML private ImageView soundIcon;
+  @FXML private Polygon wireCompartment;
 
   @FXML private AnchorPane chatPanel;
 
@@ -88,7 +89,7 @@ public class RoomOneController {
     // initially sets speech bubble to invisible.
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
-    bouncingBall.setVisible(false);
+    // bouncingBall.setVisible(false); TODO: Undo this
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
     // update hintlabel according to the difficulty
     HintCounter hintCounter = HintCounter.getInstance();
@@ -213,7 +214,7 @@ public class RoomOneController {
   @FXML
   private void clickWire(MouseEvent event) {
     GameState.isWireCollected = true;
-    activateSpeech("You have collected the wire!\nYou might need it to\nfix something...");
+    activateSpeech("You have collected the wire!\nYou might need it to fix something...");
     room.getChildren().remove(wire);
     room.getChildren().remove(wireImage);
   }
@@ -299,5 +300,45 @@ public class RoomOneController {
     System.out.println("target X = " + targetX);
     tt.setToX(targetX);
     tt.play();
+  }
+
+  @FXML
+  public void clickWireCompartment(MouseEvent event) throws IOException {
+    System.out.println("Wire Compartment Clicked");
+
+    // If riddle is not solved, do no allow entry
+    if (!GameState.isRiddleResolved) {
+      activateSpeech("Authorisation needed to access ship compartments.");
+      return;
+    }
+
+    // If the scramble word puzzle hasn't been solved
+    // Go to enter access key screen
+    if (!GameState.isWireCompartmentUnlocked) {
+      // Add hint prompts only if difficulty is not hard
+      if (!GameState.hard) {
+        addWordScramblePromptsIfNotAdded();
+      }
+
+      Parent spacesuitPuzzlesRoom = SceneManager.getUiRoot(AppUi.WORD_SCRAMBLE);
+      App.getScene().setRoot(spacesuitPuzzlesRoom);
+      // If spacesuit hasn't been revealed
+    } else {
+      wireCompartment.setVisible(false);
+    }
+  }
+
+  private void addWordScramblePromptsIfNotAdded() {
+    if (!GameState.isWordScramblePromptAdded) {
+      String prompt = GptPromptEngineering.hintWordScrambleSetup();
+      if (GameState.medium) {
+        prompt = prompt + GptPromptEngineering.getMediumHintReminder();
+      }
+
+      ChatCentralControl.getInstance()
+          .getChatCompletionRequest()
+          .addMessage(new ChatMessage("system", prompt));
+      GameState.isWordScramblePromptAdded = true;
+    }
   }
 }

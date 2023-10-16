@@ -65,6 +65,8 @@ public class GameState {
   public static boolean isMathQuestionPromptAdded = false;
   public static boolean isWordScramblePromptAdded = false;
 
+  public static boolean isWireCompartmentUnlocked = false;
+
   /**
    * Resets the game by clearing and initializing game state variables, updating room visuals, and
    * returning to the start screen.
@@ -87,6 +89,7 @@ public class GameState {
     isWarningShown = false;
     isSpacesuitJustCollected = false;
     isPartFixed = false;
+    isWireCompartmentUnlocked = true;
 
     isMathQuestionPromptAdded = false;
     isWordScramblePromptAdded = false;
