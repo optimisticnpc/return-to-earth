@@ -8,6 +8,8 @@ public interface Observer {
   void showLoadingIcon();
 
   void hideLoadingIcon();
+
   void enableTextBox();
+
   void disableTextBox();
 }

@@ -93,7 +93,7 @@ public class Sound {
    *
    * @return The DoubleProperty for the icon's opacity.
    */
-  public DoubleProperty iconOpacityProperty() {
+  public DoubleProperty getIconOpacityProperty() {
     return iconOpacity;
   }
 

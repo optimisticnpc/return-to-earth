@@ -69,7 +69,7 @@ public class RoomTwoController {
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
-    soundIcon.opacityProperty().bind(sound.iconOpacityProperty());
+    soundIcon.opacityProperty().bind(sound.getIconOpacityProperty());
 
     // Make the overlay images not visible
     toolBoxOpenImage.setOpacity(0);
@@ -87,6 +87,7 @@ public class RoomTwoController {
     setupAiHoverImageListeners();
   }
 
+  /** Sets up listeners for the AI hover image. The image is hidden when the loading animation is */
   private void setupAiHoverImageListeners() {
 
     // Hide the hover image of the AI when loading animation is playing
@@ -105,10 +106,12 @@ public class RoomTwoController {
         });
   }
 
+  /** Hides the AI hover image. This is called when the loading animation is playing. */
   private void hideAiHoverImage() {
     robot.setVisible(false);
   }
 
+  /** Shows the AI hover image. This is called when the loading animation is not playing. */
   private void showAiHoverImage() {
     robot.setVisible(true);
   }
@@ -123,6 +126,12 @@ public class RoomTwoController {
     sound.toggleImage();
   }
 
+  /**
+   * Handles the click event on the authorisation button.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the authorisation view
+   */
   @FXML
   public void clickAuthorisation(MouseEvent event) throws IOException {
     // If riddle not solved tell the player to get authorised
@@ -165,12 +174,11 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionOne(MouseEvent event) throws IOException {
-
+    // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation needed to access ship materials");
       return;
     }
-
     if (!GameState.hard) {
       addMathPromptsIfNotAdded();
     }
@@ -179,13 +187,18 @@ public class RoomTwoController {
     App.getScene().setRoot(questionOneRoot);
   }
 
+  /**
+   * Adds the math prompts if they have not been added yet. This is called when the player clicks on
+   * a question.
+   */
   private void addMathPromptsIfNotAdded() {
+    // If the math question prompt has not been added yet, add it
     if (!GameState.isMathQuestionPromptAdded) {
       String prompt = GptPromptEngineering.hintMathQuestionPrompt();
       if (GameState.medium) {
         prompt = prompt + GptPromptEngineering.getMediumHintReminder();
       }
-
+      // Add the prompt to the chat
       ChatCentralControl.getInstance()
           .getChatCompletionRequest()
           .addMessage(new ChatMessage("system", prompt));
@@ -201,7 +214,7 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionTwo(MouseEvent event) throws IOException {
-
+    // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation needed to access ship materials");
       return;
@@ -287,7 +300,7 @@ public class RoomTwoController {
       activateSpeech("Authorisation needed to access\nthe system.");
       return;
     }
-
+    // If the joke is not resolved, go to joke puzzle
     if (!GameState.isSpacesuitRevealed) {
       revealSpacesuit();
       GameState.isSpacesuitRevealed = true;
@@ -332,6 +345,7 @@ public class RoomTwoController {
       collectToolbox();
       GameState.isToolboxCollected = true;
       GameState.phaseThree = true;
+      // Add the prompt to the chat
       if (GameState.hard) {
         chat.runGpt(new ChatMessage("system", GptPromptEngineering.getHardPhaseThreeProgress()));
       } else {

@@ -138,6 +138,10 @@ public class ScoreScreenController {
     helpStarsButton.setVisible(true);
   }
 
+  /**
+   * Handles the click event on the reset button. It resets the fastest completion times to the max
+   * value.
+   */
   @FXML
   private void onClickResetButton() {
     System.out.println("Times Reset");

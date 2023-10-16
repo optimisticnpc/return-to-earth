@@ -54,10 +54,22 @@ public class SceneManager {
     return sceneMap.get(appUi);
   }
 
+  /**
+   * Adds a controller to the controller map with the specified root node and controller.
+   *
+   * @param uiRoot The root node of the UI element or scene.
+   * @param controller The controller associated with the UI element or scene.
+   */
   public static void addController(Parent uiRoot, MyControllers controller) {
     controllerMap.put(uiRoot, controller);
   }
 
+  /**
+   * Retrieves the controller associated with the specified root node.
+   *
+   * @param uiRoot The root node of the UI element or scene.
+   * @return The controller associated with the UI element or scene.
+   */
   public static MyControllers getController(Parent uiRoot) {
     return controllerMap.get(uiRoot);
   }

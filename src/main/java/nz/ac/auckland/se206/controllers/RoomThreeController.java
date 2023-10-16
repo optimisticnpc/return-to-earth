@@ -98,10 +98,11 @@ public class RoomThreeController {
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
-    soundIcon.opacityProperty().bind(sound.iconOpacityProperty());
+    soundIcon.opacityProperty().bind(sound.getIconOpacityProperty());
     setupAiHoverImageListeners();
   }
 
+  /** Sets up listeners for the AI hover image. */
   private void setupAiHoverImageListeners() {
 
     // Hide the hover image of the AI when loading animation is playing

@@ -8,7 +8,7 @@ import nz.ac.auckland.se206.controllers.WordScrambleController;
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
 
-  public static String getAIPersonality() {
+  public static String getAiPersonality() {
     return "You are the AI system of this spaceship and your name is Space Destroyer. You are"
         + " responsible to get the spaceship back to the Earth safely. Unfortunately, one of"
         + " the spaceship's parts is malfunctioning and you need the user to fix it. You"
@@ -151,6 +151,12 @@ public class GptPromptEngineering {
 
   // Used for hint buttons
 
+  /**
+   * Checks if the user is authorized to communicate with Space Destroyer and prints a message if
+   * authorization is required.
+   *
+   * @return true if authorization is required and a message is printed; false otherwise.
+   */
   public static boolean checkIfAuthorisedAndPrintMessage() {
     if (!GameState.isAuthorising) {
       ChatMessage message =
@@ -165,6 +171,11 @@ public class GptPromptEngineering {
     return false;
   }
 
+  /**
+   * Returns a prompt message for initiating a joke-telling interaction with the player.
+   *
+   * @return A prompt message for initiating a joke-telling interaction with the player.
+   */
   public static String getJokePrompt() {
     return "You are the AI system of this spaceship and your name is Space Destroyer (you do not"
         + " need to mention this, the user already knows you). You are responsible to get"
@@ -178,6 +189,11 @@ public class GptPromptEngineering {
         + " asking the player for jokes until they share one that you find funny.";
   }
 
+  /**
+   * Returns a prompt message for the first joke the player tells.
+   *
+   * @return A prompt message for the first joke the player tells.
+   */
   public static String getFirstJokeMessage() {
     return "Well done, you have found the upgraded space suit. I need you to access the spacesuit."
         + " However, only the most witty and qualified individuals may use the super space"

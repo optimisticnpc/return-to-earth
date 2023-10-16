@@ -43,10 +43,14 @@ public class QuestionOneController implements MyControllers {
     }
   }
 
+  /**
+   * Handles the click event on the "Hint" button. Sends a message to the chat asking for a hint for
+   * the first question.
+   */
   @FXML
   private void onClickQuestionOneHintButton() {
 
-    if(GptPromptEngineering.checkIfAuthorisedAndPrintMessage()) {
+    if (GptPromptEngineering.checkIfAuthorisedAndPrintMessage()) {
       return;
     }
 
@@ -67,6 +71,10 @@ public class QuestionOneController implements MyControllers {
     App.getScene().setRoot(roomTwoRoot);
   }
 
+  /**
+   * Handles the click event on the "Next" button. Navigates to the Question Two view when the
+   * button is clicked.
+   */
   @Override
   public void disableHintButton() {
     questionOneHintButton.setDisable(true);

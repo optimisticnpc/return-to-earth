@@ -51,6 +51,7 @@ public class JokeChatController {
 
   private TextToSpeech textToSpeech = new TextToSpeech();
 
+  /** Called by JavaFX when controller is created (after elements have been initialized). */
   public void initialize() {
     System.out.println("JokeChatController.initialize()");
     hideLoadingIcon();
@@ -70,7 +71,9 @@ public class JokeChatController {
         });
   }
 
+  /** Starts the joke challenge by sending the first message from the assistant. */
   private void startJokeChallenge() {
+    // Send the first message from the assistant
     ChatMessage prompt = new ChatMessage("system", GptPromptEngineering.getJokePrompt());
     ChatMessage firstMessage =
         new ChatMessage("assistant", GptPromptEngineering.getFirstJokeMessage());
@@ -89,6 +92,7 @@ public class JokeChatController {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public void runGpt(ChatMessage msg) {
+    // Play the loading animation
     AnimationCentralControl.getInstance().playAllAnimation();
     showLoadingIcon();
     disableTextBox();
@@ -98,6 +102,7 @@ public class JokeChatController {
 
     long startTime = System.currentTimeMillis(); // Record time
 
+    // Create a new thread to run the GPT model
     Task<ChatMessage> callGptTask =
         new Task<>() {
           @Override
@@ -189,32 +194,55 @@ public class JokeChatController {
         .start();
   }
 
+  /**
+   * Records and prints the time taken to run the GPT model.
+   *
+   * @param startTime the start time
+   */
   protected void recordAndPrintTime(long startTime) {
     long time = System.currentTimeMillis() - startTime;
     System.out.println();
     System.out.println("Search took " + time + "ms");
   }
 
+  /**
+   * Returns the list of messages.
+   *
+   * @return the list of messages
+   */
   public List<ChatMessage> getMessages() {
     return Collections.unmodifiableList(messages);
   }
 
+  /** Sets up the chat configuration. */
   private void setupChatConfiguration() {
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.5).setMaxTokens(100);
   }
 
+  /**
+   * Returns the chat completion request.
+   *
+   * @return the chat completion request
+   */
   public ChatCompletionRequest getChatCompletionRequest() {
     return chatCompletionRequest;
   }
 
-  @FXML // send the message when the enter key is pressed
+  /**
+   * Sets the chat completion request.
+   *
+   * @param event the chat completion request
+   */
+  @FXML
   private void onEnterPressed(KeyEvent event) {
+    // send the message when the enter key is pressed
     if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
       sendButton.fire();
     }
   }
 
+  /** Sets the send button action. */
   @FXML
   public void setSendButtonAction() {
     String message = inputText.getText().replaceAll("[\n\r]", ""); // Remove all newline characters
@@ -233,10 +261,17 @@ public class JokeChatController {
     readMessage();
   }
 
+  /**
+   * Adds a label to the chat log.
+   *
+   * @param message the message to add
+   * @param position the position of the message
+   */
   public void addLabel(String message, Pos position) {
-    HBox hBox = new HBox();
-    hBox.setAlignment(position);
-    hBox.setPadding(new Insets(5, 5, 5, 10));
+    // Create a new label
+    HBox box = new HBox();
+    box.setAlignment(position);
+    box.setPadding(new Insets(5, 5, 5, 10));
 
     Text text = new Text(message);
     if (position == Pos.CENTER_LEFT) {
@@ -248,6 +283,7 @@ public class JokeChatController {
     }
     TextFlow textFlow = new TextFlow(text);
 
+    // Set the background color of the label
     if (position == Pos.CENTER_LEFT) {
       textFlow.setStyle("-fx-background-color: rgb(255,242,102);" + "-fx-background-radius: 20px");
     } else if (position == Pos.CENTER_RIGHT) {
@@ -258,12 +294,13 @@ public class JokeChatController {
 
     textFlow.setPadding(new Insets(5, 10, 5, 10));
 
-    hBox.getChildren().add(textFlow);
+    // Add the label to the chat log
+    box.getChildren().add(textFlow);
     Platform.runLater(
         new Runnable() {
           @Override
           public void run() {
-            chatLog.getChildren().add(hBox);
+            chatLog.getChildren().add(box);
           }
         });
   }
@@ -284,6 +321,7 @@ public class JokeChatController {
     inputText.setDisable(true);
   }
 
+  /** Adds a message to the chat log. */
   private void cheatCodes() {
 
     KeyCombination keyCombB =
