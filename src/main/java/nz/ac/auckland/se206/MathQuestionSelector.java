@@ -185,7 +185,7 @@ public class MathQuestionSelector {
             "Three consecutive odd numbers are added together to give a sum of 129. What is the"
                 + " largest of these numbers?",
             "45",
-            "43+43+43 is equal to 126. ",
+            "43+43+43 is equal to 129. ",
             "The answer is close to 43. Don't forget it is odd! "));
   }
 }
