@@ -57,5 +57,6 @@
             <Font name="Symbol" size="20.0" />
          </font>
       </Label>
+      <fx:include layoutX="330.0" layoutY="402.0" source="loadingCircle.fxml" />
    </children>
 </Pane>
