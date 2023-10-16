@@ -10,6 +10,7 @@ public class MathQuestion {
 
   /** The correct answer to the mathematical question. */
   private String answer;
+
   private String hint1;
   private String hint2;
 
@@ -24,6 +25,14 @@ public class MathQuestion {
     this.answer = answer;
   }
 
+  /**
+   * Constructs a new MathQuestion object with the specified question text, answer, and two hints.
+   *
+   * @param question The text of the mathematical question.
+   * @param answer The correct answer to the mathematical question.
+   * @param hint1 The first hint for the mathematical question.
+   * @param hint2 The second hint for the mathematical question.
+   */
   public MathQuestion(String question, String answer, String hint1, String hint2) {
     this.question = question;
     this.answer = answer;
@@ -49,10 +58,20 @@ public class MathQuestion {
     return answer;
   }
 
+  /**
+   * Gets the first hint for the mathematical question.
+   *
+   * @return The first hint for the mathematical question, or null if no hint is available.
+   */
   public String getHint1() {
     return hint1;
   }
 
+  /**
+   * Gets the second hint for the mathematical question.
+   *
+   * @return The second hint for the mathematical question, or null if no hint is available.
+   */
   public String getHint2() {
     return hint2;
   }

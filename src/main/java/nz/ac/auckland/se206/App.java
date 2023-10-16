@@ -43,10 +43,12 @@ public class App extends Application {
    * @throws IOException If the file is not found.
    */
   public static Parent loadFxml(final String fxml) throws IOException {
+    // Load the FXML file
     FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
     Parent root = loader.load();
     Object controller = loader.getController();
 
+    // Add the controller to the scene manager if it is a MyControllers instance
     if (controller instanceof MyControllers) {
       MyControllers myController = (MyControllers) controller;
       SceneManager.addController(root, myController);

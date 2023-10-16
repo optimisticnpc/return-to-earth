@@ -9,6 +9,11 @@ import nz.ac.auckland.se206.AnimationCentralControl;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.LoadingAnimationsIterface;
 
+/**
+ * The LoadingAnimationController class is responsible for controlling the loading animation
+ * displayed during game loading. It implements the LoadingAnimationsIterface to start and stop the
+ * loading animation.
+ */
 public class LoadingAnimationController implements LoadingAnimationsIterface {
 
   @FXML private ImageView aiThinkingYellow;
@@ -67,7 +72,7 @@ public class LoadingAnimationController implements LoadingAnimationsIterface {
   /** Called by the animation central control when the animation should start. */
   public void playAnimation() {
     GameState.isLoadingAnimationlaying.set(true);
-
+    // Sets speechbubble to visible
     speechBubble.setVisible(true);
     textLabel.setVisible(true);
     aiNormal.setOpacity(0);
@@ -99,6 +104,7 @@ public class LoadingAnimationController implements LoadingAnimationsIterface {
       imageView.setOpacity(0);
     }
 
+    // Sets speechbubble to invisible
     aiNormal.setOpacity(1);
     speechBubble.setVisible(false);
     textLabel.setVisible(false);

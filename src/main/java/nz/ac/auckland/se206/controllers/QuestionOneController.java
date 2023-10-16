@@ -32,9 +32,11 @@ public class QuestionOneController implements MyControllers {
   public void initialize() {
     System.out.println("QuestionOneController.initialize()");
 
+    // Set up timer
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
+    // Set up question
     MathQuestionSelector selector = MathQuestionSelector.getInstance();
     questionOneLabel.setText(selector.getFirstQuestion());
 

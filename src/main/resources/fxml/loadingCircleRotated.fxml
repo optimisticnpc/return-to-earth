@@ -45,12 +45,12 @@
             <Image url="@../images/ai%20circle%20room3.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="459.05" fitWidth="706.89" layoutX="265.0" layoutY="46.0">
+      <ImageView fx:id="speechBubble" fitHeight="368.53" fitWidth="706.89" layoutX="299.0" layoutY="166.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="textLabel" layoutX="326.0" layoutY="106.0" text="hmmm">
+      <Label fx:id="textLabel" layoutX="360.0" layoutY="226.0" text="hmmm">
          <font>
             <Font size="43.0" />
          </font>
