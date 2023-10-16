@@ -46,7 +46,7 @@ public class QuestionOneController implements MyControllers {
   @FXML
   private void onClickQuestionOneHintButton() {
 
-    if(GptPromptEngineering.checkIfAuthorisedAndPrintMessage()) {
+    if (GptPromptEngineering.checkIfAuthorisedAndPrintMessage()) {
       return;
     }
 

@@ -43,6 +43,7 @@ public class ChatCentralControl {
   private List<ChatMessage> messages = new ArrayList<>();
 
   private TextToSpeech textToSpeech = new TextToSpeech();
+
   private ChatCentralControl() {
     initializeChatCentralControl();
   }

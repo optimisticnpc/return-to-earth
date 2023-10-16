@@ -19,7 +19,7 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
  * Controller class for the Question Two view. This class handles user interactions and UI updates
  * for the Question Two view.
  */
-public class QuestionTwoController implements MyControllers{
+public class QuestionTwoController implements MyControllers {
 
   @FXML private Label timerLabel;
   @FXML private Label questionTwoLabel;
@@ -45,10 +45,9 @@ public class QuestionTwoController implements MyControllers{
 
   @FXML
   private void onClickQuestionTwoHintButton() {
-    if(GptPromptEngineering.checkIfAuthorisedAndPrintMessage()) {
+    if (GptPromptEngineering.checkIfAuthorisedAndPrintMessage()) {
       return;
     }
-
 
     ChatMessage msg = new ChatMessage("user", "Please give me a hint for the second question");
 
