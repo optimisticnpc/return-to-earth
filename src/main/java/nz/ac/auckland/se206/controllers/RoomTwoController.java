@@ -131,6 +131,12 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionOne(MouseEvent event) throws IOException {
+
+    if (!GameState.isRiddleResolved) {
+      activateSpeech("Authorisation needed to access ship materials");
+      return;
+    }
+
     if (!GameState.hard) {
       addMathPromptsIfNotAdded();
     }
@@ -161,6 +167,12 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionTwo(MouseEvent event) throws IOException {
+
+    if (!GameState.isRiddleResolved) {
+      activateSpeech("Authorisation needed to access ship materials");
+      return;
+    }
+
     if (!GameState.hard) {
       addMathPromptsIfNotAdded();
     }

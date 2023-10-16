@@ -143,6 +143,7 @@ public class ChatCentralControl {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public void runGpt(ChatMessage msg) {
+    AnimationCentralControl.getInstance().playAllAnimation();
     showAllLoadingIcons();
     disableAllTextBoxes();
 
@@ -173,6 +174,7 @@ public class ChatCentralControl {
                                 + " reload the game.")
                         .showAndWait();
                     hideAllLoadingIcons();
+                    AnimationCentralControl.getInstance().stopAllAnimation();
                     enableAllTextBoxes();
                   });
 
@@ -255,6 +257,7 @@ public class ChatCentralControl {
           notifyObservers();
 
           hideAllLoadingIcons();
+          AnimationCentralControl.getInstance().stopAllAnimation();
           enableAllTextBoxes();
         });
 
@@ -272,6 +275,7 @@ public class ChatCentralControl {
               });
           enableAllTextBoxes();
           hideAllLoadingIcons();
+          AnimationCentralControl.getInstance().stopAllAnimation();
         });
 
     new Thread(callGptTask).start();
