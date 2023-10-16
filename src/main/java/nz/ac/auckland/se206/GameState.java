@@ -57,9 +57,7 @@ public class GameState {
   public static boolean isPersonalitySetup = true;
 
   // ** indicates each phase of the game the player is in */
-  public static boolean phaseTwo = false;
-  public static boolean phaseThree = false;
-  public static boolean phaseFour = false;
+  public static boolean isPhaseChange = false;
 
   /* Variables for if certain prompts have been added */
   public static boolean isMathQuestionPromptAdded = false;

@@ -344,7 +344,7 @@ public class RoomTwoController {
     } else if (!GameState.isToolboxCollected) {
       collectToolbox();
       GameState.isToolboxCollected = true;
-      GameState.phaseThree = true;
+      GameState.isPhaseChange = true;
       // Add the prompt to the chat
       if (GameState.hard) {
         chat.runGpt(new ChatMessage("system", GptPromptEngineering.getHardPhaseThreeProgress()));

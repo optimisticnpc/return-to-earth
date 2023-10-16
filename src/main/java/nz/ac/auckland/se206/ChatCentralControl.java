@@ -117,20 +117,6 @@ public class ChatCentralControl {
       System.out.println("System setup completed!");
       runGpt(new ChatMessage("system", GptPromptEngineering.getAiPersonality()));
       GameState.isPersonalitySetup = false;
-    } else {
-      if (GameState.phaseThree && !GameState.hard) {
-        System.out.println("Phase 3");
-        runGpt(new ChatMessage("user", GptPromptEngineering.getPhaseThreeProgress()));
-      } else if (GameState.phaseThree && GameState.hard) {
-        System.out.println("Phase 3(Hard)");
-        runGpt(new ChatMessage("user", GptPromptEngineering.getHardPhaseThreeProgress()));
-      } else if (GameState.phaseFour && !GameState.hard) {
-        System.out.println("Phase 4");
-        runGpt(new ChatMessage("user", GptPromptEngineering.getPhaseFourProgress()));
-      } else if (GameState.phaseFour && GameState.hard) {
-        System.out.println("Phase 4(Hard)");
-        runGpt(new ChatMessage("user", GptPromptEngineering.getHardPhaseFourProgress()));
-      }
     }
   }
 
@@ -222,41 +208,69 @@ public class ChatCentralControl {
             }
           }
 
-          if (GameState.phaseTwo || GameState.phaseThree || GameState.phaseFour) {
-            // clear the contents in VBOX
-            messages.clear();
-            clearContentsOfChats();
-            GameState.phaseTwo = false;
-            GameState.phaseThree = false;
-            GameState.phaseFour = false;
-          }
-
           if (result.getRole().equals("assistant")
               && result.getContent().startsWith("Authorization Complete")) {
+
             GameState.isRiddleResolved = true;
-            GameState.phaseTwo = true;
+            GameState.isPhaseChange = true;
             System.out.println("Riddle resolved");
             System.out.println("Phase 2");
-            // after 3 seconds, clear the contents in VBOX and run phase 2
 
-            if (GameState.hard) {
-              runGpt(
-                  new ChatMessage(
-                      "user",
-                      GptPromptEngineering.getHardPhaseTwoProgress()
-                          + GptPromptEngineering.getHardHintReminder()));
-            } else {
-              runGpt(new ChatMessage("system", GptPromptEngineering.getPhaseTwoProgress()));
-            }
+            new java.util.Timer()
+                .schedule(
+                    new java.util.TimerTask() {
+                      @Override
+                      public void run() {
+                        Platform.runLater(
+                            () -> {
+                              if (GameState.hard) {
+                                runGpt(
+                                    new ChatMessage(
+                                        "user",
+                                        GptPromptEngineering.getHardPhaseTwoProgress()
+                                            + GptPromptEngineering.getHardHintReminder()));
+                              } else {
+                                runGpt(
+                                    new ChatMessage(
+                                        "user", GptPromptEngineering.getPhaseTwoProgress()));
+                              }
+                            });
+                      }
+                    },
+                    5000);
           }
 
+          if (GameState.isPhaseChange) {
+            messages.clear();
+            clearContentsOfChats();
+          }
           // Added message to message list
           messages.add(result);
           notifyObservers();
 
-          hideAllLoadingIcons();
-          AnimationCentralControl.getInstance().stopAllAnimation();
-          enableAllTextBoxes();
+          if (GameState.isPhaseChange) {
+            GameState.isPhaseChange = false;
+
+            // 5 second delay
+            new java.util.Timer()
+                .schedule(
+                    new java.util.TimerTask() {
+                      @Override
+                      public void run() {
+                        Platform.runLater(
+                            () -> {
+                              hideAllLoadingIcons();
+                              AnimationCentralControl.getInstance().stopAllAnimation();
+                              enableAllTextBoxes();
+                            });
+                      }
+                    },
+                    5000);
+          } else {
+            hideAllLoadingIcons();
+            AnimationCentralControl.getInstance().stopAllAnimation();
+            enableAllTextBoxes();
+          }
         });
 
     callGptTask.setOnFailed(
