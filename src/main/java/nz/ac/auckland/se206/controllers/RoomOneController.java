@@ -28,6 +28,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.OxygenMeter;
+import nz.ac.auckland.se206.RoomInitializer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
@@ -114,33 +115,9 @@ public class RoomOneController {
     Image soundOnImage = new Image(soundOn);
     sound.soundImageProperty().set(soundOnImage);
 
-    setupAiHoverImageListeners();
-  }
-
-  private void setupAiHoverImageListeners() {
-
-    // Hide the hover image of the AI when loading animation is playing
-    GameState.isLoadingAnimationlaying.addListener(
-        (observable, oldValue, newValue) -> {
-          if (!oldValue && newValue) { // If it changes from false to true
-            hideAiHoverImage();
-          }
-        });
-
-    GameState.isLoadingAnimationlaying.addListener(
-        (observable, oldValue, newValue) -> {
-          if (oldValue && !newValue) { // If it changes true to false
-            showAiHoverImage();
-          }
-        });
-  }
-
-  private void hideAiHoverImage() {
-    robot.setVisible(false);
-  }
-
-  private void showAiHoverImage() {
-    robot.setVisible(true);
+    // Initializes the room for the animations to play.
+    RoomInitializer roomInitializer = new RoomInitializer();
+    roomInitializer.setupAiHoverImageListeners(robot);
   }
 
   /**
@@ -195,7 +172,7 @@ public class RoomOneController {
 
   /** Handles the click event on the main warning. */
   @FXML
-  public void onYesButton() {
+  private void onYesButton() {
     hideAllOxygenWarningElements();
     Parent roomThreeRoot = SceneManager.getUiRoot(AppUi.ROOM_THREE);
     currentScene.setCurrent(3);
@@ -205,7 +182,7 @@ public class RoomOneController {
 
   /** Handles the click event on the main warning. */
   @FXML
-  public void onNoButton() {
+  private void onNoButton() {
     hideAllOxygenWarningElements();
   }
 
@@ -219,7 +196,7 @@ public class RoomOneController {
 
   /** Handles the click event on the main warning. */
   @FXML
-  public void onClickExitOxygenWarningRectangle() {
+  private void onClickExitOxygenWarningRectangle() {
     yesNoButtons.setVisible(false);
     oxygenWarningLabel.setVisible(false);
     speechBubble.setVisible(false);
@@ -318,7 +295,7 @@ public class RoomOneController {
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  public void clickRobot(MouseEvent event) throws IOException {
+  private void clickRobot(MouseEvent event) throws IOException {
     // If riddle not solved tell the player to get authorised
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation needed! Please click the middle screen");
@@ -367,9 +344,7 @@ public class RoomOneController {
     }
   }
 
-  /**
-   * Selects a random riddle from the list of riddles.
-   */
+  /** Selects a random riddle from the list of riddles. */
   private void selectRandomRiddle() {
     Random random = new Random();
     wordToGuess = riddles[random.nextInt(riddles.length)];
@@ -377,6 +352,7 @@ public class RoomOneController {
 
   /**
    * Handles the click event on the wire compartment.
+   *
    * @param event the mouse event
    */
   @FXML
@@ -407,7 +383,7 @@ public class RoomOneController {
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  public void clickWireCompartment(MouseEvent event) throws IOException {
+  private void clickWireCompartment(MouseEvent event) throws IOException {
     System.out.println("Wire Compartment Clicked");
 
     // If riddle is not solved, do no allow entry
@@ -454,9 +430,7 @@ public class RoomOneController {
     fadeTransition.play();
   }
 
-  /**
-   * Handles the click event on the keypad.
-   */
+  /** Handles the click event on the keypad. */
   private void addWordScramblePromptsIfNotAdded() {
     // Add hint prompts only if difficulty is not hard
     if (!GameState.isWordScramblePromptAdded) {

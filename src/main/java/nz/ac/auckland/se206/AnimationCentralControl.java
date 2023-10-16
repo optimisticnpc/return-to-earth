@@ -3,6 +3,11 @@ package nz.ac.auckland.se206;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The AnimationCentralControl class is responsible for managing loading animations in the
+ * application. It provides a central control point for playing and stopping loading animations by
+ * observing classes that implement the LoadingAnimationsIterface.
+ */
 public class AnimationCentralControl {
 
   private static AnimationCentralControl instance;
