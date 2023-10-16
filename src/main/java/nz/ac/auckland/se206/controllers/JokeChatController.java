@@ -109,6 +109,7 @@ public class JokeChatController {
           public ChatMessage call() throws ApiProxyException {
             chatCompletionRequest.addMessage(msg);
             try {
+              // Get the chat message from GPT and return it
               ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
               Choice result = chatCompletionResult.getChoices().iterator().next();
               chatCompletionRequest.addMessage(result.getChatMessage());
@@ -135,6 +136,7 @@ public class JokeChatController {
           }
         };
 
+    // get value and return it and check for hints
     callGptTask.setOnSucceeded(
         event -> {
           ChatMessage result = callGptTask.getValue();
@@ -150,6 +152,7 @@ public class JokeChatController {
           hideLoadingIcon();
           AnimationCentralControl.getInstance().stopAllAnimation();
 
+          // If the joke is resolved, disable the text box
           if (result.getRole().equals("assistant") && result.getContent().contains("Hahaha")) {
             GameState.isJokeResolved.set(true);
             System.out.println("Joke resolved");
@@ -159,6 +162,7 @@ public class JokeChatController {
           }
         });
 
+    // If GPT task fails show an alert and stop
     callGptTask.setOnFailed(
         event -> {
           Platform.runLater(
@@ -321,12 +325,12 @@ public class JokeChatController {
     inputText.setDisable(true);
   }
 
-  /** Adds a message to the chat log. */
+  /** Adds a message to the chat log when user enters a certain key combo. */
   private void cheatCodes() {
-
+    // Sets the key combo
     KeyCombination keyCombB =
         new KeyCodeCombination(KeyCode.B, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
-
+    // Prints messages if the key combo is pressed
     App.getScene()
         .addEventHandler(
             KeyEvent.KEY_PRESSED,

@@ -145,10 +145,12 @@ public class ScoreScreenController {
   @FXML
   private void onClickResetButton() {
     System.out.println("Times Reset");
+    // Resets the times of the score screen to the max value
     ScoreScreenInfo.fastestEasyTimeHundredths = Integer.MAX_VALUE;
     ScoreScreenInfo.fastestMediumTimeHundredths = Integer.MAX_VALUE;
     ScoreScreenInfo.fastestHardTimeHundredths = Integer.MAX_VALUE;
     System.out.println(ScoreScreenInfo.fastestEasyTimeHundredths);
+    // Saves the times to a file
     ScoreScreenInfo.saveTimesToFile();
     refreshTimes();
   }

@@ -135,10 +135,12 @@ public class RoomOneController {
         });
   }
 
+  /** Hides the ai hover image by setting it to invisible. */
   private void hideAiHoverImage() {
     robot.setVisible(false);
   }
 
+  /** Shows the ai hover image by setting it to visible. */
   private void showAiHoverImage() {
     robot.setVisible(true);
   }

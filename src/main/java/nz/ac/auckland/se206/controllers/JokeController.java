@@ -17,6 +17,10 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.SpeechBubble;
 
+/**
+ * The `JokeController` class is responsible for handling interactions in the word joke screen,
+ * including collecting the spacesuit and managing speech bubbles.
+ */
 public class JokeController {
 
   private Timer timer = new Timer();
@@ -87,6 +91,7 @@ public class JokeController {
     fadeTransition.play();
   }
 
+  /** Helper function that fades out the collected spacesuit. */
   private void collectSpacesuit() {
     fadeInNode(spacesuitCollectedImage, 0.5);
   }
@@ -117,6 +122,7 @@ public class JokeController {
   /** Handles the action when the player clicks on the yes button. */
   @FXML
   private void onYesButton() {
+    // Sets the scene to change to the joke game puzzle
     speechBubble.setVisible(false);
     yesNoButtons.setVisible(false);
     challengeLabel.setVisible(false);

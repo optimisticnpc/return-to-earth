@@ -23,8 +23,15 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 /** Controller class for the chat view. */
 public class ChatComponentController implements Observer {
 
-  private ChatCentralControl chatCentralControl;
-  private List<ChatMessage> messages;
+  /**
+   * Returns a singleton instance of ChatComponentController that is the same throughout the whole
+   * app.
+   *
+   * @return a new instance of ChatComponentController
+   */
+  public static ChatComponentController getInstance() {
+    return new ChatComponentController();
+  }
 
   @FXML private ImageView loadingIcon;
   @FXML private ImageView soundIcon;
@@ -33,6 +40,9 @@ public class ChatComponentController implements Observer {
   @FXML private ScrollPane scrollPane;
   @FXML private Button sendButton;
   @FXML private Button playMessage;
+
+  private ChatCentralControl chatCentralControl;
+  private List<ChatMessage> messages;
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -48,10 +58,6 @@ public class ChatComponentController implements Observer {
     chatCentralControl.getMessages();
   }
 
-  public static ChatComponentController getInstance() {
-    return new ChatComponentController();
-  }
-
   @FXML // send the message when the enter key is pressed
   private void onEnterPressed(KeyEvent event) {
     if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
@@ -59,6 +65,7 @@ public class ChatComponentController implements Observer {
     }
   }
 
+  /** Sets the send button action to send the message in the input text area to the chat log. */
   @FXML
   private void setSendButtonAction() {
     String message = inputText.getText().replaceAll("[\n\r]", ""); // Remove all newline characters
@@ -66,9 +73,11 @@ public class ChatComponentController implements Observer {
     if (message.trim().isEmpty()) {
       return;
     }
+    // Add the message to the chat log
     ChatMessage msg = new ChatMessage("user", message);
     chatCentralControl.addMessage(msg);
 
+    // Send the message to GPT
     if (!GameState.isAuthorising) {
       addLabel(
           "You need to be authorised to talk to Space Destroyer for security"
@@ -94,10 +103,12 @@ public class ChatComponentController implements Observer {
    * @param position the position of the message
    */
   private void addLabel(String message, Pos position) {
+    // Creates a new box
     HBox box = new HBox();
     box.setAlignment(position);
     box.setPadding(new Insets(5, 5, 5, 10));
 
+    // Adjusts font based on the position of the test
     Text text = new Text(message);
     if (position == Pos.CENTER_LEFT) {
       text.setFont(javafx.scene.text.Font.font("Arial", 15));
@@ -108,6 +119,7 @@ public class ChatComponentController implements Observer {
     }
     TextFlow textFlow = new TextFlow(text);
 
+    // Adjust background colour based on position of the text
     if (position == Pos.CENTER_LEFT) {
       textFlow.setStyle("-fx-background-color: rgb(255,242,102);" + "-fx-background-radius: 20px");
     } else if (position == Pos.CENTER_RIGHT) {
@@ -118,6 +130,7 @@ public class ChatComponentController implements Observer {
 
     textFlow.setPadding(new Insets(5, 10, 5, 10));
 
+    // Adds box to chatlog
     box.getChildren().add(textFlow);
     Platform.runLater(
         new Runnable() {
@@ -132,10 +145,13 @@ public class ChatComponentController implements Observer {
     messages = chatCentralControl.getMessages();
   }
 
+  /** Updates the chat log with the messages from the chat central control. */
   @Override
   public void update() {
+    // Clears chatlog and updates it
     chatLog.getChildren().clear();
     updateMessages();
+    // Changes position of messages based on who sent it.
     for (ChatMessage msg : messages) {
       String msgString = msg.getContent();
       if (msg.getRole().equals("assistant")) {

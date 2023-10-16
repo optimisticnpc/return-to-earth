@@ -23,6 +23,11 @@ public class ChatCentralControl {
   private static ChatCentralControl instance;
   private static List<Observer> observers = new ArrayList<>();
 
+  /**
+   * Retrieves the singleton instance of ChatCentralControl.
+   *
+   * @return The ChatCentralControl instance.
+   */
   public static ChatCentralControl getInstance() {
     if (instance == null) {
       instance = new ChatCentralControl();
@@ -30,6 +35,11 @@ public class ChatCentralControl {
     return instance;
   }
 
+  /**
+   * Retrieves the word to guess in the authorization riddle.
+   *
+   * @return The word to guess.
+   */
   public static String getWordToGuess() {
     return wordToGuess;
   }
@@ -44,10 +54,12 @@ public class ChatCentralControl {
 
   private TextToSpeech textToSpeech = new TextToSpeech();
 
+  /** Private constructor to enforce the singleton pattern. */
   private ChatCentralControl() {
     initializeChatCentralControl();
   }
 
+  /** Initializes the ChatCentralControl and sets up chat configuration. */
   public void initializeChatCentralControl() {
     System.out.println("ChatCentralControl Iniatialized");
     setupChatConfiguration();
@@ -63,61 +75,91 @@ public class ChatCentralControl {
     }
   }
 
+  /**
+   * Adds an observer to the list of observers to notify about chat messages.
+   *
+   * @param observer The observer to add.
+   */
   public void addObserver(Observer observer) {
     observers.add(observer);
   }
 
+  /**
+   * Removes an observer from the list of observers.
+   *
+   * @param observer The observer to remove.
+   */
   public void removeObserver(Observer observer) {
     observers.remove(observer);
   }
 
+  /**
+   * Adds a chat message to the message list and notifies observers.
+   *
+   * @param message The chat message to add.
+   */
   public void addMessage(ChatMessage message) {
     messages.add(message);
     notifyObservers();
   }
 
+  /** Notifies all registered observers about new chat messages. */
   public void notifyObservers() {
     for (Observer observer : observers) {
       observer.update();
     }
   }
 
+  /** Shows loading icons for all observers. */
   private void showAllLoadingIcons() {
     for (Observer observer : observers) {
       observer.showLoadingIcon();
     }
   }
 
+  /** Hides loading icons for all observers. */
   private void hideAllLoadingIcons() {
     for (Observer observer : observers) {
       observer.hideLoadingIcon();
     }
   }
 
+  /** Clears the contents of the chat messages for all observers. */
   private void clearContentsOfChats() {
     for (Observer observer : observers) {
       observer.clearContents();
     }
   }
 
+  /** Enables text input boxes for all observers. */
   private void enableAllTextBoxes() {
     for (Observer observer : observers) {
       observer.enableTextBox();
     }
   }
 
+  /** Disables text input boxes for all observers. */
   private void disableAllTextBoxes() {
     for (Observer observer : observers) {
       observer.disableTextBox();
     }
   }
 
+  /**
+   * Runs the chat prompt based on the game state, thereby changing the phase prompts in the game.
+   * Depending on the current game state, this method sends specific chat prompts to the AI to
+   * advance the game's storyline or provide assistance.
+   *
+   * @throws ApiProxyException if there is an error communicating with the API proxy.
+   */
   private void runChatPromptBasedOnGameState() throws ApiProxyException {
+    // If the game is just starting, run the personality setup prompt
     if (GameState.isPersonalitySetup) {
       System.out.println("System setup completed!");
       runGpt(new ChatMessage("system", GptPromptEngineering.getAiPersonality()));
       GameState.isPersonalitySetup = false;
     } else {
+      // Otherwise run the chat prompt based on the game state
       if (GameState.phaseThree && !GameState.hard) {
         System.out.println("Phase 3");
         runGpt(new ChatMessage("user", GptPromptEngineering.getPhaseThreeProgress()));
@@ -142,6 +184,7 @@ public class ChatCentralControl {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public void runGpt(ChatMessage msg) {
+    // Disable all text boxes and show loading icons
     AnimationCentralControl.getInstance().playAllAnimation();
     showAllLoadingIcons();
     disableAllTextBoxes();
@@ -151,11 +194,13 @@ public class ChatCentralControl {
 
     long startTime = System.currentTimeMillis(); // Record time
 
+    // Create a new task to run the GPT model
     Task<ChatMessage> callGptTask =
         new Task<>() {
           @Override
           public ChatMessage call() throws ApiProxyException {
             chatCompletionRequest.addMessage(msg);
+            // Get the chat message from GPT and return it
             try {
               ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
               Choice result = chatCompletionResult.getChoices().iterator().next();
@@ -183,6 +228,7 @@ public class ChatCentralControl {
           }
         };
 
+    // get value and return it and check for hints
     callGptTask.setOnSucceeded(
         event -> {
           ChatMessage result = callGptTask.getValue();
@@ -279,6 +325,7 @@ public class ChatCentralControl {
     new Thread(callGptTask).start();
   }
 
+  /** Disables hint buttons for all relevant question panels. */
   private void disableAllHintButtons() {
 
     SceneManager.getController(SceneManager.getUiRoot(AppUi.QUESTION_ONE)).disableHintButton();
@@ -319,21 +366,37 @@ public class ChatCentralControl {
         .start();
   }
 
+  /**
+   * Records and prints the time taken by a GPT request.
+   *
+   * @param startTime The start time of the request.
+   */
   protected void recordAndPrintTime(long startTime) {
     long time = System.currentTimeMillis() - startTime;
     System.out.println();
     System.out.println("Search took " + time + "ms");
   }
 
+  /**
+   * Retrieves the list of chat messages.
+   *
+   * @return An unmodifiable list of chat messages.
+   */
   public List<ChatMessage> getMessages() {
     return Collections.unmodifiableList(messages);
   }
 
+  /** Sets up the chat configuration for GPT. */
   private void setupChatConfiguration() {
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.5).setMaxTokens(100);
   }
 
+  /**
+   * Retrieves the ChatCompletionRequest used for GPT conversations.
+   *
+   * @return The ChatCompletionRequest.
+   */
   public ChatCompletionRequest getChatCompletionRequest() {
     return chatCompletionRequest;
   }
