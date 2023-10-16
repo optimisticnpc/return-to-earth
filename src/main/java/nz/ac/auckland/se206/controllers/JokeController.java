@@ -65,7 +65,7 @@ public class JokeController {
     if (GameState.isJokeResolved.get() && !GameState.isSpacesuitCollected) {
       collectSpacesuit();
       activateSpeech(
-          "Congratulations, you have collected the spacesuit! Now you can go on spacewalks for"
+          "Congratulations, you have collected the spacesuit!\nNow you can go on spacewalks for"
               + " longer!");
       GameState.isSpacesuitCollected = true;
       GameState.isSpacesuitJustCollected = true;

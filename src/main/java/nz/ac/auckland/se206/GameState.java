@@ -71,6 +71,8 @@ public class GameState {
 
   public static final BooleanProperty isJokeResolved = new SimpleBooleanProperty(false);
 
+  public static final BooleanProperty isLoadingAnimationlaying = new SimpleBooleanProperty(false);
+
   /**
    * Resets the game by clearing and initializing game state variables, updating room visuals, and
    * returning to the start screen.
@@ -98,6 +100,7 @@ public class GameState {
     isWordScramblePromptAdded = false;
     isJokeResolved.set(false);
     isJokeChallengeAccepted.set(false);
+    isLoadingAnimationlaying.set(false);
     HintCounter.resetHintCount();
   }
 

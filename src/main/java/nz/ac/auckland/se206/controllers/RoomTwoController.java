@@ -84,6 +84,33 @@ public class RoomTwoController {
             collectSpacesuit();
           }
         });
+    setupAiHoverImageListeners();
+  }
+
+  private void setupAiHoverImageListeners() {
+
+    // Hide the hover image of the AI when loading animation is playing
+    GameState.isLoadingAnimationlaying.addListener(
+        (observable, oldValue, newValue) -> {
+          if (!oldValue && newValue) { // If it changes from false to true
+            hideAiHoverImage();
+          }
+        });
+
+    GameState.isLoadingAnimationlaying.addListener(
+        (observable, oldValue, newValue) -> {
+          if (oldValue && !newValue) { // If it changes true to false
+            showAiHoverImage();
+          }
+        });
+  }
+
+  private void hideAiHoverImage() {
+    robot.setVisible(false);
+  }
+
+  private void showAiHoverImage() {
+    robot.setVisible(true);
   }
 
   /**
@@ -138,6 +165,12 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionOne(MouseEvent event) throws IOException {
+
+    if (!GameState.isRiddleResolved) {
+      activateSpeech("Authorisation needed to access ship materials");
+      return;
+    }
+
     if (!GameState.hard) {
       addMathPromptsIfNotAdded();
     }
@@ -168,6 +201,12 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionTwo(MouseEvent event) throws IOException {
+
+    if (!GameState.isRiddleResolved) {
+      activateSpeech("Authorisation needed to access ship materials");
+      return;
+    }
+
     if (!GameState.hard) {
       addMathPromptsIfNotAdded();
     }

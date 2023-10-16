@@ -16,28 +16,24 @@
             <Image url="@../images/MainRoomReactivate.png" />
          </image>
       </ImageView>
+      <fx:include layoutX="333.0" layoutY="163.0" source="loadingRobot.fxml" />
       <Rectangle fx:id="reactivate" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="117.0" layoutX="678.0" layoutY="327.0" onMouseClicked="#clickReactivate" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="190.0" />
       <Rectangle fx:id="blueSwitch" height="38.0" layoutX="825.0" layoutY="491.0" onMouseClicked="#clickBlueSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="44.0" />
       <Rectangle fx:id="redSwitch" height="36.0" layoutX="746.0" layoutY="491.0" onMouseClicked="#clickRedSwitch" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="45.0" />
       <Rectangle fx:id="greenSwitch" height="37.0" layoutX="667.0" layoutY="491.0" onMouseClicked="#clickGreenSwitch" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="button-hoverable" width="44.0" />
-      <ImageView fitHeight="373.0" fitWidth="190.0" layoutX="371.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/ai.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="robot" fitHeight="373.0" fitWidth="190.0" layoutX="372.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true" styleClass="robot-hoverable">
+      <ImageView fx:id="robot" fitHeight="368.0" fitWidth="202.0" layoutX="349.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true" styleClass="robot-hoverable">
          <image>
             <Image url="@../images/ai%20hover.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="237.0" fitWidth="386.0" layoutX="514.0" layoutY="95.0">
+      <ImageView fx:id="speechBubble" fitHeight="213.0" fitWidth="328.0" layoutX="458.0" layoutY="177.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="542.0" layoutY="116.0" prefHeight="124.0" prefWidth="312.0" wrapText="true">
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="479.0" layoutY="187.0" prefHeight="133.0" prefWidth="271.0" wrapText="true">
          <font>
-            <Font size="20.0" />
+            <Font size="17.0" />
          </font>
       </Label>
       <Label layoutX="865.0" layoutY="20.0" prefHeight="35.0" prefWidth="202.0" text="Hints Remaining :" textFill="#e5ff00">

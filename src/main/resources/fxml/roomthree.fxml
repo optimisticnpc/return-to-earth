@@ -25,27 +25,23 @@
             <Font size="20.0" />
          </font>
       </Label>
+       <fx:include layoutX="234.0" layoutY="-139.0" scaleX="0.464" scaleY="0.464" source="loadingCircleRotated.fxml" />
       <Polygon fx:id="hatch" fill="DODGERBLUE" layoutX="717.0" layoutY="388.0" onMouseClicked="#clickHatch" opacity="0.0" points="-75.33331298828125, 25.333343505859375, 131.33331298828125, -88.66665649414062, 223.33331298828125, 35.333343505859375, 18.66668701171875, 150.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="screwOne" fill="WHITE" layoutX="672.0" layoutY="418.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
       <Circle fx:id="screwTwo" fill="WHITE" layoutX="844.0" layoutY="328.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
       <Circle fx:id="screwThree" fill="WHITE" layoutX="912.0" layoutY="418.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
       <Circle fx:id="screwFour" fill="WHITE" layoutX="743.0" layoutY="514.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
-      <ImageView fitHeight="116.0" fitWidth="116.0" layoutX="558.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" rotate="132.5">
-         <image>
-            <Image url="@../images/ai%20circle%20room3.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="robot" fitHeight="116.0" fitWidth="116.0" layoutX="558.0" layoutY="171.0" onMouseClicked="#clickAuthorisation" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="132.5" styleClass="robot-hoverable">
+      <ImageView fx:id="robot" fitHeight="116.0" fitWidth="116.0" layoutX="557.0" layoutY="171.0" onMouseClicked="#clickAuthorisation" opacity="0.61" pickOnBounds="true" preserveRatio="true" rotate="132.5" styleClass="robot-hoverable">
          <image>
             <Image url="@../images/ai%20circle%20room3%20hover.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="191.0" fitWidth="372.0" layoutX="668.0" layoutY="41.0">
+      <ImageView fx:id="speechBubble" fitHeight="213.0" fitWidth="328.0" layoutX="664.0" layoutY="38.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="698.0" layoutY="59.0" prefHeight="98.0" prefWidth="295.0" wrapText="true">
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="684.0" layoutY="57.0" prefHeight="120.0" prefWidth="273.0" wrapText="true">
          <font>
             <Font size="20.0" />
                      </font>

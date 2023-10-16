@@ -112,6 +112,34 @@ public class RoomOneController {
     InputStream soundOn = new FileInputStream("src/main/resources/images/soundicon.png");
     Image soundOnImage = new Image(soundOn);
     sound.soundImageProperty().set(soundOnImage);
+
+    setupAiHoverImageListeners();
+  }
+
+  private void setupAiHoverImageListeners() {
+
+    // Hide the hover image of the AI when loading animation is playing
+    GameState.isLoadingAnimationlaying.addListener(
+        (observable, oldValue, newValue) -> {
+          if (!oldValue && newValue) { // If it changes from false to true
+            hideAiHoverImage();
+          }
+        });
+
+    GameState.isLoadingAnimationlaying.addListener(
+        (observable, oldValue, newValue) -> {
+          if (oldValue && !newValue) { // If it changes true to false
+            showAiHoverImage();
+          }
+        });
+  }
+
+  private void hideAiHoverImage() {
+    robot.setVisible(false);
+  }
+
+  private void showAiHoverImage() {
+    robot.setVisible(true);
   }
 
   /**
@@ -274,6 +302,20 @@ public class RoomOneController {
         },
         5000);
     // 5 second delay
+  }
+
+  @FXML
+  public void clickRobot(MouseEvent event) throws IOException {
+    // If riddle not solved tell the player to get authorised
+    if (!GameState.isRiddleResolved) {
+      activateSpeech("Authorisation needed! Please click the middle screen");
+      return;
+    }
+    if (!GameState.hard) {
+      activateSpeech("Good luck fixing the ship! Let me know if you need any help.");
+    } else {
+      activateSpeech("Fixing the ship is very hard but I know you can do it. Keep trying!");
+    }
   }
 
   /**
