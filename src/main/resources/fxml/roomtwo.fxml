@@ -15,6 +15,7 @@
             <Image url="@../images/storage_blank.png" />
          </image>
       </ImageView>
+      <fx:include layoutX="372.0" layoutY="107.0" source="loadingRobot.fxml" />
       <ImageView fx:id="toolBoxOpenImage" fitHeight="99.0" fitWidth="182.0" layoutX="582.0" layoutY="583.0" pickOnBounds="true">
          <image>
             <Image url="@../images/tools.png" />
@@ -46,20 +47,19 @@
          </image>
       </ImageView>
       <Polygon fx:id="crate" fill="DODGERBLUE" layoutX="1080.0" layoutY="347.0" onMouseClicked="#clickCrate" opacity="0.0" points="-62.0, 196.0, -8.5, 273.0, 127.0, 273.0, 127.0, -2.5, 57.5, -73.0, -62.0, -73.0" stroke="BLACK" strokeType="INSIDE" />
-      <fx:include layoutX="360.0" layoutY="270.0" source="loadingRobot.fxml" />
-      <ImageView fx:id="robot" fitHeight="371.0" fitWidth="201.0" layoutX="359.0" layoutY="303.0" onMouseClicked="#clickAuthorisation" pickOnBounds="true" styleClass="robot-hoverable">
+      <ImageView fx:id="robot" fitHeight="371.0" fitWidth="201.0" layoutX="387.0" layoutY="278.0" onMouseClicked="#clickAuthorisation" pickOnBounds="true" styleClass="robot-hoverable">
          <image>
             <Image url="@../images/ai%20hover.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="241.0" fitWidth="412.0" layoutX="473.0" layoutY="99.0">
+      <ImageView fx:id="speechBubble" fitHeight="213.0" fitWidth="328.0" layoutX="497.0" layoutY="121.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="510.0" layoutY="118.0" prefHeight="135.0" prefWidth="303.0" wrapText="true">
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="514.0" layoutY="136.0" prefHeight="124.0" prefWidth="277.0" wrapText="true">
          <font>
-            <Font size="20.0" />
+            <Font size="17.0" />
                      </font>
       </Label>
       <Label layoutX="810.0" layoutY="14.0" prefHeight="35.0" prefWidth="249.0" text="Hints Remaining:" textFill="#e5ff00">

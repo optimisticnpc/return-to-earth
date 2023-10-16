@@ -6,49 +6,49 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" focusTraversable="true" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoadingAnimationController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="558.0" prefWidth="452.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoadingAnimationController">
    <children>
-      <ImageView fx:id="aiThinkingYellow" fitHeight="373.0" fitWidth="190.0" layoutX="-2.0" layoutY="31.0" preserveRatio="true">
+      <ImageView fx:id="aiThinkingYellow" fitHeight="373.0" fitWidth="190.0" layoutX="14.0" layoutY="169.0" preserveRatio="true">
          <image>
             <Image url="@../images/ai%20thinking%20yellow.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="aiThinkingBlue" fitHeight="373.0" fitWidth="190.0" layoutX="-2.0" layoutY="31.0" preserveRatio="true">
+      <ImageView fx:id="aiThinkingBlue" fitHeight="373.0" fitWidth="190.0" layoutX="14.0" layoutY="169.0" preserveRatio="true">
          <image>
             <Image url="@../images/ai%20thinking%20blue.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="aiThinkingPink" fitHeight="373.0" fitWidth="190.0" layoutX="-2.0" layoutY="31.0" opacity="0.0" preserveRatio="true">
+      <ImageView fx:id="aiThinkingPink" fitHeight="373.0" fitWidth="190.0" layoutX="14.0" layoutY="169.0" opacity="0.0" preserveRatio="true">
          <image>
             <Image url="@../images/ai%20thinking%20pink.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="aiThinkingOrange" fitHeight="373.0" fitWidth="190.0" layoutX="31.0" layoutY="31.0" preserveRatio="true">
+      <ImageView fx:id="aiThinkingOrange" fitHeight="373.0" fitWidth="190.0" layoutX="47.0" layoutY="169.0" preserveRatio="true">
          <image>
             <Image url="@../images/ai%20thinking%20orange.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="aiThinkingPurple" fitHeight="373.0" fitWidth="190.0" layoutX="31.0" layoutY="31.0" preserveRatio="true">
+      <ImageView fx:id="aiThinkingPurple" fitHeight="373.0" fitWidth="190.0" layoutX="47.0" layoutY="169.0" preserveRatio="true">
          <image>
             <Image url="@../images/ai%20thinking%20purple.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="aiThinkingNormal" fitHeight="373.0" fitWidth="190.0" layoutX="31.0" layoutY="31.0" preserveRatio="true">
+      <ImageView fx:id="aiThinkingNormal" fitHeight="373.0" fitWidth="190.0" layoutX="47.0" layoutY="169.0" preserveRatio="true">
          <image>
             <Image url="@../images/ai%20thinking.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="85.0" fitWidth="124.0" layoutX="146.0" layoutY="7.0">
+      <ImageView fx:id="speechBubble" fitHeight="213.0" fitWidth="328.0" layoutX="125.0" layoutY="14.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="textLabel" layoutX="171.0" layoutY="20.0" text="hmmm">
+      <Label fx:id="textLabel" layoutX="154.0" layoutY="35.0" text="hmmm">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ImageView fx:id="aiNormal" fitHeight="370.0" fitWidth="198.0" layoutY="33.0" pickOnBounds="true">
+      <ImageView fx:id="aiNormal" fitHeight="370.0" fitWidth="198.0" layoutX="16.0" layoutY="171.0" pickOnBounds="true">
          <image>
             <Image url="@../images/ai.png" />
          </image>
