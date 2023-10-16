@@ -46,12 +46,8 @@
          </image>
       </ImageView>
       <Polygon fx:id="crate" fill="DODGERBLUE" layoutX="1080.0" layoutY="347.0" onMouseClicked="#clickCrate" opacity="0.0" points="-62.0, 196.0, -8.5, 273.0, 127.0, 273.0, 127.0, -2.5, 57.5, -73.0, -62.0, -73.0" stroke="BLACK" strokeType="INSIDE" />
-      <ImageView fitHeight="373.0" fitWidth="190.0" layoutX="363.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/ai.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="robot" fitHeight="373.0" fitWidth="190.0" layoutX="364.0" layoutY="305.0" onMouseClicked="#clickAuthorisation" pickOnBounds="true" preserveRatio="true" styleClass="robot-hoverable">
+      <fx:include layoutX="360.0" layoutY="270.0" source="loadingRobot.fxml" />
+      <ImageView fx:id="robot" fitHeight="371.0" fitWidth="201.0" layoutX="359.0" layoutY="303.0" onMouseClicked="#clickAuthorisation" pickOnBounds="true" styleClass="robot-hoverable">
          <image>
             <Image url="@../images/ai%20hover.png" />
          </image>
