@@ -5,6 +5,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -20,21 +24,6 @@
             <Image url="@../images/burning.png" />
          </image>
       </ImageView>
-      <Label fx:id="timerLabel" layoutX="295.0" layoutY="24.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="695.0" layoutY="28.0" prefHeight="35.0" prefWidth="202.0" text="Hints Remaining :" textFill="#e5ff00">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="hintLabel" layoutX="879.0" layoutY="28.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <Text fill="WHITE" layoutX="327.0" layoutY="222.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="The crew and your fellow passengers have evacuated while you were napping. Fix the ship and return to Earth or remain trapped in space forever!" textAlignment="CENTER" wrappingWidth="624.24609375">
          <font>
             <Font name="System Bold" size="42.0" />
@@ -50,5 +39,38 @@
             <Font size="38.0" />
          </font>
       </Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="53.0" layoutX="385.0" layoutY="17.0" stroke="#9ea4ff" strokeType="OUTSIDE" strokeWidth="3.0" width="508.0">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.7748815165876777" radius="0.867816091954023">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.3055555522441864" green="0.375" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.07894736528396606" green="0.07894736528396606" blue="0.07894736528396606" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Rectangle>
+      <Label fx:id="timerLabel" layoutX="406.0" layoutY="25.0" prefHeight="35.0" prefWidth="328.0" style="-fx-font-weight: bold;" text="Time Remaining: 02:00" textFill="#3eff00">
+         <font>
+            <Font name="Symbol" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="631.0" layoutY="25.0" prefHeight="35.0" prefWidth="249.0" text="Hints Remaining:" textFill="#3eff00">
+         <font>
+            <Font name="Symbol" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="hintLabel" layoutX="791.0" layoutY="25.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#3eff00">
+         <font>
+            <Font name="Symbol" size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
