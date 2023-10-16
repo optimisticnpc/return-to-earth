@@ -12,7 +12,7 @@
 
 <!-- <?import nz.ac.auckland.se206.ball.BouncingBallPane?> -->
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
    <children>
       <ImageView fx:id="background" fitHeight="720.0" fitWidth="1082.0" layoutX="233.0" pickOnBounds="true">
          <image>
@@ -67,7 +67,6 @@
             <Image url="@../images/wire%20hover.png" />
          </image>
       </ImageView>
-      <Polygon fx:id="wireCompartment" fill="DODGERBLUE" layoutX="1077.0" layoutY="555.0" onMouseClicked="#clickWireCompartment" opacity="0.54" points="-20.0, 8.0, 168.2667236328125, 70.3333740234375, 182.1334228515625, -9.6666259765625, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
       <!-- <BouncingBallPane fx:id="bouncingBall" layoutX="531.0" layoutY="361.0" prefHeight="63.0" prefWidth="115.0" /> -->
       <Rectangle fx:id="ballToggle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="78.0" layoutX="523.0" layoutY="353.0" onMouseClicked="#clickBallToggle" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="129.0" />
       <fx:include fx:id="chatPanel" source="chatcomponent.fxml" />
@@ -98,5 +97,16 @@
             </Button>
          </children>
       </HBox>
+      <Pane fx:id="lock" layoutX="989.0" layoutY="478.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Polygon fill="DODGERBLUE" layoutX="88.0" layoutY="77.0" opacity="0.54" points="-55.25, 23.25, 238.0, 122.25, 238.0, -16.25, -55.25, -89.75" stroke="BLACK" strokeType="INSIDE" />
+            <ImageView fitHeight="146.0" fitWidth="214.0" layoutX="58.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" rotate="14.0">
+               <image>
+                  <Image url="@../images/chain.png" />
+               </image>
+            </ImageView>
+            <Polygon fx:id="wireCompartment" fill="DODGERBLUE" layoutX="109.0" layoutY="74.0" onMouseClicked="#clickWireCompartment" opacity="0.0" points="217.0, 125.25, 217.0, -13.5, -75.75, -87.75, -75.75, 26.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Pane>
    </children>
 </Pane>
