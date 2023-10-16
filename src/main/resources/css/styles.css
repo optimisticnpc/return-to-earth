@@ -114,6 +114,10 @@
     -fx-opacity: 0.6;
 }
 
+.wire-hoverable:hover {
+    -fx-opacity: 0.2;
+}
+
 .robot-hoverable {
     -fx-opacity: 0.0;
 }
