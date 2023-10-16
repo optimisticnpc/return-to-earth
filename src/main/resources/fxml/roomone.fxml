@@ -45,17 +45,7 @@
             <Image url="@../images/ai%20hover.png" />
          </image>
       </ImageView>
-      <Label fx:id="timerLabel" layoutX="445.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <Label layoutX="845.0" layoutY="24.0" prefHeight="35.0" prefWidth="202.0" text="Hints Remaining :" textFill="#e5ff00">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="hintLabel" layoutX="1029.0" layoutY="24.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#e5ff00">
          <font>
             <Font size="20.0" />
          </font>
