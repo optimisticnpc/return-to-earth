@@ -42,7 +42,8 @@
 #scoreScreenButton,
 #helpStarsButton,
 #closeButton,
-.otherButtons {
+.otherButtons,
+.noButtons {
     -fx-background-insets: 0;
     /* Fixes the black leaking out of the border*/
     -fx-background-color: #1a1a1a;
@@ -71,6 +72,11 @@
 .otherButtons:hover {
     -fx-border-width: 0px;
     -fx-effect: dropshadow(three-pass-box, lime, 10, 0.5, 0, 0);
+}
+
+.noButtons:hover {
+    -fx-border-width: 0px;
+    -fx-effect: dropshadow(three-pass-box, red, 10, 0.5, 0, 0);
 }
 
 #startButton:pressed,
