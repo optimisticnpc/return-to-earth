@@ -168,7 +168,7 @@ public class RoomOneController {
       activateSpeech(
           "Critical damage detected on the ship.\n"
               + "Please authorise yourself by clicking \nthe middle screen "
-              + "to access the system and analyse the damage.");
+              + "to access the system and \nanalyse the damage.");
 
     } else {
       activateSpeech(
