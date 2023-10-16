@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" focusTraversable="true" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoadingCircleController">
+<Pane fx:id="room" focusTraversable="true" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoadingAnimationController">
    <children>
       <ImageView fx:id="aiThinkingYellow" fitHeight="373.0" fitWidth="190.0" layoutX="-2.0" layoutY="31.0" preserveRatio="true">
          <image>

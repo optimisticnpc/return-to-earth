@@ -8,7 +8,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.AnimationCentralControl;
 import nz.ac.auckland.se206.LoadingAnimationsIterface;
 
-public class LoadingCircleController implements LoadingAnimationsIterface {
+public class LoadingAnimationController implements LoadingAnimationsIterface {
 
   @FXML private ImageView aiThinkingYellow;
 
@@ -36,7 +36,7 @@ public class LoadingCircleController implements LoadingAnimationsIterface {
 
   @FXML
   public void initialize() {
-    System.out.println("LoadingCircleController.initialize()");
+    System.out.println("LoadingAnimationController.initialize()");
     speechBubble.setVisible(false);
     textLabel.setVisible(false);
 
