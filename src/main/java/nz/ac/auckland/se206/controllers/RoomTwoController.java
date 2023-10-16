@@ -96,18 +96,17 @@ public class RoomTwoController {
     sound.toggleImage();
   }
 
-  /**
-   * Handles the click event on the authorisation button.
-   *
-   * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
-   */
   @FXML
   public void clickAuthorisation(MouseEvent event) throws IOException {
     // If riddle not solved tell the player to get authorised
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation needed to access\nthe system.");
       return;
+    }
+    if (!GameState.hard) {
+      activateSpeech("Good luck fixing the ship! Let me know if you need any help.");
+    } else {
+      activateSpeech("Fixing the ship is very hard but I know you can do it. Keep trying!");
     }
   }
 

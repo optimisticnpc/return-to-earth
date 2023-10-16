@@ -274,6 +274,10 @@ public class RoomThreeController {
 
       activateSpeech("You have fixed the engine!\nNow you have to reactivate the spaceship");
     }
+
+    if (unscrewed && !GameState.isWireCollected && !GameState.isPartFixed) {
+      activateSpeech("It seems like you are missing a part you need!");
+    }
   }
 
   /**
