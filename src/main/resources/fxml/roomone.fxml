@@ -9,6 +9,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import nz.ac.auckland.se206.ball.BouncingBallPane?>
 
 <!-- <?import nz.ac.auckland.se206.ball.BouncingBallPane?> -->
 
@@ -68,8 +69,9 @@
             <Image url="@../images/wire%20hover.png" />
          </image>
       </ImageView>
+      <BouncingBallPane fx:id="bouncingBall" layoutX="530.0" layoutY="361.0" prefHeight="61.0" prefWidth="117.0" visible="false" />
       <!-- <BouncingBallPane fx:id="bouncingBall" layoutX="531.0" layoutY="361.0" prefHeight="63.0" prefWidth="115.0" /> -->
-      <Rectangle fx:id="ballToggle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="78.0" layoutX="523.0" layoutY="353.0" onMouseClicked="#clickBallToggle" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="129.0" />
+      <Rectangle fx:id="ballToggle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="78.0" layoutX="523.0" layoutY="355.0" onMouseClicked="#clickBallToggle" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="128.0" />
       <fx:include fx:id="chatPanel" source="chatcomponent.fxml" />
       <ImageView fx:id="soundIcon" fitHeight="61.0" fitWidth="53.0" layoutX="1215.0" layoutY="15.0" onMouseClicked="#clickSoundIcon" pickOnBounds="true" preserveRatio="true">
          <image>
