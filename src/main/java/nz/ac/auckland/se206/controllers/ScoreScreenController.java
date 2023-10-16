@@ -137,4 +137,15 @@ public class ScoreScreenController {
     goBackButton.setVisible(true);
     helpStarsButton.setVisible(true);
   }
+
+  @FXML
+  private void onClickResetButton() {
+    System.out.println("Times Reset");
+    ScoreScreenInfo.fastestEasyTimeHundredths = Integer.MAX_VALUE;
+    ScoreScreenInfo.fastestMediumTimeHundredths = Integer.MAX_VALUE;
+    ScoreScreenInfo.fastestHardTimeHundredths = Integer.MAX_VALUE;
+    System.out.println(ScoreScreenInfo.fastestEasyTimeHundredths);
+    ScoreScreenInfo.saveTimesToFile();
+    refreshTimes();
+  }
 }

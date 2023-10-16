@@ -62,6 +62,7 @@ public class RoomThreeController {
   @FXML private ProgressBar oxygenBar;
   @FXML private Pane room;
   @FXML private Text meterPercent;
+  @FXML private Text oxygenMeterText;
   @FXML private ImageView robot;
   @FXML private ImageView soundIcon;
 
@@ -133,14 +134,14 @@ public class RoomThreeController {
   /** Shows a low oxygen warning when oxygen is under 30% and it's the first warning. */
   public void showLowOxygen() {
     if (!GameState.isWarningShown) {
-      activateSpeech("OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
+      activateSpeech("OXYGEN RUNNING LOW!\nOXYGEN RUNNING LOW!\nOXYGEN RUNNING LOW!");
       if (sound.isSoundOnProperty().get()) {
         // Text to speech tells the player they are low on oxygen
         new Thread(
                 () -> {
                   try {
-                    if (sound.isSoundOnProperty().get()) {
-                      textToSpeech.speak("Return immediately!");
+                    if (sound.isSoundOnProperty().get() && !GameState.isSpacesuitCollected) {
+                      textToSpeech.speak("Return immediately! Oxygen Critical! RETURN IMMEDIATELY");
                     }
                   } catch (Exception e) {
                     e.printStackTrace();
@@ -156,6 +157,8 @@ public class RoomThreeController {
   public void showSpacesuitOxygen() {
     oxygenBar.setStyle("-fx-accent: #ADD8E6;");
     oxygenBar.setPrefWidth(350);
+    oxygenMeterText.setStyle("-fx-fill: #56daff;");
+    meterPercent.setStyle("-fx-fill: #56daff;");
   }
 
   /**
@@ -268,10 +271,11 @@ public class RoomThreeController {
         chat.runGpt(new ChatMessage("system", GptPromptEngineering.getHardPhaseFourProgress()));
       }
 
-      activateSpeech(
-          "You have fixed the engine!\n Now you have to reactivate it\n from somewhere...");
+      activateSpeech("You have fixed the engine!\nNow you have to reactivate the spaceship");
+    }
 
-      ;
+    if (unscrewed && !GameState.isWireCollected && !GameState.isPartFixed) {
+      activateSpeech("It seems like you are missing a part you need!");
     }
   }
 

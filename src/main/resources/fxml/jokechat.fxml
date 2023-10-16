@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="2000.0" maxWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.JokeChatController">
+  <children>
+      <VBox prefHeight="720.0" prefWidth="460.0" spacing="5" style="-fx-background-color: #666b73;">
+         <children>
+            <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="383.0" prefWidth="230.0" VBox.vgrow="ALWAYS">
+               <content>
+                  <VBox fx:id="chatLog" prefHeight="368.0" prefWidth="282.0" style="-fx-background-color: #9ba0a8;" />
+               </content>
+            </ScrollPane>
+            <HBox spacing="5">
+               <children>
+                  <TextArea fx:id="inputText" onKeyPressed="#onEnterPressed" prefHeight="47.0" prefWidth="301.0" promptText="enter message..." style="-fx-background-color: #5d77c9;" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="13.0" />
+                     </font></TextArea>
+                  <Button fx:id="sendButton" minWidth="52.0" mnemonicParsing="false" onAction="#setSendButtonAction" prefHeight="47.0" prefWidth="72.0" style="-fx-background-color: #ede56f;" text="Send" textFill="#1b00a3">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="playMessage" minWidth="41.0" mnemonicParsing="false" onAction="#playMessageAction" prefHeight="47.0" prefWidth="41.0" style="-fx-background-color: #ede56f;" textFill="#1b00a3">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="99.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/soundicon_blue.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets topRightBottomLeft="5" />
+         </padding>
+      </VBox>
+      <ImageView fx:id="loadingIcon" fitHeight="36.0" fitWidth="42.0" layoutX="281.0" layoutY="673.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/loading_icon.gif" />
+         </image>
+      </ImageView>
+  </children>
+</AnchorPane>

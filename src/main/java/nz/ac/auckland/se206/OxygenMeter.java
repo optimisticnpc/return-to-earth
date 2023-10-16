@@ -47,7 +47,12 @@ public class OxygenMeter {
   /** A BigDecimal object representing the oxygen progress. */
   private BigDecimal progress = new BigDecimal(String.format("%.2f", 1.0));
 
-  private RoomThreeController roomThree;
+   private RoomThreeController roomThree;
+
+  public BigDecimal getProgress() {
+    return progress;
+  }
+
 
   /**
    * Constructs a new OxygenMeter object and initializes the timeline for managing oxygen levels.
@@ -65,12 +70,12 @@ public class OxygenMeter {
                       if (GameState.isSpacesuitCollected) {
                         // Decrement oxygen level slower if spacesuit is collected
                         progress =
-                            new BigDecimal(String.format("%.2f", progress.doubleValue() - 0.02));
+                            new BigDecimal(String.format("%.2f", progress.doubleValue() - 0.01));
                       } else {
                         progress =
                             new BigDecimal(String.format("%.2f", progress.doubleValue() - 0.05));
                       }
-                      if (progress.doubleValue() < 0.3) {
+                      if (progress.doubleValue() < 0.3 && !GameState.isSpacesuitCollected) {
                         roomThree.showLowOxygen();
                       }
                       // Display oxygen level as percentage

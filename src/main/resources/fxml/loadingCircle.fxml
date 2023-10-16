@@ -45,14 +45,14 @@
             <Image url="@../images/ai_thinking_circle_purple.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="70.0" fitWidth="101.0" layoutX="180.0" layoutY="55.0">
+      <ImageView fx:id="speechBubble" fitHeight="78.0" fitWidth="114.0" layoutX="180.0" layoutY="47.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="textLabel" layoutX="202.0" layoutY="69.0" text="hmmm">
+      <Label fx:id="textLabel" layoutX="203.0" layoutY="61.0" text="hmmm">
          <font>
-            <Font size="16.0" />
+            <Font size="20.0" />
          </font>
       </Label>
    </children>

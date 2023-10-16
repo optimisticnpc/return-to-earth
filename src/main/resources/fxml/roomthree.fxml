@@ -45,7 +45,7 @@
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="698.0" layoutY="51.0" prefHeight="118.0" prefWidth="295.0">
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="643.0" layoutY="46.0" prefHeight="96.0" prefWidth="269.0" wrapText="true">
          <font>
             <Font size="20.0" />
                      </font>
@@ -86,7 +86,7 @@
          </font>
       </Text>
       <ProgressBar fx:id="oxygenBar" layoutX="913.0" layoutY="671.0" prefHeight="35.0" prefWidth="281.0" progress="1.0" style="-fx-accent: red;" />
-      <Text fill="RED" layoutX="912.0" layoutY="665.0" stroke="BLACK" strokeType="OUTSIDE" text="OXYGEN METER:" wrappingWidth="295.10546875">
+      <Text fx:id="oxygenMeterText" fill="RED" layoutX="915.0" layoutY="665.0" stroke="BLACK" strokeType="OUTSIDE" text="OXYGEN METER:" wrappingWidth="295.10546875">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
