@@ -109,7 +109,7 @@ public class RoomOneController {
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
-    soundIcon.opacityProperty().bind(sound.iconOpacityProperty());
+    soundIcon.opacityProperty().bind(sound.getIconOpacityProperty());
     InputStream soundOn = new FileInputStream("src/main/resources/images/soundicon.png");
     Image soundOnImage = new Image(soundOn);
     sound.soundImageProperty().set(soundOnImage);
@@ -193,6 +193,7 @@ public class RoomOneController {
     }
   }
 
+  /** Handles the click event on the main warning. */
   @FXML
   public void onYesButton() {
     hideAllOxygenWarningElements();
@@ -202,11 +203,13 @@ public class RoomOneController {
     exitOxygenWarningRectangle.setVisible(false);
   }
 
+  /** Handles the click event on the main warning. */
   @FXML
   public void onNoButton() {
     hideAllOxygenWarningElements();
   }
 
+  /** Helper function that hides all the oxygen warning elements. */
   private void hideAllOxygenWarningElements() {
     yesNoButtons.setVisible(false);
     oxygenWarningLabel.setVisible(false);
@@ -214,6 +217,7 @@ public class RoomOneController {
     exitOxygenWarningRectangle.setVisible(false);
   }
 
+  /** Handles the click event on the main warning. */
   @FXML
   public void onClickExitOxygenWarningRectangle() {
     yesNoButtons.setVisible(false);
@@ -241,6 +245,8 @@ public class RoomOneController {
   @FXML
   private void clickMainWarning(MouseEvent event) throws IOException {
     System.out.println("Main Warning clicked");
+    // If riddle not solved tell the player to get authorization, otherwise tell them to fix the
+    // ship
     if (!GameState.isRiddleResolved) {
       activateSpeech(
           "Critical damage detected on the ship. Please authorise yourself by clicking the middle"
@@ -305,6 +311,12 @@ public class RoomOneController {
     // 5 second delay
   }
 
+  /**
+   * Handles the click event on the robot.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the chat view
+   */
   @FXML
   public void clickRobot(MouseEvent event) throws IOException {
     // If riddle not solved tell the player to get authorised
@@ -328,9 +340,11 @@ public class RoomOneController {
   @FXML
   private void clickAuthorisation(MouseEvent event) throws IOException {
     System.out.println("Authorisation clicked");
+    // If riddle not solved tell the player to get authorised and start the riddle
     if (GameState.isRoomOneFirst && !GameState.isAuthorising) {
       GameState.isAuthorising = true;
       selectRandomRiddle();
+      // Add hint prompts only if difficulty is not hard and if they haven't been added already
       if (GameState.easy) {
         chatCentralControl.runGpt(
             new ChatMessage(
@@ -353,11 +367,18 @@ public class RoomOneController {
     }
   }
 
+  /**
+   * Selects a random riddle from the list of riddles.
+   */
   private void selectRandomRiddle() {
     Random random = new Random();
     wordToGuess = riddles[random.nextInt(riddles.length)];
   }
 
+  /**
+   * Handles the click event on the wire compartment.
+   * @param event the mouse event
+   */
   @FXML
   private void onSlideChatButtonClicked(ActionEvent event) {
     System.out.println("onSlideChatButtonClicked()");
@@ -379,6 +400,12 @@ public class RoomOneController {
     tt.play();
   }
 
+  /**
+   * Handles the click event on the wire compartment.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the chat view
+   */
   @FXML
   public void clickWireCompartment(MouseEvent event) throws IOException {
     System.out.println("Wire Compartment Clicked");
@@ -427,13 +454,18 @@ public class RoomOneController {
     fadeTransition.play();
   }
 
+  /**
+   * Handles the click event on the keypad.
+   */
   private void addWordScramblePromptsIfNotAdded() {
+    // Add hint prompts only if difficulty is not hard
     if (!GameState.isWordScramblePromptAdded) {
       String prompt = GptPromptEngineering.hintWordScrambleSetup();
       if (GameState.medium) {
         prompt = prompt + GptPromptEngineering.getMediumHintReminder();
       }
 
+      // Add the prompt to the chat
       ChatCentralControl.getInstance()
           .getChatCompletionRequest()
           .addMessage(new ChatMessage("system", prompt));

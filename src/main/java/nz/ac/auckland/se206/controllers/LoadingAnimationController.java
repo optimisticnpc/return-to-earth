@@ -35,12 +35,14 @@ public class LoadingAnimationController implements LoadingAnimationsIterface {
 
   private FadeTransition currentTransition;
 
+  /** Called by JavaFX when controller is created (after elements have been initialized). */
   @FXML
   public void initialize() {
     System.out.println("LoadingAnimationController.initialize()");
     speechBubble.setVisible(false);
     textLabel.setVisible(false);
 
+    // Add this controller as an observer of the animation central control
     AnimationCentralControl animationCentralControl = AnimationCentralControl.getInstance();
     animationCentralControl.addObserver(this);
 
@@ -54,6 +56,7 @@ public class LoadingAnimationController implements LoadingAnimationsIterface {
           aiThinkingPurple
         };
 
+    // Set the opacity of all the thinking circles to 0
     for (ImageView imageView : thinkingCircles) {
       imageView.setOpacity(0);
     }
@@ -61,15 +64,15 @@ public class LoadingAnimationController implements LoadingAnimationsIterface {
     aiNormal.setOpacity(1);
   }
 
+  /** Called by the animation central control when the animation should start. */
   public void playAnimation() {
-
     GameState.isLoadingAnimationlaying.set(true);
 
     speechBubble.setVisible(true);
     textLabel.setVisible(true);
-
     aiNormal.setOpacity(0);
 
+    // Fades the loading animation
     currentTransition = new FadeTransition(Duration.seconds(1), thinkingCircles[currentImageIndex]);
     currentTransition.setFromValue(1);
     currentTransition.setToValue(1);
@@ -83,9 +86,11 @@ public class LoadingAnimationController implements LoadingAnimationsIterface {
     currentTransition.play();
   }
 
+  /** Called by the animation central control when the animation should stop. */
   public void stopAnimation() {
     GameState.isLoadingAnimationlaying.set(false);
 
+    // Stop the current transition if it exists
     if (currentTransition != null) {
       currentTransition.stop();
     }

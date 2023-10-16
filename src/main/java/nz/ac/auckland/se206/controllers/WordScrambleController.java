@@ -150,13 +150,16 @@ public class WordScrambleController implements MyControllers {
     App.getScene().setRoot(root);
   }
 
+  /**
+   * Handles the click event on the "Hint" button. Sends a message to the chat asking for a hint for
+   * the word scramble question.
+   */
   @FXML
   private void onClickWordScrambleHintButton() {
-
     if (GptPromptEngineering.checkIfAuthorisedAndPrintMessage()) {
       return;
     }
-
+    // Add asking for hint message to chat
     ChatMessage msg =
         new ChatMessage("user", "Please give me a hint for the word scramble question");
 
@@ -164,6 +167,7 @@ public class WordScrambleController implements MyControllers {
     ChatCentralControl.getInstance().runGpt(msg);
   }
 
+  /** Method that disables the hint button so that the player cannot click it. */
   @Override
   public void disableHintButton() {
     wordScrambleHintButton.setDisable(true);

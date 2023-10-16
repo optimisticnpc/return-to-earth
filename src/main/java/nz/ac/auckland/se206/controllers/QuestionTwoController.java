@@ -43,6 +43,10 @@ public class QuestionTwoController implements MyControllers {
     }
   }
 
+  /**
+   * Handles the click event on the "Hint" button. Sends a message to the chat asking for a hint for
+   * the second question.
+   */
   @FXML
   private void onClickQuestionTwoHintButton() {
     if (GptPromptEngineering.checkIfAuthorisedAndPrintMessage()) {
@@ -66,6 +70,10 @@ public class QuestionTwoController implements MyControllers {
     App.getScene().setRoot(roomTwoRoot);
   }
 
+  /**
+   * Handles the click event on the "Next" button. Navigates to the Word Joke view when the button
+   * is clicked.
+   */
   @Override
   public void disableHintButton() {
     questionTwoHintButton.setDisable(true);

@@ -115,7 +115,7 @@ public class ChatCentralControl {
   private void runChatPromptBasedOnGameState() throws ApiProxyException {
     if (GameState.isPersonalitySetup) {
       System.out.println("System setup completed!");
-      runGpt(new ChatMessage("system", GptPromptEngineering.getAIPersonality()));
+      runGpt(new ChatMessage("system", GptPromptEngineering.getAiPersonality()));
       GameState.isPersonalitySetup = false;
     } else {
       if (GameState.phaseThree && !GameState.hard) {

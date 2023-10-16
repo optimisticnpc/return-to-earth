@@ -88,9 +88,9 @@ public class ChatComponentController implements Observer {
   }
 
   public void addLabel(String message, Pos position) {
-    HBox hBox = new HBox();
-    hBox.setAlignment(position);
-    hBox.setPadding(new Insets(5, 5, 5, 10));
+    HBox box = new HBox();
+    box.setAlignment(position);
+    box.setPadding(new Insets(5, 5, 5, 10));
 
     Text text = new Text(message);
     if (position == Pos.CENTER_LEFT) {
@@ -112,12 +112,12 @@ public class ChatComponentController implements Observer {
 
     textFlow.setPadding(new Insets(5, 10, 5, 10));
 
-    hBox.getChildren().add(textFlow);
+    box.getChildren().add(textFlow);
     Platform.runLater(
         new Runnable() {
           @Override
           public void run() {
-            chatLog.getChildren().add(hBox);
+            chatLog.getChildren().add(box);
           }
         });
   }
