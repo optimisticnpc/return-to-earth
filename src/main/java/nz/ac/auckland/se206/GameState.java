@@ -67,6 +67,8 @@ public class GameState {
 
   public static boolean isWireCompartmentUnlocked = false;
 
+  public static final BooleanProperty isJokeChallengeAccepted = new SimpleBooleanProperty(false);
+
   public static final BooleanProperty isJokeResolved = new SimpleBooleanProperty(false);
 
   /**
@@ -90,11 +92,12 @@ public class GameState {
     isWarningShown = false;
     isSpacesuitJustCollected = false;
     isPartFixed = false;
-    isWireCompartmentUnlocked = true;
+    isWireCompartmentUnlocked = false;
 
     isMathQuestionPromptAdded = false;
     isWordScramblePromptAdded = false;
     isJokeResolved.set(false);
+    isJokeChallengeAccepted.set(false);
     HintCounter.resetHintCount();
   }
 

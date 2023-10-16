@@ -53,9 +53,23 @@ public class JokeChatController {
   public void initialize() {
     System.out.println("JokeChatController.initialize()");
     hideLoadingIcon();
+    disableTextBox();
     setupChatConfiguration();
     messages = new ArrayList<>();
 
+    cheatCodes();
+
+    // Add a listener to isJokeResolved property
+    GameState.isJokeChallengeAccepted.addListener(
+        (observable, oldValue, newValue) -> {
+          if (!oldValue && newValue) { // If it changes from false to true
+            startJokeChallenge();
+            System.out.println("Joke challenge Started");
+          }
+        });
+  }
+
+  private void startJokeChallenge() {
     ChatMessage prompt = new ChatMessage("system", GptPromptEngineering.getJokePrompt());
     ChatMessage firstMessage =
         new ChatMessage("assistant", GptPromptEngineering.getFirstJokeMessage());
@@ -63,8 +77,7 @@ public class JokeChatController {
     chatCompletionRequest.addMessage(prompt);
     chatCompletionRequest.addMessage(firstMessage);
     addLabel(GptPromptEngineering.getFirstJokeMessage(), Pos.CENTER_LEFT);
-
-    cheatCodes();
+    enableTextBox();
   }
 
   /**

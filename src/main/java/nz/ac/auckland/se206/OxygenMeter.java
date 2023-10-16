@@ -47,7 +47,12 @@ public class OxygenMeter {
   /** A BigDecimal object representing the oxygen progress. */
   private BigDecimal progress = new BigDecimal(String.format("%.2f", 1.0));
 
-  private RoomThreeController roomThree;
+   private RoomThreeController roomThree;
+
+  public BigDecimal getProgress() {
+    return progress;
+  }
+
 
   /**
    * Constructs a new OxygenMeter object and initializes the timeline for managing oxygen levels.

@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -18,6 +19,9 @@ import nz.ac.auckland.se206.SpeechBubble;
 
 public class JokeController {
 
+  @FXML HBox yesNoButtons;
+  @FXML ImageView challengeSpeechBubble;
+
   private Timer timer = new Timer();
   private SpeechBubble speech = SpeechBubble.getInstance();
 
@@ -25,6 +29,7 @@ public class JokeController {
   @FXML private ImageView speechBubble;
   @FXML private ImageView spacesuitCollectedImage;
   @FXML private Label timerLabel;
+  @FXML private Label challengeLabel;
 
   /** Initializes the word joke screen, setting up the timer, input field. */
   public void initialize() {
@@ -102,5 +107,13 @@ public class JokeController {
         },
         5000);
     // 5 second delay
+  }
+
+  @FXML
+  public void onYesButton() {
+    challengeSpeechBubble.setVisible(false);
+    yesNoButtons.setVisible(false);
+    challengeLabel.setVisible(false);
+    GameState.isJokeChallengeAccepted.set(true);
   }
 }

@@ -134,7 +134,7 @@ public class RoomThreeController {
   /** Shows a low oxygen warning when oxygen is under 30% and it's the first warning. */
   public void showLowOxygen() {
     if (!GameState.isWarningShown) {
-      activateSpeech("OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
+      activateSpeech("OXYGEN RUNNING LOW!\nOXYGEN RUNNING LOW!\nOXYGEN RUNNING LOW!");
       if (sound.isSoundOnProperty().get()) {
         // Text to speech tells the player they are low on oxygen
         new Thread(

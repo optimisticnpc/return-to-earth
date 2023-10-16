@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
@@ -25,6 +26,7 @@ import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
+import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
@@ -60,6 +62,9 @@ public class RoomOneController {
   @FXML private Rectangle ballToggle;
   @FXML private ImageView soundIcon;
   @FXML private Polygon wireCompartment;
+  @FXML private HBox yesNoButtons;
+  @FXML private Label oxygenWarningLabel;
+  @FXML private Rectangle exitOxygenWarningRectangle;
 
   @FXML private AnchorPane chatPanel;
 
@@ -89,6 +94,11 @@ public class RoomOneController {
     // initially sets speech bubble to invisible.
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
+
+    exitOxygenWarningRectangle.setVisible(false);
+    yesNoButtons.setVisible(false);
+    oxygenWarningLabel.setVisible(false);
+
     // bouncingBall.setVisible(false); TODO: Undo this
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
     // update hintlabel according to the difficulty
@@ -101,11 +111,6 @@ public class RoomOneController {
     InputStream soundOn = new FileInputStream("src/main/resources/images/soundicon.png");
     Image soundOnImage = new Image(soundOn);
     sound.soundImageProperty().set(soundOnImage);
-
-    // I don't think we need this. Also it sometimes doesn't show up if the player is clicking
-    // quickly through the background story screen
-    // activateSpeech(
-    //     "Hey you! Have you passed the\nauthorisation riddle to be\ntouching this stuff?");
   }
 
   /**
@@ -141,9 +146,50 @@ public class RoomOneController {
   @FXML
   private void clickRoomThree(MouseEvent event) throws IOException {
     System.out.println("Room Three clicked");
+
+    // Show warning about going outside if oxygen is low, spacesuit not collected and speech bubble
+    // isn't already visible
+    if (OxygenMeter.getInstance().getProgress().doubleValue() < 0.3
+        && !GameState.isSpacesuitCollected
+        && !speechBubble.isVisible()) {
+      yesNoButtons.setVisible(true);
+      oxygenWarningLabel.setVisible(true);
+      speechBubble.setVisible(true);
+      exitOxygenWarningRectangle.setVisible(true);
+    } else {
+      Parent roomThreeRoot = SceneManager.getUiRoot(AppUi.ROOM_THREE);
+      currentScene.setCurrent(3);
+      App.getScene().setRoot(roomThreeRoot);
+    }
+  }
+
+  @FXML
+  public void onYesButton() {
+    hideAllOxygenWarningElements();
     Parent roomThreeRoot = SceneManager.getUiRoot(AppUi.ROOM_THREE);
     currentScene.setCurrent(3);
     App.getScene().setRoot(roomThreeRoot);
+    exitOxygenWarningRectangle.setVisible(false);
+  }
+
+  @FXML
+  public void onNoButton() {
+    hideAllOxygenWarningElements();
+  }
+
+  private void hideAllOxygenWarningElements() {
+    yesNoButtons.setVisible(false);
+    oxygenWarningLabel.setVisible(false);
+    speechBubble.setVisible(false);
+    exitOxygenWarningRectangle.setVisible(false);
+  }
+
+  @FXML
+  public void onClickExitOxygenWarningRectangle() {
+    yesNoButtons.setVisible(false);
+    oxygenWarningLabel.setVisible(false);
+    speechBubble.setVisible(false);
+    exitOxygenWarningRectangle.setVisible(false);
   }
 
   /**
@@ -167,24 +213,11 @@ public class RoomOneController {
     System.out.println("Main Warning clicked");
     if (!GameState.isRiddleResolved) {
       activateSpeech(
-          "Critical damage detected on the ship.\n"
-              + "Please authorise yourself by clicking \nthe middle screen "
-              + "to access the system and analyse the damage.");
-      chatCentralControl.addMessage(
-          new ChatMessage(
-              "system",
-              "Critical damage detected on the ship.\n"
-                  + "Please authorise yourself by clicking \nthe middle screen "
-                  + "to access the system\nand analyse the damage."));
+          "Critical damage detected on the ship. Please authorise yourself by clicking the middle"
+              + " screen to access the system and analyse the damage.");
     } else {
       activateSpeech(
-          "Critical damage detected on the engine!\n"
-              + "Please find the tools required and fix it!");
-      chatCentralControl.addMessage(
-          new ChatMessage(
-              "system",
-              "Critical damage detected on the engine!\n"
-                  + "Please find the spare tools and\nfix it!"));
+          "Critical damage detected on the engine! Please find the tools required and fix it!");
     }
   }
 
@@ -202,7 +235,7 @@ public class RoomOneController {
       activateSpeech("Authorisation needed to access the system.");
     } else {
       activateSpeech(
-          "Critical failure on the main engine\n" + "Please find the spare parts and\nfix it!");
+          "Critical failure on the main engine! Please find the spare parts and fix it!");
     }
   }
 
@@ -214,7 +247,7 @@ public class RoomOneController {
   @FXML
   private void clickWire(MouseEvent event) {
     GameState.isWireCollected = true;
-    activateSpeech("You have collected the wire!\nYou might need it to fix something...");
+    activateSpeech("You have collected the wire! You might need it to fix something...");
     room.getChildren().remove(wire);
     room.getChildren().remove(wireImage);
   }

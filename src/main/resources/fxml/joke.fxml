@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -37,15 +38,39 @@
          </image>
       </ImageView>
       <Rectangle fx:id="spacesuit" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="576.0" layoutX="514.0" layoutY="62.0" onMouseClicked="#clickSpacesuit" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-hoverable" width="261.0" />
-      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="431.0" layoutY="82.0">
+      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="431.0" layoutY="82.0" opacity="0.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="451.0" layoutY="95.0" prefHeight="96.0" prefWidth="269.0" wrapText="true">
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="451.0" layoutY="95.0" opacity="0.0" prefHeight="96.0" prefWidth="269.0" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
+      <ImageView fx:id="challengeSpeechBubble" fitHeight="401.0" fitWidth="388.0" layoutX="440.0" layoutY="50.0">
+         <image>
+            <Image url="@../images/speech-bubble.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="challengeLabel" layoutX="490.0" layoutY="90.0" prefHeight="154.0" prefWidth="278.0" text="Congratulations! You have found the Super Spacesuit. However, to collect it you must pass my test. Do you accept?" wrapText="true">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <HBox fx:id="yesNoButtons" alignment="TOP_CENTER" layoutX="478.0" layoutY="250.0" prefHeight="100.0" prefWidth="283.0" spacing="20.0">
+         <children>
+            <Button fx:id="yesButton" onAction="#onYesButton" prefHeight="47.0" prefWidth="103.0" style="-fx-font-size: 18;" styleClass="otherButtons" text="Yes">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="noButton" onAction="#onGoBack" prefHeight="47.0" prefWidth="103.0" style="-fx-font-size: 18;" styleClass="noButtons" text="No">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </Pane>
