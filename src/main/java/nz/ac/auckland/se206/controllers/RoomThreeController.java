@@ -62,6 +62,7 @@ public class RoomThreeController {
   @FXML private ProgressBar oxygenBar;
   @FXML private Pane room;
   @FXML private Text meterPercent;
+  @FXML private Text oxygenMeterText;
   @FXML private ImageView robot;
   @FXML private ImageView soundIcon;
 
@@ -139,8 +140,8 @@ public class RoomThreeController {
         new Thread(
                 () -> {
                   try {
-                    if (sound.isSoundOnProperty().get()) {
-                      textToSpeech.speak("Return immediately!");
+                    if (sound.isSoundOnProperty().get() && !GameState.isSpacesuitCollected) {
+                      textToSpeech.speak("Return immediately! Oxygen Critical! RETURN IMMEDIATELY");
                     }
                   } catch (Exception e) {
                     e.printStackTrace();
@@ -156,6 +157,8 @@ public class RoomThreeController {
   public void showSpacesuitOxygen() {
     oxygenBar.setStyle("-fx-accent: #ADD8E6;");
     oxygenBar.setPrefWidth(350);
+    oxygenMeterText.setStyle("-fx-fill: #56daff;");
+    meterPercent.setStyle("-fx-fill: #56daff;");
   }
 
   /**

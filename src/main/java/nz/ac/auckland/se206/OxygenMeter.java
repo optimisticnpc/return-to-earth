@@ -65,12 +65,12 @@ public class OxygenMeter {
                       if (GameState.isSpacesuitCollected) {
                         // Decrement oxygen level slower if spacesuit is collected
                         progress =
-                            new BigDecimal(String.format("%.2f", progress.doubleValue() - 0.02));
+                            new BigDecimal(String.format("%.2f", progress.doubleValue() - 0.01));
                       } else {
                         progress =
                             new BigDecimal(String.format("%.2f", progress.doubleValue() - 0.05));
                       }
-                      if (progress.doubleValue() < 0.3) {
+                      if (progress.doubleValue() < 0.3 && !GameState.isSpacesuitCollected) {
                         roomThree.showLowOxygen();
                       }
                       // Display oxygen level as percentage
