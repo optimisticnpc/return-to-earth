@@ -95,6 +95,14 @@ public class MathQuestionSelector {
     return selectedPuzzles[1].getQuestion();
   }
 
+  public String getFirstAnswer() {
+    return selectedPuzzles[0].getAnswer();
+  }
+
+  public String getSecondAnswer() {
+    return selectedPuzzles[1].getAnswer();
+  }
+
   public String getFirstQuestionHint() {
     return selectedPuzzles[0].getHint1();
   }

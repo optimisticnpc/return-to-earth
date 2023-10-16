@@ -118,7 +118,7 @@ public class GptPromptEngineering {
   }
 
   public static String hintMathQuestionPrompt() {
-    return hintMathQuestionSetup() + hintQuestionOneSetup() + hintQuestionTwoSetup();
+    return hintMathQuestionSetup() + hintQuestionOneSetup() + "\n" + hintQuestionTwoSetup();
   }
 
   public static String hintMathQuestionSetup() {
@@ -131,14 +131,18 @@ public class GptPromptEngineering {
 
   public static String hintQuestionOneSetup() {
 
-    return "If it is for the first question tell them that: "
-        + MathQuestionSelector.getInstance().getFirstQuestionHint();
+    return "If they ask for a hint for the first question tell them that: "
+        + MathQuestionSelector.getInstance().getFirstQuestionHint()
+        + "If they ask for a hint again you can tell them that the answer is: "
+        + MathQuestionSelector.getInstance().getFirstAnswer();
   }
 
   public static String hintQuestionTwoSetup() {
 
     return "If it is for the second question tell them that: "
-        + MathQuestionSelector.getInstance().getSecondQuestionHint();
+        + MathQuestionSelector.getInstance().getSecondQuestionHint()
+        + "If they ask for a hint again you can tell them that the answer is: "
+        + MathQuestionSelector.getInstance().getSecondAnswer();
   }
 
   public static String hintWordScrambleSetup() {
