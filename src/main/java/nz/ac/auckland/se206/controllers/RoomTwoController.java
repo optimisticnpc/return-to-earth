@@ -77,6 +77,9 @@ public class RoomTwoController {
     spacesuitRevealedImage.setOpacity(0);
     spacesuitCollectedImage.setOpacity(0);
 
+    // Initially crate is not hoverable
+    crate.setVisible(false);
+
     // Add a listener to isJokeResolved property
     GameState.isJokeResolved.addListener(
         (observable, oldValue, newValue) -> {
@@ -219,6 +222,7 @@ public class RoomTwoController {
     System.out.println("Crate clicked");
 
     if (GameState.isToolboxCollected) {
+      room.getChildren().remove(crate);
       FadeTransition fadeTransition = new FadeTransition();
       fadeTransition.setNode(crateImage);
       fadeTransition.setFromValue(1); // starting opacity value
@@ -226,7 +230,6 @@ public class RoomTwoController {
       fadeTransition.setDuration(Duration.millis(300)); // transition duration
       fadeTransition.setOnFinished(
           e -> {
-            room.getChildren().remove(crate);
             room.getChildren().remove(crateImage);
           });
       fadeTransition.play();
@@ -298,6 +301,9 @@ public class RoomTwoController {
       } else {
         chat.runGpt(new ChatMessage("system", GptPromptEngineering.getPhaseThreeProgress()));
       }
+
+      // Crate is now hoverable, makes collecting spacesuit more likely
+      crate.setVisible(true);
       System.out.println("Toolbox collected");
     }
   }
