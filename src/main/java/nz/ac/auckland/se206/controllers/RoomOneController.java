@@ -65,6 +65,7 @@ public class RoomOneController {
   @FXML private HBox yesNoButtons;
   @FXML private Label oxygenWarningLabel;
   @FXML private Rectangle exitOxygenWarningRectangle;
+  @FXML private Pane lock;
 
   @FXML private AnchorPane chatPanel;
 
@@ -399,7 +400,8 @@ public class RoomOneController {
       App.getScene().setRoot(spacesuitPuzzlesRoom);
       // If spacesuit hasn't been revealed
     } else {
-      wireCompartment.setVisible(false);
+      lock.getChildren().clear();
+      room.getChildren().remove(lock);
     }
   }
 

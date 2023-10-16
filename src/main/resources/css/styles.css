@@ -39,6 +39,19 @@
     -fx-padding: 10px 20px;
 }
 
+.wrenchButton {
+    -fx-text-fill: white;
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+}
+
+.wrenchButton:hover {
+    -fx-opacity: 0.8;
+}
+
 #scoreScreenButton,
 #helpStarsButton,
 #closeButton,
