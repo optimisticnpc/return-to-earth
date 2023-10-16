@@ -232,8 +232,7 @@ public class RoomThreeController {
     // If toolbox not collected
     if (!GameState.isToolboxCollected) {
       activateSpeech("You need to find the right tools\nto open this hatch.");
-      chat.addMessage(
-          new ChatMessage("assistant", "You need to find the right tools\nto open this hatch."));
+
       return;
     }
 
@@ -271,10 +270,7 @@ public class RoomThreeController {
 
       activateSpeech(
           "You have fixed the engine!\n Now you have to reactivate it\n from somewhere...");
-      chat.addMessage(
-          new ChatMessage(
-              "assistant",
-              "You have fixed the engine!\n Now you have to reactivate it\n from somewhere..."));
+
       ;
     }
   }

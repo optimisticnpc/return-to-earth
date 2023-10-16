@@ -168,22 +168,12 @@ public class RoomOneController {
       activateSpeech(
           "Critical damage detected on the ship.\n"
               + "Please authorise yourself by clicking \nthe middle screen "
-              + "to access the system and analyse the damage.");
-      chatCentralControl.addMessage(
-          new ChatMessage(
-              "system",
-              "Critical damage detected on the ship.\n"
-                  + "Please authorise yourself by clicking \nthe middle screen "
-                  + "to access the system\nand analyse the damage."));
+              + "to access the system and \nanalyse the damage.");
+
     } else {
       activateSpeech(
           "Critical damage detected on the engine!\n"
               + "Please find the tools required and fix it!");
-      chatCentralControl.addMessage(
-          new ChatMessage(
-              "system",
-              "Critical damage detected on the engine!\n"
-                  + "Please find the spare tools and\nfix it!"));
     }
   }
 

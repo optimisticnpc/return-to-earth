@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import nz.ac.auckland.se206.ball.BouncingBallPane?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
    <children>
       <ImageView fx:id="background" fitHeight="720.0" fitWidth="1082.0" layoutX="233.0" pickOnBounds="true">
          <image>
@@ -19,14 +19,14 @@
       <Rectangle fx:id="mainWarning" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="38.0" layoutX="587.0" layoutY="97.0" onMouseClicked="#clickMainWarning" opacity="0.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" width="383.0" />
       <Rectangle fx:id="authRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="117.0" layoutX="678.0" layoutY="327.0" onMouseClicked="#clickAuthorisation" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="190.0" />
       <Rectangle fx:id="engineWarning" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="83.0" layoutX="897.0" layoutY="353.0" onMouseClicked="#clickEngineWarning" opacity="0.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" width="128.0" />
-      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="458.0" layoutY="219.0">
+      <ImageView fx:id="speechBubble" fitHeight="241.0" fitWidth="467.0" layoutX="458.0" layoutY="149.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="478.0" layoutY="232.0" prefHeight="96.0" prefWidth="269.0">
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="488.0" layoutY="162.0" prefHeight="148.0" prefWidth="397.0">
          <font>
-            <Font size="15.0" />
+            <Font size="20.0" />
          </font>
       </Label>
       <ImageView fitHeight="373.0" fitWidth="190.0" layoutX="352.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
