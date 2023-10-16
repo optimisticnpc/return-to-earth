@@ -281,15 +281,15 @@ public class JokeChatController {
 
   private void cheatCodes() {
 
-    KeyCombination keyCombJ =
-        new KeyCodeCombination(KeyCode.J, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
+    KeyCombination keyCombB =
+        new KeyCodeCombination(KeyCode.B, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
 
     App.getScene()
         .addEventHandler(
             KeyEvent.KEY_PRESSED,
             event -> {
-              if (keyCombJ.match(event)) {
-                System.out.println("Ctrl + Alt + J was pressed!");
+              if (keyCombB.match(event)) {
+                System.out.println("Ctrl + Alt + B was pressed!");
                 chatCompletionRequest.printMessages();
               }
             });

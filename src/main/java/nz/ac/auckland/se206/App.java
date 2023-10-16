@@ -168,6 +168,8 @@ public class App extends Application {
             KeyCode.R, KeyCombination.ALT_DOWN, KeyCombination.SHIFT_DOWN); // Alt + Shift + R
     KeyCombination keyCombV =
         new KeyCodeCombination(KeyCode.V, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
+    KeyCombination keyCombJ =
+        new KeyCodeCombination(KeyCode.J, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
 
     scene.addEventHandler(
         KeyEvent.KEY_PRESSED,
@@ -229,6 +231,10 @@ public class App extends Application {
           } else if (keyCombV.match(event)) {
             System.out.println("Ctrl + Alt + V was pressed!" + '\n');
             ChatCentralControl.getInstance().printChatPanelMessages();
+          } else if (keyCombJ.match(event)) {
+            System.out.println("Ctrl + Alt + J was pressed!" + '\n');
+            System.out.println("Joke Bypassed!");
+            GameState.isJokeResolved.set(true);
           }
         });
   }
