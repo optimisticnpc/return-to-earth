@@ -56,14 +56,14 @@
             <Image url="@../images/ai%20hover.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="473.0" layoutY="169.0">
+      <ImageView fx:id="speechBubble" fitHeight="241.0" fitWidth="412.0" layoutX="473.0" layoutY="99.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
       <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="493.0" layoutY="182.0" prefHeight="96.0" prefWidth="269.0" wrapText="true">
          <font>
-            <Font size="15.0" />
+            <Font size="20.0" />
                      </font>
       </Label>
       <Label layoutX="810.0" layoutY="14.0" prefHeight="35.0" prefWidth="249.0" text="Hints Remaining:" textFill="#e5ff00">

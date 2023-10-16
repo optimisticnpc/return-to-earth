@@ -40,14 +40,14 @@
             <Image url="@../images/ai%20circle%20room3%20hover.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="620.0" layoutY="35.0">
+      <ImageView fx:id="speechBubble" fitHeight="191.0" fitWidth="372.0" layoutX="668.0" layoutY="41.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
       <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="643.0" layoutY="46.0" prefHeight="96.0" prefWidth="269.0" wrapText="true">
          <font>
-            <Font size="15.0" />
+            <Font size="20.0" />
                      </font>
       </Label>
       <VBox fx:id="puzzleScreen" alignment="CENTER" layoutX="447.0" layoutY="94.0" prefHeight="533.0" prefWidth="691.0" visible="false">

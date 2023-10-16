@@ -235,8 +235,7 @@ public class RoomThreeController {
     // If toolbox not collected
     if (!GameState.isToolboxCollected) {
       activateSpeech("You need to find the right tools\nto open this hatch.");
-      chat.addMessage(
-          new ChatMessage("assistant", "You need to find the right tools\nto open this hatch."));
+
       return;
     }
 
