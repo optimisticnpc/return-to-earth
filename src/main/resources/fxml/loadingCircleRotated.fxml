@@ -12,37 +12,37 @@
       <Circle fill="WHITE" layoutX="133.0" layoutY="332.0" radius="115.0" stroke="WHITE" strokeType="INSIDE" />
       <ImageView fx:id="aiThinkingYellow" fitHeight="250.0" fitWidth="250.0" layoutX="10.0" layoutY="208.0" preserveRatio="true" rotate="132.5">
          <image>
-            <Image url="@../images/ai_thinking_circle_yellow.png" />
+            <Image url="@../images/ai_circle_transparent_yellow.png" />
          </image>
       </ImageView>
       <ImageView fx:id="aiThinkingNormal" fitHeight="250.0" fitWidth="250.0" layoutX="10.0" layoutY="208.0" preserveRatio="true" rotate="132.5">
          <image>
-            <Image url="@../images/ai_thinking_circle.png" />
+            <Image url="@../images/ai_circle_transparent_normal.png" />
          </image>
       </ImageView>
       <ImageView fx:id="aiThinkingBlue" fitHeight="250.0" fitWidth="250.0" layoutX="10.0" layoutY="208.0" preserveRatio="true" rotate="132.5">
          <image>
-            <Image url="@../images/ai_thinking_circle_blue.png" />
+            <Image url="@../images/ai_circle_transparent_blue.png" />
          </image>
       </ImageView>
       <ImageView fx:id="aiThinkingOrange" fitHeight="250.0" fitWidth="250.0" layoutX="10.0" layoutY="208.0" preserveRatio="true" rotate="132.5">
          <image>
-            <Image url="@../images/ai_thinking_circle_orange.png" />
+            <Image url="@../images/ai_circle_transparent_orange.png" />
          </image>
       </ImageView>
       <ImageView fx:id="aiThinkingPink" fitHeight="250.0" fitWidth="250.0" layoutX="10.0" layoutY="208.0" preserveRatio="true" rotate="132.5">
          <image>
-            <Image url="@../images/ai_thinking_circle_pink.png" />
+            <Image url="@../images/ai_circle_transparent_pink.png" />
          </image>
       </ImageView>
       <ImageView fx:id="aiThinkingPurple" fitHeight="250.0" fitWidth="250.0" layoutX="10.0" layoutY="208.0" preserveRatio="true" rotate="132.5">
          <image>
-            <Image url="@../images/ai_thinking_circle_purple.png" />
+            <Image url="@../images/ai_circle_transparent_purple.png" />
          </image>
       </ImageView>
       <ImageView fx:id="aiNormal" fitHeight="250.0" fitWidth="250.0" layoutX="8.0" layoutY="212.0" preserveRatio="true" rotate="132.5">
          <image>
-            <Image url="@../images/ai%20circle.png" />
+            <Image url="@../images/ai%20circle%20room3.png" />
          </image>
       </ImageView>
       <ImageView fx:id="speechBubble" fitHeight="296.0" fitWidth="437.0" layoutX="191.0" layoutY="27.0">
