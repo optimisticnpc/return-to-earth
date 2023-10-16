@@ -45,7 +45,7 @@
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="643.0" layoutY="46.0" prefHeight="96.0" prefWidth="269.0" wrapText="true">
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="698.0" layoutY="59.0" prefHeight="98.0" prefWidth="295.0" wrapText="true">
          <font>
             <Font size="20.0" />
                      </font>
@@ -62,11 +62,11 @@
                   <Image url="@../images/meter.png" />
                </image>
             </ImageView>
-            <Button fx:id="timingButton" mnemonicParsing="false" onMousePressed="#pressTimingButton" styleClass="otherButtons" text="Wrench Now!">
+            <Button fx:id="timingButton" mnemonicParsing="false" onMousePressed="#pressTimingButton" styleClass="wrenchButton" text="Wrench Now!">
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <Button fx:id="resumeButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#clickResumeButton" styleClass="otherButtons" text="Go Back">
+            <Button fx:id="resumeButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#clickResumeButton" styleClass="wrenchButton" text="Go Back">
                <font>
                   <Font size="20.0" />
                </font></Button>
