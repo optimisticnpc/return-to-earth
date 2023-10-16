@@ -303,6 +303,20 @@ public class RoomOneController {
     // 5 second delay
   }
 
+  @FXML
+  public void clickRobot(MouseEvent event) throws IOException {
+    // If riddle not solved tell the player to get authorised
+    if (!GameState.isRiddleResolved) {
+      activateSpeech("Authorisation needed! Please click the middle screen");
+      return;
+    }
+    if (!GameState.hard) {
+      activateSpeech("Good luck fixing the ship! Let me know if you need any help.");
+    } else {
+      activateSpeech("Fixing the ship is very hard but I know you can do it. Keep trying!");
+    }
+  }
+
   /**
    * Handles the click event on the authorisation button.
    *

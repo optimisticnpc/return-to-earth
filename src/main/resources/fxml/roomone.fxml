@@ -38,7 +38,7 @@
             <Image url="@../images/ai.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="robot" fitHeight="370.0" fitWidth="194.0" layoutX="353.0" layoutY="335.0" onMouseClicked="#clickAuthorisation" pickOnBounds="true" styleClass="robot-hoverable">
+      <ImageView fx:id="robot" fitHeight="370.0" fitWidth="194.0" layoutX="353.0" layoutY="335.0" onMouseClicked="#clickRobot" opacity="0.0" pickOnBounds="true" styleClass="robot-hoverable">
          <image>
             <Image url="@../images/ai%20hover.png" />
          </image>

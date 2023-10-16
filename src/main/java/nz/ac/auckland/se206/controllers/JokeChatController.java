@@ -21,6 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import nz.ac.auckland.se206.AnimationCentralControl;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -88,6 +89,7 @@ public class JokeChatController {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public void runGpt(ChatMessage msg) {
+    AnimationCentralControl.getInstance().playAllAnimation();
     showLoadingIcon();
     disableTextBox();
 
@@ -118,6 +120,7 @@ public class JokeChatController {
                                 + " reload the game.")
                         .showAndWait();
                     hideLoadingIcon();
+                    AnimationCentralControl.getInstance().stopAllAnimation();
                     enableTextBox();
                   });
 
@@ -140,6 +143,7 @@ public class JokeChatController {
           // Added message to message list
           messages.add(result);
           hideLoadingIcon();
+          AnimationCentralControl.getInstance().stopAllAnimation();
 
           if (result.getRole().equals("assistant") && result.getContent().contains("Hahaha")) {
             GameState.isJokeResolved.set(true);
@@ -163,6 +167,7 @@ public class JokeChatController {
                     .showAndWait();
               });
           hideLoadingIcon();
+          AnimationCentralControl.getInstance().stopAllAnimation();
           enableTextBox();
         });
 

@@ -16,6 +16,7 @@
             <Image url="@../images/spacesuit_zoomed_in.png" />
          </image>
       </ImageView>
+      <fx:include layoutX="273.0" layoutY="202.0" scaleX="1.4" scaleY="1.44" source="loadingRobot.fxml" />
       <Label fx:id="timerLabel" layoutX="356.0" layoutY="7.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
          <font>
             <Font size="20.0" />
@@ -26,11 +27,6 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <ImageView fitHeight="534.0" fitWidth="277.0" layoutX="220.0" layoutY="158.0">
-         <image>
-            <Image url="@../images/ai.png" />
-         </image>
-      </ImageView>
       <fx:include layoutX="820.0" source="jokechat.fxml" />
       <ImageView fx:id="spacesuitCollectedImage" fitHeight="585.0" fitWidth="269.0" layoutX="507.0" layoutY="58.0" opacity="0.0" pickOnBounds="true">
          <image>

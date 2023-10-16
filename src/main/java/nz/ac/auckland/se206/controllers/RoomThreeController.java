@@ -171,7 +171,7 @@ public class RoomThreeController {
   public void clickAuthorisation(MouseEvent event) throws IOException {
     // If the riddle is not solved tell the player to get authorisation
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access\nthe system.");
+      activateSpeech("Authorisation needed to access the system.");
       return;
     }
   }
