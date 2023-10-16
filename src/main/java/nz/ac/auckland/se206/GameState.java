@@ -67,6 +67,8 @@ public class GameState {
 
   public static boolean isWireCompartmentUnlocked = false;
 
+public static boolean isJokeResolved = false;
+
   /**
    * Resets the game by clearing and initializing game state variables, updating room visuals, and
    * returning to the start screen.
@@ -93,6 +95,7 @@ public class GameState {
 
     isMathQuestionPromptAdded = false;
     isWordScramblePromptAdded = false;
+    isJokeResolved = false;
     HintCounter.resetHintCount();
   }
 

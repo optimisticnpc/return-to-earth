@@ -179,7 +179,8 @@ public class GptPromptEngineering {
   }
 
   public static String getFirstJokeMessage() {
-    return "Only the greatest and funniest space explorers may use the super space suit. Please"
-        + " tell me a funny joke and then I will let you access the spacesuit.";
+    return "Well done, you have found the upgraded space suit. I need you to access the spacesuit."
+        + " However, only the most witty and qualified individuals may use the super space"
+        + " suit. Please tell me a funny joke and then I will let you access the spacesuit.";
   }
 }

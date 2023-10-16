@@ -13,12 +13,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import nz.ac.auckland.se206.Sound;
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -45,14 +49,22 @@ public class JokeChatController {
   private List<ChatMessage> messages = new ArrayList<>();
 
   private TextToSpeech textToSpeech = new TextToSpeech();
+
   public void initialize() {
     System.out.println("JokeChatController.initialize()");
+    hideLoadingIcon();
     setupChatConfiguration();
     messages = new ArrayList<>();
 
-    ChatMessage msg = new ChatMessage("system", GptPromptEngineering.getJokePrompt());
+    ChatMessage prompt = new ChatMessage("system", GptPromptEngineering.getJokePrompt());
+    ChatMessage firstMessage =
+        new ChatMessage("assistant", GptPromptEngineering.getFirstJokeMessage());
 
-    runGpt(msg);
+    chatCompletionRequest.addMessage(prompt);
+    chatCompletionRequest.addMessage(firstMessage);
+    addLabel(GptPromptEngineering.getFirstJokeMessage(), Pos.CENTER_LEFT);
+
+    cheatCodes();
   }
 
   /**
@@ -64,7 +76,7 @@ public class JokeChatController {
    */
   public void runGpt(ChatMessage msg) {
     showLoadingIcon();
-    hideLoadingIcon();
+    disableTextBox();
 
     System.out.println("GPT LOADING");
     textToSpeech.stop();
@@ -111,6 +123,13 @@ public class JokeChatController {
             messageString = result.getContent();
           }
 
+          if (result.getRole().equals("assistant") && result.getContent().contains("Hahaha")) {
+            GameState.isJokeResolved = true;
+            System.out.println("Joke resolved");
+            inputText.setDisable(true);
+          }
+
+          addLabel(result.getContent(), Pos.CENTER_LEFT);
           // Added message to message list
           messages.add(result);
           hideLoadingIcon();
@@ -184,9 +203,9 @@ public class JokeChatController {
     if (message.trim().isEmpty()) {
       return;
     }
+    addLabel(message, Pos.CENTER_RIGHT);
     ChatMessage msg = new ChatMessage("user", message);
     runGpt(msg);
-    
   }
 
   /** PlayMessageAction plays the last message written by GPT. */
@@ -230,8 +249,6 @@ public class JokeChatController {
         });
   }
 
-
-
   public void showLoadingIcon() {
     loadingIcon.setVisible(true);
   }
@@ -246,5 +263,21 @@ public class JokeChatController {
 
   public void disableTextBox() {
     inputText.setDisable(true);
+  }
+
+  private void cheatCodes() {
+
+    KeyCombination keyCombJ =
+        new KeyCodeCombination(KeyCode.J, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
+
+    App.getScene()
+        .addEventHandler(
+            KeyEvent.KEY_PRESSED,
+            event -> {
+              if (keyCombJ.match(event)) {
+                System.out.println("Ctrl + Alt + J was pressed!");
+                chatCompletionRequest.printMessages();
+              }
+            });
   }
 }

@@ -72,6 +72,7 @@ public class App extends Application {
       SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
       SceneManager.addUi(AppUi.ROOM_THREE, loadFxml("roomthree"));
       SceneManager.addUi(AppUi.ROOM_ONE_FINAL, App.loadFxml("roomonefinal"));
+      SceneManager.addUi(AppUi.JOKE_PUZZLE, loadFxml("joke"));
       SceneManager.addUi(AppUi.WORD_SCRAMBLE, loadFxml("wordscramble"));
       SceneManager.addUi(AppUi.REACTIVATION_ORDER, loadFxml("reactivationorder"));
     } catch (IOException e) {
@@ -114,10 +115,8 @@ public class App extends Application {
     // NOTE: All the other rooms get initialized at start button press so that chat is inialized
     // After difficulty is chosen
 
-    // These rooms are only initialized once:
     SceneManager.addUi(AppUi.START, loadFxml("start"));
     SceneManager.addUi(AppUi.SCORE_SCREEN, loadFxml("scorescreen"));
-    SceneManager.addUi(AppUi.JOKE_PUZZLE, loadFxml("joke"));
 
     Parent root = SceneManager.getUiRoot(AppUi.START);
     scene = new Scene(root, 1280, 720);
@@ -126,6 +125,9 @@ public class App extends Application {
     stage.show();
     root.requestFocus();
     new GlobalController(); // Create a new global controller which checks for time being up
+
+    // Needs to be initialised here because it uses App.scene for the cheat code
+    SceneManager.addUi(AppUi.JOKE_PUZZLE, loadFxml("joke"));
 
     // Get math questions and set passcode
     MathQuestionSelector selector = MathQuestionSelector.getInstance();
