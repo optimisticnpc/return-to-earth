@@ -161,7 +161,7 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionTwo(MouseEvent event) throws IOException {
-  if (!GameState.hard) {
+    if (!GameState.hard) {
       addMathPromptsIfNotAdded();
     }
 
@@ -274,10 +274,7 @@ public class RoomTwoController {
       collectSpacesuit();
       activateSpeech(
           "You have collected the spacesuit!\nNow you're able to stay outside\nfor longer!");
-      chat.addMessage(
-          new ChatMessage(
-              "assistant",
-              "You have collected the spacesuit!\nNow you're able to stay outside\nfor longer!"));
+
       GameState.isSpacesuitCollected = true;
       GameState.isSpacesuitJustCollected = true;
     }
@@ -296,13 +293,6 @@ public class RoomTwoController {
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation needed to access\n the system.");
-      chat.addMessage(
-          new ChatMessage(
-              "system",
-              "You need to be authorised to talk to Space Destroyer or access the system for"
-                  + " security reasons.\n"
-                  + " Please click the middle screen in the main control room to authorise"
-                  + " yourself."));
       return;
     }
 
