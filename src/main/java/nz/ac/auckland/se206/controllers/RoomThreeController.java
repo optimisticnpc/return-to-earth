@@ -272,13 +272,7 @@ public class RoomThreeController {
         chat.runGpt(new ChatMessage("system", GptPromptEngineering.getHardPhaseFourProgress()));
       }
 
-      activateSpeech(
-          "You have fixed the engine!\n Now you have to reactivate it\n from somewhere...");
-      chat.addMessage(
-          new ChatMessage(
-              "assistant",
-              "You have fixed the engine!\n Now you have to reactivate it\n from somewhere..."));
-      ;
+      activateSpeech("You have fixed the engine!\nNow you have to reactivate the spaceship");
     }
   }
 

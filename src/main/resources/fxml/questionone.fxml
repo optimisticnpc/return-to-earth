@@ -23,7 +23,7 @@
       </Label>
       <Text fill="WHITE" layoutX="585.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passcode Digits 1-2 ">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Text>
       <Label fx:id="timerLabel" layoutX="525.0" layoutY="87.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">

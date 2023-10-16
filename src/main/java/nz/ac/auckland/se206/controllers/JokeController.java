@@ -19,13 +19,11 @@ import nz.ac.auckland.se206.SpeechBubble;
 
 public class JokeController {
 
-  @FXML HBox yesNoButtons;
-  @FXML ImageView challengeSpeechBubble;
-
   private Timer timer = new Timer();
   private SpeechBubble speech = SpeechBubble.getInstance();
 
-  @FXML private Label speechLabel;
+  @FXML private HBox yesNoButtons;
+  @FXML private Label normalSpeechLabel;
   @FXML private ImageView speechBubble;
   @FXML private ImageView spacesuitCollectedImage;
   @FXML private Label timerLabel;
@@ -35,9 +33,9 @@ public class JokeController {
   public void initialize() {
     System.out.println("JokeController.initialize()");
 
-    speechBubble.setVisible(false);
-    speechLabel.setVisible(false);
-    speechLabel.textProperty().bind(speech.speechDisplayProperty());
+    speechBubble.setVisible(true);
+    normalSpeechLabel.setVisible(false);
+    normalSpeechLabel.textProperty().bind(speech.speechDisplayProperty());
 
     // Bind timer
     GameTimer gameTimer = GameTimer.getInstance();
@@ -66,7 +64,9 @@ public class JokeController {
 
     if (GameState.isJokeResolved.get() && !GameState.isSpacesuitCollected) {
       collectSpacesuit();
-      activateSpeech("You have collected the spacesuit! Now you can go on spacewalks for longer!");
+      activateSpeech(
+          "Congratulations, you have collected the spacesuit! Now you can go on spacewalks for"
+              + " longer!");
       GameState.isSpacesuitCollected = true;
       GameState.isSpacesuitJustCollected = true;
     }
@@ -95,14 +95,14 @@ public class JokeController {
   public void activateSpeech(String text) {
     // Make the speech bubble visible and set the text
     speechBubble.setVisible(true);
-    speechLabel.setVisible(true);
+    normalSpeechLabel.setVisible(true);
     speech.setSpeechText(text);
     timer.schedule(
         new java.util.TimerTask() {
           @Override
           public void run() {
             speechBubble.setVisible(false);
-            speechLabel.setVisible(false);
+            normalSpeechLabel.setVisible(false);
           }
         },
         5000);
@@ -111,7 +111,7 @@ public class JokeController {
 
   @FXML
   public void onYesButton() {
-    challengeSpeechBubble.setVisible(false);
+    speechBubble.setVisible(false);
     yesNoButtons.setVisible(false);
     challengeLabel.setVisible(false);
     GameState.isJokeChallengeAccepted.set(true);

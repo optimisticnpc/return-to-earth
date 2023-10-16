@@ -258,7 +258,9 @@ public class RoomTwoController {
       App.getScene().setRoot(spacesuitPuzzlesRoom);
     } else if (!GameState.isSpacesuitCollected) {
       collectSpacesuit();
-      activateSpeech("You have collected the spacesuit! Now you can go on spacewalks for longer!");
+      activateSpeech(
+          "Congratulations, you have collected the spacesuit! Now you can go on spacewalks for"
+              + " longer!");
       GameState.isSpacesuitCollected = true;
       GameState.isSpacesuitJustCollected = true;
     }
@@ -276,14 +278,7 @@ public class RoomTwoController {
 
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access\n the system.");
-      chat.addMessage(
-          new ChatMessage(
-              "system",
-              "You need to be authorised to talk to Space Destroyer or access the system for"
-                  + " security reasons.\n"
-                  + " Please click the middle screen in the main control room to authorise"
-                  + " yourself."));
+      activateSpeech("Authorisation needed to access ship compartments. Please get authorised!");
       return;
     }
 
