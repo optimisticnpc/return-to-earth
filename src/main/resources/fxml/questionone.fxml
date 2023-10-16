@@ -27,7 +27,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Button fx:id="questionOneHintButton" layoutX="525.0" layoutY="629.0" mnemonicParsing="false" onAction="#onClickQuestionOneHintButton" style="-fx-font-size: 27;" styleClass="otherButtons" text="Hint">
+      <Button fx:id="questionOneHintButton" layoutX="580.0" layoutY="626.0" mnemonicParsing="false" onAction="#onClickQuestionOneHintButton" style="-fx-font-size: 27;" styleClass="otherButtons" text="Hint">
          <font>
             <Font size="30.0" />
          </font>
@@ -56,5 +56,6 @@
             <Font name="Symbol" size="20.0" />
          </font>
       </Label>
+      <fx:include layoutX="330.0" layoutY="402.0" source="loadingCircle.fxml" />
    </children>
 </Pane>
