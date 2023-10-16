@@ -29,6 +29,7 @@ import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.OxygenMeter;
+import nz.ac.auckland.se206.RoomInitializer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
@@ -89,34 +90,10 @@ public class RoomThreeController {
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
     soundIcon.opacityProperty().bind(sound.getIconOpacityProperty());
-    setupAiHoverImageListeners();
-  }
 
-  /** Sets up listeners for the AI hover image. */
-  private void setupAiHoverImageListeners() {
-
-    // Hide the hover image of the AI when loading animation is playing
-    GameState.isLoadingAnimationlaying.addListener(
-        (observable, oldValue, newValue) -> {
-          if (!oldValue && newValue) { // If it changes from false to true
-            hideAiHoverImage();
-          }
-        });
-
-    GameState.isLoadingAnimationlaying.addListener(
-        (observable, oldValue, newValue) -> {
-          if (oldValue && !newValue) { // If it changes true to false
-            showAiHoverImage();
-          }
-        });
-  }
-
-  private void hideAiHoverImage() {
-    robot.setVisible(false);
-  }
-
-  private void showAiHoverImage() {
-    robot.setVisible(true);
+    // Initializes the room for the animations to play.
+    RoomInitializer roomInitializer = new RoomInitializer();
+    roomInitializer.setupAiHoverImageListeners(robot);
   }
 
   /**
@@ -186,7 +163,7 @@ public class RoomThreeController {
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  public void clickAuthorisation(MouseEvent event) throws IOException {
+  private void clickAuthorisation(MouseEvent event) throws IOException {
     // If the riddle is not solved tell the player to get authorisation
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation needed to access the system.");
@@ -201,7 +178,7 @@ public class RoomThreeController {
    * @throws FileNotFoundException if there is an error with the background image file.
    */
   @FXML
-  public void pressTimingButton(MouseEvent event) throws FileNotFoundException {
+  private void pressTimingButton(MouseEvent event) throws FileNotFoundException {
     System.out.println(meter.getRotate());
     if (meter.getRotate() <= 177 && meter.getRotate() >= 164) {
       showSuccessMessage();
@@ -214,7 +191,7 @@ public class RoomThreeController {
    * @throws FileNotFoundException if the background image file is not found.
    */
   @FXML
-  public void showSuccessMessage() throws FileNotFoundException {
+  private void showSuccessMessage() throws FileNotFoundException {
     Task<Void> successTask =
         new Task<Void>() {
           @Override
@@ -248,7 +225,7 @@ public class RoomThreeController {
    * @param event the mouse event
    */
   @FXML
-  public void pressScrew(MouseEvent event) {
+  private void pressScrew(MouseEvent event) {
 
     // If toolbox not collected
     if (!GameState.isToolboxCollected) {
@@ -271,7 +248,7 @@ public class RoomThreeController {
    * @throws IOException if there is an error loading the chat
    */
   @FXML
-  public void clickHatch(MouseEvent event) throws IOException {
+  private void clickHatch(MouseEvent event) throws IOException {
     System.out.println("hatch clicked");
     // If the hatch is open and the player has the wire
     // Fix the broken part
@@ -303,7 +280,7 @@ public class RoomThreeController {
    * @param text the words for the ai to say
    */
   @FXML
-  public void activateSpeech(String text) {
+  private void activateSpeech(String text) {
     // Make the speech bubble visible and set the text
     speechBubble.setVisible(true);
     speechLabel.setVisible(true);
@@ -326,7 +303,7 @@ public class RoomThreeController {
    * @param event the mouse event
    */
   @FXML
-  public void clickResumeButton(MouseEvent event) {
+  private void clickResumeButton(MouseEvent event) {
     System.out.println("resume clicked");
     // If timing game completed, remove all the unecessary components
     if (unscrewed) {
@@ -352,7 +329,7 @@ public class RoomThreeController {
    * @throws IOException if there is an error loading room1/room1final
    */
   @FXML
-  public void clickRoomOne(MouseEvent event) throws IOException {
+  private void clickRoomOne(MouseEvent event) throws IOException {
     System.out.println("Room One Clicked");
     if (GameState.isPartFixed) {
       // If part is fixed, go to room with reactivate button

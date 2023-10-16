@@ -20,6 +20,7 @@
             <Image url="@../images/spaceship%20exterior.png" />
          </image>
       </ImageView>
+       <fx:include layoutX="234.0" layoutY="-140.0" scaleX="0.464" scaleY="0.464" source="loadingCircleRotated.fxml" />
       <Polygon fx:id="hatch" fill="DODGERBLUE" layoutX="717.0" layoutY="388.0" onMouseClicked="#clickHatch" opacity="0.0" points="-75.33331298828125, 25.333343505859375, 131.33331298828125, -88.66665649414062, 223.33331298828125, 35.333343505859375, 18.66668701171875, 150.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="screwOne" fill="WHITE" layoutX="672.0" layoutY="418.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
       <Circle fx:id="screwTwo" fill="WHITE" layoutX="844.0" layoutY="328.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />

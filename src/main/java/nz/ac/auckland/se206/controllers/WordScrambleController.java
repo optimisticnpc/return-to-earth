@@ -21,6 +21,11 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
+/**
+ * The WordScrambleController class is responsible for controlling the Word Scramble puzzle screen
+ * in the game. It manages the timer, player input for solving the puzzle, and provides feedback on
+ * the player's progress in solving the puzzle.
+ */
 public class WordScrambleController implements MyControllers {
 
   private static String correctWordString;
@@ -85,6 +90,7 @@ public class WordScrambleController implements MyControllers {
           }
         });
 
+    // Picks and scrambles words. Hides hint if hard mode
     pickAndScrambleWord();
 
     if (GameState.hard) {

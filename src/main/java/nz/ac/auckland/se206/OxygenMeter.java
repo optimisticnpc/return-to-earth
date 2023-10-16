@@ -49,10 +49,6 @@ public class OxygenMeter {
 
   private RoomThreeController roomThree;
 
-  public BigDecimal getProgress() {
-    return progress;
-  }
-
   /**
    * Constructs a new OxygenMeter object and initializes the timeline for managing oxygen levels.
    */
@@ -106,6 +102,10 @@ public class OxygenMeter {
                   }
                 }));
     timeline.setCycleCount(Timeline.INDEFINITE);
+  }
+
+  public BigDecimal getProgress() {
+    return progress;
   }
 
   /**

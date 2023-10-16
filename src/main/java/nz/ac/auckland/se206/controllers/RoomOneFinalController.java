@@ -20,6 +20,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ButtonOrder;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.RoomInitializer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
@@ -75,6 +76,10 @@ public class RoomOneFinalController {
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
     soundIcon.opacityProperty().bind(sound.getIconOpacityProperty());
+
+    // Initializes the room for the animations to play.
+    RoomInitializer roomInitializer = new RoomInitializer();
+    roomInitializer.setupAiHoverImageListeners(robot);
   }
 
   /**
@@ -101,7 +106,7 @@ public class RoomOneFinalController {
    * @throws IOException if there is an error loading the room 2
    */
   @FXML
-  public void clickRoomTwo(MouseEvent event) throws IOException {
+  private void clickRoomTwo(MouseEvent event) throws IOException {
     System.out.println("Room Two clicked");
     Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
     App.getScene().setRoot(roomTwoRoot);
@@ -115,7 +120,7 @@ public class RoomOneFinalController {
    * @throws IOException if there is an error loading the room 3
    */
   @FXML
-  public void clickRoomThree(MouseEvent event) throws IOException {
+  private void clickRoomThree(MouseEvent event) throws IOException {
     System.out.println("Room Three clicked");
     Parent roomThreeRoot = SceneManager.getUiRoot(AppUi.ROOM_THREE);
     currentScene.setCurrent(3);
@@ -128,7 +133,7 @@ public class RoomOneFinalController {
    * @param event the mouse event
    */
   @FXML
-  public void clickReactivationHint(MouseEvent event) {
+  private void clickReactivationHint(MouseEvent event) {
     Parent reactivationRoot = SceneManager.getUiRoot(AppUi.REACTIVATION_ORDER);
     App.getScene().setRoot(reactivationRoot);
   }
@@ -140,7 +145,7 @@ public class RoomOneFinalController {
    * @throws IOException if there is an error loading
    */
   @FXML
-  public void clickRedSwitch(MouseEvent event) throws IOException {
+  private void clickRedSwitch(MouseEvent event) throws IOException {
     System.out.println("Red Switch clicked");
     redSwitch.setVisible(false);
     // Increments correct switch if user clicks in the right order
@@ -159,7 +164,7 @@ public class RoomOneFinalController {
    * @throws IOException if there is an error loading
    */
   @FXML
-  public void clickGreenSwitch(MouseEvent event) throws IOException {
+  private void clickGreenSwitch(MouseEvent event) throws IOException {
     System.out.println("Green Switch clicked");
     greenSwitch.setVisible(false);
     // Increments correct switch if user clicks in the right order
@@ -178,7 +183,7 @@ public class RoomOneFinalController {
    * @throws IOException if there is an error loading
    */
   @FXML
-  public void clickBlueSwitch(MouseEvent event) throws IOException {
+  private void clickBlueSwitch(MouseEvent event) throws IOException {
     System.out.println("Blue Switch clicked");
     blueSwitch.setVisible(false);
     // Increments correct switch if user clicks in the right order
@@ -197,7 +202,7 @@ public class RoomOneFinalController {
    * @throws IOException if there is an error loading the winscreen
    */
   @FXML
-  public void clickReactivate(MouseEvent event) throws IOException {
+  private void clickReactivate(MouseEvent event) throws IOException {
     // User wins if reactivate is clicked after switches are clicked in correct order. Else resets
     // switches
     if (correctSwitch == 3) {
@@ -219,7 +224,7 @@ public class RoomOneFinalController {
    * @param text text that is it to be displayed in the bubble.
    */
   @FXML
-  public void activateSpeech(String text) {
+  private void activateSpeech(String text) {
     // Shows speech bubble and text
     speechBubble.setVisible(true);
     speechLabel.setVisible(true);

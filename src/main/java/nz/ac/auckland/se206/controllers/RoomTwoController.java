@@ -17,6 +17,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.RoomInitializer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
@@ -76,36 +77,9 @@ public class RoomTwoController {
             collectSpacesuit();
           }
         });
-    setupAiHoverImageListeners();
-  }
-
-  /** Sets up listeners for the AI hover image. The image is hidden when the loading animation is */
-  private void setupAiHoverImageListeners() {
-
-    // Hide the hover image of the AI when loading animation is playing
-    GameState.isLoadingAnimationlaying.addListener(
-        (observable, oldValue, newValue) -> {
-          if (!oldValue && newValue) { // If it changes from false to true
-            hideAiHoverImage();
-          }
-        });
-
-    GameState.isLoadingAnimationlaying.addListener(
-        (observable, oldValue, newValue) -> {
-          if (oldValue && !newValue) { // If it changes true to false
-            showAiHoverImage();
-          }
-        });
-  }
-
-  /** Hides the AI hover image. This is called when the loading animation is playing. */
-  private void hideAiHoverImage() {
-    robot.setVisible(false);
-  }
-
-  /** Shows the AI hover image. This is called when the loading animation is not playing. */
-  private void showAiHoverImage() {
-    robot.setVisible(true);
+    // Initializes the room for the animations to play.
+    RoomInitializer roomInitializer = new RoomInitializer();
+    roomInitializer.setupAiHoverImageListeners(robot);
   }
 
   /**
@@ -125,7 +99,7 @@ public class RoomTwoController {
    * @throws IOException if there is an error loading the authorisation view
    */
   @FXML
-  public void clickAuthorisation(MouseEvent event) throws IOException {
+  private void clickAuthorisation(MouseEvent event) throws IOException {
     // If riddle not solved tell the player to get authorised
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation needed to access\nthe system.");
@@ -145,7 +119,7 @@ public class RoomTwoController {
    * @throws IOException if there is an error loading the room1/room1final view
    */
   @FXML
-  public void clickRoomOne(MouseEvent event) throws IOException {
+  private void clickRoomOne(MouseEvent event) throws IOException {
     System.out.println("Room One Clicked");
     if (GameState.isPartFixed) {
       // If part is fixed, go to room with reactivate button
@@ -165,7 +139,7 @@ public class RoomTwoController {
    * @throws IOException if there is an error loading the question 1 view
    */
   @FXML
-  public void clickQuestionOne(MouseEvent event) throws IOException {
+  private void clickQuestionOne(MouseEvent event) throws IOException {
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation needed to access ship materials");
@@ -205,7 +179,7 @@ public class RoomTwoController {
    * @throws IOException if there is an error loading the question 2 view
    */
   @FXML
-  public void clickQuestionTwo(MouseEvent event) throws IOException {
+  private void clickQuestionTwo(MouseEvent event) throws IOException {
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation needed to access ship materials");
@@ -226,7 +200,7 @@ public class RoomTwoController {
    * @param text tex that is to be displayed in the bubble.
    */
   @FXML
-  public void activateSpeech(String text) {
+  private void activateSpeech(String text) {
     // Make the speech bubble visible and set the text
     speechBubble.setVisible(true);
     speechLabel.setVisible(true);
@@ -245,7 +219,7 @@ public class RoomTwoController {
 
   /** Makes the speech bubble and label visible. This is called when the speech bubble is shown. */
   @FXML
-  public void showSpeechBubble() {
+  private void showSpeechBubble() {
     speechBubble.setVisible(true);
     speechLabel.setVisible(true);
   }
@@ -259,7 +233,7 @@ public class RoomTwoController {
    * @throws InterruptedException if there is an issue with thread execution during the animation.
    */
   @FXML
-  public void clickCrate(MouseEvent event) throws InterruptedException {
+  private void clickCrate(MouseEvent event) throws InterruptedException {
     System.out.println("Crate clicked");
 
     if (GameState.isToolboxCollected) {
@@ -284,7 +258,7 @@ public class RoomTwoController {
    * @throws IOException if there is an error loading the spacesuit puzzle view
    */
   @FXML
-  public void clickSpacesuit(MouseEvent event) throws IOException {
+  private void clickSpacesuit(MouseEvent event) throws IOException {
     System.out.println("Spacesuit Clicked");
 
     // If riddle is not solved, do no allow entry
@@ -316,7 +290,7 @@ public class RoomTwoController {
    * @throws IOException if there is an error loading the passcode view
    */
   @FXML
-  public void clickToolCompartment(MouseEvent event) throws IOException {
+  private void clickToolCompartment(MouseEvent event) throws IOException {
     System.out.println("Tool Compartment Clicked");
 
     // If riddle is not solved, do no allow entry

@@ -31,6 +31,7 @@ public class QuestionTwoController implements MyControllers {
   public void initialize() {
     System.out.println("QuestionTwoController.initialize()");
 
+    // Set up question
     MathQuestionSelector selector = MathQuestionSelector.getInstance();
     questionTwoLabel.setText(selector.getSecondQuestion());
 
