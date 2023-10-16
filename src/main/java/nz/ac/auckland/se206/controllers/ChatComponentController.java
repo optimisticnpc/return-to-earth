@@ -60,7 +60,7 @@ public class ChatComponentController implements Observer {
   }
 
   @FXML
-  public void setSendButtonAction() {
+  private void setSendButtonAction() {
     String message = inputText.getText().replaceAll("[\n\r]", ""); // Remove all newline characters
     inputText.clear();
     if (message.trim().isEmpty()) {
@@ -83,11 +83,17 @@ public class ChatComponentController implements Observer {
 
   /** PlayMessageAction plays the last message written by GPT. */
   @FXML
-  public void playMessageAction() {
+  private void playMessageAction() {
     chatCentralControl.readMessage();
   }
 
-  public void addLabel(String message, Pos position) {
+  /**
+   * Adds a label to the chatLog HBox and sets its font and background colour based on the position.
+   *
+   * @param message the message to be added
+   * @param position the position of the message
+   */
+  private void addLabel(String message, Pos position) {
     HBox box = new HBox();
     box.setAlignment(position);
     box.setPadding(new Insets(5, 5, 5, 10));

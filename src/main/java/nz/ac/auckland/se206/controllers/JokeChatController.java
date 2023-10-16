@@ -237,7 +237,7 @@ public class JokeChatController {
   @FXML
   private void onEnterPressed(KeyEvent event) {
     // send the message when the enter key is pressed
-    if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
+    if (event.getCode() == KeyCode.ENTER) {
       sendButton.fire();
     }
   }

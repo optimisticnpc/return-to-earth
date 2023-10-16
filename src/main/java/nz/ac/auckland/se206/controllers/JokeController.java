@@ -59,7 +59,7 @@ public class JokeController {
    * @throws IOException if there is an error loading the spacesuit puzzle view
    */
   @FXML
-  public void clickSpacesuit(MouseEvent event) throws IOException {
+  private void clickSpacesuit(MouseEvent event) throws IOException {
     System.out.println("Spacesuit Clicked");
     // If the spacesuit has been collected, go to the spacesuit puzzle
     if (GameState.isJokeResolved.get() && !GameState.isSpacesuitCollected) {
@@ -97,7 +97,7 @@ public class JokeController {
    * @param text the text to be displayed in the speech bubble
    */
   @FXML
-  public void activateSpeech(String text) {
+  private void activateSpeech(String text) {
     // Make the speech bubble visible and set the text
     speechBubble.setVisible(true);
     normalSpeechLabel.setVisible(true);
@@ -116,7 +116,7 @@ public class JokeController {
 
   /** Handles the action when the player clicks on the yes button. */
   @FXML
-  public void onYesButton() {
+  private void onYesButton() {
     speechBubble.setVisible(false);
     yesNoButtons.setVisible(false);
     challengeLabel.setVisible(false);
