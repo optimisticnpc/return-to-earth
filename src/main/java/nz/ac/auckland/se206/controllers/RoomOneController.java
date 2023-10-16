@@ -247,7 +247,7 @@ public class RoomOneController {
   @FXML
   private void clickWire(MouseEvent event) {
     GameState.isWireCollected = true;
-    activateSpeech("You have collected the wire! You might need it to fix something...");
+    activateSpeech("You have collected the wire!\nYou might need it to fix something...");
     room.getChildren().remove(wire);
     room.getChildren().remove(wireImage);
   }
