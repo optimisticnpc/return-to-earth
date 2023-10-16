@@ -10,19 +10,19 @@ import nz.ac.auckland.se206.LoadingAnimationsIterface;
 
 public class LoadingCircleController implements LoadingAnimationsIterface {
 
-  @FXML private ImageView thinkingCircleYellow;
+  @FXML private ImageView aiThinkingYellow;
 
-  @FXML private ImageView thinkingCircleNormal;
+  @FXML private ImageView aiThinkingNormal;
 
-  @FXML private ImageView thinkingCircleBlue;
+  @FXML private ImageView aiThinkingBlue;
 
-  @FXML private ImageView thinkingCircleOrange;
+  @FXML private ImageView aiThinkingOrange;
 
-  @FXML private ImageView thinkingCirclePink;
+  @FXML private ImageView aiThinkingPink;
 
-  @FXML private ImageView thinkingCirclePurple;
+  @FXML private ImageView aiThinkingPurple;
 
-  @FXML private ImageView aiCircle;
+  @FXML private ImageView aiNormal;
 
   @FXML private ImageView speechBubble;
 
@@ -45,19 +45,19 @@ public class LoadingCircleController implements LoadingAnimationsIterface {
 
     thinkingCircles =
         new ImageView[] {
-          thinkingCircleYellow,
-          thinkingCircleNormal,
-          thinkingCircleBlue,
-          thinkingCircleOrange,
-          thinkingCirclePink,
-          thinkingCirclePurple
+          aiThinkingYellow,
+          aiThinkingNormal,
+          aiThinkingBlue,
+          aiThinkingOrange,
+          aiThinkingPink,
+          aiThinkingPurple
         };
 
     for (ImageView imageView : thinkingCircles) {
       imageView.setOpacity(0);
     }
 
-    aiCircle.setOpacity(1);
+    aiNormal.setOpacity(1);
   }
 
   public void playAnimation() {
@@ -65,11 +65,11 @@ public class LoadingCircleController implements LoadingAnimationsIterface {
     speechBubble.setVisible(true);
     textLabel.setVisible(true);
 
-    aiCircle.setOpacity(0);
+    aiNormal.setOpacity(0);
 
     currentTransition = new FadeTransition(Duration.seconds(1), thinkingCircles[currentImageIndex]);
     currentTransition.setFromValue(1);
-    currentTransition.setToValue(0.8);
+    currentTransition.setToValue(1);
     currentTransition.setOnFinished(
         e -> {
           thinkingCircles[currentImageIndex].setOpacity(0);
@@ -89,7 +89,7 @@ public class LoadingCircleController implements LoadingAnimationsIterface {
       imageView.setOpacity(0);
     }
 
-    aiCircle.setOpacity(1);
+    aiNormal.setOpacity(1);
     speechBubble.setVisible(false);
     textLabel.setVisible(false);
   }

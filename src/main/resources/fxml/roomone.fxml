@@ -22,6 +22,7 @@
       <Rectangle fx:id="mainWarning" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="38.0" layoutX="587.0" layoutY="97.0" onMouseClicked="#clickMainWarning" opacity="0.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" width="383.0" />
       <Rectangle fx:id="authRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="117.0" layoutX="678.0" layoutY="327.0" onMouseClicked="#clickAuthorisation" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="190.0" />
       <Rectangle fx:id="engineWarning" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="83.0" layoutX="897.0" layoutY="353.0" onMouseClicked="#clickEngineWarning" opacity="0.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" width="128.0" />
+      <fx:include layoutX="350.0" layoutY="300.0" source="loadingRobot.fxml" />
       <ImageView fx:id="speechBubble" fitHeight="213.0" fitWidth="328.0" layoutX="458.0" layoutY="177.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
@@ -32,12 +33,12 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <ImageView fitHeight="373.0" fitWidth="190.0" layoutX="352.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="373.0" fitWidth="190.0" layoutX="352.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/ai.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="robot" fitHeight="373.0" fitWidth="190.0" layoutX="353.0" layoutY="344.0" onMouseClicked="#clickAuthorisation" pickOnBounds="true" preserveRatio="true" styleClass="robot-hoverable">
+      <ImageView fx:id="robot" fitHeight="370.0" fitWidth="194.0" layoutX="353.0" layoutY="335.0" onMouseClicked="#clickAuthorisation" pickOnBounds="true" styleClass="robot-hoverable">
          <image>
             <Image url="@../images/ai%20hover.png" />
          </image>

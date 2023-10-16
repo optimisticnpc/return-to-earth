@@ -10,37 +10,37 @@
 <Pane fx:id="room" focusTraversable="true" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoadingCircleController">
    <children>
       <Circle fill="WHITE" layoutX="128.0" layoutY="178.0" radius="115.0" stroke="WHITE" strokeType="INSIDE" />
-      <ImageView fx:id="aiCircle" fitHeight="250.0" fitWidth="250.0" layoutX="5.0" layoutY="54.0" preserveRatio="true">
+      <ImageView fx:id="aiNormal" fitHeight="250.0" fitWidth="250.0" layoutX="5.0" layoutY="54.0" preserveRatio="true">
          <image>
             <Image url="@../images/ai%20circle.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="thinkingCircleYellow" fitHeight="250.0" fitWidth="250.0" layoutX="5.0" layoutY="54.0" opacity="0.0" preserveRatio="true">
+      <ImageView fx:id="aiThinkingYellow" fitHeight="250.0" fitWidth="250.0" layoutX="5.0" layoutY="54.0" opacity="0.0" preserveRatio="true">
          <image>
             <Image url="@../images/ai_thinking_circle_yellow.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="thinkingCircleNormal" fitHeight="250.0" fitWidth="250.0" layoutX="5.0" layoutY="54.0" opacity="0.0" preserveRatio="true">
+      <ImageView fx:id="aiThinkingNormal" fitHeight="250.0" fitWidth="250.0" layoutX="5.0" layoutY="54.0" opacity="0.0" preserveRatio="true">
          <image>
             <Image url="@../images/ai_thinking_circle.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="thinkingCircleBlue" fitHeight="250.0" fitWidth="250.0" layoutX="5.0" layoutY="54.0" opacity="0.0" preserveRatio="true">
+      <ImageView fx:id="aiThinkingBlue" fitHeight="250.0" fitWidth="250.0" layoutX="5.0" layoutY="54.0" opacity="0.0" preserveRatio="true">
          <image>
             <Image url="@../images/ai_thinking_circle_blue.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="thinkingCircleOrange" fitHeight="250.0" fitWidth="250.0" layoutX="5.0" layoutY="54.0" opacity="0.0" preserveRatio="true">
+      <ImageView fx:id="aiThinkingOrange" fitHeight="250.0" fitWidth="250.0" layoutX="5.0" layoutY="54.0" opacity="0.0" preserveRatio="true">
          <image>
             <Image url="@../images/ai_thinking_circle_orange.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="thinkingCirclePink" fitHeight="250.0" fitWidth="250.0" layoutX="5.0" layoutY="54.0" opacity="0.0" preserveRatio="true">
+      <ImageView fx:id="aiThinkingPink" fitHeight="250.0" fitWidth="250.0" layoutX="5.0" layoutY="54.0" opacity="0.0" preserveRatio="true">
          <image>
             <Image url="@../images/ai_thinking_circle_pink.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="thinkingCirclePurple" fitHeight="250.0" fitWidth="250.0" layoutY="55.0" preserveRatio="true">
+      <ImageView fx:id="aiThinkingPurple" fitHeight="250.0" fitWidth="250.0" layoutY="55.0" preserveRatio="true">
          <image>
             <Image url="@../images/ai_thinking_circle_purple.png" />
          </image>
