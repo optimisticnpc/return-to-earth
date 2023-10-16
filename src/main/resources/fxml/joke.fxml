@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #969696;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.JokeController">
@@ -30,5 +31,21 @@
          </image>
       </ImageView>
       <fx:include layoutX="820.0" source="jokechat.fxml" />
+      <ImageView fx:id="spacesuitCollectedImage" fitHeight="585.0" fitWidth="269.0" layoutX="507.0" layoutY="58.0" opacity="0.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/spacesuitGone.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="spacesuit" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="576.0" layoutX="514.0" layoutY="62.0" onMouseClicked="#clickSpacesuit" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-hoverable" width="261.0" />
+      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="431.0" layoutY="82.0">
+         <image>
+            <Image url="@../images/speech-bubble.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="451.0" layoutY="95.0" prefHeight="96.0" prefWidth="269.0" wrapText="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

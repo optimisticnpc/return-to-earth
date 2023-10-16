@@ -123,17 +123,18 @@ public class JokeChatController {
             messageString = result.getContent();
           }
 
-          if (result.getRole().equals("assistant") && result.getContent().contains("Hahaha")) {
-            GameState.isJokeResolved = true;
-            System.out.println("Joke resolved");
-            inputText.setDisable(true);
-          }
-
           addLabel(result.getContent(), Pos.CENTER_LEFT);
           // Added message to message list
           messages.add(result);
           hideLoadingIcon();
-          enableTextBox();
+
+          if (result.getRole().equals("assistant") && result.getContent().contains("Hahaha")) {
+            GameState.isJokeResolved.set(true);
+            System.out.println("Joke resolved");
+            disableTextBox();
+          } else {
+            enableTextBox();
+          }
         });
 
     callGptTask.setOnFailed(

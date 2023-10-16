@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Parent;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -41,8 +43,6 @@ public class GameState {
   // will show the tool box as taken */
   public static boolean isToolboxCollected = false;
 
-  public static boolean isSpacesuitUnlocked = false;
-
   public static boolean isSpacesuitRevealed = false;
 
   public static boolean isSpacesuitCollected = false;
@@ -67,7 +67,7 @@ public class GameState {
 
   public static boolean isWireCompartmentUnlocked = false;
 
-public static boolean isJokeResolved = false;
+  public static final BooleanProperty isJokeResolved = new SimpleBooleanProperty(false);
 
   /**
    * Resets the game by clearing and initializing game state variables, updating room visuals, and
@@ -85,7 +85,6 @@ public static boolean isJokeResolved = false;
     isPasscodeSolved = false;
     isToolboxRevealed = false;
     isToolboxCollected = false;
-    isSpacesuitUnlocked = false;
     isSpacesuitRevealed = false;
     isSpacesuitCollected = false;
     isWarningShown = false;
@@ -95,7 +94,7 @@ public static boolean isJokeResolved = false;
 
     isMathQuestionPromptAdded = false;
     isWordScramblePromptAdded = false;
-    isJokeResolved = false;
+    isJokeResolved.set(false);
     HintCounter.resetHintCount();
   }
 

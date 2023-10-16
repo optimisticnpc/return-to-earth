@@ -34,7 +34,7 @@
             <Image url="@../images/tempspacesuitimage.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="spacesuitCollectedImage" fitHeight="270.0" fitWidth="121.0" layoutX="1016.0" layoutY="277.0" pickOnBounds="true">
+      <ImageView fx:id="spacesuitCollectedImage" fitHeight="270.0" fitWidth="121.0" layoutX="1016.0" layoutY="277.0" opacity="0.0" pickOnBounds="true">
          <image>
             <Image url="@../images/spacesuitGone.png" />
          </image>

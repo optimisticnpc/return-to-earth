@@ -76,6 +76,14 @@ public class RoomTwoController {
     toolBoxCollectedImage.setOpacity(0);
     spacesuitRevealedImage.setOpacity(0);
     spacesuitCollectedImage.setOpacity(0);
+
+    // Add a listener to isJokeResolved property
+    GameState.isJokeResolved.addListener(
+        (observable, oldValue, newValue) -> {
+          if (!oldValue && newValue) { // If it changes from false to true
+            collectSpacesuit();
+          }
+        });
   }
 
   /**
@@ -245,13 +253,12 @@ public class RoomTwoController {
     if (!GameState.isSpacesuitRevealed) {
       revealSpacesuit();
       GameState.isSpacesuitRevealed = true;
-    } else if (!GameState.isSpacesuitUnlocked) {
+    } else if (!GameState.isJokeResolved.get()) {
       Parent spacesuitPuzzlesRoom = SceneManager.getUiRoot(AppUi.JOKE_PUZZLE);
       App.getScene().setRoot(spacesuitPuzzlesRoom);
     } else if (!GameState.isSpacesuitCollected) {
       collectSpacesuit();
-      activateSpeech(
-          "You have collected the spacesuit! Now you're able to stay outside for longer!");
+      activateSpeech("You have collected the spacesuit! Now you can go on spacewalks for longer!");
       GameState.isSpacesuitCollected = true;
       GameState.isSpacesuitJustCollected = true;
     }
