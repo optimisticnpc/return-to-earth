@@ -269,7 +269,7 @@ public class RoomThreeController {
       Image img = new Image(stream);
       background.setImage(img);
       GameState.isPartFixed = true;
-      GameState.phaseFour = true;
+      GameState.isPhaseChange = true;
       if (!GameState.hard) {
         chat.runGpt(new ChatMessage("system", GptPromptEngineering.getPhaseFourProgress()));
       } else {
