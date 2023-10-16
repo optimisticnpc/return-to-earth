@@ -76,6 +76,41 @@ public class RoomTwoController {
     toolBoxCollectedImage.setOpacity(0);
     spacesuitRevealedImage.setOpacity(0);
     spacesuitCollectedImage.setOpacity(0);
+
+    // Add a listener to isJokeResolved property
+    GameState.isJokeResolved.addListener(
+        (observable, oldValue, newValue) -> {
+          if (!oldValue && newValue) { // If it changes from false to true
+            collectSpacesuit();
+          }
+        });
+    setupAiHoverImageListeners();
+  }
+
+  private void setupAiHoverImageListeners() {
+
+    // Hide the hover image of the AI when loading animation is playing
+    GameState.isLoadingAnimationlaying.addListener(
+        (observable, oldValue, newValue) -> {
+          if (!oldValue && newValue) { // If it changes from false to true
+            hideAiHoverImage();
+          }
+        });
+
+    GameState.isLoadingAnimationlaying.addListener(
+        (observable, oldValue, newValue) -> {
+          if (oldValue && !newValue) { // If it changes true to false
+            showAiHoverImage();
+          }
+        });
+  }
+
+  private void hideAiHoverImage() {
+    robot.setVisible(false);
+  }
+
+  private void showAiHoverImage() {
+    robot.setVisible(true);
   }
 
   /**
@@ -88,18 +123,17 @@ public class RoomTwoController {
     sound.toggleImage();
   }
 
-  /**
-   * Handles the click event on the authorisation button.
-   *
-   * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
-   */
   @FXML
   public void clickAuthorisation(MouseEvent event) throws IOException {
     // If riddle not solved tell the player to get authorised
     if (!GameState.isRiddleResolved) {
       activateSpeech("Authorisation needed to access\nthe system.");
       return;
+    }
+    if (!GameState.hard) {
+      activateSpeech("Good luck fixing the ship! Let me know if you need any help.");
+    } else {
+      activateSpeech("Fixing the ship is very hard but I know you can do it. Keep trying!");
     }
   }
 
@@ -131,6 +165,12 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionOne(MouseEvent event) throws IOException {
+
+    if (!GameState.isRiddleResolved) {
+      activateSpeech("Authorisation needed to access ship materials");
+      return;
+    }
+
     if (!GameState.hard) {
       addMathPromptsIfNotAdded();
     }
@@ -161,7 +201,13 @@ public class RoomTwoController {
    */
   @FXML
   public void clickQuestionTwo(MouseEvent event) throws IOException {
-  if (!GameState.hard) {
+
+    if (!GameState.isRiddleResolved) {
+      activateSpeech("Authorisation needed to access ship materials");
+      return;
+    }
+
+    if (!GameState.hard) {
       addMathPromptsIfNotAdded();
     }
 
@@ -226,20 +272,6 @@ public class RoomTwoController {
     }
   }
 
-  private void addWordScramblePromptsIfNotAdded() {
-    if (!GameState.isWordScramblePromptAdded) {
-      String prompt = GptPromptEngineering.hintWordScrambleSetup();
-      if (GameState.medium) {
-        prompt = prompt + GptPromptEngineering.getMediumHintReminder();
-      }
-
-      ChatCentralControl.getInstance()
-          .getChatCompletionRequest()
-          .addMessage(new ChatMessage("system", prompt));
-      GameState.isWordScramblePromptAdded = true;
-    }
-  }
-
   /**
    * Handles the click event on the spacesuit.
    *
@@ -256,28 +288,17 @@ public class RoomTwoController {
       return;
     }
 
-    // If the scramble word puzzle hasn't been solved
-    // Go to enter access key screen
-    if (!GameState.isSpacesuitUnlocked) {
-      // Add hint prompts only if difficulty is not hard
-      if (!GameState.hard) {
-        addWordScramblePromptsIfNotAdded();
-      }
-
-      Parent spacesuitPuzzlesRoom = SceneManager.getUiRoot(AppUi.SPACESUIT_PUZZLE);
-      App.getScene().setRoot(spacesuitPuzzlesRoom);
-      // If spacesuit hasn't been revealed
-    } else if (!GameState.isSpacesuitRevealed) {
+    if (!GameState.isSpacesuitRevealed) {
       revealSpacesuit();
       GameState.isSpacesuitRevealed = true;
+    } else if (!GameState.isJokeResolved.get()) {
+      Parent spacesuitPuzzlesRoom = SceneManager.getUiRoot(AppUi.JOKE_PUZZLE);
+      App.getScene().setRoot(spacesuitPuzzlesRoom);
     } else if (!GameState.isSpacesuitCollected) {
       collectSpacesuit();
       activateSpeech(
-          "You have collected the spacesuit!\nNow you're able to stay outside\nfor longer!");
-      chat.addMessage(
-          new ChatMessage(
-              "assistant",
-              "You have collected the spacesuit!\nNow you're able to stay outside\nfor longer!"));
+          "Congratulations, you have collected the spacesuit! Now you can go on spacewalks for"
+              + " longer!");
       GameState.isSpacesuitCollected = true;
       GameState.isSpacesuitJustCollected = true;
     }
@@ -295,14 +316,7 @@ public class RoomTwoController {
 
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access\n the system.");
-      chat.addMessage(
-          new ChatMessage(
-              "system",
-              "You need to be authorised to talk to Space Destroyer or access the system for"
-                  + " security reasons.\n"
-                  + " Please click the middle screen in the main control room to authorise"
-                  + " yourself."));
+      activateSpeech("Authorisation needed to access ship compartments. Please get authorised!");
       return;
     }
 

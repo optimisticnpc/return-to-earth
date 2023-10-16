@@ -29,12 +29,7 @@
       <Circle fx:id="screwTwo" fill="WHITE" layoutX="844.0" layoutY="328.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
       <Circle fx:id="screwThree" fill="WHITE" layoutX="912.0" layoutY="418.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
       <Circle fx:id="screwFour" fill="WHITE" layoutX="743.0" layoutY="514.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
-      <ImageView fitHeight="116.0" fitWidth="116.0" layoutX="558.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" rotate="132.5">
-         <image>
-            <Image url="@../images/ai%20circle%20room3.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="robot" fitHeight="116.0" fitWidth="116.0" layoutX="558.0" layoutY="171.0" onMouseClicked="#clickAuthorisation" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="132.5" styleClass="robot-hoverable">
+      <ImageView fx:id="robot" fitHeight="116.0" fitWidth="116.0" layoutX="557.0" layoutY="171.0" onMouseClicked="#clickAuthorisation" opacity="0.61" pickOnBounds="true" preserveRatio="true" rotate="132.5" styleClass="robot-hoverable">
          <image>
             <Image url="@../images/ai%20circle%20room3%20hover.png" />
          </image>
@@ -46,7 +41,7 @@
       </ImageView>
       <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="710.0" layoutY="107.0" prefHeight="96.0" prefWidth="269.0">
          <font>
-            <Font size="15.0" />
+            <Font size="20.0" />
                      </font>
       </Label>
       <VBox fx:id="puzzleScreen" alignment="CENTER" layoutX="447.0" layoutY="94.0" prefHeight="533.0" prefWidth="691.0" visible="false">
@@ -61,11 +56,11 @@
                   <Image url="@../images/meter.png" />
                </image>
             </ImageView>
-            <Button fx:id="timingButton" mnemonicParsing="false" onMousePressed="#pressTimingButton" text="now!">
+            <Button fx:id="timingButton" mnemonicParsing="false" onMousePressed="#pressTimingButton" styleClass="wrenchButton" text="Wrench Now!">
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <Button fx:id="resumeButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#clickResumeButton" text="Go Back">
+            <Button fx:id="resumeButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#clickResumeButton" styleClass="wrenchButton" text="Go Back">
                <font>
                   <Font size="20.0" />
                </font></Button>
@@ -85,7 +80,7 @@
          </font>
       </Text>
       <ProgressBar fx:id="oxygenBar" layoutX="913.0" layoutY="671.0" prefHeight="35.0" prefWidth="281.0" progress="1.0" style="-fx-accent: red;" />
-      <Text fill="RED" layoutX="912.0" layoutY="665.0" stroke="BLACK" strokeType="OUTSIDE" text="OXYGEN METER:" wrappingWidth="295.10546875">
+      <Text fx:id="oxygenMeterText" fill="RED" layoutX="915.0" layoutY="665.0" stroke="BLACK" strokeType="OUTSIDE" text="OXYGEN METER:" wrappingWidth="295.10546875">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>

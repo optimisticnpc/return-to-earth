@@ -43,8 +43,6 @@ public class ChatCentralControl {
   private List<ChatMessage> messages = new ArrayList<>();
 
   private TextToSpeech textToSpeech = new TextToSpeech();
-  private Sound sound = Sound.getInstance();
-
   private ChatCentralControl() {
     initializeChatCentralControl();
   }
@@ -143,6 +141,7 @@ public class ChatCentralControl {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public void runGpt(ChatMessage msg) {
+    AnimationCentralControl.getInstance().playAllAnimation();
     showAllLoadingIcons();
     disableAllTextBoxes();
 
@@ -173,6 +172,7 @@ public class ChatCentralControl {
                                 + " reload the game.")
                         .showAndWait();
                     hideAllLoadingIcons();
+                    AnimationCentralControl.getInstance().stopAllAnimation();
                     enableAllTextBoxes();
                   });
 
@@ -251,10 +251,10 @@ public class ChatCentralControl {
 
           // Added message to message list
           messages.add(result);
-          // TODO: Find best location for this
           notifyObservers();
 
           hideAllLoadingIcons();
+          AnimationCentralControl.getInstance().stopAllAnimation();
           enableAllTextBoxes();
         });
 
@@ -272,6 +272,7 @@ public class ChatCentralControl {
               });
           enableAllTextBoxes();
           hideAllLoadingIcons();
+          AnimationCentralControl.getInstance().stopAllAnimation();
         });
 
     new Thread(callGptTask).start();
@@ -281,7 +282,7 @@ public class ChatCentralControl {
 
     SceneManager.getController(SceneManager.getUiRoot(AppUi.QUESTION_ONE)).disableHintButton();
     SceneManager.getController(SceneManager.getUiRoot(AppUi.QUESTION_TWO)).disableHintButton();
-    SceneManager.getController(SceneManager.getUiRoot(AppUi.SPACESUIT_PUZZLE)).disableHintButton();
+    SceneManager.getController(SceneManager.getUiRoot(AppUi.WORD_SCRAMBLE)).disableHintButton();
   }
 
   /** Count the number of occurrences of a given word in the sentence */

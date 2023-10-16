@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
 import java.util.Timer;
+import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
@@ -25,6 +27,7 @@ import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
+import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
@@ -59,7 +62,12 @@ public class RoomOneController {
   @FXML private BouncingBallPane bouncingBall;
   @FXML private Rectangle ballToggle;
   @FXML private ImageView soundIcon;
-
+  @FXML private Polygon wireCompartmentPolygon;
+  @FXML private HBox yesNoButtons;
+  @FXML private Label oxygenWarningLabel;
+  @FXML private Rectangle exitOxygenWarningRectangle;
+  @FXML private ImageView wireCompartmentImage;
+  @FXML private ImageView keypadWireCompartment;
   @FXML private AnchorPane chatPanel;
 
   private Boolean isPanelOnScreen = true;
@@ -88,7 +96,12 @@ public class RoomOneController {
     // initially sets speech bubble to invisible.
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
-    bouncingBall.setVisible(false);
+
+    exitOxygenWarningRectangle.setVisible(false);
+    yesNoButtons.setVisible(false);
+    oxygenWarningLabel.setVisible(false);
+
+    // bouncingBall.setVisible(false); TODO: Undo this
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
     // update hintlabel according to the difficulty
     HintCounter hintCounter = HintCounter.getInstance();
@@ -101,10 +114,33 @@ public class RoomOneController {
     Image soundOnImage = new Image(soundOn);
     sound.soundImageProperty().set(soundOnImage);
 
-    // I don't think we need this. Also it sometimes doesn't show up if the player is clicking
-    // quickly through the background story screen
-    // activateSpeech(
-    //     "Hey you! Have you passed the\nauthorisation riddle to be\ntouching this stuff?");
+    setupAiHoverImageListeners();
+  }
+
+  private void setupAiHoverImageListeners() {
+
+    // Hide the hover image of the AI when loading animation is playing
+    GameState.isLoadingAnimationlaying.addListener(
+        (observable, oldValue, newValue) -> {
+          if (!oldValue && newValue) { // If it changes from false to true
+            hideAiHoverImage();
+          }
+        });
+
+    GameState.isLoadingAnimationlaying.addListener(
+        (observable, oldValue, newValue) -> {
+          if (oldValue && !newValue) { // If it changes true to false
+            showAiHoverImage();
+          }
+        });
+  }
+
+  private void hideAiHoverImage() {
+    robot.setVisible(false);
+  }
+
+  private void showAiHoverImage() {
+    robot.setVisible(true);
   }
 
   /**
@@ -140,9 +176,50 @@ public class RoomOneController {
   @FXML
   private void clickRoomThree(MouseEvent event) throws IOException {
     System.out.println("Room Three clicked");
+
+    // Show warning about going outside if oxygen is low, spacesuit not collected and speech bubble
+    // isn't already visible
+    if (OxygenMeter.getInstance().getProgress().doubleValue() < 0.3
+        && !GameState.isSpacesuitCollected
+        && !speechBubble.isVisible()) {
+      yesNoButtons.setVisible(true);
+      oxygenWarningLabel.setVisible(true);
+      speechBubble.setVisible(true);
+      exitOxygenWarningRectangle.setVisible(true);
+    } else {
+      Parent roomThreeRoot = SceneManager.getUiRoot(AppUi.ROOM_THREE);
+      currentScene.setCurrent(3);
+      App.getScene().setRoot(roomThreeRoot);
+    }
+  }
+
+  @FXML
+  public void onYesButton() {
+    hideAllOxygenWarningElements();
     Parent roomThreeRoot = SceneManager.getUiRoot(AppUi.ROOM_THREE);
     currentScene.setCurrent(3);
     App.getScene().setRoot(roomThreeRoot);
+    exitOxygenWarningRectangle.setVisible(false);
+  }
+
+  @FXML
+  public void onNoButton() {
+    hideAllOxygenWarningElements();
+  }
+
+  private void hideAllOxygenWarningElements() {
+    yesNoButtons.setVisible(false);
+    oxygenWarningLabel.setVisible(false);
+    speechBubble.setVisible(false);
+    exitOxygenWarningRectangle.setVisible(false);
+  }
+
+  @FXML
+  public void onClickExitOxygenWarningRectangle() {
+    yesNoButtons.setVisible(false);
+    oxygenWarningLabel.setVisible(false);
+    speechBubble.setVisible(false);
+    exitOxygenWarningRectangle.setVisible(false);
   }
 
   /**
@@ -166,24 +243,11 @@ public class RoomOneController {
     System.out.println("Main Warning clicked");
     if (!GameState.isRiddleResolved) {
       activateSpeech(
-          "Critical damage detected on the ship.\n"
-              + "Please authorise yourself by clicking \nthe middle screen "
-              + "to access the system and analyse the damage.");
-      chatCentralControl.addMessage(
-          new ChatMessage(
-              "system",
-              "Critical damage detected on the ship.\n"
-                  + "Please authorise yourself by clicking \nthe middle screen "
-                  + "to access the system\nand analyse the damage."));
+          "Critical damage detected on the ship. Please authorise yourself by clicking the middle"
+              + " screen to access the system and analyse the damage.");
     } else {
       activateSpeech(
-          "Critical damage detected on the engine!\n"
-              + "Please find the tools required and fix it!");
-      chatCentralControl.addMessage(
-          new ChatMessage(
-              "system",
-              "Critical damage detected on the engine!\n"
-                  + "Please find the spare tools and\nfix it!"));
+          "Critical damage detected on the engine! Please find the tools required and fix it!");
     }
   }
 
@@ -201,7 +265,7 @@ public class RoomOneController {
       activateSpeech("Authorisation needed to access the system.");
     } else {
       activateSpeech(
-          "Critical failure on the main engine\n" + "Please find the spare parts and\nfix it!");
+          "Critical failure on the main engine! Please find the spare parts and fix it!");
     }
   }
 
@@ -213,7 +277,7 @@ public class RoomOneController {
   @FXML
   private void clickWire(MouseEvent event) {
     GameState.isWireCollected = true;
-    activateSpeech("You have collected the wire!\nYou might need it to\nfix something...");
+    activateSpeech("You have collected the wire!\nYou might need it to fix something...");
     room.getChildren().remove(wire);
     room.getChildren().remove(wireImage);
   }
@@ -239,6 +303,20 @@ public class RoomOneController {
         },
         5000);
     // 5 second delay
+  }
+
+  @FXML
+  public void clickRobot(MouseEvent event) throws IOException {
+    // If riddle not solved tell the player to get authorised
+    if (!GameState.isRiddleResolved) {
+      activateSpeech("Authorisation needed! Please click the middle screen");
+      return;
+    }
+    if (!GameState.hard) {
+      activateSpeech("Good luck fixing the ship! Let me know if you need any help.");
+    } else {
+      activateSpeech("Fixing the ship is very hard but I know you can do it. Keep trying!");
+    }
   }
 
   /**
@@ -299,5 +377,67 @@ public class RoomOneController {
     System.out.println("target X = " + targetX);
     tt.setToX(targetX);
     tt.play();
+  }
+
+  @FXML
+  public void clickWireCompartment(MouseEvent event) throws IOException {
+    System.out.println("Wire Compartment Clicked");
+
+    // If riddle is not solved, do no allow entry
+    if (!GameState.isRiddleResolved) {
+      activateSpeech("Authorisation needed to access ship compartments.");
+      return;
+    }
+
+    // If the scramble word puzzle hasn't been solved
+    // Go to enter access key screen
+    if (!GameState.isWireCompartmentUnlocked) {
+      // Add hint prompts only if difficulty is not hard
+      if (!GameState.hard) {
+        addWordScramblePromptsIfNotAdded();
+      }
+
+      Parent spacesuitPuzzlesRoom = SceneManager.getUiRoot(AppUi.WORD_SCRAMBLE);
+      App.getScene().setRoot(spacesuitPuzzlesRoom);
+      // If spacesuit hasn't been revealed
+    } else {
+      // Disable and hide images
+      wireCompartmentPolygon.setVisible(false);
+      fadeOutNode(wireCompartmentImage, 0.5);
+      wireCompartmentImage.setDisable(true);
+
+      keypadWireCompartment.setVisible(false);
+      fadeOutNode(keypadWireCompartment, 0.5);
+      keypadWireCompartment.setDisable(true);
+    }
+  }
+
+  /**
+   * Helper function that fades out a specified object.
+   *
+   * @param node the specified image
+   * @param duration the duration it takes for the image to load in
+   */
+  private void fadeOutNode(ImageView node, double duration) {
+    FadeTransition fadeTransition = new FadeTransition();
+    fadeTransition.setNode(node);
+    fadeTransition.setFromValue(1); // starting opacity value
+    fadeTransition.setToValue(0); // ending opacity value (1 is fully opaque)
+    fadeTransition.setDuration(Duration.seconds(duration)); // transition duration
+    fadeTransition.play();
+  }
+
+  private void addWordScramblePromptsIfNotAdded() {
+    if (!GameState.isWordScramblePromptAdded) {
+      String prompt = GptPromptEngineering.hintWordScrambleSetup();
+      if (GameState.medium) {
+        prompt = prompt + GptPromptEngineering.getMediumHintReminder();
+      }
+
+      ChatCentralControl.getInstance()
+          .getChatCompletionRequest()
+          .addMessage(new ChatMessage("system", prompt));
+      GameState.isWordScramblePromptAdded = true;
+    }
   }
 }

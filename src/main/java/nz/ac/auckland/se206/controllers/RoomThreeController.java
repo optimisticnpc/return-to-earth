@@ -62,6 +62,7 @@ public class RoomThreeController {
   @FXML private ProgressBar oxygenBar;
   @FXML private Pane room;
   @FXML private Text meterPercent;
+  @FXML private Text oxygenMeterText;
   @FXML private ImageView robot;
   @FXML private ImageView soundIcon;
 
@@ -98,6 +99,33 @@ public class RoomThreeController {
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
     soundIcon.opacityProperty().bind(sound.iconOpacityProperty());
+    setupAiHoverImageListeners();
+  }
+
+  private void setupAiHoverImageListeners() {
+
+    // Hide the hover image of the AI when loading animation is playing
+    GameState.isLoadingAnimationlaying.addListener(
+        (observable, oldValue, newValue) -> {
+          if (!oldValue && newValue) { // If it changes from false to true
+            hideAiHoverImage();
+          }
+        });
+
+    GameState.isLoadingAnimationlaying.addListener(
+        (observable, oldValue, newValue) -> {
+          if (oldValue && !newValue) { // If it changes true to false
+            showAiHoverImage();
+          }
+        });
+  }
+
+  private void hideAiHoverImage() {
+    robot.setVisible(false);
+  }
+
+  private void showAiHoverImage() {
+    robot.setVisible(true);
   }
 
   /**
@@ -133,14 +161,14 @@ public class RoomThreeController {
   /** Shows a low oxygen warning when oxygen is under 30% and it's the first warning. */
   public void showLowOxygen() {
     if (!GameState.isWarningShown) {
-      activateSpeech("OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!\n OXYGEN RUNNING LOW!");
+      activateSpeech("OXYGEN RUNNING LOW!\nOXYGEN RUNNING LOW!\nOXYGEN RUNNING LOW!");
       if (sound.isSoundOnProperty().get()) {
         // Text to speech tells the player they are low on oxygen
         new Thread(
                 () -> {
                   try {
-                    if (sound.isSoundOnProperty().get()) {
-                      textToSpeech.speak("Return immediately!");
+                    if (sound.isSoundOnProperty().get() && !GameState.isSpacesuitCollected) {
+                      textToSpeech.speak("Return immediately! Oxygen Critical! RETURN IMMEDIATELY");
                     }
                   } catch (Exception e) {
                     e.printStackTrace();
@@ -156,6 +184,8 @@ public class RoomThreeController {
   public void showSpacesuitOxygen() {
     oxygenBar.setStyle("-fx-accent: #ADD8E6;");
     oxygenBar.setPrefWidth(350);
+    oxygenMeterText.setStyle("-fx-fill: #56daff;");
+    meterPercent.setStyle("-fx-fill: #56daff;");
   }
 
   /**
@@ -168,7 +198,7 @@ public class RoomThreeController {
   public void clickAuthorisation(MouseEvent event) throws IOException {
     // If the riddle is not solved tell the player to get authorisation
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access\nthe system.");
+      activateSpeech("Authorisation needed to access the system.");
       return;
     }
   }
@@ -231,9 +261,8 @@ public class RoomThreeController {
 
     // If toolbox not collected
     if (!GameState.isToolboxCollected) {
-      activateSpeech("You need to find the right tools\nto open this hatch.");
-      chat.addMessage(
-          new ChatMessage("assistant", "You need to find the right tools\nto open this hatch."));
+      activateSpeech("You need to find the right tools to open this hatch.");
+
       return;
     }
 
@@ -269,13 +298,11 @@ public class RoomThreeController {
         chat.runGpt(new ChatMessage("system", GptPromptEngineering.getHardPhaseFourProgress()));
       }
 
-      activateSpeech(
-          "You have fixed the engine!\n Now you have to reactivate it\n from somewhere...");
-      chat.addMessage(
-          new ChatMessage(
-              "assistant",
-              "You have fixed the engine!\n Now you have to reactivate it\n from somewhere..."));
-      ;
+      activateSpeech("You have fixed the engine!\nNow you have to reactivate the spaceship");
+    }
+
+    if (unscrewed && !GameState.isWireCollected && !GameState.isPartFixed) {
+      activateSpeech("It seems like you are missing a part you need!");
     }
   }
 

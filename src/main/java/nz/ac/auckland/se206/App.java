@@ -16,7 +16,7 @@ import nz.ac.auckland.se206.controllers.GlobalController;
 import nz.ac.auckland.se206.controllers.PasscodeController;
 import nz.ac.auckland.se206.controllers.RoomOneController;
 import nz.ac.auckland.se206.controllers.ScoreScreenController;
-import nz.ac.auckland.se206.controllers.SpacesuitPuzzleController;
+import nz.ac.auckland.se206.controllers.WordScrambleController;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -72,7 +72,8 @@ public class App extends Application {
       SceneManager.addUi(AppUi.ROOM_TWO, loadFxml("roomtwo"));
       SceneManager.addUi(AppUi.ROOM_THREE, loadFxml("roomthree"));
       SceneManager.addUi(AppUi.ROOM_ONE_FINAL, App.loadFxml("roomonefinal"));
-      SceneManager.addUi(AppUi.SPACESUIT_PUZZLE, loadFxml("spacesuitpuzzle"));
+      SceneManager.addUi(AppUi.JOKE_PUZZLE, loadFxml("joke"));
+      SceneManager.addUi(AppUi.WORD_SCRAMBLE, loadFxml("wordscramble"));
       SceneManager.addUi(AppUi.REACTIVATION_ORDER, loadFxml("reactivationorder"));
     } catch (IOException e) {
       e.printStackTrace();
@@ -114,7 +115,6 @@ public class App extends Application {
     // NOTE: All the other rooms get initialized at start button press so that chat is inialized
     // After difficulty is chosen
 
-    // These rooms are only initialized once:
     SceneManager.addUi(AppUi.START, loadFxml("start"));
     SceneManager.addUi(AppUi.SCORE_SCREEN, loadFxml("scorescreen"));
 
@@ -125,6 +125,9 @@ public class App extends Application {
     stage.show();
     root.requestFocus();
     new GlobalController(); // Create a new global controller which checks for time being up
+
+    // Needs to be initialised here because it uses App.scene for the cheat code
+    SceneManager.addUi(AppUi.JOKE_PUZZLE, loadFxml("joke"));
 
     // Get math questions and set passcode
     MathQuestionSelector selector = MathQuestionSelector.getInstance();
@@ -165,6 +168,8 @@ public class App extends Application {
             KeyCode.R, KeyCombination.ALT_DOWN, KeyCombination.SHIFT_DOWN); // Alt + Shift + R
     KeyCombination keyCombV =
         new KeyCodeCombination(KeyCode.V, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
+    KeyCombination keyCombJ =
+        new KeyCodeCombination(KeyCode.J, KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN);
 
     scene.addEventHandler(
         KeyEvent.KEY_PRESSED,
@@ -197,7 +202,7 @@ public class App extends Application {
             System.out.println("Code: " + PasscodeController.getCorrectPassCodeString());
 
             // Spacesuit:
-            System.out.println("Spacesuit: " + SpacesuitPuzzleController.getCorrectWordString());
+            System.out.println("Spacesuit: " + WordScrambleController.getCorrectWordString());
 
             // Reactivation:
             ButtonOrder buttonOrder = ButtonOrder.getInstance();
@@ -205,7 +210,7 @@ public class App extends Application {
 
           } else if (keyCombR.match(event)) {
             System.out.println("Ctrl + Alt + R was pressed!");
-            System.out.println("Riddle skipped!");
+            System.out.println("Riddle and authorisation skipped!");
             // Automatically skip riddles
             // TODO: Implement this properly + check implementation
             GameState.isRiddleResolved = true;
@@ -226,6 +231,10 @@ public class App extends Application {
           } else if (keyCombV.match(event)) {
             System.out.println("Ctrl + Alt + V was pressed!" + '\n');
             ChatCentralControl.getInstance().printChatPanelMessages();
+          } else if (keyCombJ.match(event)) {
+            System.out.println("Ctrl + Alt + J was pressed!" + '\n');
+            System.out.println("Joke Bypassed!");
+            GameState.isJokeResolved.set(true);
           }
         });
   }

@@ -40,7 +40,7 @@ public class ChatComponentController implements Observer {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public void initialize() {
-    // System.out.println("ChatComponentController.initialize()");
+    System.out.println("ChatComponentController.initialize()");
 
     hideLoadingIcon();
     chatCentralControl = ChatCentralControl.getInstance();

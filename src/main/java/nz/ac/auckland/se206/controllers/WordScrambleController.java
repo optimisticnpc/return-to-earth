@@ -22,12 +22,7 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
-/**
- * The SpacesuitPuzzleController class controls the behavior and interactions of the spacesuit
- * puzzle screen. It allows the player to solve a word puzzle to unlock a compartment and proceed
- * with the game.
- */
-public class SpacesuitPuzzleController implements MyControllers {
+public class WordScrambleController implements MyControllers {
 
   private static String correctWordString;
 
@@ -77,10 +72,11 @@ public class SpacesuitPuzzleController implements MyControllers {
   };
 
   /**
-   * Initializes the spacesuit puzzle screen, setting up the timer, input field, and scrambled word.
+   * Initializes the word scramble puzzle screen, setting up the timer, input field, and scrambled
+   * word.
    */
   public void initialize() {
-    System.out.println("SpacesuitPuzzleController.initialize()");
+    System.out.println("WordScrambleController.initialize()");
 
     // Bind timer
     GameTimer gameTimer = GameTimer.getInstance();
@@ -129,7 +125,7 @@ public class SpacesuitPuzzleController implements MyControllers {
     // Ignore capitalisation and whitespace
     if (correctWordString.equals(enteredPasscode.toLowerCase().replaceAll("\\s+", ""))) {
       resultLabel.setText("Correct! Compartment unlocked.");
-      GameState.isSpacesuitUnlocked = true;
+      GameState.isWireCompartmentUnlocked = true;
 
       // Disable passcode field and button after correct passcode entered.
       submitCodeButton.setDisable(true);
@@ -145,13 +141,13 @@ public class SpacesuitPuzzleController implements MyControllers {
   }
 
   /**
-   * Handles the action when the player goes back from the spacesuit puzzle screen to the previous
-   * room.
+   * Handles the action when the player goes back from the word scramble puzzle screen to the
+   * previous room.
    */
   @FXML
   private void onGoBack() {
-    Parent roomTwoRoot = SceneManager.getUiRoot(AppUi.ROOM_TWO);
-    App.getScene().setRoot(roomTwoRoot);
+    Parent root = SceneManager.getUiRoot(AppUi.ROOM_ONE);
+    App.getScene().setRoot(root);
   }
 
   @FXML

@@ -39,10 +39,24 @@
     -fx-padding: 10px 20px;
 }
 
+.wrenchButton {
+    -fx-text-fill: white;
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+}
+
+.wrenchButton:hover {
+    -fx-opacity: 0.8;
+}
+
 #scoreScreenButton,
 #helpStarsButton,
 #closeButton,
-.otherButtons {
+.otherButtons,
+.noButtons {
     -fx-background-insets: 0;
     /* Fixes the black leaking out of the border*/
     -fx-background-color: #1a1a1a;
@@ -73,6 +87,11 @@
     -fx-effect: dropshadow(three-pass-box, lime, 10, 0.5, 0, 0);
 }
 
+.noButtons:hover {
+    -fx-border-width: 0px;
+    -fx-effect: dropshadow(three-pass-box, red, 10, 0.5, 0, 0);
+}
+
 #startButton:pressed,
 #restartButton:pressed,
 #exitButton:pressed {
@@ -93,6 +112,10 @@
 
 .rectangle-hoverable:hover {
     -fx-opacity: 0.6;
+}
+
+.wire-hoverable:hover {
+    -fx-opacity: 0.2;
 }
 
 .robot-hoverable {
