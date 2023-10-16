@@ -67,7 +67,7 @@ public class RoomOneController {
   @FXML private Label oxygenWarningLabel;
   @FXML private Rectangle exitOxygenWarningRectangle;
   @FXML private ImageView wireCompartmentImage;
-
+  @FXML private ImageView keypadWireCompartment;
   @FXML private AnchorPane chatPanel;
 
   private Boolean isPanelOnScreen = true;
@@ -359,9 +359,14 @@ public class RoomOneController {
       App.getScene().setRoot(spacesuitPuzzlesRoom);
       // If spacesuit hasn't been revealed
     } else {
+      // Disable and hide images
       wireCompartmentPolygon.setVisible(false);
       fadeOutNode(wireCompartmentImage, 0.5);
       wireCompartmentImage.setDisable(true);
+
+      keypadWireCompartment.setVisible(false);
+      fadeOutNode(keypadWireCompartment, 0.5);
+      keypadWireCompartment.setDisable(true);
     }
   }
 
