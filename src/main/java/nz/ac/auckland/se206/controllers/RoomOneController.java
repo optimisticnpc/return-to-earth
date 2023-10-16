@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
 import java.util.Timer;
+import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,11 +62,11 @@ public class RoomOneController {
   @FXML private BouncingBallPane bouncingBall;
   @FXML private Rectangle ballToggle;
   @FXML private ImageView soundIcon;
-  @FXML private Polygon wireCompartment;
+  @FXML private Polygon wireCompartmentPolygon;
   @FXML private HBox yesNoButtons;
   @FXML private Label oxygenWarningLabel;
   @FXML private Rectangle exitOxygenWarningRectangle;
-  @FXML private Pane lock;
+  @FXML private ImageView wireCompartmentImage;
 
   @FXML private AnchorPane chatPanel;
 
@@ -358,9 +359,25 @@ public class RoomOneController {
       App.getScene().setRoot(spacesuitPuzzlesRoom);
       // If spacesuit hasn't been revealed
     } else {
-      lock.getChildren().clear();
-      room.getChildren().remove(lock);
+      wireCompartmentPolygon.setVisible(false);
+      fadeOutNode(wireCompartmentImage, 0.5);
+      wireCompartmentImage.setDisable(true);
     }
+  }
+
+  /**
+   * Helper function that fades out a specified object.
+   *
+   * @param node the specified image
+   * @param duration the duration it takes for the image to load in
+   */
+  private void fadeOutNode(ImageView node, double duration) {
+    FadeTransition fadeTransition = new FadeTransition();
+    fadeTransition.setNode(node);
+    fadeTransition.setFromValue(1); // starting opacity value
+    fadeTransition.setToValue(0); // ending opacity value (1 is fully opaque)
+    fadeTransition.setDuration(Duration.seconds(duration)); // transition duration
+    fadeTransition.play();
   }
 
   private void addWordScramblePromptsIfNotAdded() {

@@ -57,12 +57,12 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <ImageView fx:id="wireImage" fitHeight="56.0" fitWidth="167.0" layoutX="1084.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true" rotate="17.4">
+      <ImageView fx:id="wireImage" fitHeight="53.0" fitWidth="130.0" layoutX="1091.0" layoutY="545.0" pickOnBounds="true" rotate="19.0">
          <image>
             <Image url="@../images/wire.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="wire" fitHeight="56.0" fitWidth="167.0" layoutX="1084.0" layoutY="535.0" onMouseClicked="#clickWire" pickOnBounds="true" preserveRatio="true" rotate="17.4" styleClass="rectangle-hoverable">
+      <ImageView fx:id="wire" fitHeight="53.0" fitWidth="130.0" layoutX="1091.0" layoutY="545.0" onMouseClicked="#clickWire" opacity="0.0" pickOnBounds="true" rotate="19.0" styleClass="wire-hoverable">
          <image>
             <Image url="@../images/wire%20hover.png" />
          </image>
@@ -97,16 +97,11 @@
             </Button>
          </children>
       </HBox>
-      <Pane fx:id="lock" layoutX="989.0" layoutY="478.0" prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <Polygon fill="DODGERBLUE" layoutX="88.0" layoutY="77.0" opacity="0.54" points="-55.25, 23.25, 238.0, 122.25, 238.0, -16.25, -55.25, -89.75" stroke="BLACK" strokeType="INSIDE" />
-            <ImageView fitHeight="146.0" fitWidth="214.0" layoutX="58.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" rotate="14.0">
-               <image>
-                  <Image url="@../images/chain.png" />
-               </image>
-            </ImageView>
-            <Polygon fx:id="wireCompartment" fill="DODGERBLUE" layoutX="109.0" layoutY="74.0" onMouseClicked="#clickWireCompartment" opacity="0.0" points="217.0, 125.25, 217.0, -13.5, -75.75, -87.75, -75.75, 26.0" stroke="BLACK" strokeType="INSIDE" />
-         </children>
-      </Pane>
+      <ImageView fx:id="wireCompartmentImage" fitHeight="180.0" fitWidth="182.0" layoutX="1068.0" layoutY="469.0" opacity="0.8">
+         <image>
+            <Image url="@../images/compartment%20locked.png" />
+         </image>
+      </ImageView>
+      <Polygon fx:id="wireCompartmentPolygon" fill="WHITE" layoutX="1000.0" layoutY="700.0" onMouseClicked="#clickWireCompartment" opacity="0.0" points="224.5, -68.5, 224.5, -174.0, 81.0, -210.0, 81.0, -116.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-hoverable" />
    </children>
 </Pane>
