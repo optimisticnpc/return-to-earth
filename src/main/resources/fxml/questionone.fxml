@@ -2,45 +2,59 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #969696;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.QuestionOneController">
+<Pane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #969696;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.QuestionOneController">
    <children>
-      <Button fx:id="goBackButton" layoutX="383.0" layoutY="87.0" onAction="#onGoBack" prefHeight="47.0" prefWidth="103.0" style="-fx-font-size: 18;" styleClass="otherButtons" text="Back">
+      <Button fx:id="goBackButton" layoutX="384.0" layoutY="78.0" onAction="#onGoBack" prefHeight="47.0" prefWidth="103.0" style="-fx-font-size: 18;" styleClass="otherButtons" text="Back">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="418.0" layoutX="525.0" layoutY="166.0" stroke="BLACK" strokeType="INSIDE" width="628.0" />
-      <Label fx:id="questionOneLabel" layoutX="585.0" layoutY="278.0" prefHeight="262.0" prefWidth="510.0" text="In a spaceship are space sheep and cosmic chickens. There are 22 animals altogether. If there are 74 legs, how many space sheep are there? (placeholder)" textFill="WHITE" wrapText="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="418.0" layoutX="491.0" layoutY="166.0" stroke="BLACK" strokeType="INSIDE" width="639.0" />
+      <Label fx:id="questionOneLabel" layoutX="561.0" layoutY="238.0" prefHeight="262.0" prefWidth="510.0" text="In a spaceship are space sheep and cosmic chickens. There are 22 animals altogether. If there are 74 legs, how many space sheep are there? (placeholder)" textFill="WHITE" wrapText="true">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Text fill="WHITE" layoutX="585.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passcode Digits 1-2 ">
+      <Text fill="WHITE" layoutX="561.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passcode Digits 1-2 ">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Label fx:id="timerLabel" layoutX="525.0" layoutY="87.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Time Remaining: 02:00">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <Button fx:id="questionOneHintButton" layoutX="525.0" layoutY="629.0" mnemonicParsing="false" onAction="#onClickQuestionOneHintButton" style="-fx-font-size: 27;" styleClass="otherButtons" text="Hint">
          <font>
             <Font size="30.0" />
          </font>
       </Button>
       <fx:include source="chatcomponent.fxml" />
-      <ImageView fitHeight="196.0" fitWidth="200.0" layoutX="315.0" layoutY="503.0" preserveRatio="true">
-         <image>
-            <Image url="@../images/ai%20circle.png" />
-         </image>
-      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="59.0" layoutX="528.0" layoutY="81.0" stroke="#9ea4ff" strokeType="OUTSIDE" strokeWidth="3.0" width="253.0">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.7748815165876777" radius="0.867816091954023">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.3055555522441864" green="0.375" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.07894736528396606" green="0.07894736528396606" blue="0.07894736528396606" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Rectangle>
+      <Label fx:id="timerLabel" layoutX="552.0" layoutY="92.0" prefHeight="35.0" prefWidth="328.0" style="-fx-font-weight: bold;" text="Time Remaining: 02:00" textFill="#3eff00">
+         <font>
+            <Font name="Symbol" size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
 import java.util.Timer;
+import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,12 +62,12 @@ public class RoomOneController {
   @FXML private BouncingBallPane bouncingBall;
   @FXML private Rectangle ballToggle;
   @FXML private ImageView soundIcon;
-  @FXML private Polygon wireCompartment;
+  @FXML private Polygon wireCompartmentPolygon;
   @FXML private HBox yesNoButtons;
   @FXML private Label oxygenWarningLabel;
   @FXML private Rectangle exitOxygenWarningRectangle;
-  @FXML private Pane lock;
-
+  @FXML private ImageView wireCompartmentImage;
+  @FXML private ImageView keypadWireCompartment;
   @FXML private AnchorPane chatPanel;
 
   private Boolean isPanelOnScreen = true;
@@ -108,10 +109,38 @@ public class RoomOneController {
     hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
-    soundIcon.opacityProperty().bind(sound.iconOpacityProperty());
+    soundIcon.opacityProperty().bind(sound.getIconOpacityProperty());
     InputStream soundOn = new FileInputStream("src/main/resources/images/soundicon.png");
     Image soundOnImage = new Image(soundOn);
     sound.soundImageProperty().set(soundOnImage);
+
+    setupAiHoverImageListeners();
+  }
+
+  private void setupAiHoverImageListeners() {
+
+    // Hide the hover image of the AI when loading animation is playing
+    GameState.isLoadingAnimationlaying.addListener(
+        (observable, oldValue, newValue) -> {
+          if (!oldValue && newValue) { // If it changes from false to true
+            hideAiHoverImage();
+          }
+        });
+
+    GameState.isLoadingAnimationlaying.addListener(
+        (observable, oldValue, newValue) -> {
+          if (oldValue && !newValue) { // If it changes true to false
+            showAiHoverImage();
+          }
+        });
+  }
+
+  private void hideAiHoverImage() {
+    robot.setVisible(false);
+  }
+
+  private void showAiHoverImage() {
+    robot.setVisible(true);
   }
 
   /**
@@ -164,6 +193,7 @@ public class RoomOneController {
     }
   }
 
+  /** Handles the click event on the main warning. */
   @FXML
   public void onYesButton() {
     hideAllOxygenWarningElements();
@@ -173,11 +203,13 @@ public class RoomOneController {
     exitOxygenWarningRectangle.setVisible(false);
   }
 
+  /** Handles the click event on the main warning. */
   @FXML
   public void onNoButton() {
     hideAllOxygenWarningElements();
   }
 
+  /** Helper function that hides all the oxygen warning elements. */
   private void hideAllOxygenWarningElements() {
     yesNoButtons.setVisible(false);
     oxygenWarningLabel.setVisible(false);
@@ -185,6 +217,7 @@ public class RoomOneController {
     exitOxygenWarningRectangle.setVisible(false);
   }
 
+  /** Handles the click event on the main warning. */
   @FXML
   public void onClickExitOxygenWarningRectangle() {
     yesNoButtons.setVisible(false);
@@ -212,6 +245,8 @@ public class RoomOneController {
   @FXML
   private void clickMainWarning(MouseEvent event) throws IOException {
     System.out.println("Main Warning clicked");
+    // If riddle not solved tell the player to get authorization, otherwise tell them to fix the
+    // ship
     if (!GameState.isRiddleResolved) {
       activateSpeech(
           "Critical damage detected on the ship. Please authorise yourself by clicking the middle"
@@ -277,6 +312,26 @@ public class RoomOneController {
   }
 
   /**
+   * Handles the click event on the robot.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the chat view
+   */
+  @FXML
+  public void clickRobot(MouseEvent event) throws IOException {
+    // If riddle not solved tell the player to get authorised
+    if (!GameState.isRiddleResolved) {
+      activateSpeech("Authorisation needed! Please click the middle screen");
+      return;
+    }
+    if (!GameState.hard) {
+      activateSpeech("Good luck fixing the ship! Let me know if you need any help.");
+    } else {
+      activateSpeech("Fixing the ship is very hard but I know you can do it. Keep trying!");
+    }
+  }
+
+  /**
    * Handles the click event on the authorisation button.
    *
    * @param event the mouse event
@@ -285,9 +340,11 @@ public class RoomOneController {
   @FXML
   private void clickAuthorisation(MouseEvent event) throws IOException {
     System.out.println("Authorisation clicked");
+    // If riddle not solved tell the player to get authorised and start the riddle
     if (GameState.isRoomOneFirst && !GameState.isAuthorising) {
       GameState.isAuthorising = true;
       selectRandomRiddle();
+      // Add hint prompts only if difficulty is not hard and if they haven't been added already
       if (GameState.easy) {
         chatCentralControl.runGpt(
             new ChatMessage(
@@ -310,11 +367,18 @@ public class RoomOneController {
     }
   }
 
+  /**
+   * Selects a random riddle from the list of riddles.
+   */
   private void selectRandomRiddle() {
     Random random = new Random();
     wordToGuess = riddles[random.nextInt(riddles.length)];
   }
 
+  /**
+   * Handles the click event on the wire compartment.
+   * @param event the mouse event
+   */
   @FXML
   private void onSlideChatButtonClicked(ActionEvent event) {
     System.out.println("onSlideChatButtonClicked()");
@@ -336,6 +400,12 @@ public class RoomOneController {
     tt.play();
   }
 
+  /**
+   * Handles the click event on the wire compartment.
+   *
+   * @param event the mouse event
+   * @throws IOException if there is an error loading the chat view
+   */
   @FXML
   public void clickWireCompartment(MouseEvent event) throws IOException {
     System.out.println("Wire Compartment Clicked");
@@ -358,18 +428,44 @@ public class RoomOneController {
       App.getScene().setRoot(spacesuitPuzzlesRoom);
       // If spacesuit hasn't been revealed
     } else {
-      lock.getChildren().clear();
-      room.getChildren().remove(lock);
+      // Disable and hide images
+      wireCompartmentPolygon.setVisible(false);
+      fadeOutNode(wireCompartmentImage, 0.5);
+      wireCompartmentImage.setDisable(true);
+
+      keypadWireCompartment.setVisible(false);
+      fadeOutNode(keypadWireCompartment, 0.5);
+      keypadWireCompartment.setDisable(true);
     }
   }
 
+  /**
+   * Helper function that fades out a specified object.
+   *
+   * @param node the specified image
+   * @param duration the duration it takes for the image to load in
+   */
+  private void fadeOutNode(ImageView node, double duration) {
+    FadeTransition fadeTransition = new FadeTransition();
+    fadeTransition.setNode(node);
+    fadeTransition.setFromValue(1); // starting opacity value
+    fadeTransition.setToValue(0); // ending opacity value (1 is fully opaque)
+    fadeTransition.setDuration(Duration.seconds(duration)); // transition duration
+    fadeTransition.play();
+  }
+
+  /**
+   * Handles the click event on the keypad.
+   */
   private void addWordScramblePromptsIfNotAdded() {
+    // Add hint prompts only if difficulty is not hard
     if (!GameState.isWordScramblePromptAdded) {
       String prompt = GptPromptEngineering.hintWordScrambleSetup();
       if (GameState.medium) {
         prompt = prompt + GptPromptEngineering.getMediumHintReminder();
       }
 
+      // Add the prompt to the chat
       ChatCentralControl.getInstance()
           .getChatCompletionRequest()
           .addMessage(new ChatMessage("system", prompt));

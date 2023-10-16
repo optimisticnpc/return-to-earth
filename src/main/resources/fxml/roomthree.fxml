@@ -8,8 +8,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -20,32 +24,22 @@
             <Image url="@../images/spaceship%20exterior.png" />
          </image>
       </ImageView>
-      <Label fx:id="timerLabel" layoutX="333.0" layoutY="5.0" prefHeight="35.0" prefWidth="319.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ec00ff;" text="Time Remaining: 02:00">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <Polygon fx:id="hatch" fill="DODGERBLUE" layoutX="717.0" layoutY="388.0" onMouseClicked="#clickHatch" opacity="0.0" points="-75.33331298828125, 25.333343505859375, 131.33331298828125, -88.66665649414062, 223.33331298828125, 35.333343505859375, 18.66668701171875, 150.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="screwOne" fill="WHITE" layoutX="672.0" layoutY="418.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
       <Circle fx:id="screwTwo" fill="WHITE" layoutX="844.0" layoutY="328.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
       <Circle fx:id="screwThree" fill="WHITE" layoutX="912.0" layoutY="418.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
       <Circle fx:id="screwFour" fill="WHITE" layoutX="743.0" layoutY="514.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
-      <ImageView fitHeight="116.0" fitWidth="116.0" layoutX="558.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" rotate="132.5">
-         <image>
-            <Image url="@../images/ai%20circle%20room3.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="robot" fitHeight="116.0" fitWidth="116.0" layoutX="558.0" layoutY="171.0" onMouseClicked="#clickAuthorisation" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="132.5" styleClass="robot-hoverable">
+      <ImageView fx:id="robot" fitHeight="116.0" fitWidth="116.0" layoutX="557.0" layoutY="171.0" onMouseClicked="#clickAuthorisation" opacity="0.61" pickOnBounds="true" preserveRatio="true" rotate="132.5" styleClass="robot-hoverable">
          <image>
             <Image url="@../images/ai%20circle%20room3%20hover.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="191.0" fitWidth="372.0" layoutX="668.0" layoutY="41.0">
+      <ImageView fx:id="speechBubble" fitHeight="171.0" fitWidth="328.0" layoutX="680.0" layoutY="94.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="698.0" layoutY="59.0" prefHeight="98.0" prefWidth="295.0" wrapText="true">
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="710.0" layoutY="107.0" prefHeight="96.0" prefWidth="269.0">
          <font>
             <Font size="20.0" />
                      </font>
@@ -96,16 +90,6 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Text>
-      <Label layoutX="750.0" layoutY="5.0" prefHeight="35.0" prefWidth="237.0" text="Hints Remaining:" textFill="#1900ff">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="hintLabel" layoutX="923.0" layoutY="5.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#1900ff">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <Polygon fx:id="movetoRoomOne" fill="#ff0400" layoutX="320.0" layoutY="360.0" onMouseClicked="#clickRoomOne" opacity="0.9" points="13.0, -5.0, 50.0, 40.0, 50.0, -50.0" stroke="#fff200" strokeType="INSIDE" strokeWidth="2" styleClass="roomArrow" />
       <fx:include fx:id="chatPanel" source="chatcomponent.fxml" />
       <ImageView fx:id="soundIcon" fitHeight="61.0" fitWidth="53.0" layoutX="1215.0" layoutY="15.0" onMouseClicked="#clickSoundIcon" pickOnBounds="true" preserveRatio="true">
@@ -113,5 +97,38 @@
             <Image url="@../images/soundicon.png" />
          </image>
       </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="53.0" layoutX="537.0" layoutY="32.0" stroke="#9ea4ff" strokeType="OUTSIDE" strokeWidth="3.0" width="508.0">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.7748815165876777" radius="0.867816091954023">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.3055555522441864" green="0.375" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.07894736528396606" green="0.07894736528396606" blue="0.07894736528396606" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Rectangle>
+      <Label fx:id="timerLabel" layoutX="555.0" layoutY="41.0" prefHeight="35.0" prefWidth="224.0" text="Time Remaining: 02:00" textFill="#3eff00">
+         <font>
+            <Font name="Symbol" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="780.0" layoutY="41.0" prefHeight="35.0" prefWidth="237.0" text="Hints Remaining:" textFill="#3eff00">
+         <font>
+            <Font name="Symbol" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="hintLabel" layoutX="940.0" layoutY="41.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#3eff00">
+         <font>
+            <Font name="Symbol" size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

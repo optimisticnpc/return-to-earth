@@ -43,6 +43,7 @@ public class ChatCentralControl {
   private List<ChatMessage> messages = new ArrayList<>();
 
   private TextToSpeech textToSpeech = new TextToSpeech();
+
   private ChatCentralControl() {
     initializeChatCentralControl();
   }
@@ -114,7 +115,7 @@ public class ChatCentralControl {
   private void runChatPromptBasedOnGameState() throws ApiProxyException {
     if (GameState.isPersonalitySetup) {
       System.out.println("System setup completed!");
-      runGpt(new ChatMessage("system", GptPromptEngineering.getAIPersonality()));
+      runGpt(new ChatMessage("system", GptPromptEngineering.getAiPersonality()));
       GameState.isPersonalitySetup = false;
     } else {
       if (GameState.phaseThree && !GameState.hard) {
@@ -141,6 +142,7 @@ public class ChatCentralControl {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public void runGpt(ChatMessage msg) {
+    AnimationCentralControl.getInstance().playAllAnimation();
     showAllLoadingIcons();
     disableAllTextBoxes();
 
@@ -171,6 +173,7 @@ public class ChatCentralControl {
                                 + " reload the game.")
                         .showAndWait();
                     hideAllLoadingIcons();
+                    AnimationCentralControl.getInstance().stopAllAnimation();
                     enableAllTextBoxes();
                   });
 
@@ -252,6 +255,7 @@ public class ChatCentralControl {
           notifyObservers();
 
           hideAllLoadingIcons();
+          AnimationCentralControl.getInstance().stopAllAnimation();
           enableAllTextBoxes();
         });
 
@@ -269,6 +273,7 @@ public class ChatCentralControl {
               });
           enableAllTextBoxes();
           hideAllLoadingIcons();
+          AnimationCentralControl.getInstance().stopAllAnimation();
         });
 
     new Thread(callGptTask).start();

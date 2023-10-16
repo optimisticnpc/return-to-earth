@@ -19,7 +19,7 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
  * Controller class for the Question Two view. This class handles user interactions and UI updates
  * for the Question Two view.
  */
-public class QuestionTwoController implements MyControllers{
+public class QuestionTwoController implements MyControllers {
 
   @FXML private Label timerLabel;
   @FXML private Label questionTwoLabel;
@@ -43,12 +43,15 @@ public class QuestionTwoController implements MyControllers{
     }
   }
 
+  /**
+   * Handles the click event on the "Hint" button. Sends a message to the chat asking for a hint for
+   * the second question.
+   */
   @FXML
   private void onClickQuestionTwoHintButton() {
-    if(GptPromptEngineering.checkIfAuthorisedAndPrintMessage()) {
+    if (GptPromptEngineering.checkIfAuthorisedAndPrintMessage()) {
       return;
     }
-
 
     ChatMessage msg = new ChatMessage("user", "Please give me a hint for the second question");
 
@@ -67,6 +70,10 @@ public class QuestionTwoController implements MyControllers{
     App.getScene().setRoot(roomTwoRoot);
   }
 
+  /**
+   * Handles the click event on the "Next" button. Navigates to the Word Joke view when the button
+   * is clicked.
+   */
   @Override
   public void disableHintButton() {
     questionTwoHintButton.setDisable(true);

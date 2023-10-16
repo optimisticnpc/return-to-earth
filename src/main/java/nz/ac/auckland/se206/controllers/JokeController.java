@@ -61,11 +61,11 @@ public class JokeController {
   @FXML
   public void clickSpacesuit(MouseEvent event) throws IOException {
     System.out.println("Spacesuit Clicked");
-
+    // If the spacesuit has been collected, go to the spacesuit puzzle
     if (GameState.isJokeResolved.get() && !GameState.isSpacesuitCollected) {
       collectSpacesuit();
       activateSpeech(
-          "Congratulations, you have collected the spacesuit! Now you can go on spacewalks for"
+          "Congratulations, you have collected the spacesuit!\nNow you can go on spacewalks for"
               + " longer!");
       GameState.isSpacesuitCollected = true;
       GameState.isSpacesuitJustCollected = true;
@@ -91,6 +91,11 @@ public class JokeController {
     fadeInNode(spacesuitCollectedImage, 0.5);
   }
 
+  /**
+   * Helper function that activates the speech bubble.
+   *
+   * @param text the text to be displayed in the speech bubble
+   */
   @FXML
   public void activateSpeech(String text) {
     // Make the speech bubble visible and set the text
@@ -109,6 +114,7 @@ public class JokeController {
     // 5 second delay
   }
 
+  /** Handles the action when the player clicks on the yes button. */
   @FXML
   public void onYesButton() {
     speechBubble.setVisible(false);
