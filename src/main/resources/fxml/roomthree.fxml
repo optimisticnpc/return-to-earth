@@ -30,12 +30,8 @@
       <Circle fx:id="screwTwo" fill="WHITE" layoutX="844.0" layoutY="328.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
       <Circle fx:id="screwThree" fill="WHITE" layoutX="912.0" layoutY="418.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
       <Circle fx:id="screwFour" fill="WHITE" layoutX="743.0" layoutY="514.0" onMousePressed="#pressScrew" opacity="0.7" radius="12.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />
-      <ImageView fitHeight="116.0" fitWidth="116.0" layoutX="558.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" rotate="132.5">
-         <image>
-            <Image url="@../images/ai%20circle%20room3.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="robot" fitHeight="116.0" fitWidth="116.0" layoutX="558.0" layoutY="171.0" onMouseClicked="#clickAuthorisation" opacity="0.0" pickOnBounds="true" preserveRatio="true" rotate="132.5" styleClass="robot-hoverable">
+       <fx:include layoutX="385.0" layoutY="-50.0" scaleX="0.464" scaleY="0.464" source="loadingCircleRotated.fxml" />
+      <ImageView fx:id="robot" fitHeight="116.0" fitWidth="116.0" layoutX="557.0" layoutY="171.0" onMouseClicked="#clickAuthorisation" opacity="0.61" pickOnBounds="true" preserveRatio="true" rotate="132.5" styleClass="robot-hoverable">
          <image>
             <Image url="@../images/ai%20circle%20room3%20hover.png" />
          </image>
