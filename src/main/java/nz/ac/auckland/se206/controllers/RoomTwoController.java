@@ -19,6 +19,7 @@ import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
+import nz.ac.auckland.se206.RoomInitializer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
@@ -84,36 +85,9 @@ public class RoomTwoController {
             collectSpacesuit();
           }
         });
-    setupAiHoverImageListeners();
-  }
-
-  /** Sets up listeners for the AI hover image. The image is hidden when the loading animation is */
-  private void setupAiHoverImageListeners() {
-
-    // Hide the hover image of the AI when loading animation is playing
-    GameState.isLoadingAnimationlaying.addListener(
-        (observable, oldValue, newValue) -> {
-          if (!oldValue && newValue) { // If it changes from false to true
-            hideAiHoverImage();
-          }
-        });
-
-    GameState.isLoadingAnimationlaying.addListener(
-        (observable, oldValue, newValue) -> {
-          if (oldValue && !newValue) { // If it changes true to false
-            showAiHoverImage();
-          }
-        });
-  }
-
-  /** Hides the AI hover image. This is called when the loading animation is playing. */
-  private void hideAiHoverImage() {
-    robot.setVisible(false);
-  }
-
-  /** Shows the AI hover image. This is called when the loading animation is not playing. */
-  private void showAiHoverImage() {
-    robot.setVisible(true);
+    // Initializes the room for the animations to play.
+    RoomInitializer roomInitializer = new RoomInitializer();
+    roomInitializer.setupAiHoverImageListeners(robot);
   }
 
   /**

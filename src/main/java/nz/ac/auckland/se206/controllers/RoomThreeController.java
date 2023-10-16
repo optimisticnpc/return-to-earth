@@ -31,6 +31,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.OxygenMeter;
+import nz.ac.auckland.se206.RoomInitializer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Sound;
@@ -99,34 +100,10 @@ public class RoomThreeController {
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
     soundIcon.opacityProperty().bind(sound.getIconOpacityProperty());
-    setupAiHoverImageListeners();
-  }
 
-  /** Sets up listeners for the AI hover image. */
-  private void setupAiHoverImageListeners() {
-
-    // Hide the hover image of the AI when loading animation is playing
-    GameState.isLoadingAnimationlaying.addListener(
-        (observable, oldValue, newValue) -> {
-          if (!oldValue && newValue) { // If it changes from false to true
-            hideAiHoverImage();
-          }
-        });
-
-    GameState.isLoadingAnimationlaying.addListener(
-        (observable, oldValue, newValue) -> {
-          if (oldValue && !newValue) { // If it changes true to false
-            showAiHoverImage();
-          }
-        });
-  }
-
-  private void hideAiHoverImage() {
-    robot.setVisible(false);
-  }
-
-  private void showAiHoverImage() {
-    robot.setVisible(true);
+    // Initializes the room for the animations to play.
+    RoomInitializer roomInitializer = new RoomInitializer();
+    roomInitializer.setupAiHoverImageListeners(robot);
   }
 
   /**
