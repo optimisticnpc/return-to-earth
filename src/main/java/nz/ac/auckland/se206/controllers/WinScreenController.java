@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
+import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.ScoreScreenInfo;
 import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -31,6 +32,9 @@ public class WinScreenController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
+
+    OxygenMeter.getInstance().stopOxygenMeter();
+
     Sound sound = Sound.getInstance();
     // Text to speech tells the player they have won
     new Thread(
