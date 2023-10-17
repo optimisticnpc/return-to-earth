@@ -28,7 +28,7 @@ public class TimerHintDisplayController {
 
     // Add a listener for when the timer goes below one minute
     gameTimer
-        .belowOneMinuteProperty()
+        .getBelowOneMinuteProperty()
         .addListener(
             (obs, oldVal, newVal) -> {
               if (!oldVal && newVal) {
@@ -56,7 +56,7 @@ public class TimerHintDisplayController {
 
     // Add a listener for when the timer goes below thirty seconds
     gameTimer
-        .belowThirtySecondsProperty()
+        .getBelowThirtySecondsProperty()
         .addListener(
             (obs, oldVal, newVal) -> {
               if (!oldVal && newVal) {
