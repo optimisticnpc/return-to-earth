@@ -24,4 +24,13 @@ public class RoomInitializer {
           }
         });
   }
+
+  public void setupPhaseChange(ControllerWithSpeechBubble controller) {
+    GameState.isPhaseChange.addListener(
+        (observable, oldValue, newValue) -> {
+          if (!oldValue && newValue) { // If it changes false to true
+            controller.activateSpeech("Loading next stage...");
+          }
+        });
+  }
 }

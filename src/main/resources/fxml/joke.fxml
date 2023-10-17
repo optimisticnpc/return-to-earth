@@ -35,12 +35,12 @@
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="speechBubble" fitHeight="401.0" fitWidth="388.0" layoutX="440.0" layoutY="50.0">
+      <ImageView fx:id="speechBubble" fitHeight="344.0" fitWidth="484.0" layoutX="344.0" layoutY="71.0">
          <image>
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="challengeLabel" layoutX="490.0" layoutY="90.0" prefHeight="154.0" prefWidth="278.0" text="You have found the Super Spacesuit. However, to collect it you must pass my test. Do you accept?" wrapText="true">
+      <Label fx:id="challengeLabel" layoutX="390.0" layoutY="90.0" prefHeight="154.0" prefWidth="378.0" text="You have found the Super Spacesuit. However, to collect it you must pass my test. Do you accept?" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
@@ -50,7 +50,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <HBox fx:id="yesNoButtons" alignment="TOP_CENTER" layoutX="478.0" layoutY="250.0" prefHeight="100.0" prefWidth="283.0" spacing="20.0">
+      <HBox fx:id="yesNoButtons" alignment="TOP_CENTER" layoutX="430.0" layoutY="243.0" prefHeight="100.0" prefWidth="283.0" spacing="20.0">
          <children>
             <Button fx:id="yesButton" onAction="#onYesButton" prefHeight="47.0" prefWidth="103.0" style="-fx-font-size: 18;" styleClass="otherButtons" text="Yes">
                <font>
