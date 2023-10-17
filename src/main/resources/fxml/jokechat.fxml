@@ -26,12 +26,12 @@
                      <font>
                         <Font size="13.0" />
                      </font></TextArea>
-                  <Button fx:id="sendButton" minWidth="52.0" mnemonicParsing="false" onAction="#handleSendButtonAction" prefHeight="47.0" prefWidth="72.0" style="-fx-background-color: #ede56f;" text="Send" textFill="#1b00a3">
+                  <Button fx:id="sendButton" minWidth="52.0" mnemonicParsing="false" onAction="#onHandleSendButtonAction" prefHeight="47.0" prefWidth="72.0" style="-fx-background-color: #ede56f;" text="Send" textFill="#1b00a3">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="playMessage" minWidth="41.0" mnemonicParsing="false" onAction="#handlePlayMessageAction" prefHeight="47.0" prefWidth="41.0" style="-fx-background-color: #ede56f;" textFill="#1b00a3">
+                  <Button fx:id="playMessage" minWidth="41.0" mnemonicParsing="false" onAction="#onHandlePlayMessageAction" prefHeight="47.0" prefWidth="41.0" style="-fx-background-color: #ede56f;" textFill="#1b00a3">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="15.0" />
                      </font>
