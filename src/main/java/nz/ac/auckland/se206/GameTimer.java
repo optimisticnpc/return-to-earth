@@ -87,7 +87,7 @@ public class GameTimer {
    *
    * @return The BooleanProperty representing whether the timer is below one minute.
    */
-  public BooleanProperty belowOneMinuteProperty() {
+  public BooleanProperty getBelowOneMinuteProperty() {
     return belowOneMinute;
   }
 
@@ -96,7 +96,7 @@ public class GameTimer {
    *
    * @return The BooleanProperty representing whether the timer is below thirty seconds.
    */
-  public BooleanProperty belowThirtySecondsProperty() {
+  public BooleanProperty getBelowThirtySecondsProperty() {
     return belowThirtySeconds;
   }
 

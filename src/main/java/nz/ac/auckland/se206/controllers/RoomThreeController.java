@@ -310,6 +310,20 @@ public class RoomThreeController implements ControllerWithSpeechBubble {
 
     if (unscrewed && !GameState.isWireCollected && !GameState.isPartFixed) {
       activateSpeech("It seems like you are missing a part you need!");
+      if (sound.isSoundOnProperty().get()) {
+        // Tells the player they are missing a part
+        new Thread(
+                () -> {
+                  try {
+                    if (sound.isSoundOnProperty().get()) {
+                      textToSpeech.speak("Part missing"); // Player is missing the wire
+                    }
+                  } catch (Exception e) {
+                    e.printStackTrace();
+                  }
+                })
+            .start();
+      }
     }
   }
 
