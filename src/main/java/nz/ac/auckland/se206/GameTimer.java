@@ -82,10 +82,20 @@ public class GameTimer {
     timeline.setCycleCount(Timeline.INDEFINITE);
   }
 
+  /**
+   * Retrieves the BooleanProperty for whether the timer is below one minute.
+   *
+   * @return The BooleanProperty representing whether the timer is below one minute.
+   */
   public BooleanProperty belowOneMinuteProperty() {
     return belowOneMinute;
   }
 
+  /**
+   * Retrieves the BooleanProperty for whether the timer is below thirty seconds.
+   *
+   * @return The BooleanProperty representing whether the timer is below thirty seconds.
+   */
   public BooleanProperty belowThirtySecondsProperty() {
     return belowThirtySeconds;
   }
@@ -98,7 +108,7 @@ public class GameTimer {
     timeline.playFromStart();
   }
 
-  /** This method stops the timer to prevent any later bugs occuring. */
+  /** Stops the timer to prevent any later bugs from occurring. */
   public void stopTimer() {
     timeline.stop();
   }
@@ -119,9 +129,9 @@ public class GameTimer {
     timeDisplay.set(String.format("Time remaining: %02d:%02d", minutes, seconds));
 
     // Update color change properties
-    if (minutes == 0 && seconds < 30 && !belowThirtySeconds.get()) {
+    if (minutes == 0 && seconds <= 30 && !belowThirtySeconds.get()) {
       belowThirtySeconds.set(true);
-    } else if (minutes == 0 && seconds < 60 && !belowOneMinute.get()) {
+    } else if (minutes == 1 && seconds <= 0 && !belowOneMinute.get()) {
       belowOneMinute.set(true);
     }
   }
