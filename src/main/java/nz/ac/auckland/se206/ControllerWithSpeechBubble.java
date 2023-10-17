@@ -1,9 +1,9 @@
+package nz.ac.auckland.se206;
+
 /**
  * The {@code ControllerWithSpeechBubble} interface represents a controller that can display speech
  * bubbles with text messages.
  */
-package nz.ac.auckland.se206;
-
 public interface ControllerWithSpeechBubble {
 
   /**
