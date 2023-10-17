@@ -27,6 +27,8 @@ public class GameTimer {
    */
   public static void setInitialTime(int initialTime) {
     GameTimer.initialTime = initialTime;
+    GameTimer.getInstance().belowThirtySeconds.set(false);
+    GameTimer.getInstance().belowOneMinute.set(false);
   }
 
   /**
@@ -52,6 +54,9 @@ public class GameTimer {
   // A StringProperty object that is used to display the time in the MM:SS format.
   private StringProperty timeDisplay = new SimpleStringProperty();
 
+  private final BooleanProperty belowOneMinute = new SimpleBooleanProperty(false);
+  private final BooleanProperty belowThirtySeconds = new SimpleBooleanProperty(false);
+
   /**
    * Constructs a new `GameTimer` instance with an initial time in seconds.
    *
@@ -75,6 +80,14 @@ public class GameTimer {
                   }
                 }));
     timeline.setCycleCount(Timeline.INDEFINITE);
+  }
+
+  public BooleanProperty belowOneMinuteProperty() {
+    return belowOneMinute;
+  }
+
+  public BooleanProperty belowThirtySecondsProperty() {
+    return belowThirtySeconds;
   }
 
   /** Starts the timer, resetting it to the initial time. */
@@ -103,8 +116,14 @@ public class GameTimer {
   private void updateTimeDisplay() {
     int minutes = timeHundredths / 6000;
     int seconds = (timeHundredths % 6000) / 100;
-    // TODO: Decide whether to use hundredths
     timeDisplay.set(String.format("Time remaining: %02d:%02d", minutes, seconds));
+
+    // Update color change properties
+    if (minutes == 0 && seconds < 30 && !belowThirtySeconds.get()) {
+      belowThirtySeconds.set(true);
+    } else if (minutes == 0 && seconds < 60 && !belowOneMinute.get()) {
+      belowOneMinute.set(true);
+    }
   }
 
   /**
