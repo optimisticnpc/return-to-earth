@@ -96,6 +96,10 @@ public class ChatCentralControl {
     observers.remove(observer);
   }
 
+  public void addMessageButDontUpdate(ChatMessage message) {
+    messages.add(message);
+  }
+
   /**
    * Adds a chat message to the message list and notifies observers.
    *
@@ -261,7 +265,7 @@ public class ChatCentralControl {
               && result.getContent().startsWith("Authorization Complete")) {
 
             GameState.isRiddleResolved = true;
-            GameState.isPhaseChange = true;
+            GameState.isPhaseChange.set(true);
             System.out.println("Riddle resolved");
             System.out.println("Phase 2");
 
@@ -291,8 +295,9 @@ public class ChatCentralControl {
                     5000);
           }
 
-          // Clear chat
-          if (GameState.isPhaseChange) {
+
+          if (GameState.isPhaseChange.getValue()) {
+
             messages.clear();
             clearContentsOfChats();
           }
@@ -300,8 +305,8 @@ public class ChatCentralControl {
           messages.add(result);
           notifyObservers();
 
-          if (GameState.isPhaseChange) {
-            GameState.isPhaseChange = false;
+          if (GameState.isPhaseChange.getValue()) {
+            GameState.isPhaseChange.set(false);
 
             // 5 second delay
             new java.util.Timer()

@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="582.0" prefWidth="1144.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoadingAnimationController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="582.0" prefWidth="1144.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoadingAnimationController">
    <children>
       <Circle fill="WHITE" layoutX="163.0" layoutY="454.0" radius="115.0" stroke="WHITE" strokeType="INSIDE" />
       <ImageView fx:id="aiThinkingYellow" fitHeight="250.0" fitWidth="250.0" layoutX="40.0" layoutY="330.0" preserveRatio="true" rotate="132.5">
@@ -50,9 +50,9 @@
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="textLabel" layoutX="360.0" layoutY="226.0" text="hmmm">
+      <Label fx:id="textLabel" layoutX="360.0" layoutY="206.0" text="hmmm">
          <font>
-            <Font size="43.0" />
+            <Font size="50.0" />
          </font>
       </Label>
    </children>

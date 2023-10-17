@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="room" focusTraversable="true" prefHeight="558.0" prefWidth="452.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoadingAnimationController">
+<Pane fx:id="room" focusTraversable="true" prefHeight="558.0" prefWidth="452.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoadingAnimationController">
    <children>
       <ImageView fx:id="aiThinkingYellow" fitHeight="373.0" fitWidth="190.0" layoutX="14.0" layoutY="169.0" preserveRatio="true">
          <image>
@@ -45,7 +45,7 @@
       </ImageView>
       <Label fx:id="textLabel" layoutX="154.0" layoutY="35.0" text="hmmm">
          <font>
-            <Font size="24.0" />
+            <Font size="36.0" />
          </font>
       </Label>
       <ImageView fx:id="aiNormal" fitHeight="370.0" fitWidth="198.0" layoutX="16.0" layoutY="171.0" pickOnBounds="true">
