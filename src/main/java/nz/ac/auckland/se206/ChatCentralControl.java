@@ -54,6 +54,8 @@ public class ChatCentralControl {
 
   private TextToSpeech textToSpeech = new TextToSpeech();
 
+  private ChatBase chatBase = new ChatBase();
+
   /** Private constructor to enforce the singleton pattern. */
   private ChatCentralControl() {
     initializeChatCentralControl();
@@ -190,7 +192,7 @@ public class ChatCentralControl {
               ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
               Choice result = chatCompletionResult.getChoices().iterator().next();
               chatCompletionRequest.addMessage(result.getChatMessage());
-              recordAndPrintTime(startTime);
+              chatBase.recordAndPrintTime(startTime);
               return result.getChatMessage();
             } catch (ApiProxyException e) {
               Platform.runLater(
@@ -377,31 +379,9 @@ public class ChatCentralControl {
     return count;
   }
 
-  /** Initiates text-to-speech to read the message and manages the sound icon button state. */
+  /** Sends a message string to chatBase so that chatBase can read the message using TTS. */
   public void readMessage() {
-    // Create a new thread to read the message
-    new Thread(
-            () -> {
-              try {
-                // Read message, else print exception
-                textToSpeech.speak(messageString);
-              } catch (Exception e) {
-                e.printStackTrace();
-              }
-            })
-        .start();
-  }
-
-  /**
-   * Records and prints the time taken by a GPT request.
-   *
-   * @param startTime The start time of the request.
-   */
-  protected void recordAndPrintTime(long startTime) {
-    long time = System.currentTimeMillis() - startTime;
-    // Print time taken
-    System.out.println();
-    System.out.println("Search took " + time + "ms");
+    chatBase.readMessage(messageString);
   }
 
   /**

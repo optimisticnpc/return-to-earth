@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -23,6 +22,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import nz.ac.auckland.se206.AnimationCentralControl;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatBase;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -50,6 +50,8 @@ public class JokeChatController {
   private List<ChatMessage> messages = new ArrayList<>();
 
   private TextToSpeech textToSpeech = new TextToSpeech();
+
+  private ChatBase chatBase = new ChatBase();
 
   /** Called by JavaFX when controller is created (after elements have been initialized). */
   public void initialize() {
@@ -112,7 +114,7 @@ public class JokeChatController {
               ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
               Choice result = chatCompletionResult.getChoices().iterator().next();
               chatCompletionRequest.addMessage(result.getChatMessage());
-              recordAndPrintTime(startTime);
+              chatBase.recordAndPrintTime(startTime);
               return result.getChatMessage();
             } catch (ApiProxyException e) {
               Platform.runLater(
@@ -182,41 +184,6 @@ public class JokeChatController {
     new Thread(callGptTask).start();
   }
 
-  /** Initiates text-to-speech to read the message and manages the sound icon button state. */
-  public void readMessage() {
-    // Create a new thread to read the message
-    new Thread(
-            () -> {
-              try {
-                textToSpeech.speak(messageString);
-
-              } catch (Exception e) {
-                e.printStackTrace();
-              }
-            })
-        .start();
-  }
-
-  /**
-   * Records and prints the time taken to run the GPT model.
-   *
-   * @param startTime the start time
-   */
-  protected void recordAndPrintTime(long startTime) {
-    long time = System.currentTimeMillis() - startTime;
-    System.out.println();
-    System.out.println("Search took " + time + "ms");
-  }
-
-  /**
-   * Returns the list of messages.
-   *
-   * @return the list of messages
-   */
-  public List<ChatMessage> getMessages() {
-    return Collections.unmodifiableList(messages);
-  }
-
   /** Sets up the chat configuration. */
   private void setupChatConfiguration() {
     chatCompletionRequest =
@@ -261,7 +228,7 @@ public class JokeChatController {
   /** PlayMessageAction plays the last message written by GPT. */
   @FXML
   private void handlePlayMessageAction() {
-    readMessage();
+    chatBase.readMessage(messageString);
   }
 
   /**
