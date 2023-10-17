@@ -160,7 +160,8 @@ public class ChatCentralControl {
     if (GameState.isPersonalitySetup) {
       System.out.println("System setup completed!");
       runGpt(new ChatMessage("system", GptPromptEngineering.getAiPersonality()));
-      GameState.isPersonalitySetup = false;
+      // isPersonalitySetup is set to false inside runGpt to fix a bug where riddle was not
+      // appearing
     }
   }
 
@@ -323,6 +324,8 @@ public class ChatCentralControl {
             hideAllLoadingIcons();
             AnimationCentralControl.getInstance().stopAllAnimation();
             enableAllTextBoxes();
+
+            GameState.isPersonalitySetup = false;
           }
         });
 

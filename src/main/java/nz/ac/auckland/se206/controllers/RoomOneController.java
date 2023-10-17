@@ -311,9 +311,12 @@ public class RoomOneController {
   @FXML
   private void clickAuthorization(MouseEvent event) throws IOException {
     System.out.println("Authorization clicked");
-    activateSpeech("Authorization Commencing...");
+
     // If riddle not solved tell the player to get authorized and start the riddle
-    if (GameState.isRoomOneFirst && !GameState.isAuthorizing) {
+    if (GameState.isRoomOneFirst
+        && !GameState.isAuthorizing
+        && !GameState.isPersonalitySetup) { // Make sure personality setup is done
+      activateSpeech("Authorization Commencing...");
       GameState.isAuthorizing = true;
       selectRandomRiddle();
       // Add hint prompts only if difficulty is not hard and if they haven't been added already
