@@ -157,16 +157,17 @@ public class RoomThreeController {
   }
 
   /**
-   * Handles the click event on the authorisation button.
+   * Handles the click event on the authorization button.
    *
    * @param event the mouse event
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  private void clickAuthorisation(MouseEvent event) throws IOException {
-    // If the riddle is not solved tell the player to get authorisation
+  private void clickAuthorization(MouseEvent event) throws IOException {
+    // If the riddle is not solved tell the player to get authorization
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access the system.");
+      activateSpeech(
+          "Authorization needed to access the system. Please click on the middle screen.");
       return;
     }
   }

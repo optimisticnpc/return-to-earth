@@ -212,7 +212,7 @@ public class App extends Application {
 
           } else if (keyCombR.match(event)) {
             System.out.println("Ctrl + Alt + R was pressed!");
-            System.out.println("Riddle and authorisation skipped!");
+            System.out.println("Riddle and authorization skipped!");
             // Automatically skip riddles
             // TODO: Implement this properly + check implementation
             GameState.isRiddleResolved = true;

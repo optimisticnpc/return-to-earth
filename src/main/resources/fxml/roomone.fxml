@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<?import nz.ac.auckland.se206.ball.BouncingBallPane?>
+<!-- <?import nz.ac.auckland.se206.ball.BouncingBallPane?> -->
 
 <Pane fx:id="room" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomOneController">
    <children>
@@ -21,7 +21,7 @@
       </ImageView>
       <fx:include layoutX="333.0" layoutY="163.0" source="loadingRobot.fxml" />
       <Rectangle fx:id="mainWarning" arcHeight="5.0" arcWidth="5.0" fill="WHITE" focusTraversable="true" height="38.0" layoutX="587.0" layoutY="97.0" onMouseClicked="#clickMainWarning" opacity="0.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" width="383.0" />
-      <Rectangle fx:id="authRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="117.0" layoutX="678.0" layoutY="327.0" onMouseClicked="#clickAuthorisation" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="190.0" />
+      <Rectangle fx:id="authRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="117.0" layoutX="678.0" layoutY="327.0" onMouseClicked="#clickAuthorization" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="190.0" />
       <Rectangle fx:id="engineWarning" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="83.0" layoutX="897.0" layoutY="353.0" onMouseClicked="#clickEngineWarning" opacity="0.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" width="128.0" />
       <ImageView fx:id="speechBubble" fitHeight="213.0" fitWidth="328.0" layoutX="458.0" layoutY="177.0">
          <image>
@@ -38,7 +38,7 @@
             <Image url="@../images/ai.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="robot" fitHeight="370.0" fitWidth="194.0" layoutX="352.0" layoutY="335.0" onMouseClicked="#clickRobot" opacity="0.0" pickOnBounds="true" styleClass="robot-hoverable">
+      <ImageView fx:id="robot" fitHeight="370.0" fitWidth="194.0" layoutX="352.0" layoutY="335.0" onMouseClicked="#clickAuthorization" opacity="0.0" pickOnBounds="true" styleClass="robot-hoverable">
          <image>
             <Image url="@../images/ai%20hover.png" />
          </image>
@@ -53,7 +53,7 @@
             <Image url="@../images/wire%20hover.png" />
          </image>
       </ImageView>
-      <BouncingBallPane fx:id="bouncingBall" layoutX="530.0" layoutY="361.0" prefHeight="61.0" prefWidth="117.0" visible="false" />
+      <!-- <BouncingBallPane fx:id="bouncingBall" layoutX="530.0" layoutY="361.0" prefHeight="61.0" prefWidth="117.0" visible="false" /> -->
       <Rectangle fx:id="ballToggle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="78.0" layoutX="523.0" layoutY="355.0" onMouseClicked="#clickBallToggle" opacity="0.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" styleClass="rectangle-hoverable" width="128.0" />
       <fx:include fx:id="chatPanel" source="chatcomponent.fxml" />
       <ImageView fx:id="soundIcon" fitHeight="61.0" fitWidth="53.0" layoutX="1215.0" layoutY="15.0" onMouseClicked="#clickSoundIcon" pickOnBounds="true" preserveRatio="true">

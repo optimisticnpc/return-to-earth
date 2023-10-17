@@ -93,16 +93,18 @@ public class RoomTwoController {
   }
 
   /**
-   * Handles the click event on the authorisation button.
+   * Handles the click event on the authorization button.
    *
    * @param event the mouse event
-   * @throws IOException if there is an error loading the authorisation view
+   * @throws IOException if there is an error loading the authorization view
    */
   @FXML
-  private void clickAuthorisation(MouseEvent event) throws IOException {
-    // If riddle not solved tell the player to get authorised
+  private void clickAuthorization(MouseEvent event) throws IOException {
+    // If riddle not solved tell the player to get authorized
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access\nthe system.");
+      activateSpeech(
+          "Authorization needed to access the system. Please click on the middle screen in control"
+              + " room.");
       return;
     }
     if (!GameState.hard) {
@@ -142,7 +144,9 @@ public class RoomTwoController {
   private void clickQuestionOne(MouseEvent event) throws IOException {
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access ship materials");
+      activateSpeech(
+          "Authorization needed to access ship materials. Please click on the middle screen in the"
+              + " control room.");
       return;
     }
     if (!GameState.hard) {
@@ -182,7 +186,9 @@ public class RoomTwoController {
   private void clickQuestionTwo(MouseEvent event) throws IOException {
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access ship materials");
+      activateSpeech(
+          "Authorization needed to access ship materials. Please click on the middle screen in the"
+              + " control room.");
       return;
     }
 
@@ -263,7 +269,9 @@ public class RoomTwoController {
 
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access\nthe system.");
+      activateSpeech(
+          "Authorization needed to access the system. Please click on the middle screen in the"
+              + " control room.");
       return;
     }
     // If the joke is not resolved, go to joke puzzle
@@ -295,7 +303,9 @@ public class RoomTwoController {
 
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access ship compartments. Please get authorised!");
+      activateSpeech(
+          "Authorization needed to access ship compartments. Please click on the middle screen in"
+              + " the control room.");
       return;
     }
 

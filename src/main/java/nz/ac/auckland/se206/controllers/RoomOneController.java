@@ -221,7 +221,7 @@ public class RoomOneController {
     // ship
     if (!GameState.isRiddleResolved) {
       activateSpeech(
-          "Critical damage detected on the ship. Please authorise yourself by clicking the middle"
+          "Critical damage detected on the ship. Please authorize yourself by clicking the middle"
               + " screen to access the system and analyse the damage.");
     } else {
       activateSpeech(
@@ -240,7 +240,8 @@ public class RoomOneController {
     System.out.println("Engine Warning clicked");
     // If riddle not solved tell the player to get authorization
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access the system.");
+      activateSpeech(
+          "Authorization needed to access the system. Please click on the middle screen.");
     } else {
       activateSpeech(
           "Critical failure on the main engine! Please find the spare parts and fix it!");
@@ -284,37 +285,18 @@ public class RoomOneController {
   }
 
   /**
-   * Handles the click event on the robot.
+   * Handles the click event on the authorization button.
    *
    * @param event the mouse event
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  private void clickRobot(MouseEvent event) throws IOException {
-    // If riddle not solved tell the player to get authorised
-    if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed! Please click the middle screen");
-      return;
-    }
-    if (!GameState.hard) {
-      activateSpeech("Good luck fixing the ship! Let me know if you need any help.");
-    } else {
-      activateSpeech("Fixing the ship is very hard but I know you can do it. Keep trying!");
-    }
-  }
-
-  /**
-   * Handles the click event on the authorisation button.
-   *
-   * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
-   */
-  @FXML
-  private void clickAuthorisation(MouseEvent event) throws IOException {
-    System.out.println("Authorisation clicked");
-    // If riddle not solved tell the player to get authorised and start the riddle
-    if (GameState.isRoomOneFirst && !GameState.isAuthorising) {
-      GameState.isAuthorising = true;
+  private void clickAuthorization(MouseEvent event) throws IOException {
+    System.out.println("Authorization clicked");
+    activateSpeech("Authorization Commencing...");
+    // If riddle not solved tell the player to get authorized and start the riddle
+    if (GameState.isRoomOneFirst && !GameState.isAuthorizing) {
+      GameState.isAuthorizing = true;
       selectRandomRiddle();
       // Add hint prompts only if difficulty is not hard and if they haven't been added already
       if (GameState.easy) {
@@ -336,6 +318,13 @@ public class RoomOneController {
                 GptPromptEngineering.getRiddle(wordToGuess)
                     + GptPromptEngineering.getHardHintSetup()));
       }
+      return;
+    }
+
+    if (!GameState.hard) {
+      activateSpeech("Good luck fixing the ship! Let me know if you need any help.");
+    } else {
+      activateSpeech("Fixing the ship is very hard but I know you can do it. Keep trying!");
     }
   }
 
@@ -383,7 +372,8 @@ public class RoomOneController {
 
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access ship compartments.");
+      activateSpeech(
+          "Authorization needed to access ship compartments. Please click on the middle screen.");
       return;
     }
 
