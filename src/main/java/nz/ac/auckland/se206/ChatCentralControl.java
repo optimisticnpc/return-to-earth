@@ -54,6 +54,8 @@ public class ChatCentralControl {
 
   private TextToSpeech textToSpeech = new TextToSpeech();
 
+  private ChatBase chatBase = new ChatBase();
+
   /** Private constructor to enforce the singleton pattern. */
   private ChatCentralControl() {
     initializeChatCentralControl();
@@ -62,6 +64,7 @@ public class ChatCentralControl {
   /** Initializes the ChatCentralControl and sets up chat configuration. */
   public void initializeChatCentralControl() {
     System.out.println("ChatCentralControl Iniatialized");
+    // Setup the configuration of the chat
     setupChatConfiguration();
 
     observers = new ArrayList<>();
@@ -170,10 +173,9 @@ public class ChatCentralControl {
    *
    * @param msg the chat message to process
    * @return the response chat message
-   * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public void runGpt(ChatMessage msg) {
-    // Disable all text boxes and show loading icons
+    // Play the loading animation
     AnimationCentralControl.getInstance().playAllAnimation();
     showAllLoadingIcons();
     disableAllTextBoxes();
@@ -189,12 +191,12 @@ public class ChatCentralControl {
           @Override
           public ChatMessage call() throws ApiProxyException {
             chatCompletionRequest.addMessage(msg);
-            // Get the chat message from GPT and return it
             try {
+              // Get the chat message from GPT and return it
               ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
               Choice result = chatCompletionResult.getChoices().iterator().next();
               chatCompletionRequest.addMessage(result.getChatMessage());
-              recordAndPrintTime(startTime);
+              chatBase.recordAndPrintTime(startTime);
               return result.getChatMessage();
             } catch (ApiProxyException e) {
               Platform.runLater(
@@ -226,6 +228,7 @@ public class ChatCentralControl {
           if (result.getRole().equals("assistant")) {
             messageString = result.getContent();
           }
+          // If medium difficulty and the player asked for a hint, decrement the hint count.
           if (GameState.medium) {
             if (result.getRole().equals("assistant") && result.getContent().startsWith("Hint")) {
               int count = countOccurrences("hint", messageString.toLowerCase());
@@ -257,6 +260,7 @@ public class ChatCentralControl {
             }
           }
 
+          // if GPT responds with 'authorization complete', move to phase 2
           if (result.getRole().equals("assistant")
               && result.getContent().startsWith("Authorization Complete")) {
 
@@ -265,6 +269,8 @@ public class ChatCentralControl {
             System.out.println("Riddle resolved");
             System.out.println("Phase 2");
 
+            // after 5 seconds send a message regarding the second phase so GPT knows player's
+            // progress
             new java.util.Timer()
                 .schedule(
                     new java.util.TimerTask() {
@@ -289,7 +295,9 @@ public class ChatCentralControl {
                     5000);
           }
 
+
           if (GameState.isPhaseChange.getValue()) {
+
             messages.clear();
             clearContentsOfChats();
           }
@@ -316,12 +324,14 @@ public class ChatCentralControl {
                     },
                     5000);
           } else {
+            // Otherwise, hide loading animation
             hideAllLoadingIcons();
             AnimationCentralControl.getInstance().stopAllAnimation();
             enableAllTextBoxes();
           }
         });
 
+    // If failed, notify user
     callGptTask.setOnFailed(
         event -> {
           Platform.runLater(
@@ -344,13 +354,19 @@ public class ChatCentralControl {
 
   /** Disables hint buttons for all relevant question panels. */
   private void disableAllHintButtons() {
-
+    // Disable hint buttons for q1 q2 and word scramble
     SceneManager.getController(SceneManager.getUiRoot(AppUi.QUESTION_ONE)).disableHintButton();
     SceneManager.getController(SceneManager.getUiRoot(AppUi.QUESTION_TWO)).disableHintButton();
     SceneManager.getController(SceneManager.getUiRoot(AppUi.WORD_SCRAMBLE)).disableHintButton();
   }
 
-  /** Count the number of occurrences of a given word in the sentence */
+  /**
+   * Count the number of occurrences of a given word in the sentence.
+   *
+   * @param word a string word that is compared against words in sentence
+   * @param sentence a string sentence that is taken apart to be compared
+   * @return
+   */
   private int countOccurrences(String word, String sentence) {
     // Split the sentence into an array of words
     String[] words = sentence.split("\\s+");
@@ -368,30 +384,9 @@ public class ChatCentralControl {
     return count;
   }
 
-  /** Initiates text-to-speech to read the message and manages the sound icon button state. */
+  /** Sends a message string to chatBase so that chatBase can read the message using TTS. */
   public void readMessage() {
-    // Create a new thread to read the message
-    new Thread(
-            () -> {
-              try {
-                textToSpeech.speak(messageString);
-
-              } catch (Exception e) {
-                e.printStackTrace();
-              }
-            })
-        .start();
-  }
-
-  /**
-   * Records and prints the time taken by a GPT request.
-   *
-   * @param startTime The start time of the request.
-   */
-  protected void recordAndPrintTime(long startTime) {
-    long time = System.currentTimeMillis() - startTime;
-    System.out.println();
-    System.out.println("Search took " + time + "ms");
+    chatBase.readMessage(messageString);
   }
 
   /**
@@ -423,8 +418,9 @@ public class ChatCentralControl {
     chatCompletionRequest.printMessages();
   }
 
-  /** Prints all the messages that should be displayed in the chat panel * */
+  /** Prints all the messages that should be displayed in the chat panel. */
   public void printChatPanelMessages() {
+    // Print all messages
     for (ChatMessage message : messages) {
       System.out.println("-------------------------");
       System.out.println(message.getRole() + ": " + message.getContent());

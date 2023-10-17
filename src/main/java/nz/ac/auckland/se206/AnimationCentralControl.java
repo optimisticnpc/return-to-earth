@@ -30,7 +30,7 @@ public class AnimationCentralControl {
     initializeChatCentralControl();
   }
 
-  /** Initializes the AnimationCentralControl class. */
+  /** Initializes the AnimationCentralControl class and an arraylist of loading animations. */
   public void initializeChatCentralControl() {
     System.out.println("AnimationCentralControl Iniatialized");
     loadingAnimations = new ArrayList<>();
