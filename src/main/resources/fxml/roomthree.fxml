@@ -36,7 +36,7 @@
             <Image url="@../images/speech-bubble.png" />
          </image>
       </ImageView>
-      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="710.0" layoutY="107.0" prefHeight="96.0" prefWidth="269.0" wrapText="true">
+      <Label fx:id="speechLabel" alignment="TOP_LEFT" layoutX="707.0" layoutY="107.0" prefHeight="96.0" prefWidth="263.0" wrapText="true">
          <font>
             <Font size="20.0" />
                      </font>

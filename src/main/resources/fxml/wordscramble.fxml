@@ -27,7 +27,7 @@
       </Button>
  <fx:include layoutX="330.0" layoutY="402.0" source="loadingCircle.fxml" />
       <fx:include fx:id="chatPanel" source="chatcomponent.fxml" />
-      <Button fx:id="wordScrambleHintButton" layoutX="552.0" layoutY="641.0" mnemonicParsing="false" onAction="#onClickWordScrambleHintButton" style="-fx-font-size: 27;" styleClass="otherButtons" text="Hint">
+      <Button fx:id="wordScrambleHintButton" layoutX="574.0" layoutY="635.0" mnemonicParsing="false" onAction="#onClickWordScrambleHintButton" style="-fx-font-size: 27;" styleClass="otherButtons" text="Hint">
          <font>
             <Font size="30.0" />
          </font>

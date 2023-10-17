@@ -95,6 +95,14 @@ public class MathQuestionSelector {
     return selectedPuzzles[1].getQuestion();
   }
 
+  public String getFirstAnswer() {
+    return selectedPuzzles[0].getAnswer();
+  }
+
+  public String getSecondAnswer() {
+    return selectedPuzzles[1].getAnswer();
+  }
+
   public String getFirstQuestionHint() {
     return selectedPuzzles[0].getHint1();
   }
@@ -132,11 +140,11 @@ public class MathQuestionSelector {
             "Group 1 has 20 aliens, Group 2 has 10 aliens. "));
     mathQuestions.add(
         new MathQuestion(
-            "In a spaceship there are space sheeps and cosmic chickens. There are 10 animals"
-                + " altogether. If there are 32 legs, how many space sheep are there?",
-            "6",
-            "There are 8 chicken legs altogether. ",
-            "There are 24 sheep legs altogether. "));
+            "In a spaceship there are space sheeps and cosmic chickens. There are 20 animals"
+                + " altogether. If there are 50 legs, how many space chickens are there?",
+            "15",
+            "There are 20 sheep legs altogether. ",
+            "There are 30 chicken legs altogether. "));
     mathQuestions.add(
         new MathQuestion(
             "There are five aliens. Each of the five want to play a single round of space badminton"

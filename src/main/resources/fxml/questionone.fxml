@@ -25,12 +25,13 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
+      <fx:include source="chatcomponent.fxml" />
+      <fx:include layoutX="330.0" layoutY="402.0" source="loadingCircle.fxml" />
+      <fx:include layoutX="490.0" layoutY="78.0" source="timerhintdisplay.fxml" />
       <Button fx:id="questionOneHintButton" layoutX="580.0" layoutY="626.0" mnemonicParsing="false" onAction="#onClickQuestionOneHintButton" style="-fx-font-size: 27;" styleClass="otherButtons" text="Hint">
          <font>
             <Font size="30.0" />
          </font>
       </Button>
-      <fx:include source="chatcomponent.fxml" />
-      <fx:include layoutX="490.0" layoutY="78.0" source="timerhintdisplay.fxml" />
    </children>
 </Pane>

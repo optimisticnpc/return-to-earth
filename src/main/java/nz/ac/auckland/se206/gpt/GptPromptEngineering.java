@@ -169,7 +169,7 @@ public class GptPromptEngineering {
    * @return A message containing hints for math questions.
    */
   public static String hintMathQuestionPrompt() {
-    return hintMathQuestionSetup() + hintQuestionOneSetup() + hintQuestionTwoSetup();
+    return hintMathQuestionSetup() + hintQuestionOneSetup() + "\n" + hintQuestionTwoSetup();
   }
 
   /**
@@ -189,8 +189,10 @@ public class GptPromptEngineering {
    */
   public static String hintQuestionOneSetup() {
 
-    return "If it is for the first question tell them that: "
-        + MathQuestionSelector.getInstance().getFirstQuestionHint();
+    return "If they ask for a hint for the first question tell them that: "
+        + MathQuestionSelector.getInstance().getFirstQuestionHint()
+        + "If they ask for a hint again you can tell them that the answer is: "
+        + MathQuestionSelector.getInstance().getFirstAnswer();
   }
 
   /**
@@ -201,7 +203,9 @@ public class GptPromptEngineering {
   public static String hintQuestionTwoSetup() {
 
     return "If it is for the second question tell them that: "
-        + MathQuestionSelector.getInstance().getSecondQuestionHint();
+        + MathQuestionSelector.getInstance().getSecondQuestionHint()
+        + "If they ask for a hint again you can tell them that the answer is: "
+        + MathQuestionSelector.getInstance().getSecondAnswer();
   }
 
   /**
@@ -214,7 +218,8 @@ public class GptPromptEngineering {
     return "If the user asks you for a hint for the word scramble give them a hint for the answer"
         + " \""
         + WordScrambleController.getCorrectWordString()
-        + "\". ";
+        + ". Do not give them the correct answer straight away. Only give them the answer after"
+        + " they ask for hints twice.";
   }
 
   /**

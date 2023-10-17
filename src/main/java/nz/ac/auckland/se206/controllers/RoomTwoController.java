@@ -15,6 +15,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatCentralControl;
+import nz.ac.auckland.se206.ControllerWithSpeechBubble;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.RoomInitializer;
@@ -32,7 +33,7 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
  * items, and navigation to other scenes. It manages the state of the room, such as whether puzzle
  * items have been collected or revealed, and handles player interactions.
  */
-public class RoomTwoController {
+public class RoomTwoController implements ControllerWithSpeechBubble {
   @FXML private Pane room;
   @FXML private Label timerLabel;
   @FXML private Label speechLabel;
@@ -72,6 +73,9 @@ public class RoomTwoController {
     spacesuitRevealedImage.setOpacity(0);
     spacesuitCollectedImage.setOpacity(0);
 
+    // Initially crate is not hoverable
+    crate.setVisible(false);
+
     // Add a listener to isJokeResolved property
     GameState.isJokeResolved.addListener(
         (observable, oldValue, newValue) -> {
@@ -82,6 +86,7 @@ public class RoomTwoController {
     // Initializes the room for the animations to play.
     RoomInitializer roomInitializer = new RoomInitializer();
     roomInitializer.setupAiHoverImageListeners(robot);
+    roomInitializer.setupPhaseChange(this);
   }
 
   /**
@@ -229,7 +234,7 @@ public class RoomTwoController {
    * @param text tex that is to be displayed in the bubble.
    */
   @FXML
-  private void activateSpeech(String text) {
+  public void activateSpeech(String text) {
     // Make the speech bubble visible and set the text
     speechBubble.setVisible(true);
     speechLabel.setVisible(true);
@@ -266,6 +271,7 @@ public class RoomTwoController {
     System.out.println("Crate clicked");
 
     if (GameState.isToolboxCollected) {
+      room.getChildren().remove(crate);
       FadeTransition fadeTransition = new FadeTransition();
       fadeTransition.setNode(crateImage);
       fadeTransition.setFromValue(1); // starting opacity value
@@ -273,7 +279,6 @@ public class RoomTwoController {
       fadeTransition.setDuration(Duration.millis(300)); // transition duration
       fadeTransition.setOnFinished(
           e -> {
-            room.getChildren().remove(crate);
             room.getChildren().remove(crateImage);
           });
       fadeTransition.play();
@@ -344,13 +349,16 @@ public class RoomTwoController {
     } else if (!GameState.isToolboxCollected) {
       collectToolbox();
       GameState.isToolboxCollected = true;
-      GameState.isPhaseChange = true;
+      GameState.isPhaseChange.set(true);
       // Add the prompt to the chat
       if (GameState.hard) {
         chat.runGpt(new ChatMessage("system", GptPromptEngineering.getHardPhaseThreeProgress()));
       } else {
         chat.runGpt(new ChatMessage("system", GptPromptEngineering.getPhaseThreeProgress()));
       }
+
+      // Crate is now hoverable, makes collecting spacesuit more likely
+      crate.setVisible(true);
       System.out.println("Toolbox collected");
     }
   }

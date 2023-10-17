@@ -23,6 +23,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatCentralControl;
+import nz.ac.auckland.se206.ControllerWithSpeechBubble;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.OxygenMeter;
@@ -37,7 +38,7 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the room view. */
-public class RoomOneController {
+public class RoomOneController implements ControllerWithSpeechBubble {
 
   private static String wordToGuess;
 
@@ -78,7 +79,7 @@ public class RoomOneController {
   private Timer timer = new Timer();
   private ChatCentralControl chatCentralControl = ChatCentralControl.getInstance();
   private String[] riddles = {
-    "blackhole", "star", "moon", "sun", "venus", "comet", "satellite", "mars"
+    "blackhole", "star", "moon", "sun", "venus", "comet", "satellite", "mars", "saturn"
   };
 
   private Sound sound = Sound.getInstance();
@@ -113,6 +114,7 @@ public class RoomOneController {
     // Initializes the room for the animations to play.
     RoomInitializer roomInitializer = new RoomInitializer();
     roomInitializer.setupAiHoverImageListeners(robot);
+    roomInitializer.setupPhaseChange(this);
   }
 
   /**
@@ -285,7 +287,7 @@ public class RoomOneController {
    * @param text text that is to be displayed in the bubble.
    */
   @FXML
-  private void activateSpeech(String text) {
+  public void activateSpeech(String text) {
     // Make the speech bubble visible and set the text
     speechBubble.setVisible(true);
     speechLabel.setVisible(true);

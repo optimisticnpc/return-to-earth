@@ -26,6 +26,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatCentralControl;
+import nz.ac.auckland.se206.ControllerWithSpeechBubble;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.OxygenMeter;
@@ -42,7 +43,7 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
  * Controller class for Room Three in the game. This class handles user interactions, game logic,
  * and UI updates for Room Three.
  */
-public class RoomThreeController {
+public class RoomThreeController implements ControllerWithSpeechBubble {
   @FXML private Label timerLabel;
   @FXML private Label speechLabel;
   @FXML private ImageView speechBubble;
@@ -94,6 +95,7 @@ public class RoomThreeController {
     // Initializes the room for the animations to play.
     RoomInitializer roomInitializer = new RoomInitializer();
     roomInitializer.setupAiHoverImageListeners(robot);
+    roomInitializer.setupPhaseChange(this);
   }
 
   /**
@@ -274,7 +276,7 @@ public class RoomThreeController {
       Image img = new Image(stream);
       background.setImage(img);
       GameState.isPartFixed = true;
-      GameState.isPhaseChange = true;
+      GameState.isPhaseChange.set(true);
       if (!GameState.hard) {
         chat.runGpt(new ChatMessage("system", GptPromptEngineering.getPhaseFourProgress()));
       } else {
@@ -295,7 +297,7 @@ public class RoomThreeController {
    * @param text the words for the ai to say
    */
   @FXML
-  private void activateSpeech(String text) {
+  public void activateSpeech(String text) {
     // Make the speech bubble visible and set the text
     speechBubble.setVisible(true);
     speechLabel.setVisible(true);
