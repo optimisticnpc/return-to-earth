@@ -27,6 +27,8 @@ public class GameTimer {
    */
   public static void setInitialTime(int initialTime) {
     GameTimer.initialTime = initialTime;
+    GameTimer.getInstance().belowThirtySeconds.set(false);
+    GameTimer.getInstance().belowOneMinute.set(false);
   }
 
   /**
@@ -51,6 +53,9 @@ public class GameTimer {
 
   // A StringProperty object that is used to display the time in the MM:SS format.
   private StringProperty timeDisplay = new SimpleStringProperty();
+
+  private final BooleanProperty belowOneMinute = new SimpleBooleanProperty(false);
+  private final BooleanProperty belowThirtySeconds = new SimpleBooleanProperty(false);
 
   /**
    * Constructs a new `GameTimer` instance with an initial time in seconds.
@@ -77,6 +82,24 @@ public class GameTimer {
     timeline.setCycleCount(Timeline.INDEFINITE);
   }
 
+  /**
+   * Retrieves the BooleanProperty for whether the timer is below one minute.
+   *
+   * @return The BooleanProperty representing whether the timer is below one minute.
+   */
+  public BooleanProperty belowOneMinuteProperty() {
+    return belowOneMinute;
+  }
+
+  /**
+   * Retrieves the BooleanProperty for whether the timer is below thirty seconds.
+   *
+   * @return The BooleanProperty representing whether the timer is below thirty seconds.
+   */
+  public BooleanProperty belowThirtySecondsProperty() {
+    return belowThirtySeconds;
+  }
+
   /** Starts the timer, resetting it to the initial time. */
   public void startTimer() {
     timeHundredths = initialTime * 100; // Convert seconds to hundredths of a second.
@@ -85,7 +108,7 @@ public class GameTimer {
     timeline.playFromStart();
   }
 
-  /** This method stops the timer to prevent any later bugs occuring. */
+  /** Stops the timer to prevent any later bugs from occurring. */
   public void stopTimer() {
     timeline.stop();
   }
@@ -103,8 +126,14 @@ public class GameTimer {
   private void updateTimeDisplay() {
     int minutes = timeHundredths / 6000;
     int seconds = (timeHundredths % 6000) / 100;
-    // TODO: Decide whether to use hundredths
     timeDisplay.set(String.format("Time remaining: %02d:%02d", minutes, seconds));
+
+    // Update color change properties
+    if (minutes == 0 && seconds <= 30 && !belowThirtySeconds.get()) {
+      belowThirtySeconds.set(true);
+    } else if (minutes == 1 && seconds <= 0 && !belowOneMinute.get()) {
+      belowOneMinute.set(true);
+    }
   }
 
   /**

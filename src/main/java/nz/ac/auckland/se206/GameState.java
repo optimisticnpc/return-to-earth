@@ -65,6 +65,9 @@ public class GameState {
 
   public static boolean isWireCompartmentUnlocked = false;
 
+  public static boolean isOneMinuteWarningTriggered = false;
+  public static boolean isThirtySecondWarningTriggered = false;
+
   public static final BooleanProperty isJokeChallengeAccepted = new SimpleBooleanProperty(false);
 
   public static final BooleanProperty isJokeResolved = new SimpleBooleanProperty(false);
@@ -101,6 +104,9 @@ public class GameState {
     isLoadingAnimationlaying.set(false);
     isPhaseChange.set(false);
     HintCounter.resetHintCount();
+
+    isOneMinuteWarningTriggered = false;
+    isThirtySecondWarningTriggered = false;
   }
 
   public static void goToStart() {
