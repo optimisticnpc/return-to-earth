@@ -66,6 +66,8 @@ public class RoomThreeController implements ControllerWithSpeechBubble {
   @FXML private ImageView robot;
   @FXML private ImageView soundIcon;
 
+  @FXML private ImageView circleTarget;
+
   private CurrentScene currentScene = CurrentScene.getInstance();
   private RotateTransition rotate = new RotateTransition();
   private boolean unscrewed = false;
@@ -96,6 +98,14 @@ public class RoomThreeController implements ControllerWithSpeechBubble {
     RoomInitializer roomInitializer = new RoomInitializer();
     roomInitializer.setupAiHoverImageListeners(robot);
     roomInitializer.setupPhaseChange(this);
+
+    randomRotateCircleTarget();
+  }
+
+  private void randomRotateCircleTarget() {
+    int randomRotation = (int) (Math.random() * 360); // Gives a value between 0 and 360
+    circleTarget.setRotate(randomRotation);
+    System.out.println("ROTATION ANGLE SET TO: " + randomRotation);
   }
 
   /**
@@ -181,8 +191,20 @@ public class RoomThreeController implements ControllerWithSpeechBubble {
    */
   @FXML
   private void pressTimingButton(MouseEvent event) throws FileNotFoundException {
-    System.out.println(meter.getRotate());
-    if (meter.getRotate() <= 177 && meter.getRotate() >= 164) {
+    int baseMaxAngle = 175;
+    int baseMinAngle = 159;
+    // It used to be 164 and 177 which is 13 degrees
+    // right now gap is 16 degrees
+    double circleRotation = circleTarget.getRotate();
+
+    int maxAngle = (int) (baseMaxAngle + circleRotation) % 360;
+    int minAngle = (int) (baseMinAngle + circleRotation) % 360;
+
+    System.out.println(meter.getRotate() + " need " + minAngle + " to " + maxAngle);
+    if ((meter.getRotate() <= maxAngle && meter.getRotate() >= minAngle)
+        || (minAngle > maxAngle
+            && (meter.getRotate() >= minAngle || meter.getRotate() <= maxAngle))) {
+      // Min angle may be bigger than max if close to the 0 / 360 bounadry
       showSuccessMessage();
     }
   }
