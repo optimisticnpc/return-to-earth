@@ -56,11 +56,11 @@ public class HintCounter {
   public void setHintCount() {
     // Set the hint counter display
     if (GameState.easy) {
-      hintDisplay.set(easyHintCount);
+      hintDisplay.set("Hints Remaining: " + easyHintCount);
     } else if (GameState.medium) {
-      hintDisplay.set(mediumHintCount.toString());
+      hintDisplay.set("Hints Remaining: " + mediumHintCount.toString());
     } else if (GameState.hard) {
-      hintDisplay.set(hardHintCount);
+      hintDisplay.set("Hints Remaining: " + hardHintCount);
     } else {
       hintDisplay.set("Null");
     }

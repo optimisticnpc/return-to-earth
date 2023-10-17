@@ -85,7 +85,6 @@ public class JokeChatController {
    * Runs the GPT model with a given chat message.
    *
    * @param msg the chat message to process
-   * @return the response chat message
    */
   public void runGpt(ChatMessage msg) {
     // Play the loading animation
@@ -103,17 +102,30 @@ public class JokeChatController {
         new Task<>() {
           @Override
           public ChatMessage call() throws ApiProxyException {
+            // Add the user's message to the chatCompletionRequest
             chatCompletionRequest.addMessage(msg);
             try {
+              // Get a response from GPT
               Choice result = ChatBase.getGptMessage(chatCompletionRequest);
+
+              // Record and print the time taken for the GPT request
               chatBase.recordAndPrintTime(startTime);
+
+              // Return the GPT response message
               return result.getChatMessage();
             } catch (ApiProxyException e) {
               Platform.runLater(
                   () -> {
+                    // Show an alert to notify the user of the API error
                     ChatBase.showApiAlert();
+
+                    // Hide the loading icon
                     hideLoadingIcon();
+
+                    // Stop all animations
                     AnimationCentralControl.getInstance().stopAllAnimation();
+
+                    // Enable the text input box
                     enableTextBox();
                   });
 

@@ -189,17 +189,30 @@ public class ChatCentralControl {
         new Task<>() {
           @Override
           public ChatMessage call() throws ApiProxyException {
+            // Add the user's message to the chatCompletionRequest
             chatCompletionRequest.addMessage(msg);
             try {
+              // Get a response from GPT
               Choice result = ChatBase.getGptMessage(chatCompletionRequest);
+
+              // Record and print the time taken for the GPT request
               chatBase.recordAndPrintTime(startTime);
+
+              // Return the GPT response message
               return result.getChatMessage();
             } catch (ApiProxyException e) {
               Platform.runLater(
                   () -> {
+                    // Show an alert to notify the user of the API error
                     ChatBase.showApiAlert();
+
+                    // Hide all loading icons
                     hideAllLoadingIcons();
+
+                    // Stop all animations
                     AnimationCentralControl.getInstance().stopAllAnimation();
+
+                    // Enable all text input boxes
                     enableAllTextBoxes();
                   });
 
