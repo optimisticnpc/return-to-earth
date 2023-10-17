@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Text?>
 
 <Pane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #969696;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.QuestionOneController">
-<Pane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #969696;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.QuestionOneController">
    <children>
       <Button fx:id="goBackButton" layoutX="360.0" layoutY="78.0" onAction="#onGoBack" prefHeight="47.0" prefWidth="103.0" style="-fx-font-size: 18;" styleClass="otherButtons" text="Back">
          <font>
@@ -25,7 +24,13 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
+      <Button fx:id="questionOneHintButton" layoutX="580.0" layoutY="626.0" mnemonicParsing="false" onAction="#onClickQuestionOneHintButton" style="-fx-font-size: 27;" styleClass="otherButtons" text="Hint">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
       <fx:include source="chatcomponent.fxml" />
       <fx:include layoutX="330.0" layoutY="402.0" source="loadingCircle.fxml" />
+      <fx:include layoutX="490.0" layoutY="78.0" source="timerhintdisplay.fxml" />
    </children>
 </Pane>
