@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import nz.ac.auckland.se206.ChatBase;
 import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Observer;
@@ -43,6 +44,7 @@ public class ChatComponentController implements Observer {
 
   private ChatCentralControl chatCentralControl;
   private List<ChatMessage> messages;
+  private ChatBase chatBase = new ChatBase();
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -67,7 +69,7 @@ public class ChatComponentController implements Observer {
 
   /** Sets the send button action to send the message in the input text area to the chat log. */
   @FXML
-  private void setSendButtonAction() {
+  private void handleSendButtonAction() {
     String message = inputText.getText().replaceAll("[\n\r]", ""); // Remove all newline characters
     inputText.clear();
     if (message.trim().isEmpty()) {
@@ -92,7 +94,7 @@ public class ChatComponentController implements Observer {
 
   /** PlayMessageAction plays the last message written by GPT. */
   @FXML
-  private void playMessageAction() {
+  private void handlePlayMessageAction() {
     chatCentralControl.readMessage();
   }
 

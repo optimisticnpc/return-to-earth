@@ -7,6 +7,12 @@ import javafx.scene.image.ImageView;
  * for changing the visibility of the robot when the loading animation is playing.
  */
 public class RoomInitializer {
+  /**
+   * Sets up the hover image listeners for the robot such that the hover is invisible when loading
+   * animation plays.
+   *
+   * @param robot imageview of a robot
+   */
   public void setupAiHoverImageListeners(ImageView robot) {
 
     // Hide the hover image of the AI when loading animation is playing
