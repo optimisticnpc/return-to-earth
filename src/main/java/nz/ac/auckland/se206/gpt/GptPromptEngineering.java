@@ -8,6 +8,11 @@ import nz.ac.auckland.se206.controllers.WordScrambleController;
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
 
+  /**
+   * Returns the introductory message for the AI personality.
+   *
+   * @return The introductory message for the AI personality.
+   */
   public static String getAiPersonality() {
     return "You are the AI system of this spaceship and your name is Space Destroyer. You are"
         + " responsible to get the spaceship back to the Earth safely. Unfortunately, one of"
@@ -16,30 +21,61 @@ public class GptPromptEngineering {
         + " add anything else";
   }
 
+  /**
+   * Returns the message for easy hint setup.
+   *
+   * @return The message for easy hint setup.
+   */
   public static String getEasyHintSetup() {
     return "If the user asks for hints, give them. You can give unlimited hints";
   }
 
+  /**
+   * Returns the message for medium hint setup.
+   *
+   * @return The message for medium hint setup.
+   */
   public static String getMediumHintSetup() {
     return " If the user asks for any help, you should answer with the word Hint, and give them a"
         + " hint";
   }
 
+  /**
+   * Returns the reminder message for medium hint setup.
+   *
+   * @return The reminder message for medium hint setup.
+   */
   public static String getMediumHintReminder() {
     return "Remember if the user asks for any help at all, you start your answer with the word"
         + " Hint, and give them a hint";
   }
 
+  /**
+   * Returns the message for hard hint setup.
+   *
+   * @return The message for hard hint setup.
+   */
   public static String getHardHintSetup() {
     return "You cannot, no matter what, give the user any hints.";
   }
 
+  /**
+   * Returns the reminder message for hard hint setup.
+   *
+   * @return The reminder message for hard hint setup.
+   */
   public static String getHardHintReminder() {
     return "Remember, if the user asks about the math questions or word scramble question or"
         + " anything at all, you cannot, under any any circumstances give the user any"
         + " hints.";
   }
 
+  /**
+   * Generates a GPT prompt for an authorization riddle.
+   *
+   * @param wordToGuess The answer to the riddle.
+   * @return The GPT prompt for an authorization riddle.
+   */
   public static String getRiddle(String wordToGuess) {
     // Prompt GPT for the easy difficulty
     // i.e allow infite hints
@@ -53,6 +89,11 @@ public class GptPromptEngineering {
         + " gives up, do not give the answer.";
   }
 
+  /**
+   * Returns the message for phase two progress.
+   *
+   * @return The message for phase two progress.
+   */
   public static String getPhaseTwoProgress() {
     return "The user has to find a toolbox in the storage room to find the right tool for"
         + " malfunctioning part. Simply tell them to search the storage room to find the"
@@ -62,6 +103,11 @@ public class GptPromptEngineering {
         + " at all, you start your answer with the word Hint, and give them a hint";
   }
 
+  /**
+   * Returns the message for hard phase two progress.
+   *
+   * @return The message for hard phase two progress.
+   */
   public static String getHardPhaseTwoProgress() {
     return "Now, The user has to find a toolbox in the storage room, which will be helpful to fix"
         + " the malfunctioning part of the spaceship. If the user asks for help, simply tell"
@@ -117,18 +163,30 @@ public class GptPromptEngineering {
         + " not add anything else.";
   }
 
+  /**
+   * Returns a message containing hints for math questions.
+   *
+   * @return A message containing hints for math questions.
+   */
   public static String hintMathQuestionPrompt() {
     return hintMathQuestionSetup() + hintQuestionOneSetup() + "\n" + hintQuestionTwoSetup();
   }
 
+  /**
+   * Returns the setup message for hinting math questions.
+   *
+   * @return The setup message for hinting math questions.
+   */
   public static String hintMathQuestionSetup() {
 
     return "The user has two questions they need to solve. They may ask for hints. ";
   }
 
-  // "If the user asks you for a hint for the questions, ask them if it is the first or"
-  // + " second question if they have not specified. "
-
+  /**
+   * Returns a message containing hints for the first math question.
+   *
+   * @return A message containing hints for the first math question.
+   */
   public static String hintQuestionOneSetup() {
 
     return "If they ask for a hint for the first question tell them that: "
@@ -137,6 +195,11 @@ public class GptPromptEngineering {
         + MathQuestionSelector.getInstance().getFirstAnswer();
   }
 
+  /**
+   * Returns a message containing hints for the second math question.
+   *
+   * @return A message containing hints for the second math question.
+   */
   public static String hintQuestionTwoSetup() {
 
     return "If it is for the second question tell them that: "
@@ -145,6 +208,11 @@ public class GptPromptEngineering {
         + MathQuestionSelector.getInstance().getSecondAnswer();
   }
 
+  /**
+   * Returns a message for hinting the word scramble answer.
+   *
+   * @return A message for hinting the word scramble answer.
+   */
   public static String hintWordScrambleSetup() {
 
     return "If the user asks you for a hint for the word scramble give them a hint for the answer"
@@ -154,8 +222,6 @@ public class GptPromptEngineering {
         + " they ask for hints twice.";
   }
 
-  // Used for hint buttons
-
   /**
    * Checks if the user is authorized to communicate with Space Destroyer and prints a message if
    * authorization is required.
@@ -163,6 +229,7 @@ public class GptPromptEngineering {
    * @return true if authorization is required and a message is printed; false otherwise.
    */
   public static boolean checkIfAuthorisedAndPrintMessage() {
+    // Sends in authorisation message if the user is not authorised
     if (!GameState.isAuthorising) {
       ChatMessage message =
           new ChatMessage(
@@ -182,6 +249,7 @@ public class GptPromptEngineering {
    * @return A prompt message for initiating a joke-telling interaction with the player.
    */
   public static String getJokePrompt() {
+    // Prompt GPT for the joke so that the player has to respond with a funny joke to clear the game
     return "You are the AI system of this spaceship and your name is Space Destroyer (you do not"
         + " need to mention this, the user already knows you). You are responsible to get"
         + " the spaceship back to the Earth safely. Unfortunately, one of the spaceship's"
