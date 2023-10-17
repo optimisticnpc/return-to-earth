@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.MathQuestionSelector;
 import nz.ac.auckland.se206.MyControllers;
 import nz.ac.auckland.se206.SceneManager;
@@ -31,10 +30,6 @@ public class QuestionOneController implements MyControllers {
    */
   public void initialize() {
     System.out.println("QuestionOneController.initialize()");
-
-    // Set up timer
-    GameTimer gameTimer = GameTimer.getInstance();
-    timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
     // Set up question
     MathQuestionSelector selector = MathQuestionSelector.getInstance();
