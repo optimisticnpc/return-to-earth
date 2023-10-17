@@ -46,7 +46,7 @@
             <Image url="@../images/crate.png" />
          </image>
       </ImageView>
-      <Polygon fx:id="crate" fill="DODGERBLUE" layoutX="1080.0" layoutY="347.0" onMouseClicked="#clickCrate" opacity="0.0" points="-62.0, 196.0, -8.5, 273.0, 127.0, 273.0, 127.0, -2.5, 57.5, -73.0, -62.0, -73.0" stroke="BLACK" strokeType="INSIDE" />
+      <Polygon fx:id="crate" fill="WHITE" layoutX="1080.0" layoutY="347.0" onMouseClicked="#clickCrate" opacity="0.44" points="-66.5333251953125, 196.33331298828125, -8.5, 273.0, 127.0, 273.0, 127.0, -4.20001220703125, 57.5, -73.0, -66.5333251953125, -73.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangle-hoverable" />      
       <ImageView fx:id="robot" fitHeight="371.0" fitWidth="201.0" layoutX="387.0" layoutY="278.0" onMouseClicked="#clickAuthorization" pickOnBounds="true" styleClass="robot-hoverable">
          <image>
             <Image url="@../images/ai%20hover.png" />
