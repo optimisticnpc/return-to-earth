@@ -142,4 +142,9 @@ public class OxygenMeter {
   public StringProperty percentProgressProperty() {
     return percentProgressProperty;
   }
+
+  public void stopOxygenMeter() {
+    timeline.stop();
+  }
+
 }
