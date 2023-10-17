@@ -25,7 +25,6 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.RoomInitializer;
 import nz.ac.auckland.se206.SceneManager;
@@ -35,6 +34,7 @@ import nz.ac.auckland.se206.SpeechBubble;
 import nz.ac.auckland.se206.ball.BouncingBallPane;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the room view. */
 public class RoomOneController {
@@ -76,13 +76,13 @@ public class RoomOneController {
 
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
-  private GameTimer gameTimer = GameTimer.getInstance();
   private ChatCentralControl chatCentralControl = ChatCentralControl.getInstance();
   private String[] riddles = {
     "blackhole", "star", "moon", "sun", "venus", "comet", "satellite", "mars"
   };
 
   private Sound sound = Sound.getInstance();
+  private TextToSpeech textToSpeech = new TextToSpeech();
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -242,9 +242,27 @@ public class RoomOneController {
     if (!GameState.isRiddleResolved) {
       activateSpeech(
           "Authorization needed to access the system. Please click on the middle screen.");
+      playAuthorizationNeededSound();
     } else {
       activateSpeech(
           "Critical failure on the main engine! Please find the spare parts and fix it!");
+    }
+  }
+
+  private void playAuthorizationNeededSound() {
+    if (sound.isSoundOnProperty().get()) {
+      // Text to speech tells the player they are low on oxygen
+      new Thread(
+              () -> {
+                try {
+                  if (sound.isSoundOnProperty().get()) {
+                    textToSpeech.speak("Authorization Needed");
+                  }
+                } catch (Exception e) {
+                  e.printStackTrace();
+                }
+              })
+          .start();
     }
   }
 
@@ -374,6 +392,7 @@ public class RoomOneController {
     if (!GameState.isRiddleResolved) {
       activateSpeech(
           "Authorization needed to access ship compartments. Please click on the middle screen.");
+      playAuthorizationNeededSound();
       return;
     }
 

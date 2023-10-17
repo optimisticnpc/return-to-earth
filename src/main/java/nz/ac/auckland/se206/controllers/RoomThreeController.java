@@ -231,6 +231,20 @@ public class RoomThreeController {
     // If toolbox not collected
     if (!GameState.isToolboxCollected) {
       activateSpeech("You need to find the right tools to open this hatch.");
+      if (sound.isSoundOnProperty().get()) {
+        // Text to speech tells the player they are low on oxygen
+        new Thread(
+                () -> {
+                  try {
+                    if (sound.isSoundOnProperty().get()) {
+                      textToSpeech.speak("You need tools");
+                    }
+                  } catch (Exception e) {
+                    e.printStackTrace();
+                  }
+                })
+            .start();
+      }
 
       return;
     }
