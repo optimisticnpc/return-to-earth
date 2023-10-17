@@ -89,7 +89,6 @@ public class JokeChatController {
    *
    * @param msg the chat message to process
    * @return the response chat message
-   * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public void runGpt(ChatMessage msg) {
     // Play the loading animation
@@ -248,7 +247,7 @@ public class JokeChatController {
 
   /** Sets the send button action. */
   @FXML
-  public void setSendButtonAction() {
+  private void handleSendButtonAction() {
     String message = inputText.getText().replaceAll("[\n\r]", ""); // Remove all newline characters
     inputText.clear();
     if (message.trim().isEmpty()) {
@@ -261,7 +260,7 @@ public class JokeChatController {
 
   /** PlayMessageAction plays the last message written by GPT. */
   @FXML
-  public void playMessageAction() {
+  private void handlePlayMessageAction() {
     readMessage();
   }
 

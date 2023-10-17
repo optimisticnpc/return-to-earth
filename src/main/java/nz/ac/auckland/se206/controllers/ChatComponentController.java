@@ -67,7 +67,7 @@ public class ChatComponentController implements Observer {
 
   /** Sets the send button action to send the message in the input text area to the chat log. */
   @FXML
-  private void setSendButtonAction() {
+  private void handleSendButtonAction() {
     String message = inputText.getText().replaceAll("[\n\r]", ""); // Remove all newline characters
     inputText.clear();
     if (message.trim().isEmpty()) {
@@ -92,7 +92,7 @@ public class ChatComponentController implements Observer {
 
   /** PlayMessageAction plays the last message written by GPT. */
   @FXML
-  private void playMessageAction() {
+  private void handlePlayMessageAction() {
     chatCentralControl.readMessage();
   }
 
