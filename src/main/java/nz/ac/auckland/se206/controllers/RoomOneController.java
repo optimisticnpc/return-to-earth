@@ -26,7 +26,6 @@ import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.GameTimer;
-import nz.ac.auckland.se206.HintCounter;
 import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.RoomInitializer;
 import nz.ac.auckland.se206.SceneManager;
@@ -93,7 +92,7 @@ public class RoomOneController {
   public void initialize() throws FileNotFoundException {
 
     System.out.println("RoomOneController.initialize()");
-    timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
+
     // initially sets speech bubble to invisible.
     speechBubble.setVisible(false);
     speechLabel.setVisible(false);
@@ -104,10 +103,6 @@ public class RoomOneController {
 
     // bouncingBall.setVisible(false); TODO: Undo this
     speechLabel.textProperty().bind(speech.speechDisplayProperty());
-    // update hintlabel according to the difficulty
-    HintCounter hintCounter = HintCounter.getInstance();
-    hintCounter.setHintCount();
-    hintLabel.textProperty().bind(hintCounter.hintCountProperty());
 
     soundIcon.imageProperty().bind(sound.soundImageProperty());
     soundIcon.opacityProperty().bind(sound.getIconOpacityProperty());

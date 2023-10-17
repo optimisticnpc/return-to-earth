@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -24,53 +19,21 @@
             <Image url="@../images/burning.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="327.0" layoutY="222.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="The crew and your fellow passengers have evacuated while you were napping. Fix the ship and return to Earth or remain trapped in space forever!" textAlignment="CENTER" wrappingWidth="624.24609375">
+      <Text fill="WHITE" layoutX="327.0" layoutY="246.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="The crew and your fellow passengers have evacuated while you were napping. Fix the ship and return to Earth or remain trapped in space forever!" textAlignment="CENTER" wrappingWidth="624.24609375">
          <font>
             <Font name="System Bold" size="42.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="388.0" layoutY="139.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="Good morning!">
+      <Text fill="WHITE" layoutX="388.0" layoutY="163.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="Good morning!">
          <font>
             <Font name="System Bold" size="70.0" />
          </font>
       </Text>
-      <Button fx:id="continueButton" layoutX="519.0" layoutY="532.0" mnemonicParsing="false" onAction="#onContinue" prefHeight="89.0" prefWidth="240.0" styleClass="continueButton" text="Continue">
+      <Button fx:id="continueButton" layoutX="519.0" layoutY="556.0" mnemonicParsing="false" onAction="#onContinue" prefHeight="89.0" prefWidth="240.0" styleClass="continueButton" text="Continue">
          <font>
             <Font size="38.0" />
          </font>
       </Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="53.0" layoutX="385.0" layoutY="17.0" stroke="#9ea4ff" strokeType="OUTSIDE" strokeWidth="3.0" width="508.0">
-         <fill>
-            <RadialGradient centerX="0.5" centerY="0.7748815165876777" radius="0.867816091954023">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.3055555522441864" green="0.375" blue="1.0" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.07894736528396606" green="0.07894736528396606" blue="0.07894736528396606" />
-                     </color>
-                  </Stop>
-               </stops>
-            </RadialGradient>
-         </fill>
-      </Rectangle>
-      <Label fx:id="timerLabel" layoutX="406.0" layoutY="25.0" prefHeight="35.0" prefWidth="328.0" style="-fx-font-weight: bold;" text="Time Remaining: 02:00" textFill="#3eff00">
-         <font>
-            <Font name="Symbol" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="631.0" layoutY="25.0" prefHeight="35.0" prefWidth="249.0" text="Hints Remaining:" textFill="#3eff00">
-         <font>
-            <Font name="Symbol" size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="hintLabel" layoutX="791.0" layoutY="25.0" prefHeight="35.0" prefWidth="107.0" text="Unlimited" textFill="#3eff00">
-         <font>
-            <Font name="Symbol" size="20.0" />
-         </font>
-      </Label>
+      <fx:include layoutX="383.0" layoutY="24.0" source="timerhintdisplay.fxml" />
    </children>
 </Pane>

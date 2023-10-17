@@ -11,7 +11,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -52,9 +51,6 @@ public class PasscodeController {
   @FXML
   public void initialize() {
     System.out.println("PasscodeController.initialize()");
-    // Bind timer
-    GameTimer gameTimer = GameTimer.getInstance();
-    timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 
     // Make sure player cannot type more than four characters
     passcodeField
