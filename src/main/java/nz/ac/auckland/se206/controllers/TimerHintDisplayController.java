@@ -18,7 +18,7 @@ public class TimerHintDisplayController {
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    System.out.println("TIMER HINT DISPLAY INITIALIZE");
+    // System.out.println("TIMER HINT DISPLAY INITIALIZE");
     GameTimer gameTimer = GameTimer.getInstance();
     timerLabel.textProperty().bind(gameTimer.timeDisplayProperty());
 

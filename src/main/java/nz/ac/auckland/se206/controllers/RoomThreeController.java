@@ -159,16 +159,17 @@ public class RoomThreeController implements ControllerWithSpeechBubble {
   }
 
   /**
-   * Handles the click event on the authorisation button.
+   * Handles the click event on the authorization button.
    *
    * @param event the mouse event
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  private void clickAuthorisation(MouseEvent event) throws IOException {
-    // If the riddle is not solved tell the player to get authorisation
+  private void clickAuthorization(MouseEvent event) throws IOException {
+    // If the riddle is not solved tell the player to get authorization
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access the system.");
+      activateSpeech(
+          "Authorization needed to access the system. Please click on the middle screen.");
       return;
     }
   }
@@ -232,6 +233,20 @@ public class RoomThreeController implements ControllerWithSpeechBubble {
     // If toolbox not collected
     if (!GameState.isToolboxCollected) {
       activateSpeech("You need to find the right tools to open this hatch.");
+      if (sound.isSoundOnProperty().get()) {
+        // Text to speech tells the player they are low on oxygen
+        new Thread(
+                () -> {
+                  try {
+                    if (sound.isSoundOnProperty().get()) {
+                      textToSpeech.speak("You need tools");
+                    }
+                  } catch (Exception e) {
+                    e.printStackTrace();
+                  }
+                })
+            .start();
+      }
 
       return;
     }

@@ -156,7 +156,7 @@ public class WordScrambleController implements MyControllers {
    */
   @FXML
   private void onClickWordScrambleHintButton() {
-    if (GptPromptEngineering.checkIfAuthorisedAndPrintMessage()) {
+    if (GptPromptEngineering.checkIfAuthorizedAndPrintMessage()) {
       return;
     }
     // Add asking for hint message to chat

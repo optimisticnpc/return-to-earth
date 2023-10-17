@@ -95,10 +95,10 @@ public class ChatComponentController implements Observer {
     chatCentralControl.addMessage(msg);
 
     // Send the message to GPT
-    if (!GameState.isAuthorising) {
+    if (!GameState.isAuthorizing) {
       addLabel(
-          "You need to be authorised to talk to Space Destroyer for security"
-              + " reasons.\nPlease click the middle screen in the main control room to authorise"
+          "You need to be authorized to talk to Space Destroyer for security"
+              + " reasons.\nPlease click the middle screen in the main control room to authorize"
               + " yourself.",
           Pos.CENTER);
     } else {

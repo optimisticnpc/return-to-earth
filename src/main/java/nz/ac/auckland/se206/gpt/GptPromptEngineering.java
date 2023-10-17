@@ -79,7 +79,7 @@ public class GptPromptEngineering {
   public static String getRiddle(String wordToGuess) {
     // Prompt GPT for the easy difficulty
     // i.e allow infite hints
-    return "The user has to authorise themselves by solving a riddle to access the system. Provide"
+    return "The user has to authorize themselves by solving a riddle to access the system. Provide"
         + " a riddle with answer "
         + wordToGuess
         + ". Begin by simply stating the riddle, do not add anything else. You should answer with"
@@ -228,14 +228,14 @@ public class GptPromptEngineering {
    *
    * @return true if authorization is required and a message is printed; false otherwise.
    */
-  public static boolean checkIfAuthorisedAndPrintMessage() {
-    // Sends in authorisation message if the user is not authorised
-    if (!GameState.isAuthorising) {
+  public static boolean checkIfAuthorizedAndPrintMessage() {
+    // Sends in authorization message if the user is not authorized
+    if (!GameState.isAuthorizing) {
       ChatMessage message =
           new ChatMessage(
               "system",
-              "You need to be authorised to talk to Space Destroyer for security reasons.\n"
-                  + "Please click the middle screen in the main control room to authorise"
+              "You need to be authorized to talk to Space Destroyer for security reasons.\n"
+                  + "Please click the middle screen in the main control room to authorize"
                   + " yourself.");
       ChatCentralControl.getInstance().addMessage(message);
       return true;

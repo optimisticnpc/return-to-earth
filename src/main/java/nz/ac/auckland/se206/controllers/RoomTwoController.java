@@ -25,6 +25,7 @@ import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.SpeechBubble;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
  * The RoomTwoController class controls the behavior and interactions within Room Two of the game.
@@ -49,6 +50,7 @@ public class RoomTwoController implements ControllerWithSpeechBubble {
   @FXML private ImageView robot;
   @FXML private ImageView soundIcon;
 
+  private TextToSpeech textToSpeech = new TextToSpeech();
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
   private CurrentScene currentScene = CurrentScene.getInstance();
@@ -98,22 +100,43 @@ public class RoomTwoController implements ControllerWithSpeechBubble {
   }
 
   /**
-   * Handles the click event on the authorisation button.
+   * Handles the click event on the authorization button.
    *
    * @param event the mouse event
-   * @throws IOException if there is an error loading the authorisation view
+   * @throws IOException if there is an error loading the authorization view
    */
   @FXML
-  private void clickAuthorisation(MouseEvent event) throws IOException {
-    // If riddle not solved tell the player to get authorised
+  private void clickAuthorization(MouseEvent event) throws IOException {
+    // If riddle not solved tell the player to get authorized
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access\nthe system.");
+      activateSpeech(
+          "Authorization needed to access the system. Please click on the middle screen in control"
+              + " room.");
+
+      playAuthorizationNeededSound();
       return;
     }
     if (!GameState.hard) {
       activateSpeech("Good luck fixing the ship! Let me know if you need any help.");
     } else {
       activateSpeech("Fixing the ship is very hard but I know you can do it. Keep trying!");
+    }
+  }
+
+  private void playAuthorizationNeededSound() {
+    if (sound.isSoundOnProperty().get()) {
+      // Text to speech tells the player they are low on oxygen
+      new Thread(
+              () -> {
+                try {
+                  if (sound.isSoundOnProperty().get()) {
+                    textToSpeech.speak("Authorization Needed");
+                  }
+                } catch (Exception e) {
+                  e.printStackTrace();
+                }
+              })
+          .start();
     }
   }
 
@@ -147,7 +170,10 @@ public class RoomTwoController implements ControllerWithSpeechBubble {
   private void clickQuestionOne(MouseEvent event) throws IOException {
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access ship materials");
+      activateSpeech(
+          "Authorization needed to access ship materials. Please click on the middle screen in the"
+              + " control room.");
+      playAuthorizationNeededSound();
       return;
     }
     if (!GameState.hard) {
@@ -187,7 +213,10 @@ public class RoomTwoController implements ControllerWithSpeechBubble {
   private void clickQuestionTwo(MouseEvent event) throws IOException {
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access ship materials");
+      activateSpeech(
+          "Authorization needed to access ship materials. Please click on the middle screen in the"
+              + " control room.");
+      playAuthorizationNeededSound();
       return;
     }
 
@@ -268,7 +297,9 @@ public class RoomTwoController implements ControllerWithSpeechBubble {
 
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access\nthe system.");
+      activateSpeech(
+          "Authorization needed to access the system. Please click on the middle screen in the"
+              + " control room.");
       return;
     }
     // If the joke is not resolved, go to joke puzzle
@@ -300,7 +331,10 @@ public class RoomTwoController implements ControllerWithSpeechBubble {
 
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access ship compartments. Please get authorised!");
+      activateSpeech(
+          "Authorization needed to access ship compartments. Please click on the middle screen in"
+              + " the control room.");
+      playAuthorizationNeededSound();
       return;
     }
 

@@ -37,7 +37,7 @@ public class GameState {
   // revealed. */
   public static boolean isToolboxRevealed = false;
 
-  public static boolean isAuthorising = false;
+  public static boolean isAuthorizing = false;
 
   // ** Indicates that the player has clicked on the tool box to collect it, the visual in the room
   // will show the tool box as taken */
@@ -81,7 +81,7 @@ public class GameState {
     // TODO: Update and double check this
     // Reset all game state variables
     isPersonalitySetup = true;
-    isAuthorising = false;
+    isAuthorizing = false;
     isRiddleResolved = false;
     isWireCollected = false;
     isPasscodeSolved = false;

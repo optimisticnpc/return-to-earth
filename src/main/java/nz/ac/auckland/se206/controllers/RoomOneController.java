@@ -26,7 +26,6 @@ import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.ControllerWithSpeechBubble;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.RoomInitializer;
 import nz.ac.auckland.se206.SceneManager;
@@ -36,6 +35,7 @@ import nz.ac.auckland.se206.SpeechBubble;
 import nz.ac.auckland.se206.ball.BouncingBallPane;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the room view. */
 public class RoomOneController implements ControllerWithSpeechBubble {
@@ -77,13 +77,13 @@ public class RoomOneController implements ControllerWithSpeechBubble {
 
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
-  private GameTimer gameTimer = GameTimer.getInstance();
   private ChatCentralControl chatCentralControl = ChatCentralControl.getInstance();
   private String[] riddles = {
     "blackhole", "star", "moon", "sun", "venus", "comet", "satellite", "mars", "saturn"
   };
 
   private Sound sound = Sound.getInstance();
+  private TextToSpeech textToSpeech = new TextToSpeech();
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -223,7 +223,7 @@ public class RoomOneController implements ControllerWithSpeechBubble {
     // ship
     if (!GameState.isRiddleResolved) {
       activateSpeech(
-          "Critical damage detected on the ship. Please authorise yourself by clicking the middle"
+          "Critical damage detected on the ship. Please authorize yourself by clicking the middle"
               + " screen to access the system and analyse the damage.");
     } else {
       activateSpeech(
@@ -242,10 +242,29 @@ public class RoomOneController implements ControllerWithSpeechBubble {
     System.out.println("Engine Warning clicked");
     // If riddle not solved tell the player to get authorization
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access the system.");
+      activateSpeech(
+          "Authorization needed to access the system. Please click on the middle screen.");
+      playAuthorizationNeededSound();
     } else {
       activateSpeech(
           "Critical failure on the main engine! Please find the spare parts and fix it!");
+    }
+  }
+
+  private void playAuthorizationNeededSound() {
+    if (sound.isSoundOnProperty().get()) {
+      // Text to speech tells the player they are low on oxygen
+      new Thread(
+              () -> {
+                try {
+                  if (sound.isSoundOnProperty().get()) {
+                    textToSpeech.speak("Authorization Needed");
+                  }
+                } catch (Exception e) {
+                  e.printStackTrace();
+                }
+              })
+          .start();
     }
   }
 
@@ -286,37 +305,21 @@ public class RoomOneController implements ControllerWithSpeechBubble {
   }
 
   /**
-   * Handles the click event on the robot.
+   * Handles the click event on the authorization button.
    *
    * @param event the mouse event
    * @throws IOException if there is an error loading the chat view
    */
   @FXML
-  private void clickRobot(MouseEvent event) throws IOException {
-    // If riddle not solved tell the player to get authorised
-    if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed! Please click the middle screen");
-      return;
-    }
-    if (!GameState.hard) {
-      activateSpeech("Good luck fixing the ship! Let me know if you need any help.");
-    } else {
-      activateSpeech("Fixing the ship is very hard but I know you can do it. Keep trying!");
-    }
-  }
+  private void clickAuthorization(MouseEvent event) throws IOException {
+    System.out.println("Authorization clicked");
 
-  /**
-   * Handles the click event on the authorisation button.
-   *
-   * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
-   */
-  @FXML
-  private void clickAuthorisation(MouseEvent event) throws IOException {
-    System.out.println("Authorisation clicked");
-    // If riddle not solved tell the player to get authorised and start the riddle
-    if (GameState.isRoomOneFirst && !GameState.isAuthorising) {
-      GameState.isAuthorising = true;
+    // If riddle not solved tell the player to get authorized and start the riddle
+    if (GameState.isRoomOneFirst
+        && !GameState.isAuthorizing
+        && !GameState.isPersonalitySetup) { // Make sure personality setup is done
+      activateSpeech("Authorization Commencing...");
+      GameState.isAuthorizing = true;
       selectRandomRiddle();
       // Add hint prompts only if difficulty is not hard and if they haven't been added already
       if (GameState.easy) {
@@ -338,6 +341,13 @@ public class RoomOneController implements ControllerWithSpeechBubble {
                 GptPromptEngineering.getRiddle(wordToGuess)
                     + GptPromptEngineering.getHardHintSetup()));
       }
+      return;
+    }
+
+    if (!GameState.hard) {
+      activateSpeech("Good luck fixing the ship! Let me know if you need any help.");
+    } else {
+      activateSpeech("Fixing the ship is very hard but I know you can do it. Keep trying!");
     }
   }
 
@@ -385,7 +395,9 @@ public class RoomOneController implements ControllerWithSpeechBubble {
 
     // If riddle is not solved, do no allow entry
     if (!GameState.isRiddleResolved) {
-      activateSpeech("Authorisation needed to access ship compartments.");
+      activateSpeech(
+          "Authorization needed to access ship compartments. Please click on the middle screen.");
+      playAuthorizationNeededSound();
       return;
     }
 
