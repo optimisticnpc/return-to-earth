@@ -94,6 +94,6 @@
          </image>
       </ImageView>
       <Polygon fx:id="wireCompartmentPolygon" fill="WHITE" layoutX="1000.0" layoutY="700.0" onMouseClicked="#clickWireCompartment" opacity="0.58" points="224.5, -68.5, 224.5, -174.0, 81.0, -210.0, 81.0, -116.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-hoverable" />
-      <fx:include layoutX="534.0" layoutY="24.0" source="timerhintdisplay.fxml" />
+      <fx:include layoutX="506.0" layoutY="24.0" source="timerhintdisplay.fxml" />
    </children>
 </Pane>

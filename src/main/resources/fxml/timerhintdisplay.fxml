@@ -8,10 +8,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TimerHintDisplayController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="53.0" layoutX="3.0" layoutY="3.0" stroke="#9ea4ff" strokeType="OUTSIDE" strokeWidth="3.0" width="508.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="59.0" stroke="#9ea4ff" strokeType="OUTSIDE" strokeWidth="3.0" width="574.0">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.7748815165876777" radius="0.867816091954023">
                <stops>
@@ -29,17 +28,12 @@
             </RadialGradient>
          </fill>
       </Rectangle>
-      <Label fx:id="timerLabel" layoutX="24.0" layoutY="11.0" prefHeight="35.0" prefWidth="328.0" style="-fx-font-weight: bold;" text="Time Remaining: 02:00" textFill="#3eff00">
+      <Label fx:id="timerLabel" layoutX="24.0" layoutY="12.0" prefHeight="35.0" prefWidth="328.0" style="-fx-font-weight: bold;" text="Time Remaining: 02:00" textFill="#3eff00">
          <font>
             <Font name="Symbol" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="249.0" layoutY="11.0" prefHeight="35.0" prefWidth="249.0" text="Hints Remaining:" textFill="#3eff00">
-         <font>
-            <Font name="Symbol" size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="hintLabel" layoutX="409.0" layoutY="11.0" prefHeight="35.0" prefWidth="103.0" text="Unlimited" textFill="#3eff00">
+      <Label fx:id="hintLabel" layoutX="294.0" layoutY="11.0" prefHeight="35.0" prefWidth="278.0" text="Hints Remaining: Unlimited" textFill="#3eff00">
          <font>
             <Font name="Symbol" size="20.0" />
          </font>
