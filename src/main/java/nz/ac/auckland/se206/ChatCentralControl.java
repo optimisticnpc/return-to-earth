@@ -71,6 +71,10 @@ public class ChatCentralControl {
     observers.remove(observer);
   }
 
+  public void addMessageButDontUpdate(ChatMessage message) {
+    messages.add(message);
+  }
+
   public void addMessage(ChatMessage message) {
     messages.add(message);
     notifyObservers();

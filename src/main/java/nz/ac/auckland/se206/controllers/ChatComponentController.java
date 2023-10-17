@@ -63,10 +63,26 @@ public class ChatComponentController implements Observer {
   public void setSendButtonAction() {
     String message = inputText.getText().replaceAll("[\n\r]", ""); // Remove all newline characters
     inputText.clear();
+
     if (message.trim().isEmpty()) {
       return;
     }
+
     ChatMessage msg = new ChatMessage("user", message);
+
+    // Check if the message consists only of numbers.
+    if (message.matches("\\d+")) {
+
+      chatCentralControl.addMessageButDontUpdate(msg);
+
+      ChatMessage warning =
+          new ChatMessage(
+              "system", "Passcode should be entered at the tool compartment access panel.");
+
+      chatCentralControl.addMessage(warning);
+      return; // Exit the method so no further processing happens.
+    }
+
     chatCentralControl.addMessage(msg);
 
     if (!GameState.isAuthorising) {
@@ -75,7 +91,6 @@ public class ChatComponentController implements Observer {
               + " reasons.\nPlease click the middle screen in the main control room to authorise"
               + " yourself.",
           Pos.CENTER);
-      ;
     } else {
       chatCentralControl.runGpt(msg);
     }
