@@ -99,6 +99,7 @@ public class GameState {
     isJokeResolved.set(false);
     isJokeChallengeAccepted.set(false);
     isLoadingAnimationlaying.set(false);
+    isPhaseChange.set(false);
     HintCounter.resetHintCount();
   }
 
