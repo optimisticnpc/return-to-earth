@@ -11,7 +11,6 @@ import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
@@ -191,22 +190,13 @@ public class ChatCentralControl {
           public ChatMessage call() throws ApiProxyException {
             chatCompletionRequest.addMessage(msg);
             try {
-              // Get the chat message from GPT and return it
-              ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
-              Choice result = chatCompletionResult.getChoices().iterator().next();
-              chatCompletionRequest.addMessage(result.getChatMessage());
+              Choice result = ChatBase.getGptMessage(chatCompletionRequest);
               chatBase.recordAndPrintTime(startTime);
               return result.getChatMessage();
             } catch (ApiProxyException e) {
               Platform.runLater(
                   () -> {
-                    // Show an alert dialog or some other notification to the user.
-                    new Alert(
-                            Alert.AlertType.ERROR,
-                            "An error occurred while communicating with the OpenAI's servers."
-                                + " Please check your API key and internet connection and then"
-                                + " reload the game.")
-                        .showAndWait();
+                    ChatBase.showApiAlert();
                     hideAllLoadingIcons();
                     AnimationCentralControl.getInstance().stopAllAnimation();
                     enableAllTextBoxes();

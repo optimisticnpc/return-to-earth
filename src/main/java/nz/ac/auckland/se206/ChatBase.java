@@ -3,10 +3,15 @@ package nz.ac.auckland.se206;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** ChatControllerBase acts as a base for all chat components and controllers in the application. */
@@ -77,5 +82,24 @@ public class ChatBase {
             chatLog.getChildren().add(box);
           }
         });
+  }
+
+  public static Choice getGptMessage(ChatCompletionRequest chatCompletionRequest)
+      throws ApiProxyException {
+    // Get the chat message from GPT and return it
+    ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+    Choice result = chatCompletionResult.getChoices().iterator().next();
+    chatCompletionRequest.addMessage(result.getChatMessage());
+    return result;
+  }
+
+  public static void showApiAlert() {
+    // Show an alert dialog or some other notification to the user.
+    new Alert(
+            Alert.AlertType.ERROR,
+            "An error occurred while communicating with the OpenAI's servers."
+                + " Please check your API key and internet connection and then"
+                + " reload the game.")
+        .showAndWait();
   }
 }
