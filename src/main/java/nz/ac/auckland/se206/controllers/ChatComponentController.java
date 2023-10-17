@@ -3,17 +3,13 @@ package nz.ac.auckland.se206.controllers;
 import java.util.List;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import nz.ac.auckland.se206.ChatBase;
 import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.GameState;
@@ -44,7 +40,6 @@ public class ChatComponentController implements Observer {
 
   private ChatCentralControl chatCentralControl;
   private List<ChatMessage> messages;
-  private ChatBase chatBase = new ChatBase();
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -52,7 +47,6 @@ public class ChatComponentController implements Observer {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public void initialize() {
-    // System.out.println("ChatComponentController.initialize()");
 
     hideLoadingIcon();
     chatCentralControl = ChatCentralControl.getInstance();
@@ -119,42 +113,7 @@ public class ChatComponentController implements Observer {
    * @param position the position of the message
    */
   private void addLabel(String message, Pos position) {
-    // Creates a new box
-    HBox box = new HBox();
-    box.setAlignment(position);
-    box.setPadding(new Insets(5, 5, 5, 10));
-
-    // Adjusts font based on the position of the test
-    Text text = new Text(message);
-    if (position == Pos.CENTER_LEFT) {
-      text.setFont(javafx.scene.text.Font.font("Arial", 15));
-    } else if (position == Pos.CENTER_RIGHT) {
-      text.setFont(javafx.scene.text.Font.font("Comic Sans MS", 15));
-    } else if (position == Pos.CENTER) {
-      text.setFont(javafx.scene.text.Font.font("Franklin Gothic Medium", 15));
-    }
-    TextFlow textFlow = new TextFlow(text);
-
-    // Adjust background colour based on position of the text
-    if (position == Pos.CENTER_LEFT) {
-      textFlow.setStyle("-fx-background-color: rgb(255,242,102);" + "-fx-background-radius: 20px");
-    } else if (position == Pos.CENTER_RIGHT) {
-      textFlow.setStyle("-fx-background-color: rgb(255,255,255);" + "-fx-background-radius: 20px");
-    } else if (position == Pos.CENTER) {
-      textFlow.setStyle("-fx-background-color: rgb(255,117,128);" + "-fx-background-radius: 20px");
-    }
-
-    textFlow.setPadding(new Insets(5, 10, 5, 10));
-
-    // Adds box to chatlog
-    box.getChildren().add(textFlow);
-    Platform.runLater(
-        new Runnable() {
-          @Override
-          public void run() {
-            chatLog.getChildren().add(box);
-          }
-        });
+    ChatBase.addLabel(message, position, chatLog);
   }
 
   private void updateMessages() {

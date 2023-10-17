@@ -172,7 +172,6 @@ public class ChatCentralControl {
    * Runs the GPT model with a given chat message.
    *
    * @param msg the chat message to process
-   * @return the response chat message
    */
   public void runGpt(ChatMessage msg) {
     // Play the loading animation
@@ -279,12 +278,14 @@ public class ChatCentralControl {
                         Platform.runLater(
                             () -> {
                               if (GameState.hard) {
+                                // Get prompts for hard difficulty phase two
                                 runGpt(
                                     new ChatMessage(
                                         "user",
                                         GptPromptEngineering.getHardPhaseTwoProgress()
                                             + GptPromptEngineering.getHardHintReminder()));
                               } else {
+                                // Get phase two prompts
                                 runGpt(
                                     new ChatMessage(
                                         "user", GptPromptEngineering.getPhaseTwoProgress()));
@@ -294,7 +295,6 @@ public class ChatCentralControl {
                     },
                     5000);
           }
-
 
           if (GameState.isPhaseChange.getValue()) {
 
@@ -316,6 +316,7 @@ public class ChatCentralControl {
                       public void run() {
                         Platform.runLater(
                             () -> {
+                              // Stop all the animations and renable chat
                               hideAllLoadingIcons();
                               AnimationCentralControl.getInstance().stopAllAnimation();
                               enableAllTextBoxes();
@@ -365,7 +366,7 @@ public class ChatCentralControl {
    *
    * @param word a string word that is compared against words in sentence
    * @param sentence a string sentence that is taken apart to be compared
-   * @return
+   * @return The number of times a word appears in a sentence
    */
   private int countOccurrences(String word, String sentence) {
     // Split the sentence into an array of words

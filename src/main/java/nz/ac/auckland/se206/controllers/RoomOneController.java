@@ -26,7 +26,6 @@ import nz.ac.auckland.se206.ChatCentralControl;
 import nz.ac.auckland.se206.ControllerWithSpeechBubble;
 import nz.ac.auckland.se206.CurrentScene;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.OxygenMeter;
 import nz.ac.auckland.se206.RoomInitializer;
 import nz.ac.auckland.se206.SceneManager;
@@ -77,7 +76,6 @@ public class RoomOneController implements ControllerWithSpeechBubble {
 
   private SpeechBubble speech = SpeechBubble.getInstance();
   private Timer timer = new Timer();
-  private GameTimer gameTimer = GameTimer.getInstance();
   private ChatCentralControl chatCentralControl = ChatCentralControl.getInstance();
   private String[] riddles = {
     "blackhole", "star", "moon", "sun", "venus", "comet", "satellite", "mars", "saturn"

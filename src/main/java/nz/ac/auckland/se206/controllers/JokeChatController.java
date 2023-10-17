@@ -5,7 +5,6 @@ import java.util.List;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -16,10 +15,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import nz.ac.auckland.se206.AnimationCentralControl;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatBase;
@@ -237,42 +233,8 @@ public class JokeChatController {
    * @param message the message to add
    * @param position the position of the message
    */
-  public void addLabel(String message, Pos position) {
-    // Create a new label
-    HBox box = new HBox();
-    box.setAlignment(position);
-    box.setPadding(new Insets(5, 5, 5, 10));
-
-    Text text = new Text(message);
-    if (position == Pos.CENTER_LEFT) {
-      text.setFont(javafx.scene.text.Font.font("Arial", 15));
-    } else if (position == Pos.CENTER_RIGHT) {
-      text.setFont(javafx.scene.text.Font.font("Comic Sans MS", 15));
-    } else if (position == Pos.CENTER) {
-      text.setFont(javafx.scene.text.Font.font("Franklin Gothic Medium", 15));
-    }
-    TextFlow textFlow = new TextFlow(text);
-
-    // Set the background color of the label
-    if (position == Pos.CENTER_LEFT) {
-      textFlow.setStyle("-fx-background-color: rgb(255,242,102);" + "-fx-background-radius: 20px");
-    } else if (position == Pos.CENTER_RIGHT) {
-      textFlow.setStyle("-fx-background-color: rgb(255,255,255);" + "-fx-background-radius: 20px");
-    } else if (position == Pos.CENTER) {
-      textFlow.setStyle("-fx-background-color: rgb(255,117,128);" + "-fx-background-radius: 20px");
-    }
-
-    textFlow.setPadding(new Insets(5, 10, 5, 10));
-
-    // Add the label to the chat log
-    box.getChildren().add(textFlow);
-    Platform.runLater(
-        new Runnable() {
-          @Override
-          public void run() {
-            chatLog.getChildren().add(box);
-          }
-        });
+  private void addLabel(String message, Pos position) {
+    ChatBase.addLabel(message, position, chatLog);
   }
 
   public void showLoadingIcon() {
