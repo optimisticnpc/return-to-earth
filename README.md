@@ -1,39 +1,27 @@
 # SOFTENG 206 - EscAIpe Room
+This project was to create an escape room game that tests problem solving, creativity and critical thinking. Our team create a space themed game where the player needs to complete a riddle and math puzzles as well as other challenging tasks in order to fix a spaceship and return to Earth.
+
+The central requirement for this project was to use the OpenAI API to integrate GPT into the game. The model used was gpt-3.5-turbo-0613 and it was required that it be the 'gamemaster' of the game. In our game, GPT powers the interactions with 'Space Destroyer' who is the AI of the ship. Space Destroyer guides the player towards fixing the ship.
+
+## Video Demo
+(coming soon)
 
 ## To setup OpenAI's API
-
+Setting this up is necessary for the game to work
 - add in the root of the project (i.e., the same level where `pom.xml` is located) a file named `apiproxy.config`
-- put inside the credentials that you received from no-reply@digitaledu.ac.nz (put the quotes "")
+- place the correct credentials inside. Keep the email the same (my university email) but use your own API key.
 
   ```
-  email: "upi123@aucklanduni.ac.nz"
+  email: "jtan678@aucklanduni.ac.nz"
   apiKey: "YOUR_KEY"
   ```
   these are your credentials to invoke the OpenAI GPT APIs
 
-## To setup codestyle's API
-
-- add in the root of the project (i.e., the same level where `pom.xml` is located) a file named `codestyle.config`
-- put inside the credentials that you received from gradestyle@digitaledu.ac.nz (put the quotes "")
-
-  ```
-  email: "upi123@aucklanduni.ac.nz"
-  accessToken: "YOUR_KEY"
-  ```
-
- these are your credentials to invoke GradeStyle
 
 ## To run the game
 
 `./mvnw clean javafx:run`
 
-## To debug the game
-
-`./mvnw clean javafx:run@debug` then in VS Code "Run & Debug", then run "Debug JavaFX"
-
-## To run codestyle
-
-`./mvnw clean compile exec:java@style`
 
 ## Image Attributions:
 
