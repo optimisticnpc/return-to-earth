@@ -5,7 +5,7 @@
 - In the root of the project (i.e., the same level where `pom.xml` is located) open the file named `apiproxy.config`
 - put inside the credentials in the format below
 - Email: Leave as my email as stated below.
-- OpenAI API Key: Use your own OpenAI User API key (these keys have become legacy since the development of the game).
+- OpenAI API Key: Use your own OpenAI API key.
 
   ```
   email: "jtan678@aucklanduni.ac.nz"
