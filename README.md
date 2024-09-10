@@ -1,39 +1,20 @@
-# SOFTENG 206 - EscAIpe Room
+# Return to Earth
+- Return to Earth is a space themed escape room game utilising the OpenAI API to run a GPT powered Game Master. The game was a team project created for the course SOFTENG 206. 
 
 ## To setup OpenAI's API
-
-- add in the root of the project (i.e., the same level where `pom.xml` is located) a file named `apiproxy.config`
-- put inside the credentials that you received from no-reply@digitaledu.ac.nz (put the quotes "")
+- In the root of the project (i.e., the same level where `pom.xml` is located) open the file named `apiproxy.config`
+- put inside the credentials in the format below
+- Email: Leave as my email as stated below.
+- OpenAI API Key: Use your own OpenAI API key.
 
   ```
-  email: "upi123@aucklanduni.ac.nz"
+  email: "jtan678@aucklanduni.ac.nz"
   apiKey: "YOUR_KEY"
   ```
-  these are your credentials to invoke the OpenAI GPT APIs
-
-## To setup codestyle's API
-
-- add in the root of the project (i.e., the same level where `pom.xml` is located) a file named `codestyle.config`
-- put inside the credentials that you received from gradestyle@digitaledu.ac.nz (put the quotes "")
-
-  ```
-  email: "upi123@aucklanduni.ac.nz"
-  accessToken: "YOUR_KEY"
-  ```
-
- these are your credentials to invoke GradeStyle
 
 ## To run the game
 
 `./mvnw clean javafx:run`
-
-## To debug the game
-
-`./mvnw clean javafx:run@debug` then in VS Code "Run & Debug", then run "Debug JavaFX"
-
-## To run codestyle
-
-`./mvnw clean compile exec:java@style`
 
 ## Image Attributions:
 

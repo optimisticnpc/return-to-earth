@@ -3,7 +3,7 @@
 
 #
 times.txt
-apiproxy.config
+# apiproxy.config
 codestyle.config
 !libs/codestyle.jar
 ### Eclipse ###
