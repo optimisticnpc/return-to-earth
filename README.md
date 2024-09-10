@@ -1,11 +1,10 @@
 # Return to Earth
-- Return to Earth is a space themed escape room game utilising the OpenAI API to run a GPT Game Master. The game was a team project created for the course SOFTENG 206. 
+- Return to Earth is a space themed escape room game utilising the OpenAI API to run a GPT powered Game Master. The game was a team project created for the course SOFTENG 206. 
 
 ## To setup OpenAI's API
-
-- add in the root of the project (i.e., the same level where `pom.xml` is located) a file named `apiproxy.config`
-- put inside the credentials in the format below (put the quotes "")
-- Email: Use my email as provided below.
+- In the root of the project (i.e., the same level where `pom.xml` is located) open the file named `apiproxy.config`
+- put inside the credentials in the format below
+- Email: Leave as my email as stated below.
 - OpenAI API Key: Use your own OpenAI User API key (these keys have become legacy since the development of the game).
 
   ```
