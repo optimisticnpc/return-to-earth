@@ -18,48 +18,29 @@ public class OpenAiService {
   }
 
   /**
-   * Checks if the provided email and apiKey are valid input.
+   * Checks if the providedapiKey are valid input.
    *
-   * @param email The email to check.
-   * @param apiKey The apiKey to check.
-   * @throws IllegalArgumentException if the email or apiKey is null or empty.
-   */
-  private static void checkValidInput(String email, String apiKey) {
-    if (isEmpty(email)) {
-      throw new IllegalArgumentException("email cannot be null or empty");
-    }
 
+   * @param apiKey The apiKey to check.
+   * @throws IllegalArgumentException if the apiKey is null or empty.
+   */
+  private static void checkValidInput(String apiKey) {
     if (isEmpty(apiKey)) {
       throw new IllegalArgumentException("apiKey cannot be null or empty");
     }
   }
 
-  private String email;
   private String apiKey;
 
   /**
-   * Creates an instance of OpenAiService with the provided email and apiKey.
-   *
-   * @param email The email for the OpenAI service.
-   * @param apiKey The API key for the OpenAI service.
-   * @throws IllegalArgumentException if the email or apiKey is null or empty.
-   */
-  public OpenAiService(String email, String apiKey) {
-    checkValidInput(email, apiKey);
-    this.email = email;
-    this.apiKey = apiKey;
-  }
-
-  /**
-   * Creates an instance of OpenAiService with the email and apiKey read from the specified file.
+   * Creates an instance of OpenAiService with the apiKey read from the specified file.
    *
    * @param fileName The name of the file containing the API proxy configuration.
    */
   public OpenAiService(String fileName) {
     try {
       ApiProxyConfig config = ApiProxyConfig.readConfig(new File(fileName));
-      checkValidInput(config.getEmail(), config.getApiKey());
-      this.email = config.getEmail();
+      checkValidInput(config.getApiKey());
       this.apiKey = config.getApiKey();
     } catch (ApiProxyException e) {
       // TODO handle exception appropriately
@@ -76,12 +57,4 @@ public class OpenAiService {
     return apiKey;
   }
 
-  /**
-   * Returns the email associated with the OpenAI service.
-   *
-   * @return The email.
-   */
-  public String getEmail() {
-    return email;
-  }
 }

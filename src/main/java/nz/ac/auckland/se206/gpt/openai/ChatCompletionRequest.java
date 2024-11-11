@@ -15,7 +15,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 
 /** Responsible for preparing and executing an OpenAI Chat Completion request. */
 public class ChatCompletionRequest {
