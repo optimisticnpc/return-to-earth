@@ -1,6 +1,9 @@
 package nz.ac.auckland.se206.gpt.openai;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.json.Json;
@@ -12,20 +15,22 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 /** Responsible for preparing and executing an OpenAI Chat Completion request. */
 public class ChatCompletionRequest {
 
   private static final int NOT_SET = -1;
-  private static final String URL_COMPLETION_ENDPOINT =
-      "https://us-central1-api-proxies-and-wrappers.cloudfunctions.net/proxy/openai-chat-completion";
+  private static final String URL_COMPLETION_ENDPOINT = "https://api.openai.com/v1/chat/completions";
+  // private static final String URL_COMPLETION_ENDPOINT =
+      // "https://us-central1-api-proxies-and-wrappers.cloudfunctions.net/proxy/openai-chat-completion";
   private static final OpenAiService openAiServiceFromFile = new OpenAiService("apiproxy.config");
 
   private final OpenAiService openAiService;
   private final List<ChatMessage> messages;
 
   // Optional parameters
-  private int maxTokens = NOT_SET;
+  private int maxCompletionTokens = NOT_SET;
   private double temperature = NOT_SET;
   private double topP = NOT_SET;
   private int numChoice = NOT_SET;
@@ -78,16 +83,16 @@ public class ChatCompletionRequest {
   /**
    * Sets the maximum number of tokens to generate.
    *
-   * @param maxTokens the maximum number of tokens to generate.
+   * @param maxCompletionTokens the maximum number of tokens to generate.
    * @return the current ChatCompletionRequest instance.
-   * @throws IllegalArgumentException if maxTokens is less than 1.
+   * @throws IllegalArgumentException if maxCompletionTokens is less than 1.
    */
-  public ChatCompletionRequest setMaxTokens(int maxTokens) {
-    if (maxTokens < 1) {
+  public ChatCompletionRequest setMaxCompletionTokens(int maxCompletionTokens) {
+    if (maxCompletionTokens < 1) {
       throw new IllegalArgumentException(
-          "'max_tokens' must be at least 1, but was given " + maxTokens);
+          "'max_completion_ tokens' must be at least 1, but was given " + maxCompletionTokens);
     }
-    this.maxTokens = maxTokens;
+    this.maxCompletionTokens = maxCompletionTokens;
     return this;
   }
 
@@ -158,13 +163,12 @@ public class ChatCompletionRequest {
       // Build JSON object for overall request
       JsonObjectBuilder jsonOverallBuilder =
           Json.createObjectBuilder()
-              .add("email", openAiService.getEmail())
-              .add("access_token", openAiService.getApiKey())
+              .add("model", "gpt-3.5-turbo")
               .add("messages", jsonMessages);
 
       // Add optional parameters to the request if set
-      if (maxTokens != NOT_SET) {
-        jsonOverallBuilder.add("max_tokens", maxTokens);
+      if (maxCompletionTokens != NOT_SET) {
+        jsonOverallBuilder.add("max_tokens", maxCompletionTokens);
       }
 
       if (temperature > NOT_SET) {
@@ -185,23 +189,45 @@ public class ChatCompletionRequest {
       HttpPost httpPost = new HttpPost(URL_COMPLETION_ENDPOINT);
       httpPost.setHeader("Content-Type", "application/json");
       httpPost.setHeader("Accept", "application/json");
+      httpPost.setHeader("Authorization", "Bearer " + openAiService.getApiKey());
       httpPost.setEntity(new StringEntity(value.toString()));
+
+      // Send the HTTP request and print the response
+      CloseableHttpClient client = HttpClients.createDefault();
+
+      // String responseString =
+      //     client.execute(
+      //         httpPost,
+      //         httpResponse -> {
+      //           return EntityUtils.toString(httpResponse.getEntity());
+      //         });
+
+      // // Print the raw JSON response to the terminal
+      // System.out.println(responseString);
+
+
       ObjectMapper mapperApiMapper = new ObjectMapper();
 
-      // Send the HTTP request and process the response
-      CloseableHttpClient client = HttpClients.createDefault();
       ResponseChatCompletion responseChat =
-          (ResponseChatCompletion)
-              client.execute(
-                  httpPost,
-                  httpResponse ->
-                      mapperApiMapper.readValue(
-                          httpResponse.getEntity().getContent(), ResponseChatCompletion.class));
+    client.execute(
+        httpPost,
+        httpResponse -> {
+            // Read the response content as a JsonNode
+            JsonNode responseJson = mapperApiMapper.readTree(httpResponse.getEntity().getContent());
 
-      // Check for API call success and handle any errors
-      if (!responseChat.success && responseChat.code != 0) {
-        throw new ApiProxyException("Problem calling API: " + responseChat.message);
-      }
+            // Create a new ObjectNode to wrap the responseJson into "chat_completion"
+            ObjectNode wrappedJson = mapperApiMapper.createObjectNode();
+            wrappedJson.set("chat_completion", responseJson);
+
+            // Map the wrappedJson into ResponseChatCompletion
+            return mapperApiMapper.treeToValue(wrappedJson, ResponseChatCompletion.class);
+        });
+
+
+      // // Check for API call success and handle any errors
+      // if (!responseChat.success && responseChat.code != 0) {
+      //   throw new ApiProxyException("Problem calling API: " + responseChat.message);
+      // }
 
       // Return the chat completion result
       return new ChatCompletionResult(responseChat.chatCompletion);
