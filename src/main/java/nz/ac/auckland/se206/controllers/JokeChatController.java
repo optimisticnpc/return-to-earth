@@ -185,7 +185,7 @@ public class JokeChatController {
   /** Sets up the chat configuration. */
   private void setupChatConfiguration() {
     chatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.5).setMaxTokens(100);
+        new ChatCompletionRequest().setN(1).setTemperature(0.3).setTopP(0.5).setMaxCompletionTokens(100);
   }
 
   /**

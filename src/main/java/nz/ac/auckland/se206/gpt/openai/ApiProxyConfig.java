@@ -23,12 +23,6 @@ public class ApiProxyConfig {
       // Read the configuration from the file
       ApiProxyConfig config = objectMapper.readValue(file, ApiProxyConfig.class);
 
-      // Validate the email
-      if (isEmpty(config.getEmail())) {
-        throw new ApiProxyException(
-            "The email in " + file.getAbsolutePath() + " is missing or empty.");
-      }
-
       // Validate the API key
       if (isEmpty(config.getApiKey())) {
         throw new ApiProxyException(
@@ -55,24 +49,14 @@ public class ApiProxyConfig {
     return value == null || value.trim().isEmpty();
   }
 
-  private String email;
   private String apiKey;
 
   private ApiProxyConfig() {}
 
-  private ApiProxyConfig(String email, String apiKey) {
-    this.email = email;
+  private ApiProxyConfig(String apiKey) {
     this.apiKey = apiKey;
   }
 
-  /**
-   * Returns the email associated with the API proxy.
-   *
-   * @return the email
-   */
-  public String getEmail() {
-    return email;
-  }
 
   /**
    * Returns the API key associated with the API proxy.
